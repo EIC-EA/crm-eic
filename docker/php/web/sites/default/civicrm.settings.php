@@ -33,7 +33,7 @@ global $civicrm_root, $civicrm_setting, $civicrm_paths;
 
 define('CIVICRM_UF_DSN', 'mysql://'.getenv('DRUPAL_DATABASE_USERNAME').':'.getenv('DRUPAL_DATABASE_PASSWORD').'@'.getenv('DRUPAL_DATABASE_HOST').':'.getenv('DRUPAL_DATABASE_PORT').'/'.getenv('DRUPAL_DATABASE_NAME').'?new_link=true');
 define('CIVICRM_DSN', CIVICRM_UF_DSN);
-define('CIVICRM_UF_BASEURL', getevn('CIVICRM_UF_BASEURL'));
+define('CIVICRM_UF_BASEURL', getenv('CIVICRM_UF_BASEURL'));
 
 /**
  * Content Management System (CMS) Host:
@@ -634,3 +634,6 @@ if ($memLimit >= 0 and $memLimit < 134217728) {
 
 require_once 'CRM/Core/ClassLoader.php';
 CRM_Core_ClassLoader::singleton()->register();
+
+# Disable automatic installations of extension
+global $civicrm_setting;$civicrm_setting['Extension Preferences']['ext_repo_url'] = false;

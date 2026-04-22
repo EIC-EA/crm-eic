@@ -1,19 +1,20 @@
-FROM debian:latest
+FROM httpd:latest
 
-RUN apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update -y \
-    && apt-get -y install apache2
+# Suppress startup error message
+RUN sed -i \
+    -e 's/#ServerName .*/ServerName localhost/' \
+    -e 's/DocumentRoot .*/IncludeOptional conf\/extra\/localhost.conf/' \
+    /usr/local/apache2/conf/httpd.conf
 
 # Enable apache modules
-RUN a2enmod rewrite headers \
-    && a2enmod proxy_fcgi \
-    && a2enmod rewrite \
-    && a2enmod ssl
+RUN sed -i \
+    -e 's/#LoadModule rewrite/LoadModule rewrite/' \
+    -e 's/#LoadModule headers_module/LoadModule headers_module/' \
+    -e 's/#LoadModule proxy_module/LoadModule proxy_module/' \    
+    -e 's/#LoadModule proxy_fcgi_module/LoadModule proxy_fcgi_module/' \
+    /usr/local/apache2/conf/httpd.conf
 
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+# Create the folder for php mounts
+RUN mkdir -p /var/www/html
 
-WORKDIR /app
-EXPOSE 80
-COPY apache-foreground /usr/local/bin/
-RUN chmod +x /usr/local/bin/apache-foreground
-
-CMD ["apache-foreground"]
+COPY vhosts/localhost.conf /usr/local/apache2/conf/extra
