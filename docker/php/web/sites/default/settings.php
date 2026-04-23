@@ -868,3 +868,13 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
+
+/**
+ * EU Login settings.
+ */
+$config['cas.settings']['server']['hostname'] = getenv('EULOGIN_URL');
+// Uncomment this line to force EU Login known user accounts to login through EU
+// Login.
+$config['cas.settings']['user_accounts.prevent_normal_login'] = TRUE;
+// Allow self-registered users to login.
+$config['oe_authentication.settings']['assurance_level'] = 'LOW';

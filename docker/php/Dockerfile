@@ -7,6 +7,14 @@ FROM drupal:${DRUPAL_VERSION}-php${PHP_VERSION}-fpm
 
 # install the PHP extensions we need
 RUN set -eux; \
+
+apt-get update; \
+	apt-get install -y --no-install-recommends \
+		unzip \       
+	;
+
+# install the PHP extensions we need
+RUN set -eux; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
 	\
@@ -80,8 +88,9 @@ RUN set -eux; \
 
 RUN set -eux; \
 	# CiviCRM SES
-	cv dl --bare https://lab.civicrm.org/extensions/ses/-/archive/1.3.15/ses-1.3.15.zip && \
-	cv dl --bare https://github.com/systopia/de.systopia.eck/archive/1.0.1.zip
+	cd /opt/drupal/vendor/civicrm/civicrm-core/ext && \
+	curl --location -O https://lab.civicrm.org/extensions/ses/-/archive/1.3.15/ses-1.3.15.zip && unzip ses-1.3.15.zip  && \
+	curl --location -O https://github.com/systopia/de.systopia.eck/archive/1.0.1.zip && unzip 1.0.1.zip
 
 COPY web/sites/default/settings.php /opt/drupal/web/sites/default/settings.php
 COPY web/sites/default/civicrm.settings.php /opt/drupal/web/sites/default/civicrm.settings.php
