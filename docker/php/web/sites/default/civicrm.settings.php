@@ -637,3 +637,5 @@ CRM_Core_ClassLoader::singleton()->register();
 
 # Disable automatic installations of extension
 global $civicrm_setting;$civicrm_setting['Extension Preferences']['ext_repo_url'] = false;
+ // Override the extensions directory.
+$civicrm_setting['domain']['extensionsDir'] = '/opt/drupal/civicrm-ext';

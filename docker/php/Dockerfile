@@ -56,8 +56,8 @@ RUN apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false upd
   && apt-get -y install imagemagick mariadb-client
 
 # Download cv (https://github.com/civicrm/cv)
-RUN curl -LsS https://download.civicrm.org/cv/cv.phar -o /usr/local/bin/cv \
-    && chmod +x /usr/local/bin/cv
+#RUN curl -LsS https://download.civicrm.org/cv/cv.phar -o /usr/local/bin/cv \
+#    && chmod +x /usr/local/bin/cv
 
 ENV COMPOSER_COMPILE=all
 
@@ -88,9 +88,17 @@ RUN set -eux; \
 
 RUN set -eux; \
 	# CiviCRM SES
-	cd /opt/drupal/vendor/civicrm/civicrm-core/ext && \
-	curl --location -O https://lab.civicrm.org/extensions/ses/-/archive/1.3.15/ses-1.3.15.zip && unzip ses-1.3.15.zip  && \
-	curl --location -O https://github.com/systopia/de.systopia.eck/archive/1.0.1.zip && unzip 1.0.1.zip
+	mkdir /opt/drupal/civicrm-ext && \
+	cd /opt/drupal/civicrm-ext && \
+	curl --location -O https://lab.civicrm.org/extensions/ses/-/archive/1.3.15/ses-1.3.15.zip && unzip ses-1.3.15.zip  && rm ses-1.3.15.zip && \
+	curl --location -O https://github.com/systopia/de.systopia.eck/archive/1.0.1.zip && unzip 1.0.1.zip && rm 1.0.1.zip && \
+	curl --location -O https://lab.civicrm.org/extensions/configitems/-/archive/2.0.0/configitems-2.0.0.zip && unzip configitems-2.0.0.zip && rm configitems-2.0.0.zip
 
 COPY web/sites/default/settings.php /opt/drupal/web/sites/default/settings.php
 COPY web/sites/default/civicrm.settings.php /opt/drupal/web/sites/default/civicrm.settings.php
+
+#"extra": {
+#"civicrm-asset": {
+#"assets:packages": {
+#"+include": [
+#"kcfinder/**"
