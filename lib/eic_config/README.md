@@ -22,4 +22,5 @@ This is an [extension for CiviCRM](https://docs.civicrm.org/sysadmin/en/latest/c
     civix export RelationshipType 15 
     civix export RelationshipType 16 
     civix export RelationshipType 17 
-    civix export CustomField 1 
+    civix export CustomField 1
+    civix export CustomField 2

@@ -114,7 +114,7 @@ class FieldMap
             // ------------------------------------------------------------------
             'program' => [
                 'entity'   => 'custom',
-                'field'    => 'EIC_Awardee_Organization.PIC',  // <-- adjust to your group.field
+                'field'    => 'EIC_Awardee_Organization.Program',
                 'required' => false,
                 'transform' => fn(string $v) => trim($v),
             ],
