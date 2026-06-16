@@ -1,0 +1,8 @@
+{
+	"values": {
+		"enable_components": [
+			"CiviCase",
+			"CiviReport"
+		]
+	}
+}

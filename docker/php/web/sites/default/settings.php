@@ -878,3 +878,8 @@ $config['cas.settings']['server']['hostname'] = getenv('EULOGIN_URL');
 $config['cas.settings']['user_accounts.prevent_normal_login'] = TRUE;
 // Allow self-registered users to login.
 $config['oe_authentication.settings']['assurance_level'] = 'LOW';
+
+$settings["config_sync_directory"]="../config/sync";
+
+$config['civicrmtheme.settings']['admin_theme'] = 'claro';
+$config['civicrmtheme.settings']['public_theme'] = 'claro';

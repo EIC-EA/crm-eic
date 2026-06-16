@@ -10,8 +10,7 @@ RUN set -eux; \
 
 apt-get update; \
 	apt-get install -y --no-install-recommends \
-		unzip \       
-	;
+		unzip;
 
 # install the PHP extensions we need
 RUN set -eux; \
@@ -92,10 +91,17 @@ RUN set -eux; \
 	cd /opt/drupal/civicrm-ext && \
 	curl --location -O https://lab.civicrm.org/extensions/ses/-/archive/1.3.15/ses-1.3.15.zip && unzip ses-1.3.15.zip  && rm ses-1.3.15.zip && \
 	curl --location -O https://github.com/systopia/de.systopia.eck/archive/1.0.1.zip && unzip 1.0.1.zip && rm 1.0.1.zip && \
-	curl --location -O https://lab.civicrm.org/extensions/configitems/-/archive/2.0.0/configitems-2.0.0.zip && unzip configitems-2.0.0.zip && rm configitems-2.0.0.zip
+	curl --location -O https://lab.civicrm.org/extensions/configitems/-/archive/2.0.0/configitems-2.0.0.zip && unzip configitems-2.0.0.zip && rm configitems-2.0.0.zip && \
+	curl --location -O https://lab.civicrm.org/extensions/activitytypeacl/-/archive/1.6.1/activitytypeacl-1.6.1.zip && unzip activitytypeacl-1.6.1.zip && rm activitytypeacl-1.6.1.zip && \
+	curl --location -O https://github.com/systopia/aip/releases/download/1.3.0/aip-1.3.0.zip && unzip aip-1.3.0.zip && rm aip-1.3.0.zip && \
+	curl --location -O https://lab.civicrm.org/extensions/form-processor/-/archive/3.2.0/form-processor-3.2.0.zip && unzip form-processor-3.2.0.zip && rm form-processor-3.2.0.zip && \
+	curl --location -O https://github.com/systopia/de.systopia.sqltasks/releases/download/2.2.0/de.systopia.sqltasks-2.2.0.zip && unzip de.systopia.sqltasks-2.2.0.zip && rm de.systopia.sqltasks-2.2.0.zip && \
+	curl --location -O https://lab.civicrm.org/extensions/action-provider/-/archive/1.196/action-1.196.zip && unzip action-1.196.zip && rm action-1.196.zip
 
-COPY web/sites/default/settings.php /opt/drupal/web/sites/default/settings.php
-COPY web/sites/default/civicrm.settings.php /opt/drupal/web/sites/default/civicrm.settings.php
+COPY docker/php/web/sites/default/settings.php /opt/drupal/web/sites/default/settings.php
+COPY docker/php/web/sites/default/civicrm.settings.php /opt/drupal/web/sites/default/civicrm.settings.php
+
+COPY lib/civicrm-ext /opt/drupal/civicrm-ext/
 
 #"extra": {
 #"civicrm-asset": {

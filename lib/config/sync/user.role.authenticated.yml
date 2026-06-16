@@ -1,0 +1,51 @@
+uuid: 9315a703-3519-461a-b7d2-c3ac01c10daa
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+  module:
+    - civicrm
+    - comment
+    - file
+    - filter
+    - search
+    - shortcut
+    - system
+_core:
+  default_config_hash: hcfESiA8tr3D1muRk2KF7tbcun16ZJlG1R5SzKGed6g
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access CiviCRM'
+  - 'access CiviReport'
+  - 'access Contact Dashboard'
+  - 'access Report Criteria'
+  - 'access all cases and activities'
+  - 'access all custom data'
+  - 'access comments'
+  - 'access content'
+  - 'access my cases and activities'
+  - 'access shortcuts'
+  - 'access uploaded files'
+  - 'add cases'
+  - 'add contact notes'
+  - 'add contacts'
+  - 'delete own files'
+  - 'edit all contacts'
+  - 'edit my contact'
+  - 'post comments'
+  - 'profile create'
+  - 'profile edit'
+  - 'profile view'
+  - 'search content'
+  - 'skip comment approval'
+  - 'use text format basic_html'
+  - 'view all activities'
+  - 'view all contacts'
+  - 'view all manual batches'
+  - 'view all notes'
+  - 'view my contact'
+  - 'view my invoices'
