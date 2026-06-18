@@ -331,7 +331,7 @@ class FieldMap
             ],
             'category' => [
                 'entity'   => 'custom',
-                'field'    => $CustomFieldGroup.'.category',
+                'field'    => $CustomFieldGroup.'.Category',
                 'transform' => function(string $v, $r): ?string {
                     switch ($v) {
                         case 'project':

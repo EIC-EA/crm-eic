@@ -13,7 +13,7 @@ return [
         'name' => 'EIC_Organisation_identifiers',
         'title' => E::ts('Organisation identifiers'),
         'extends' => 'Organization',
-        'extends_entity_column_value' => ['EIC_Awardee'],
+        'extends_entity_column_value' => ['EIC_Awardee', 'Investor'],
         'help_pre' => E::ts('<p>Unique identifiers used to identified the organisation</p>'),
         'weight' => 4,
         'collapse_adv_display' => TRUE,

@@ -35,14 +35,7 @@ class ConsortiumImporter extends BaseImporter
     {
         parent::__construct($config, $logger, $stats);
         $this->PK = 'proposalNumber';
-        $this->fieldMap = FieldMap::consortium();
-        
-        $this->organization_id = 0;
-        $this->project_activity_id = 0;
-        $this->field_name = '';
-        $this->field_value = [];
-        $this->filled_project_activity_id = 0;
-        $this->activity_contact_id = 0;
+        $this->fieldMap = FieldMap::consortium();        
     }
 
     // -------------------------------------------------------------------------
@@ -58,7 +51,7 @@ class ConsortiumImporter extends BaseImporter
         if (!$this->filled_project_activity_id) { // The project does not already have the field value
             if ($this->field_name == self::$CUSTOM_GROUP_HE_PROJECT_INFO.'.Coordinator')
             {
-                $value = $this->organization_id;
+                $value = $this->organization_id; // There is only a single coordinator
             }
             else
             {
@@ -119,8 +112,6 @@ class ConsortiumImporter extends BaseImporter
             ->execute();
         
         $this->filled_project_activity_id  = $result->count() > 0 ? (int) $result->first()['id'] : null;
-        if ( $this->filled_project_activity_id )
-            $this->field_value = is_array($result->first()[$this->field_name]) ? $result->first()[$this->field_name] : [$result->first()[$this->field_name]];
 
         $result = \Civi\Api4\ActivityContact::get()
             ->addSelect('id')
@@ -138,10 +129,10 @@ class ConsortiumImporter extends BaseImporter
         ];
     }
     
-    protected function getFieldNameFromRole(string $role, string $status) : string
+    protected function getFieldNameFromRole(string $role, string $status, string $project_category) : string
     {
         $field_name = '';
-        if ($status == 'TERMINATED' || $status == '')
+        if (($status == 'TERMINATED' || $status == '') && ($project_category != 'hesoe'))
             return self::$CUSTOM_GROUP_HE_PROJECT_INFO.'.Terminated_Partners';
         switch ($role)
         {
@@ -161,18 +152,16 @@ class ConsortiumImporter extends BaseImporter
     protected function validate(array $row, array $fieldMap): array
     {
         $fieldMapCheck = [];
+        $this->organization_id = 0;
+        $this->project_activity_id = 0;
+        $this->field_name = '';
+        $this->field_value = [];
+        $this->filled_project_activity_id = null;
+        $this->activity_contact_id = null;        
 
         $fieldMapCheck = parent::validate($row, $fieldMap);
         if (!empty($fieldMapCheck))
             return $fieldMapCheck;
-
-        // If the related role does not exist, we have an issue
-        $this->field_name = $this->getFieldNameFromRole($row['relation'], $row['status']);
-        if ($this->field_name == '')
-        {
-            $fieldMapCheck[] = "Role not found ".$row['relation'];
-            return $fieldMapCheck;
-        }
 
         // If the related project does not exist, we have an issue
         if (!is_numeric($row['proposalNumber']))
@@ -183,6 +172,7 @@ class ConsortiumImporter extends BaseImporter
         // Get project activity
         $result = \Civi\Api4\Activity::get()
             ->addSelect('id')
+            ->addSelect('custom.*')
             ->addWhere('activity_type_id:name', '=', static::ENTITY_SUB_TYPE)
             ->addWhere(self::$CUSTOM_GROUP_HE_PROJECT_INFO.'.Project_Number', '=',  $row['proposalNumber'])
             ->addWhere('is_deleted', '=', false)
@@ -197,7 +187,19 @@ class ConsortiumImporter extends BaseImporter
         }
 
         $this->project_activity_id = (int) $result->first()['id'];
-       
+        $project_category = $result->first()[self::$CUSTOM_GROUP_HE_PROJECT_INFO.'.Category'];
+
+        // If the related role does not exist, we have an issue
+        $this->field_name = $this->getFieldNameFromRole($row['relation'], $row['status'], $project_category);
+
+        if ($this->field_name == '')
+        {
+            $fieldMapCheck[] = "Role not found ".$row['relation'];
+            return $fieldMapCheck;
+        }
+
+        $this->field_value = is_array($result->first()[$this->field_name]) ? $result->first()[$this->field_name] : [$result->first()[$this->field_name]];        
+        
         // $row['PIC']
         $result = \Civi\Api4\Contact::get()
             ->addSelect('id')

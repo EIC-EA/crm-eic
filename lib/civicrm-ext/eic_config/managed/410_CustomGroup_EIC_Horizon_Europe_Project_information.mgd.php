@@ -1,16 +1,6 @@
 <?php
 use CRM_EicConfig_ExtensionUtil as E;
 
-$subtypeIds = \Civi\Api4\OptionValue::get()
-    ->setCheckPermissions(false)
-    ->addSelect('id')
-    ->addWhere('option_group_id.name', '=', 'activity_type')
-    ->addWhere('name', '=', 'EIC_Awardee_Project')    
-    ->execute()
-    ->column('id');
-
-print_r($subtypeIds);
-
 return [
   [
     'name' => 'CustomGroup_EIC_Horizon_Europe_Project_information',
@@ -23,7 +13,8 @@ return [
         'name' => 'EIC_Horizon_Europe_Project_information',
         'title' => E::ts('Horizon Europe Project Activity'),
         'extends' => 'Activity',
-        'extends_entity_column_value' => $subtypeIds,
+        'extends_entity_column_value:name' => ['EIC_Awardee_Project'],
+
         'weight' => 7,
         'is_public' => FALSE,
       ],
