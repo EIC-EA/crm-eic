@@ -60,6 +60,9 @@ RUN apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false upd
 
 ENV COMPOSER_COMPILE=all
 
+RUN sed -i -e 's/"extra": {/"extra": { "patches-file": ".\/patches\/composer.patches.json",/' composer.json
+COPY lib/patches /opt/drupal/patches
+
 RUN set -eux; \
 	export COMPOSER_HOME="$(mktemp -d)"; \
 # https://github.com/docker-library/drupal/pull/266#issuecomment-2273985526
@@ -82,6 +85,8 @@ RUN set -eux; \
 	composer require openeuropa/oe_authentication  && \
 	# Redirect after login 
 	composer require drupal/user_redirect:^2.0 && \
+	# Apply patches
+	composer install && \
 	# delete composer cache
 	rm -rf "$COMPOSER_HOME"    
 
