@@ -1,0 +1,7 @@
+{
+  "patches": {
+    "civicrm/civicrm-core": {
+      "CiviCase - Add default subject field to timeline/sequence activities #35962": "./patches/civicrm/civicase_add_default_subject_field_to_timeline.patch"
+    }
+  }
+}

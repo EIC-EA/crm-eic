@@ -102,6 +102,7 @@ COPY docker/php/web/sites/default/settings.php /opt/drupal/web/sites/default/set
 COPY docker/php/web/sites/default/civicrm.settings.php /opt/drupal/web/sites/default/civicrm.settings.php
 
 COPY lib/civicrm-ext /opt/drupal/civicrm-ext/
+COPY lib/config /opt/drupal/config
 
 #"extra": {
 #"civicrm-asset": {
