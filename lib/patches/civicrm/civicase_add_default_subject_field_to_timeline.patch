@@ -1,0 +1,417 @@
+From 69c834103c1d5d3dda4e49f091635c92d40a2faf Mon Sep 17 00:00:00 2001
+From: colemanw <coleman@civicrm.org>
+Date: Mon, 15 Jun 2026 16:45:19 -0400
+Subject: [PATCH 1/2] Add default subject field to timeline/sequence activities
+ in case types
+
+Fixes dev/core#6575
+---
+ CRM/Case/XMLProcessor/Process.php             | 10 ++-
+ ext/civi_case/ang/crmCaseType.js              |  3 +-
+ .../ang/crmCaseType/sequenceTable.html        | 11 +++-
+ .../ang/crmCaseType/timelineTable.html        | 11 +++-
+ tests/karma/unit/crmCaseTypeSpec.js           |  3 +-
+ tests/phpunit/CRM/Case/BAO/CaseTypeTest.php   | 64 +++++++++++++++++++
+ .../CRM/Case/BAO/xml/default-subject.xml      | 51 +++++++++++++++
+ .../CRM/Case/XMLProcessor/ProcessTest.php     | 19 ++++++
+ 8 files changed, 167 insertions(+), 5 deletions(-)
+ create mode 100644 tests/phpunit/CRM/Case/BAO/xml/default-subject.xml
+
+diff --git a/CRM/Case/XMLProcessor/Process.php b/CRM/Case/XMLProcessor/Process.php
+index 4ec4684d8a3d..e5eeef7020c0 100644
+--- a/CRM/Case/XMLProcessor/Process.php
++++ b/CRM/Case/XMLProcessor/Process.php
+@@ -430,12 +430,17 @@ public function createActivity($activityTypeXML, &$params): bool {
+       $orderVal = (string) $activityTypeXML->order;
+     }
+ 
++    $defaultSubject = NULL;
++    if (isset($activityTypeXML->default_subject) && (string) $activityTypeXML->default_subject !== '') {
++      $defaultSubject = (string) $activityTypeXML->default_subject;
++    }
++
+     if ($activityTypeName == 'Open Case') {
+       $activityParams = [
+         'activity_type_id' => $activityTypeID,
+         'source_contact_id' => $params['creatorID'],
+         'is_auto' => FALSE,
+-        'subject' => !empty($params['subject']) ? $params['subject'] : $activityTypeName,
++        'subject' => !empty($params['subject']) ? $params['subject'] : ($defaultSubject ?? $activityTypeName),
+         'status_id' => CRM_Core_PseudoConstant::getKey('CRM_Activity_BAO_Activity', 'activity_status_id', $statusName),
+         'target_contact_id' => $client,
+         'medium_id' => $params['medium_id'] ?? NULL,
+@@ -454,6 +459,9 @@ public function createActivity($activityTypeXML, &$params): bool {
+         'target_contact_id' => $client,
+         'weight' => $orderVal,
+       ];
++      if ($defaultSubject !== NULL) {
++        $activityParams['subject'] = $defaultSubject;
++      }
+     }
+ 
+     $activityParams['assignee_contact_id'] = $this->getDefaultAssigneeForActivity($activityParams, $activityTypeXML, $params['caseID']);
+diff --git a/ext/civi_case/ang/crmCaseType.js b/ext/civi_case/ang/crmCaseType.js
+index 53b7c6725267..0886f73d970a 100644
+--- a/ext/civi_case/ang/crmCaseType.js
++++ b/ext/civi_case/ang/crmCaseType.js
+@@ -436,7 +436,8 @@
+           reference_activity: 'Open Case',
+           reference_offset: '1',
+           reference_select: 'newest',
+-          default_assignee_type: $scope.defaultAssigneeTypeValues.NONE
++          default_assignee_type: $scope.defaultAssigneeTypeValues.NONE,
++          default_subject: null
+       };
+       activitySet.activityTypes.push(activity);
+       if(typeof activitySet.timeline !== "undefined" && activitySet.timeline == "1") {
+diff --git a/ext/civi_case/ang/crmCaseType/sequenceTable.html b/ext/civi_case/ang/crmCaseType/sequenceTable.html
+index fb13564cc918..92e9b7c34b91 100644
+--- a/ext/civi_case/ang/crmCaseType/sequenceTable.html
++++ b/ext/civi_case/ang/crmCaseType/sequenceTable.html
+@@ -7,6 +7,7 @@
+   <tr>
+     <th></th>
+     <th>{{:: ts('Activity') }}</th>
++    <th>{{:: ts('Default subject') }}</th>
+     <th></th>
+   </tr>
+   </thead>
+@@ -20,6 +21,14 @@
+       <i class="crm-i {{ activityTypes[activity.name].icon }}" role="img" aria-hidden="true"></i>
+       {{ activity.name }}
+     </td>
++    <td>
++      <input
++        class="crm-form-text"
++        type="text"
++        ng-model="activity.default_subject"
++        placeholder="{{:: ts('(no subject)') }}"
++        />
++    </td>
+     <td>
+       <a crm-icon="fa-trash" class="crm-hover-button" ng-click="removeItem(activitySet.activityTypes, activity)" title="{{:: ts('Remove') }}"></a>
+     </td>
+@@ -28,7 +37,7 @@
+ 
+   <tfoot>
+   <tr class="addRow">
+-    <td colspan="3">
++    <td colspan="4">
+       <span crm-add-name
+            crm-options="activityTypeOptions"
+            crm-var="newActivity"
+diff --git a/ext/civi_case/ang/crmCaseType/timelineTable.html b/ext/civi_case/ang/crmCaseType/timelineTable.html
+index 8fa378560859..bc6756a20bc7 100644
+--- a/ext/civi_case/ang/crmCaseType/timelineTable.html
++++ b/ext/civi_case/ang/crmCaseType/timelineTable.html
+@@ -12,6 +12,7 @@
+     <th>{{:: ts('Offset') }}</th>
+     <th>{{:: ts('Select') }}</th>
+     <th>{{:: ts('Default assignee') }}</th>
++    <th>{{:: ts('Default subject') }}</th>
+     <th></th>
+   </tr>
+   </thead>
+@@ -86,6 +87,14 @@
+           required />
+       </p>
+     </td>
++    <td>
++      <input
++        class="crm-form-text"
++        type="text"
++        ng-model="activity.default_subject"
++        placeholder="{{:: ts('(no subject)') }}"
++        />
++    </td>
+     <td>
+       <a class="crm-hover-button"
+          crm-icon="fa-trash"
+@@ -99,7 +108,7 @@
+ 
+   <tfoot>
+   <tr class="addRow">
+-    <td colspan="8">
++    <td colspan="9">
+       <span crm-add-name=""
+            crm-options="activityTypeOptions"
+            crm-var="newActivity"
+diff --git a/tests/karma/unit/crmCaseTypeSpec.js b/tests/karma/unit/crmCaseTypeSpec.js
+index c3abe9d5362e..400ad5e7b5b3 100644
+--- a/tests/karma/unit/crmCaseTypeSpec.js
++++ b/tests/karma/unit/crmCaseTypeSpec.js
+@@ -457,7 +457,8 @@ describe('crmCaseType', function() {
+           reference_activity: 'Open Case',
+           reference_offset: '1',
+           reference_select: 'newest',
+-          default_assignee_type: defaultAssigneeDefaultValue.value
++          default_assignee_type: defaultAssigneeDefaultValue.value,
++          default_subject: null
+         });
+       });
+     });
+diff --git a/tests/phpunit/CRM/Case/BAO/CaseTypeTest.php b/tests/phpunit/CRM/Case/BAO/CaseTypeTest.php
+index e26b5ce823a6..dfa88ea46827 100644
+--- a/tests/phpunit/CRM/Case/BAO/CaseTypeTest.php
++++ b/tests/phpunit/CRM/Case/BAO/CaseTypeTest.php
+@@ -180,6 +180,69 @@ public static function definitionProvider() {
+       'xml' => file_get_contents(__DIR__ . '/xml/empty-node-text.xml'),
+     ];
+ 
++    $fixtures['default-subject'] = [
++      'json' => json_encode([
++        'activityTypes' => [
++          ['name' => 'First act'],
++          ['name' => 'Second act'],
++        ],
++        'activitySets' => [
++          [
++            'name' => 'set1',
++            'label' => 'Label 1',
++            'timeline' => 1,
++            'activityTypes' => [
++              [
++                'name' => 'Open Case',
++                'status' => 'Completed',
++                'default_subject' => 'Open Case Default Subject',
++              ],
++            ],
++          ],
++          [
++            'name' => 'set2',
++            'label' => 'Label 2',
++            'timeline' => 1,
++            'activityTypes' => [
++              [
++                'name' => 'First act',
++                'status' => 'Scheduled',
++                'reference_activity' => 'Open Case',
++                'reference_offset' => 1,
++                'reference_select' => 'newest',
++                'default_subject' => 'First Act Default Subject',
++                'default_assignee_type' => '2',
++                'default_assignee_relationship' => '2_b_a',
++                'default_assignee_contact' => [],
++              ],
++            ],
++          ],
++        ],
++        'timelineActivityTypes' => [
++          [
++            'name' => 'Open Case',
++            'status' => 'Completed',
++            'default_subject' => 'Open Case Default Subject',
++          ],
++          [
++            'name' => 'First act',
++            'status' => 'Scheduled',
++            'reference_activity' => 'Open Case',
++            'reference_offset' => '1',
++            'reference_select' => 'newest',
++            'default_subject' => 'First Act Default Subject',
++            'default_assignee_type' => '2',
++            'default_assignee_relationship' => '2_b_a',
++            'default_assignee_contact' => [],
++          ],
++        ],
++        'caseRoles' => [
++          ['name' => 'First role', 'creator' => 1, 'manager' => 1],
++        ],
++      ]),
++      'xml' => file_get_contents(__DIR__ . '/xml/default-subject.xml'),
++    ];
++
+     $cases = [];
+     foreach ([
+       'empty-defn',
+@@ -190,6 +253,7 @@ public static function definitionProvider() {
+       'forkable-0',
+       'forkable-1',
+       'statuses',
++      'default-subject',
+     ] as $key) {
+       $cases[] = [$key, $fixtures[$key]['json'], $fixtures[$key]['xml']];
+     }
+diff --git a/tests/phpunit/CRM/Case/BAO/xml/default-subject.xml b/tests/phpunit/CRM/Case/BAO/xml/default-subject.xml
+new file mode 100644
+index 000000000000..d8dbc3d68935
+--- /dev/null
++++ b/tests/phpunit/CRM/Case/BAO/xml/default-subject.xml
+@@ -0,0 +1,51 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<CaseType>
++  <name>Housing Support</name>
++  <ActivityTypes>
++    <ActivityType>
++      <name>First act</name>
++    </ActivityType>
++    <ActivityType>
++      <name>Second act</name>
++    </ActivityType>
++  </ActivityTypes>
++  <ActivitySets>
++    <ActivitySet>
++      <name>set1</name>
++      <label>Label 1</label>
++      <timeline>true</timeline>
++      <ActivityTypes>
++        <ActivityType>
++          <name>Open Case</name>
++          <status>Completed</status>
++          <default_subject>Open Case Default Subject</default_subject>
++        </ActivityType>
++      </ActivityTypes>
++    </ActivitySet>
++    <ActivitySet>
++      <name>set2</name>
++      <label>Label 2</label>
++      <timeline>true</timeline>
++      <ActivityTypes>
++        <ActivityType>
++          <name>First act</name>
++          <status>Scheduled</status>
++          <reference_activity>Open Case</reference_activity>
++          <reference_offset>1</reference_offset>
++          <reference_select>newest</reference_select>
++          <default_subject>First Act Default Subject</default_subject>
++          <default_assignee_type>2</default_assignee_type>
++          <default_assignee_relationship>2_b_a</default_assignee_relationship>
++          <default_assignee_contact></default_assignee_contact>
++        </ActivityType>
++      </ActivityTypes>
++    </ActivitySet>
++  </ActivitySets>
++  <CaseRoles>
++    <RelationshipType>
++      <name>First role</name>
++      <creator>1</creator>
++      <manager>1</manager>
++    </RelationshipType>
++  </CaseRoles>
++</CaseType>
+diff --git a/tests/phpunit/CRM/Case/XMLProcessor/ProcessTest.php b/tests/phpunit/CRM/Case/XMLProcessor/ProcessTest.php
+index 5a61fbbf559a..7035b8aaa1c6 100644
+--- a/tests/phpunit/CRM/Case/XMLProcessor/ProcessTest.php
++++ b/tests/phpunit/CRM/Case/XMLProcessor/ProcessTest.php
+@@ -603,6 +603,25 @@ public function testXmlProcessorActivityTypes(): void {
+     );
+   }
+ 
++  /**
++   * Tests the creation of activities with a default subject.
++   */
++  public function testCreateActivityWithDefaultSubject(): void {
++    $activityTypeXml = $this->getActivityTypeXMl();
++    $activityTypeXml->default_subject = 'My Default Subject';
++
++    $this->process->createActivity($activityTypeXml, $this->activityParams);
++
++    $result = $this->callAPISuccess('Activity', 'get', [
++      'target_contact_id' => $this->activityParams['clientID'],
++      'return' => ['subject'],
++    ]);
++    $activity = CRM_Utils_Array::first($result['values']);
++
++    $this->assertNotNull($activity);
++    $this->assertEquals('My Default Subject', $activity['subject']);
++  }
++
+   private function getActivityTypeXMl(): SimpleXMLElement {
+     try {
+       $activityTypeXml = '<activity-type><name>Open Case</name></activity-type>';
+
+From 69c82bc6a0e1bb703b0cf020ff047829c317cf0b Mon Sep 17 00:00:00 2001
+From: colemanw <coleman@civicrm.org>
+Date: Tue, 16 Jun 2026 11:36:40 -0400
+Subject: [PATCH 2/2] CiviCase - Set default subject on Open Case form
+
+---
+ CRM/Case/Form/Activity/OpenCase.php           | 22 ++++++++++
+ .../CRM/Case/XMLProcessor/ProcessTest.php     | 41 +++++++++++++++++++
+ 2 files changed, 63 insertions(+)
+
+diff --git a/CRM/Case/Form/Activity/OpenCase.php b/CRM/Case/Form/Activity/OpenCase.php
+index a4d5d0598b88..2aecc7cd67c5 100644
+--- a/CRM/Case/Form/Activity/OpenCase.php
++++ b/CRM/Case/Form/Activity/OpenCase.php
+@@ -122,6 +122,28 @@ public static function setDefaultValues(&$form) {
+       $defaults['location[1][phone][1][phone_type_id]'] = key($phoneType);
+     }
+ 
++    // Set default activity subject based on timeline.
++    $caseTypeId = $defaults['case_type_id'] ?? NULL;
++    if ($caseTypeId) {
++      $caseType = \Civi\Api4\CaseType::get(FALSE)
++        ->addSelect('definition')
++        ->addWhere('id', '=', $caseTypeId)
++        ->execute()
++        ->first();
++      if ($caseType && isset($caseType['definition']['activitySets'])) {
++        foreach ($caseType['definition']['activitySets'] as $activitySet) {
++          if (!empty($activitySet['timeline']) && isset($activitySet['activityTypes'])) {
++            foreach ($activitySet['activityTypes'] as $activityType) {
++              if (($activityType['name'] ?? '') === 'Open Case' && !empty($activityType['default_subject'])) {
++                $defaults['activity_subject'] = $activityType['default_subject'];
++                break 2;
++              }
++            }
++          }
++        }
++      }
++    }
++
+     return $defaults;
+   }
+ 
+diff --git a/tests/phpunit/CRM/Case/XMLProcessor/ProcessTest.php b/tests/phpunit/CRM/Case/XMLProcessor/ProcessTest.php
+index 7035b8aaa1c6..0ceab27030f6 100644
+--- a/tests/phpunit/CRM/Case/XMLProcessor/ProcessTest.php
++++ b/tests/phpunit/CRM/Case/XMLProcessor/ProcessTest.php
+@@ -622,6 +622,47 @@ public function testCreateActivityWithDefaultSubject(): void {
+     $this->assertEquals('My Default Subject', $activity['subject']);
+   }
+ 
++  /**
++   * Tests CRM_Case_Form_Activity_OpenCase::setDefaultValues.
++   */
++  public function testOpenCaseFormDefaultSubject(): void {
++    $caseTypeParams = [
++      'name' => 'test_case_type_subject',
++      'title' => 'Test Case Type Subject',
++      'definition' => [
++        'activityTypes' => [
++          ['name' => 'Open Case', 'max_instances' => 1],
++        ],
++        'activitySets' => [
++          [
++            'name' => 'standard_timeline',
++            'label' => 'Standard Timeline',
++            'timeline' => 1,
++            'activityTypes' => [
++              [
++                'name' => 'Open Case',
++                'status' => 'Completed',
++                'default_subject' => 'Form Default Subject',
++              ],
++            ],
++          ],
++        ],
++      ],
++    ];
++    $caseType = CRM_Case_BAO_CaseType::create($caseTypeParams);
++
++    $form = new stdClass();
++    $form->_context = 'standalone';
++    $form->_caseStatusId = NULL;
++    $form->_caseTypeId = $caseType->id;
++
++    $defaults = CRM_Case_Form_Activity_OpenCase::setDefaultValues($form);
++
++    $this->assertEquals('Form Default Subject', $defaults['activity_subject'] ?? NULL);
++
++    CRM_Case_BAO_CaseType::deleteRecord(['id' => $caseType->id]);
++  }
++
+   private function getActivityTypeXMl(): SimpleXMLElement {
+     try {
+       $activityTypeXml = '<activity-type><name>Open Case</name></activity-type>';

@@ -2266,7 +2266,7 @@ return [
     ],
   ],
   [
-    'name' => 'CustomGroup_Client_Roles_CustomField_Beneficiary',
+    'name' => 'CustomGroup_Client_Roles_CustomField_EIC_Awardee',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
     'update' => 'unmodified',
@@ -2274,8 +2274,8 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'Client_Roles',
-        'name' => 'Beneficiary',
-        'label' => E::ts('Beneficiary'),
+        'name' => 'EIC_Awardee',
+        'label' => E::ts('EIC Awardee'),
         'data_type' => 'EntityReference',
         'html_type' => 'Autocomplete-Select',
         'text_length' => 255,
