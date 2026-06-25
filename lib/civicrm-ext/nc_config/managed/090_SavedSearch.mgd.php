@@ -1,0 +1,183 @@
+<?php
+use CRM_NcConfig_ExtensionUtil as E;
+
+return [
+  [
+    'name' => 'SavedSearch_Investor_Representatives',
+    'entity' => 'SavedSearch',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'name' => 'Investor_Representatives',
+        'label' => E::ts('Investor Representatives '),
+        'api_entity' => 'Individual',
+        'api_params' => [
+          'version' => 4,
+          'select' => [
+            'sort_name',
+            'Investment_Focus.Relevant_Verticals:label',
+            'Investment_Focus.Preferred_Stages:label',
+            'Investment_Focus.Geographical_Focus:label',
+            'Investment_Focus.Role:label',
+            'Contact_RelationshipCache_Contact_01.near_contact_id.sort_name',
+            'Contact_RelationshipCache_Contact_01.Investment_Related.Relevant_Verticals:label',
+            'Contact_RelationshipCache_Contact_01.Investment_Related.Preferred_Stages:label',
+            'Contact_RelationshipCache_Contact_01.Investment_Related.Geographical_Focus:label',
+            'Contact_RelationshipCache_Contact_01.Investment_Related.Ticket_Size_Range_:label',
+            'Contact_RelationshipCache_Contact_01.Investment_Related.Investor_Type:label',
+          ],
+          'orderBy' => [],
+          'where' => [],
+          'groupBy' => [],
+          'join' => [
+            [
+              'Contact AS Contact_RelationshipCache_Contact_01',
+              'INNER',
+              'RelationshipCache',
+              [
+                'id',
+                '=',
+                'Contact_RelationshipCache_Contact_01.far_contact_id',
+              ],
+              [
+                'Contact_RelationshipCache_Contact_01.near_relation:name',
+                '=',
+                '"Investor"',
+              ],
+            ],
+          ],
+          'having' => [],
+        ],
+      ],
+      'match' => ['name'],
+    ],
+  ],
+  [
+    'name' => 'SavedSearch_Investor_Representatives_SearchDisplay_Investor_Representatives_Investors_Custom_Display',
+    'entity' => 'SearchDisplay',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'name' => 'Investor_Representatives_Investors_Custom_Display',
+        'label' => E::ts('Investor Representatives & Investors Custom Display'),
+        'saved_search_id.name' => 'Investor_Representatives',
+        'type' => 'table',
+        'settings' => [
+          'description' => NULL,
+          'sort' => [
+            [
+              'Contact_RelationshipCache_Contact_01.near_contact_id.sort_name',
+              'ASC',
+            ],
+            ['sort_name', 'ASC'],
+          ],
+          'limit' => 50,
+          'pager' => [],
+          'placeholder' => 5,
+          'actions' => TRUE,
+          'classes' => ['table', 'table-striped'],
+          'columnMode' => 'custom',
+          'actions_display_mode' => 'menu',
+          'button' => 'Search',
+          'headerCount' => TRUE,
+          'toggleColumns' => FALSE,
+          'columns' => [
+            [
+              'type' => 'field',
+              'key' => 'sort_name',
+              'label' => E::ts('Name (Representative)'),
+              'sortable' => TRUE,
+              'link' => [
+                'path' => '',
+                'entity' => 'Individual',
+                'action' => 'view',
+                'join' => '',
+                'target' => '_blank',
+                'task' => '',
+              ],
+              'title' => E::ts('View Investor Representative'),
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Investment_Focus.Relevant_Verticals:label',
+              'label' => E::ts('Preferred Industry​ (Representative)'),
+              'sortable' => TRUE,
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Investment_Focus.Preferred_Stages:label',
+              'label' => E::ts('Preferred Stages​ (Representative)'),
+              'sortable' => TRUE,
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Investment_Focus.Geographical_Focus:label',
+              'label' => E::ts('Preferred Geography​ (Representative)'),
+              'sortable' => TRUE,
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Investment_Focus.Role:label',
+              'label' => E::ts('Role​ (Representative)'),
+              'sortable' => TRUE,
+              'title' => NULL,
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Contact_RelationshipCache_Contact_01.near_contact_id.sort_name',
+              'label' => E::ts('Investor Name'),
+              'sortable' => TRUE,
+              'link' => [
+                'path' => '',
+                'entity' => 'Contact',
+                'action' => 'view',
+                'join' => 'Contact_RelationshipCache_Contact_01.near_contact_id',
+                'target' => '_blank',
+                'task' => '',
+              ],
+              'title' => E::ts('View Investor'),
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Contact_RelationshipCache_Contact_01.Investment_Related.Relevant_Verticals:label',
+              'label' => E::ts('Preferred Industry​ (Investor)'),
+              'sortable' => TRUE,
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Contact_RelationshipCache_Contact_01.Investment_Related.Preferred_Stages:label',
+              'label' => E::ts('Preferred Stages (Investor)'),
+              'sortable' => TRUE,
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Contact_RelationshipCache_Contact_01.Investment_Related.Geographical_Focus:label',
+              'label' => E::ts('Preferred Geography​ (Investor)'),
+              'sortable' => TRUE,
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Contact_RelationshipCache_Contact_01.Investment_Related.Ticket_Size_Range_:label',
+              'label' => E::ts('Ticket Size Range​ (Investor)'),
+              'sortable' => TRUE,
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Contact_RelationshipCache_Contact_01.Investment_Related.Investor_Type:label',
+              'label' => E::ts('Investor Type​ (Investor)'),
+              'sortable' => TRUE,
+            ],
+          ],
+        ],
+      ],
+      'match' => [
+        'saved_search_id',
+        'name',
+      ],
+    ],
+  ],
+];

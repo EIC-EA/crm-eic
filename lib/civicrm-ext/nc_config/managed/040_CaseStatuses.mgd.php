@@ -4,7 +4,7 @@ use CRM_NcConfig_ExtensionUtil as E;
 
 return [
   [
-    'name' => 'OptionValue_Investor_onboarded',
+    'name' => 'OptionValue_Onboarded',
     'entity' => 'OptionValue',
     'cleanup' => 'unused',
     'update' => 'unmodified',
@@ -12,12 +12,12 @@ return [
       'version' => 4,
       'values' => [
         'option_group_id.name' => 'case_status',
-        'label' => E::ts('Investor onboarded'),
-        'value' => '4',
-        'name' => 'Investor onboarded',
+        'label' => E::ts('Onboarded'),
+        'value' => '6',
+        'name' => 'Onboarded',
         'grouping' => 'Closed',
         'weight' => 4,
-        'description' => E::ts('<p>Investor onboarded</p>'),
+        'description' => E::ts('<p>Onboarded</p>'),
       ],
       'match' => [
         'option_group_id',
