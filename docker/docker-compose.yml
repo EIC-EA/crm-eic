@@ -52,5 +52,42 @@ services:
       timeout: 10s
       retries: 5
 
+  # mailpit:
+  #   image: axllent/mailpit:latest
+  #   container_name: crm_mailpit
+  #   ports:
+  #     - "${MAILPIT_UI}:8025"   # Web UI
+  #     - "${SMTP_PORT}:1025"   # SMTP
+  #     - "${MAILPIT_POP3}:1110"    #
+  #   environment:
+  #     MP_SMTP_AUTH: "${MAILPIT_SMTP_USER}:${MAILPIT_SMTP_PASSWORD}"
+  #     MP_SMTP_AUTH_ALLOW_INSECURE: "true"
+  #     MP_UI_AUTH: "${MAILPIT_UI_USER}:${MAILPIT_UI_PASSWORD}"
+  #     MP_POP3_AUTH: "${MAILPIT_POP3_USER}:${MAILPIT_POP3_PASSWORD}"
+  #   volumes:
+  #     - ./mailpit/mailpit.conf:/etc/mailpit.conf
+
+  eicmailcatcher:
+    build:
+      context: ./eicmailcatcher
+    container_name: ${APP_NAME}_eicmailcatcher
+    environment:
+      MAIL_DOMAIN: srm.dev.local
+      CATCHALL_USER: notmailhog
+      MAIL_USERS: "notmailhog:notmailhog,gavin:gavin,gery:gery,soup:soup"
+      MAIL_MODE: "multi" #single or multi
+    env_file:
+      - .env
+    ports:
+      - "${DV_SMTP_PORT}:25"
+      - "${DV_IMAP_PORT}:143"
+      - "${DV_MP_UI_AUTH}:80"
+    volumes:
+      - eicmailcatcher-mail:/var/mail/vhosts
+      - eicmailcatcher-roundcube:/var/lib/roundcube
+
+
 volumes:
   mysql_data:
+  eicmailcatcher-mail:
+  eicmailcatcher-roundcube:
