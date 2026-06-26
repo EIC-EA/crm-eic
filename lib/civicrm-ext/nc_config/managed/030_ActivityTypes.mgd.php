@@ -13,9 +13,10 @@ return [
       'values' => [
         'option_group_id.name' => 'activity_type',
         'label' => E::ts('Task'),
-        'value' => '67',
+        'value' => '68',
         'name' => 'Task',
-        'weight' => 68,
+        'weight' => 70,
+        'description' => E::ts('<p>Task</p>'),
         'component_id:name' => 'CiviCase',
         'icon' => 'fa-bars-progress',
       ],
