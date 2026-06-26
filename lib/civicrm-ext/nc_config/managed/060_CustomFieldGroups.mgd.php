@@ -17,6 +17,7 @@ return [
         'extends_entity_column_value' => ['Investor'],
         'collapse_display' => TRUE,
         'collapse_adv_display' => TRUE,
+        'table_name' => "civicrm_value_fund_related",
       ],
       'match' => ['name'],
     ],
@@ -38,6 +39,7 @@ return [
         'date_format' => 'yy',
         'note_columns' => 60,
         'note_rows' => 4,
+        "column_name" => "funds_vintage_year",
       ],
       'match' => [
         'name',
@@ -62,6 +64,7 @@ return [
         'collapse_display' => TRUE,
         'weight' => 2,
         'collapse_adv_display' => TRUE,
+        'table_name' => "civicrm_value_investment_focus",
       ],
       'match' => ['name'],
     ],
@@ -202,6 +205,7 @@ return [
         'note_rows' => 4,
         'option_group_id.name' => 'eic_preferred_stages',
         'serialize' => 1,
+        "column_name" => "preferred_stages",
       ],
       'match' => [
         'name',
@@ -464,6 +468,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_relevant_verticals',
+        "column_name" => "relevant_verticals",
         'serialize' => 1,
       ],
       'match' => [
@@ -646,6 +651,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_investor_role',
+        "column_name" => "investor_role",
         'serialize' => 1,
       ],
       'match' => [
@@ -1648,6 +1654,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_geographical_focus',
+        "column_name" => "geographical_focus",
         'serialize' => 1,
       ],
       'match' => [
@@ -1674,6 +1681,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        "column_name" => "interest_in_assoc_to_horizon_europe",
       ],
       'match' => [
         'name',
@@ -1696,6 +1704,7 @@ return [
         'collapse_display' => TRUE,
         'weight' => 3,
         'collapse_adv_display' => TRUE,
+        'table_name' => "civicrm_value_acivity_related",
       ],
       'match' => ['name'],
     ],
@@ -1716,6 +1725,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        "column_name" => "onboarded",
       ],
       'match' => [
         'name',
@@ -1740,6 +1750,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        "column_name" => "tin",
       ],
       'match' => [
         'name',
@@ -1762,6 +1773,7 @@ return [
         'collapse_display' => TRUE,
         'weight' => 4,
         'collapse_adv_display' => TRUE,
+        'table_name' => "civicrm_value_investment_related",
       ],
       'match' => ['name'],
     ],
@@ -1783,6 +1795,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_preferred_stages',
+        "column_name" => "preferred_stages",
         'serialize' => 1,
       ],
       'match' => [
@@ -1808,6 +1821,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_relevant_verticals',
+        "column_name" => "relevant_verticals",
         'serialize' => 1,
       ],
       'match' => [
@@ -1832,6 +1846,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_geographical_focus',
+        "column_name" => "geographical_focus",
         'serialize' => 1,
       ],
       'match' => [
@@ -1995,6 +2010,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_ticket_size_range',
+        "column_name" => "ticket_size_range",
         'serialize' => 1,
       ],
       'match' => [
@@ -2019,6 +2035,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        "column_name" => "current_fund_size",
       ],
       'match' => [
         'name',
@@ -2042,6 +2059,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        "column_name" => "estimated_dry_powder",
       ],
       'match' => [
         'name',
@@ -2144,6 +2162,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_software_focus',
+        "column_name" => "software_focus",
       ],
       'match' => [
         'name',
@@ -2167,6 +2186,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        "column_name" => "investment_lead_role",
       ],
       'match' => [
         'name',
@@ -2190,6 +2210,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        "column_name" => "investments_w_public_sector",
       ],
       'match' => [
         'name',
@@ -2214,6 +2235,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        "column_name" => "num_of_investments_last_two_yrs",
       ],
       'match' => [
         'name',
@@ -2236,6 +2258,7 @@ return [
         'collapse_display' => TRUE,
         'weight' => 5,
         'collapse_adv_display' => TRUE,
+        'table_name' => "civicrm_value_client_roles",
       ],
       'match' => ['name'],
     ],
@@ -2258,6 +2281,7 @@ return [
         'note_rows' => 4,
         'filter' => 'contact_sub_type=Investor',
         'fk_entity' => 'Organization',
+        "column_name" => "investor",
       ],
       'match' => [
         'name',
@@ -2283,6 +2307,7 @@ return [
         'note_rows' => 4,
         'filter' => 'contact_sub_type=EIC_Awardee',
         'fk_entity' => 'Organization',
+        "column_name" => "eic_awardee",
       ],
       'match' => [
         'name',
@@ -2305,6 +2330,7 @@ return [
         'text_length' => 512,
         'note_columns' => 60,
         'note_rows' => 4,
+        "column_name" => "company_domain_name",
       ],
       'match' => [
         'name',
