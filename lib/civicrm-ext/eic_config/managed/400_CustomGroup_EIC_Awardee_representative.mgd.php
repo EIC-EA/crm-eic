@@ -16,8 +16,9 @@ return [
         'extends_entity_column_value' => ['EIC_Registered'],
         'weight' => 11,
         'collapse_adv_display' => TRUE,
+        'table_name' => 'civicrm_value_srm_eic_awardee_representative',
       ],
-      'match' => ['name'],
+      'match' => ['name'],    
     ],
   ],
   [
@@ -35,6 +36,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'funds_vintage_year',
       ],
       'match' => [
         'name',

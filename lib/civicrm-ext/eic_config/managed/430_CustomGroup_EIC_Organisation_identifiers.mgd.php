@@ -18,6 +18,7 @@ return [
         'weight' => 4,
         'collapse_adv_display' => TRUE,
         'is_public' => FALSE,
+        'table_name' => 'civicrm_value_srm_eic_he_project_info'
       ],
       'match' => ['name'],
     ],
@@ -37,6 +38,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'smed_id'
       ],
       'match' => [
         'name',
@@ -61,6 +63,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'in_selector' => TRUE,
+        'column_name' => 'pic'
       ],
       'match' => [
         'name',

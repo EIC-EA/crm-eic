@@ -81,7 +81,7 @@ class SectorImporter extends BaseImporter
      * Look up an existing Organisation by PK custom field value.
      * Returns the contact ID or null if not found.
      */
-    protected function findByPK(string $pkName, array $row): array
+    protected function findByPK(string $pkName, array $row): array | bool
     {    
         $pkValue = $row[$pkName];
 

@@ -335,8 +335,9 @@ class FieldMap
                 'transform' => function(string $v, $r): ?string {
                     switch ($v) {
                         case 'project':
-                            if ($r['program'] == 'SME Instrument / EIC Pilot')
+                            if ($r['program'] == 'SME Instrument' ||  $r['program'] == 'EIC Pilot') {
                                 return 'H2020';
+                            }
                             else
                                 return 'heproject';
                             break;
@@ -372,7 +373,22 @@ class FieldMap
             'grantProposed' => [
                 'entity'   => 'custom',
                 'field'    => $CustomFieldGroup.'.Grant_Proposed',
-                'transform' => fn(string $v, $r) => trim($v)
+                'transform' => function(string $v, $r) : string {
+                    $val = trim($v);
+                    if (is_numeric($val))
+                        return $val;
+                    return '0';               
+                }
+            ],
+            'equityProposed' => [
+                'entity'   => 'custom',
+                'field'    => $CustomFieldGroup.'.Equity_Proposed',
+                'transform' => function(string $v, $r) : string {
+                    $val = trim($v);
+                    if (is_numeric($val))
+                        return $val;
+                    return '0';               
+                }                
             ],
             'start date' => [
                 'entity'   => 'custom',
@@ -529,6 +545,11 @@ class FieldMap
                 'entity'   => 'custom',
                 'required' => true,
                 'field'    => '',
+                'transform' => fn(string $v, $r) => strtoupper(trim($v)),
+            ],
+            'status' => [
+                'entity'   => 'custom',
+                'field'    => 'status',
                 'transform' => fn(string $v, $r) => strtoupper(trim($v)),
             ],
         ];

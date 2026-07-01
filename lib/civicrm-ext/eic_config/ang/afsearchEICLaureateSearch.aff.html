@@ -1,0 +1,33 @@
+<div af-fieldset="" af-title="EIC Awardees search (Organisation)">
+  <div class="af-container af-layout-cols af-container-style-pane" af-title="Organisation information">
+    <af-field name="display_name" defn="{input_attrs: {}, label: 'Organisation Name'}" />
+    <af-field name="EIC_Organisation_identifiers.PIC" defn="{help_pre: null, input_attrs: {}, label: 'PIC'}" />
+    <af-field name="Contact_Address_contact_id_01.country_id" defn="{input_attrs: {multiple: true}}" />
+    <af-field name="EIC_Awardee_Additionnal_Information.SME_vs_mid_cap_status" defn="{input_attrs: {multiple: true}, label: 'SME vs mid-cap status'}" />
+    <af-field name="EIC_Awardee_Additionnal_Information.SME_status_type" defn="{input_attrs: {multiple: true}, label: 'SME status'}" />
+  </div>
+  <div class="af-container af-container-style-pane" af-title="EIC Project information">
+    <div class="af-container af-layout-cols">
+      <af-field name="Contact_ActivityContact_Activity_01.subject,Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Project_Title" defn="{label: 'Project Name', input_attrs: {}}" />
+      <af-field name="Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Project_Number" defn="{label: 'Project Number', input_attrs: {}}" />
+      <af-field name="Contact_ActivityContact_Activity_01.status_id" defn="{input_attrs: {multiple: true}}" />
+      <af-field name="Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Category" defn="{input_attrs: {multiple: true}, label: 'Category'}" />
+      <af-field name="Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Phase" defn="{input_attrs: {multiple: true}, label: 'Phase'}" />
+    </div>
+    <div class="af-container af-layout-cols">
+      <af-field name="Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Funding" defn="{input_attrs: {multiple: true}, label: 'Funding'}" />
+      <af-field name="Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Funding_Type" defn="{input_attrs: {multiple: true}, label: 'Funding Type'}" />
+      <af-field name="Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Master" defn="{input_attrs: {multiple: true}, search_operator: 'IN', label: 'Master Sector'}" />
+      <af-field name="Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Primary,Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Subsector_1,Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Subsector_2,Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Tech_cluster_1,Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Tech_cluster_2,Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Tech_cluster_3,Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Tech_cluster_4,Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Tech_cluster_5,Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Tech_cluster_6,Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Field_Of_Science" defn="{input_attrs: {multiple: true}, label: 'Subsector s &amp; clusters', search_operator: 'IN'}" />
+      <af-field name="Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Free_Keywords" defn="{search_operator: 'CONTAINS', input_attrs: {}, label: 'Free Keywords'}" />
+    </div>
+    <div class="af-container af-layout-cols">
+      <af-field name="Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Cut_Off_Date" defn="{input_type: 'Select', search_range: true, input_attrs: {}, label: 'Cut-Off-Date'}" />
+    </div>
+  </div>
+  <div class="af-container af-layout-cols">
+    <af-search-param-sets></af-search-param-sets>
+    <button class="af-button btn btn-warning" type="reset" crm-icon="fa-undo">Reset</button>
+  </div>
+  <crm-search-display-table search-name="EIC_Laureate_Full_search_Organisation_" display-name="EIC_Awardees_search_Organisation_"></crm-search-display-table>
+</div>

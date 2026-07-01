@@ -14,7 +14,7 @@ return [
         'title' => E::ts('Horizon Europe Project Activity'),
         'extends' => 'Activity',
         'extends_entity_column_value:name' => ['EIC_Awardee_Project'],
-
+        'table_name' => 'civicrm_value_srm_eic_he_project_info',
         'weight' => 7,
         'is_public' => FALSE,
       ],
@@ -36,6 +36,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'project_title'
       ],
       'match' => [
         'name',
@@ -59,6 +60,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'project_number'
       ],
       'match' => [
         'name',
@@ -81,6 +83,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'ec_tool_status'
       ],
       'match' => [
         'name',
@@ -106,6 +109,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'filter' => 'contact_sub_type=EIC_Awardee',
+        'column_name' => 'coordinator'
       ],
       'match' => [
         'name',
@@ -131,6 +135,7 @@ return [
         'note_rows' => 4,
         'serialize' => 1,
         'filter' => 'contact_sub_type=EIC_Awardee',
+        'column_name' => 'partners'
       ],
       'match' => [
         'name',
@@ -157,6 +162,7 @@ return [
         'date_format' => 'dd/mm/yy',
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'cut_off_date'
       ],
       'match' => [
         'name',
@@ -257,6 +263,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'EIC_Horizon_Europe_Project_Activity_Category',
+        'column_name' => 'category'
       ],
       'match' => [
         'name',
@@ -598,6 +605,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_he_project_funding',
+        'column_name' => 'funding'
       ],
       'match' => [
         'name',
@@ -718,6 +726,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'EIC_Horizon_Europe_Project_Funding_Type_2',
+        'column_name' => 'funding_type'
       ],
       'match' => [
         'name',
@@ -741,6 +750,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'grant_proposed'
       ],
       'match' => [
         'name',
@@ -764,6 +774,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'equity_proposed'
       ],
       'match' => [
         'name',
@@ -788,6 +799,7 @@ return [
         'date_format' => 'yy-mm-dd',
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'start_date'
       ],
       'match' => [
         'name',
@@ -812,6 +824,7 @@ return [
         'date_format' => 'yy-mm-dd',
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'end_date'
       ],
       'match' => [
         'name',
@@ -835,6 +848,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'duration_months',
       ],
       'match' => [
         'name',
@@ -955,6 +969,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_master_sector',
+        'column_name' => 'master_sector',
       ],
       'match' => [
         'name',
@@ -5998,6 +6013,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_primary_sector',
+        'column_name' => 'primary_sector',
       ],
       'match' => [
         'name',
@@ -6021,6 +6037,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_primary_sector',
+        'column_name' => 'subsector_1',
       ],
       'match' => [
         'name',
@@ -6044,6 +6061,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_primary_sector',
+        'column_name' => 'subsector_2',
       ],
       'match' => [
         'name',
@@ -6067,6 +6085,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_primary_sector',
+        'column_name' => 'tech_cluster_1',
       ],
       'match' => [
         'name',
@@ -6090,6 +6109,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_primary_sector',
+        'column_name' => 'tech_cluster_2',
       ],
       'match' => [
         'name',
@@ -6113,6 +6133,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_primary_sector',
+        'column_name' => 'tech_cluster_3',
       ],
       'match' => [
         'name',
@@ -6136,6 +6157,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_primary_sector',
+        'column_name' => 'tech_cluster_4',
       ],
       'match' => [
         'name',
@@ -6159,6 +6181,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_primary_sector',
+        'column_name' => 'tech_cluster_5',
       ],
       'match' => [
         'name',
@@ -6182,6 +6205,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'eic_primary_sector',
+        'column_name' => 'tech_cluster_6',
       ],
       'match' => [
         'name',
@@ -6204,6 +6228,7 @@ return [
         'text_length' => 512,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'field_of_science',
       ],
       'match' => [
         'name',
@@ -6227,6 +6252,7 @@ return [
         'attributes' => 'rows=4, cols=60',
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'free_keywords',
       ],
       'match' => [
         'name',
@@ -6327,6 +6353,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'EIC_Horizon_Europe_Project_Activity_Termination',
+        'column_name' => 'termination',
       ],
       'match' => [
         'name',
@@ -6352,6 +6379,7 @@ return [
         'note_rows' => 4,
         'serialize' => 1,
         'filter' => 'contact_sub_type=EIC_Awardee',
+        'column_name' => 'associated_partners',
       ],
       'match' => [
         'name',
@@ -6377,6 +6405,7 @@ return [
         'note_rows' => 4,
         'serialize' => 1,
         'filter' => 'contact_sub_type=EIC_Awardee',
+        'column_name' => 'terminated_partners',
       ],
       'match' => [
         'name',
@@ -6457,6 +6486,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'EIC_Horizon_Europe_Project_Activity_Phase',
+        'column_name' => 'phase',
       ],
       'match' => [
         'name',

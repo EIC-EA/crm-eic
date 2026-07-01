@@ -53,7 +53,8 @@ class ContactImporter extends BaseImporter
             $entityValues = array_merge(
                 ['relationship_type_id:name' => $this->relationship_type_id_name],
                 ['contact_id_a' => $this->contact_id_a],
-                ['contact_id_b' => $this->contact_id_b]
+                ['contact_id_b' => $this->contact_id_b],
+                ['is_active' => $buckets['custom']['status'] != 'REVOKED']
             );
             
             if ($this->project_activity_id)
@@ -95,7 +96,7 @@ class ContactImporter extends BaseImporter
      * Look up an existing Organisation by PK custom field value.
      * Returns the contact ID or null if not found.
      */
-    protected function findByPK(string $pkName, array $row): array
+    protected function findByPK(string $pkName, array $row): array | bool
     {
         // eu-login; role; PIC; proposalNo
 
