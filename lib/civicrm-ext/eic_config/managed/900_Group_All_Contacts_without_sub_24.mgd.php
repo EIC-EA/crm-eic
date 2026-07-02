@@ -12,7 +12,7 @@ return [
       'values' => [
         'name' => 'All_Contacts_without_sub_24',
         'title' => E::ts('All Contacts without subtype'),
-        'saved_search_id.name' => 'All_Contact_without_subtype_v89r',
+        'saved_search_id.name' => 'All_contact_without_subtype',
         'group_type' => [],
         'frontend_title' => E::ts('All Contacts without subtype'),
       ],

@@ -48,13 +48,16 @@ class ContactImporter extends BaseImporter
         if ($this->isDryRun()) {
             return 0;
         }
-
-        if (!$this->relationship_id) {            
+        if (!$this->relationship_id) {  
+            
+            $status = '';
+            if ( array_key_exists('status', $buckets['custom']))
+                $status = $buckets['custom']['status'];
             $entityValues = array_merge(
                 ['relationship_type_id:name' => $this->relationship_type_id_name],
                 ['contact_id_a' => $this->contact_id_a],
                 ['contact_id_b' => $this->contact_id_b],
-                ['is_active' => $buckets['custom']['status'] != 'REVOKED']
+                ['is_active' => $status != 'REVOKED']
             );
             
             if ($this->project_activity_id)
@@ -211,8 +214,6 @@ class ContactImporter extends BaseImporter
             if ($result->count() != 0)
                 $this->contact_id_a =  (int) $result->first()['id'];
         }
-
-        var_dump($row);
 
         if ( $this->contact_id_a == -1 && ( !array_key_exists('e-mail', $row) || $row['e-mail'] == '' ) ) {
                 $fieldMapCheck[] = "Individual not found by eu-login and e-mail is empty ";

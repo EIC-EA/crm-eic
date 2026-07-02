@@ -18,7 +18,7 @@ return [
         'weight' => 4,
         'collapse_adv_display' => TRUE,
         'is_public' => FALSE,
-        'table_name' => 'civicrm_value_srm_eic_he_project_info'
+        'table_name' => 'civicrm_value_srm_org_ids'
       ],
       'match' => ['name'],
     ],
