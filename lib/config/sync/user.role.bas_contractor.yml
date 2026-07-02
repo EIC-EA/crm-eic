@@ -1,0 +1,59 @@
+uuid: 8f363f17-27e0-47e4-b6f9-932300b66892
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.article
+    - node.type.page
+    - taxonomy.vocabulary.tags
+  module:
+    - civicrm
+    - comment
+    - contextual
+    - file
+    - node
+    - taxonomy
+    - toolbar
+id: bas_contractor
+label: 'BAS Contractor'
+weight: 4
+is_admin: false
+permissions:
+  - 'access CiviCRM'
+  - 'access CiviReport'
+  - 'access Contact Dashboard'
+  - 'access Report Criteria'
+  - 'access all cases and activities'
+  - 'access contact reference fields'
+  - 'access contextual links'
+  - 'access files overview'
+  - 'access toolbar'
+  - 'access uploaded files'
+  - 'add cases'
+  - 'add contact notes'
+  - 'add contacts'
+  - 'administer Tagsets'
+  - 'create article content'
+  - 'create page content'
+  - 'create terms in tags'
+  - 'delete article revisions'
+  - 'delete contacts'
+  - 'delete in CiviCase'
+  - 'delete own article content'
+  - 'delete own files'
+  - 'delete own page content'
+  - 'delete page revisions'
+  - 'edit my contact'
+  - 'edit own api keys'
+  - 'edit own article content'
+  - 'edit own comments'
+  - 'edit own page content'
+  - 'edit terms in tags'
+  - 'export own manual batches'
+  - 'manage tags'
+  - 'profile view'
+  - 'save Report Criteria'
+  - 'view all activities'
+  - 'view all notes'
+  - 'view my contact'
+  - 'view own unpublished content'

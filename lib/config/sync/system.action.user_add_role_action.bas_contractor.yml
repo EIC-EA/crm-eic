@@ -1,0 +1,14 @@
+uuid: c31af3f1-9cf6-4aa1-9176-bd610431b8dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.bas_contractor
+  module:
+    - user
+id: user_add_role_action.bas_contractor
+label: 'Add the BAS Contractor role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: bas_contractor

@@ -4,7 +4,7 @@ langcode: en
 protocol: eulogin
 register_path: eim/external/register.cgi
 validation_path: TicketValidationService
-assurance_level: LOW
+assurance_level: TOP
 ticket_types: 'SERVICE,PROXY'
 force_2fa: false
 restrict_user_delete_cancel_methods: true

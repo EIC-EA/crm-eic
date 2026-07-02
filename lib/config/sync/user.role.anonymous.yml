@@ -1,28 +1,11 @@
-uuid: b2261b23-7578-4ad2-bb77-a03e27d66f64
+uuid: ce5998dc-eced-4eb8-89b4-6e4febc5af3f
 langcode: en
 status: true
-dependencies:
-  config:
-    - filter.format.restricted_html
-  module:
-    - civicrm
-    - comment
-    - filter
-    - search
-    - system
+dependencies: {  }
 _core:
   default_config_hash: xLG41YbRo2NP-0SgRNTkMzLEuaeibanGXgUTbdIcIIg
 id: anonymous
 label: 'Anonymous user'
 weight: 0
 is_admin: false
-permissions:
-  - 'access all custom data'
-  - 'access comments'
-  - 'access content'
-  - 'access uploaded files'
-  - 'profile create'
-  - 'profile edit'
-  - 'profile view'
-  - 'search content'
-  - 'use text format restricted_html'
+permissions: {  }
