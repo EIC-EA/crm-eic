@@ -92,7 +92,7 @@ cat > /etc/roundcube/config.inc.php <<EOF
 \$config['smtp_pass'] = '';
 \$config['product_name'] = 'EIC Dev Mailbox';
 // change this if needed
-\$config['des_key'] = '$ROUNDCUBE_KEY';
+\$config['des_key'] = '$MC_ROUNDCUBE_KEY';
 EOF
 
 chmod 0644 /etc/postfix/main.cf.template

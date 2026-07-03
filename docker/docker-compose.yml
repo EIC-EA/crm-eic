@@ -79,8 +79,6 @@ services:
     env_file:
       - .env
     ports:
-      - "${DV_SMTP_PORT}:25"
-      - "${DV_IMAP_PORT}:143"
       - "${DV_MP_UI_AUTH}:80"
     volumes:
       - eicmailcatcher-mail:/var/mail/vhosts
