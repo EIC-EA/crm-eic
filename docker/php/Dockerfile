@@ -22,7 +22,8 @@ RUN set -eux; \
 		libicu-dev \
 		imagemagick \
         libmagickwand-dev \
-        mariadb-client \        
+        mariadb-client \
+		gettext \
 	; \
 	\
 	docker-php-ext-install -j "$(nproc)" \
@@ -52,7 +53,7 @@ RUN set -eux; \
 	rm -rf /var/lib/apt/lists/*
 
 RUN apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update \
-  && apt-get -y install imagemagick mariadb-client
+  && apt-get -y install imagemagick mariadb-client gettext-base
 
 # Download cv (https://github.com/civicrm/cv)
 #RUN curl -LsS https://download.civicrm.org/cv/cv.phar -o /usr/local/bin/cv \
@@ -101,7 +102,11 @@ RUN set -eux; \
 	curl --location -O https://github.com/systopia/aip/releases/download/1.3.0/aip-1.3.0.zip && unzip aip-1.3.0.zip && rm aip-1.3.0.zip && \
 	curl --location -O https://lab.civicrm.org/extensions/form-processor/-/archive/3.2.0/form-processor-3.2.0.zip && unzip form-processor-3.2.0.zip && rm form-processor-3.2.0.zip && \
 	curl --location -O https://github.com/systopia/de.systopia.sqltasks/releases/download/2.2.0/de.systopia.sqltasks-2.2.0.zip && unzip de.systopia.sqltasks-2.2.0.zip && rm de.systopia.sqltasks-2.2.0.zip && \
-	curl --location -O https://lab.civicrm.org/extensions/action-provider/-/archive/1.196/action-1.196.zip && unzip action-1.196.zip && rm action-1.196.zip
+	curl --location -O https://lab.civicrm.org/extensions/action-provider/-/archive/1.196/action-1.196.zip && unzip action-1.196.zip && rm action-1.196.zip && \
+	curl --location -O https://lab.civicrm.org/extensions/jsoneditor/-/archive/1.x/jsoneditor-1.x.zip && unzip jsoneditor-1.x.zip && mv jsoneditor-1.x jsoneditor && rm jsoneditor-1.x.zip && \
+	curl --location -O https://lab.civicrm.org/extensions/fromemailpermission/-/archive/1.x/fromemailpermission-1.x.zip && unzip fromemailpermission-1.x.zip && mv fromemailpermission-1.x fromemailpermission && rm fromemailpermission-1.x.zip
+	
+
 
 COPY docker/php/web/sites/default/settings.php /opt/drupal/web/sites/default/settings.php
 COPY docker/php/web/sites/default/civicrm.settings.php /opt/drupal/web/sites/default/civicrm.settings.php
