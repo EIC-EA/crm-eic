@@ -52,4 +52,8 @@
     <mixin>setting-php@1.0.0</mixin>
     <mixin>smarty@1.0.3</mixin>
   </mixins>
+  <requires>
+    <ext>civi_mail</ext>
+    <ext>ses</ext>
+  </requires>
 </extension>
