@@ -1,0 +1,12 @@
+{
+  "values": {
+     "mailing_backend": {
+        "outBound_option": "0", 
+        "smtpServer": "${SMTP_SERVER}", 
+        "smtpPort": "${SMTP_PORT}", 
+        "smtpAuth": "${SMTP_AUTH_ENABLED}", 
+        "smtpUsername": "${SMTP_USERNAME}",
+        "smtpPassword": "${SMTP_PASSWORD}"
+      }
+   }
+}

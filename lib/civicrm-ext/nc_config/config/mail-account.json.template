@@ -1,0 +1,17 @@
+{
+  "values": {
+    "name": "CiviMail IMAP",
+    "server": "${MAIL_IMAP_SERVER}",
+    "username": "${MAIL_IMAP_USERNAME}",
+    "password": "${MAIL_IMAP_PASSWORD}",
+    "localpart": "${MAIL_IMAP_LOCALPART}",
+    "domain": "${MAIL_IMAP_DOMAIN}",
+    "protocol:name": "IMAP",
+    "source": "${MAIL_IMAP_SOURCE}",
+    "is_default": true,
+    "is_ssl": false,
+    "is_non_case_email_skipped": false,
+    "is_contact_creation_disabled_if_no_match": false,
+    "activity_status": "Completed"
+  }
+}
