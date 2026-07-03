@@ -1,0 +1,14 @@
+uuid: 28527d99-660e-424f-9e96-fc7112bfcdc1
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.eic_it_support_team
+  module:
+    - user
+id: user_remove_role_action.eic_it_support_team
+label: 'Remove the EIC IT Support team role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: eic_it_support_team

@@ -82,10 +82,14 @@ class ProjectImporter extends BaseImporter
     }
 
     /**
-     * Look up an existing Organisation by PK custom field value.
-     * Returns the contact ID or null if not found.
+     * Look up an existing Entity by PK custom field value.
+     * Returns false or an array.
+     * If it returns false, the row will be skipped
+     * If it returns an array it can contain entity IDs or null
+     * If the array contains only IDs, the entities can be updated or skipped depending on the configuration
+     * If it contains a null, an entity is created 
      */
-    protected function findByPK(string $pkName, array $row): array
+    protected function findByPK(string $pkName, array $row): array | bool
     {
         $pkValue = $row[$pkName];
         
@@ -97,12 +101,28 @@ class ProjectImporter extends BaseImporter
 
         $result = \Civi\Api4\Activity::get()
             ->addSelect('id')
+            ->addSelect(self::$CUSTOM_GROUP_HE_PROJECT_INFO.'.Category')
             ->addWhere('activity_type_id:name', '=', static::ENTITY_SUB_TYPE)
             ->addWhere($pkField, '=', $pkValue)
             ->addWhere('is_deleted', '=', false)
             ->setLimit(1)
             ->execute();
 
-        return [ 'project_activity_id' => $result->count() > 0 ? (int) $result->first()['id'] : null ];
+        if ($result->count() == 0)
+            return [ 'project_activity_id' => null ];
+
+        $activity = $result->first();
+
+        // If the row is a SOE and the existing project is a project, we skip the row
+        if (
+            $row['category'] == 'hesoe' && 
+            (
+                ($activity[self::$CUSTOM_GROUP_HE_PROJECT_INFO.'.Category'] == 'heproject') || 
+                ($activity[self::$CUSTOM_GROUP_HE_PROJECT_INFO.'.Category'] == 'H2020')
+            )
+        )
+            return false;
+
+        return [ 'project_activity_id' => (int) $activity['id']];
     }    
 }

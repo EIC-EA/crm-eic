@@ -883,3 +883,5 @@ $settings["config_sync_directory"]="../config/sync";
 
 $config['civicrmtheme.settings']['admin_theme'] = 'claro';
 $config['civicrmtheme.settings']['public_theme'] = 'claro';
+
+$config['system.site']['uuid'] = '29152bc4-9bfc-459f-bd17-d7c3ad64b4ec';

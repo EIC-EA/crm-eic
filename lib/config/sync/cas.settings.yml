@@ -7,7 +7,7 @@ login_success_message: 'You have been logged in.'
 server:
   version: '3.0'
   protocol: https
-  hostname: ecas.acceptance.ec.europa.eu
+  hostname: ecas.ec.europa.eu
   port: 443
   path: /cas
   verify: 0

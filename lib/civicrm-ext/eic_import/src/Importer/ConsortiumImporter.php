@@ -91,7 +91,7 @@ class ConsortiumImporter extends BaseImporter
      * Look up an existing Organisation by PK custom field value.
      * Returns the contact ID or null if not found.
      */
-    protected function findByPK(string $pkName, array $row): array
+    protected function findByPK(string $pkName, array $row): array | bool
     {
         // proposalNumber	 relation	 status	 SMEDashboardId	 PIC	 Name	 Country
 
@@ -132,8 +132,10 @@ class ConsortiumImporter extends BaseImporter
     protected function getFieldNameFromRole(string $role, string $status, string $project_category) : string
     {
         $field_name = '';
-        if (($status == 'TERMINATED' || $status == '') && ($project_category != 'hesoe'))
+        if ($status == 'TERMINATED' || $status == 'NOT_ACCEDED')
             return self::$CUSTOM_GROUP_HE_PROJECT_INFO.'.Terminated_Partners';
+        if ($status == '')
+            return self::$CUSTOM_GROUP_HE_PROJECT_INFO.'.Coordinator';
         switch ($role)
         {
             case 'Partner':

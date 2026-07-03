@@ -24,6 +24,7 @@ return [
         'weight' => 8,
         'collapse_adv_display' => TRUE,
         'is_public' => FALSE,
+        'table_name' => 'civicrm_value_srm_he_project_rel'
       ],
       'match' => ['name'],
     ],
@@ -45,6 +46,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'fk_entity' => 'Activity',
+        'column_name' => 'he_project',
       ],
       'match' => [
         'name',

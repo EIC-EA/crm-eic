@@ -1,0 +1,14 @@
+uuid: 1d6210fc-1efc-4399-94cf-ad6848511627
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.eic_it_support_team
+  module:
+    - user
+id: user_add_role_action.eic_it_support_team
+label: 'Add the EIC IT Support team role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: eic_it_support_team

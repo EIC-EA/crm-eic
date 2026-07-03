@@ -1,0 +1,26 @@
+<div af-fieldset="" class="af-container-style-pane">
+  <div class="af-container af-layout-cols" af-title="Company information">
+    <af-field name="display_name" defn="{label: 'Company Name', input_attrs: {}}" />
+    <af-field name="Contact_Custom_Organisation_identifiers_entity_id_01.PIC" defn="{help_pre: null, input_attrs: {}}" />
+  </div>
+  <div class="af-container af-layout-cols" af-title="Project information">
+    <af-field name="Contact_ActivityContact_Activity_01.Horizon_Europe_Project_information.Category" defn="{input_attrs: {multiple: true}, label: 'Category'}" />
+    <af-field name="Contact_ActivityContact_Activity_01.Horizon_Europe_Project_information.Funding" defn="{input_attrs: {multiple: true}, label: 'Funding'}" />
+    <af-field name="Contact_ActivityContact_Activity_01.Horizon_Europe_Project_information.Funding_Type" defn="{input_attrs: {multiple: true}, label: 'Funding Type'}" />
+    <af-field name="Contact_ActivityContact_Activity_01.Horizon_Europe_Project_information.Cut_Off_Date" defn="{input_type: 'Select', search_range: true, input_attrs: {}, label: 'Cut-Off-Date'}" />
+  </div>
+  <div class="af-container af-layout-cols">
+    <af-field name="Contact_ActivityContact_Activity_01.Horizon_Europe_Project_information.Master" defn="{input_attrs: {multiple: true}, label: 'Master Sector'}" />
+    <af-field name="Contact_ActivityContact_Activity_01.Horizon_Europe_Project_information.Primary,Contact_ActivityContact_Activity_01.Horizon_Europe_Project_information.Subsector_1,Contact_ActivityContact_Activity_01.Horizon_Europe_Project_information.Tech_cluster_1,Contact_ActivityContact_Activity_01.Horizon_Europe_Project_information.Tech_cluster_2,Contact_ActivityContact_Activity_01.Horizon_Europe_Project_information.Tech_cluster_3,Contact_ActivityContact_Activity_01.Horizon_Europe_Project_information.Tech_cluster_4,Contact_ActivityContact_Activity_01.Horizon_Europe_Project_information.Tech_cluster_5,Contact_ActivityContact_Activity_01.Horizon_Europe_Project_information.Tech_cluster_6" defn="{label: 'Sector', search_operator: 'CONTAINS', input_attrs: {}}" />
+    <af-field name="Contact_ActivityContact_Activity_01.Horizon_Europe_Project_information.Grant_Proposed" defn="{input_type: 'Range', input_attrs: {min: 0, max: 4000000, step: 1}, search_operator: '&lt;=', label: 'Grant Proposed', afform_default: '4000000'}" />
+  </div>
+  <div class="af-container af-layout-cols">
+    <af-field name="Contact_RelationshipCache_Contact_01.near_relation" defn="{input_attrs: {multiple: true}}" />
+  </div>
+  <af-search-param-sets></af-search-param-sets>
+  <crm-search-display-table search-name="EIC_Laureate_Full_search_Organisation_" display-name="EIC_Laureate_Full_search_Organisation_Table_1"></crm-search-display-table>
+</div>
+<div af-fieldset="" af-title="EIC Laureate Full search (Group): EIC Laureate Full search (Group)">
+  <button class="af-button btn btn-warning" type="reset" crm-icon="fa-undo">Reset</button>
+  <crm-search-display-table search-name="EIC_Laureate_Full_search_Group_" display-name="EIC_Laureate_Full_search_Organisation_copy_"></crm-search-display-table>
+</div>

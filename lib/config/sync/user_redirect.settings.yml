@@ -1,0 +1,25 @@
+login:
+  authenticated:
+    redirect_url: /civicrm
+    weight: '-10'
+  content_editor:
+    redirect_url: /civicrm
+    weight: '-10'
+  administrator:
+    redirect_url: /civicrm
+    weight: '-10'
+logout:
+  authenticated:
+    redirect_url: ''
+    weight: '-10'
+  content_editor:
+    redirect_url: ''
+    weight: '-10'
+  administrator:
+    redirect_url: ''
+    weight: '-10'
+ignore:
+  - '/user/reset/*'
+ignore_for:
+  login: login
+  logout: 0

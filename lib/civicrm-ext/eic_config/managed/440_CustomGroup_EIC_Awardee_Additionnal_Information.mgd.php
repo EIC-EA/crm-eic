@@ -17,6 +17,7 @@ return [
         'help_pre' => E::ts('<p>This information come from the EC corporate tools.</p>'),
         'weight' => 14,
         'collapse_adv_display' => TRUE,
+        'table_name' => 'civicrm_value_srm_eic_awardee_info',
       ],
       'match' => ['name'],
     ],
@@ -74,6 +75,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'EIC_Awardee_Additionnal_Information_Program_nh9i',
+        'column_name' => 'program'
       ],
       'match' => [
         'name',
@@ -97,6 +99,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'research_organisation'
       ],
       'match' => [
         'name',
@@ -120,6 +123,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'large_research_infrastructure'
       ],
       'match' => [
         'name',
@@ -143,6 +147,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'non_profit_org',
       ],
       'match' => [
         'name',
@@ -166,6 +171,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'public_body',
       ],
       'match' => [
         'name',
@@ -189,6 +195,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'intl_org',
       ],
       'match' => [
         'name',
@@ -212,6 +219,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'eu_interest',
       ],
       'match' => [
         'name',
@@ -272,6 +280,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'EIC_Awardee_Additionnal_Information_Legal_status',
+        'column_name' => 'legal_status',
       ],
       'match' => [
         'name',
@@ -412,6 +421,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'EIC_Awardee_Additionnal_Information_SME_vs_mid_cap_status',
+        'column_name' => 'sme_mid_cap',
       ],
       'match' => [
         'name',
@@ -512,6 +522,7 @@ return [
         'note_columns' => 60,
         'note_rows' => 4,
         'option_group_id.name' => 'EIC_Awardee_Additionnal_Information_SME_status_type',
+        'column_name' => 'sme_status_type',
       ],
       'match' => [
         'name',
@@ -535,6 +546,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'edu_est',
       ],
       'match' => [
         'name',
@@ -558,6 +570,7 @@ return [
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
+        'column_name' => 'legal_personality',
       ],
       'match' => [
         'name',

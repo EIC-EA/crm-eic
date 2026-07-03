@@ -110,8 +110,12 @@ abstract class BaseImporter
             $existingEntityIds = $this->findByPK($this->PK, $row);
 
             // The row cannot be processed
-            if ($existingEntityIds === false)
+            if ($existingEntityIds === false) {
+                $this->stats->skipped++;
+                $this->logger->info("  → Skipped (should not be processed)");
                 return;
+            }
+                
 
             if (!in_array(null, $existingEntityIds, true)) {
                 if ($this->shouldUpdateExisting()) {
@@ -312,7 +316,7 @@ abstract class BaseImporter
      * Look up an existing Organisation by PK custom field value.
      * Returns the contact ID or null if not found.
      */
-    protected function findByPK(string $pkName, array $row): array
+    protected function findByPK(string $pkName, array $row): array | bool
     {
         $pkValue = $row[$pkName];
 
