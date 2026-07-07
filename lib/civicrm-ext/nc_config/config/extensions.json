@@ -1,0 +1,37 @@
+[
+  {
+    "key": "org.civicoop.civirules",
+    "label": "CiviRules",
+    "file": "civirules",
+    "tags": [],
+    "authors": [
+      {
+        "name": "CiviCooP",
+        "email": "helpdesk@civicoop.org",
+        "role": "Maintainer"
+      },
+      {
+        "name": "MJW",
+        "email": "info@mjwconsult.co.uk",
+        "role": "Maintainer"
+      }
+    ],
+    "comments": null,
+    "compatibility": {
+      "ver": "6.12"
+    },
+    "description": "Native CiviCRM extension CiviRules",
+    "develStage": "stable",
+    "license": "AGPL-3.0",
+    "releaseDate": "2026-06-18",
+    "urls": {
+      "Documentation": "https://docs.civicrm.org/civirules/en/latest",
+      "Licensing": "http://civicrm.org/licensing",
+      "Main Extension Page": "https://lab.civicrm.org/extensions/civirules",
+      "Support": "http://www.civicoop.org"
+    },
+    "version": "3.38.0",
+    "path": "/var/www/html/web/sites/default/files/civicrm/ext/org.civicoop.civirules",
+    "status": "uninstalled"
+  }
+]
