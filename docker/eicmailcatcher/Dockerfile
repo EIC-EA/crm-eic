@@ -1,10 +1,16 @@
 FROM debian:12
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV MAIL_DOMAIN=test.local
-ENV CATCHALL_USER=inbox
-ENV MAIL_USERS="inbox:password"
 
+ENV MC_PRODUCT_NAME="EIC Dev Mailbox"
+ENV MC_MAIL_DOMAIN=test.local
+ENV MC_CATCHALL_USER=inbox_catcher
+ENV MC_MAIL_USERS="inbox_catcher:inbox,gavin:gavin,gery:gery,john:soup"
+ENV MC_MAIL_MODE=multi
+ENV MC_ROUNDCUBE_KEY="hash24to#wanttochangeitt"
+ENV MC_IMAP_NAME="CiviMail IMAP"
+
+                       
 
 RUN apt-get update && apt-get install -y \
     postfix \

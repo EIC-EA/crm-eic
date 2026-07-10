@@ -2,9 +2,9 @@ compatibility_level = 3.6
 
 mynetworks = 127.0.0.0/8 10.89.1.0/24
 
-myhostname = mail.${MAIL_DOMAIN}
-mydomain = ${MAIL_DOMAIN}
-myorigin = ${MAIL_DOMAIN}
+myhostname = mail.${MC_MAIL_DOMAIN}
+mydomain = ${MC_MAIL_DOMAIN}
+myorigin = ${MC_MAIL_DOMAIN}
 
 inet_interfaces = all
 inet_protocols = ipv4
@@ -12,7 +12,7 @@ inet_protocols = ipv4
 mydestination =
 relayhost =
 
-virtual_mailbox_domains = ${MAIL_DOMAIN}
+virtual_mailbox_domains = ${MC_MAIL_DOMAIN}
 virtual_mailbox_base = /var/mail/vhosts
 virtual_mailbox_maps = hash:/etc/postfix/maps/vmailbox
 virtual_alias_maps = regexp:/etc/postfix/maps/virtual-alias

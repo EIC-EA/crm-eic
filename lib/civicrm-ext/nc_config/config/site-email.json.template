@@ -6,7 +6,7 @@
     "display_name": "${SITE_FROM_DISPLAY_NAME}",
     "email": "${SITE_FROM_MAIL}",
     "description": "Default domain email address and from name.",
-    "is_active": ${SITE_FROM_ENABLED},
+    "is_active": true,
     "is_default": true
   }
 }

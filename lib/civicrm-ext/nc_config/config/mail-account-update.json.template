@@ -1,11 +1,14 @@
 {
+  "where": [
+    ["id", "=", ${MC_MAIL_SETTINGS_ID}]
+  ],
   "values": {
-    "name": "${IMAP_NAME}",
-    "server": "${IMAP_SERVER}",
-    "username": "${IMAP_USERNAME}",
-    "password": "${IMAP_PASSWORD}",
+    "name": "${MC_IMAP_NAME}",
+    "server": "${MC_IMAP_SERVER}",
+    "username": "${MC_IMAP_USERNAME}",
+    "password": "${MC_IMAP_PASSWORD}",
     "localpart": null,
-    "domain": "${MAIL_DOMAIN}",
+    "domain": "${MC_MAIL_DOMAIN}",
     "protocol:name": "IMAP",
     "source": "from",
     "is_default": true,
