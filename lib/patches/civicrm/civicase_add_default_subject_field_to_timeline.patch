@@ -1,0 +1,138 @@
+From 69c834103c1d5d3dda4e49f091635c92d40a2faf Mon Sep 17 00:00:00 2001
+From: colemanw <coleman@civicrm.org>
+Date: Mon, 15 Jun 2026 16:45:19 -0400
+Subject: [PATCH 1/2] Add default subject field to timeline/sequence activities
+ in case types
+
+Fixes dev/core#6575
+---
+ CRM/Case/XMLProcessor/Process.php             | 10 ++-
+ ext/civi_case/ang/crmCaseType.js              |  3 +-
+ .../ang/crmCaseType/sequenceTable.html        | 11 +++-
+ .../ang/crmCaseType/timelineTable.html        | 11 +++-
+ tests/karma/unit/crmCaseTypeSpec.js           |  3 +-
+ tests/phpunit/CRM/Case/BAO/CaseTypeTest.php   | 64 +++++++++++++++++++
+ .../CRM/Case/BAO/xml/default-subject.xml      | 51 +++++++++++++++
+ .../CRM/Case/XMLProcessor/ProcessTest.php     | 19 ++++++
+ 8 files changed, 167 insertions(+), 5 deletions(-)
+ create mode 100644 tests/phpunit/CRM/Case/BAO/xml/default-subject.xml
+
+diff --git a/CRM/Case/XMLProcessor/Process.php b/CRM/Case/XMLProcessor/Process.php
+index 4ec4684d8a3d..e5eeef7020c0 100644
+--- a/CRM/Case/XMLProcessor/Process.php
++++ b/CRM/Case/XMLProcessor/Process.php
+@@ -430,12 +430,17 @@ public function createActivity($activityTypeXML, &$params): bool {
+       $orderVal = (string) $activityTypeXML->order;
+     }
+ 
++    $defaultSubject = NULL;
++    if (isset($activityTypeXML->default_subject) && (string) $activityTypeXML->default_subject !== '') {
++      $defaultSubject = (string) $activityTypeXML->default_subject;
++    }
++
+     if ($activityTypeName == 'Open Case') {
+       $activityParams = [
+         'activity_type_id' => $activityTypeID,
+         'source_contact_id' => $params['creatorID'],
+         'is_auto' => FALSE,
+-        'subject' => !empty($params['subject']) ? $params['subject'] : $activityTypeName,
++        'subject' => !empty($params['subject']) ? $params['subject'] : ($defaultSubject ?? $activityTypeName),
+         'status_id' => CRM_Core_PseudoConstant::getKey('CRM_Activity_BAO_Activity', 'activity_status_id', $statusName),
+         'target_contact_id' => $client,
+         'medium_id' => $params['medium_id'] ?? NULL,
+@@ -454,6 +459,9 @@ public function createActivity($activityTypeXML, &$params): bool {
+         'target_contact_id' => $client,
+         'weight' => $orderVal,
+       ];
++      if ($defaultSubject !== NULL) {
++        $activityParams['subject'] = $defaultSubject;
++      }
+     }
+ 
+     $activityParams['assignee_contact_id'] = $this->getDefaultAssigneeForActivity($activityParams, $activityTypeXML, $params['caseID']);
+diff --git a/ext/civi_case/ang/crmCaseType.js b/ext/civi_case/ang/crmCaseType.js
+index 53b7c6725267..0886f73d970a 100644
+--- a/ext/civi_case/ang/crmCaseType.js
++++ b/ext/civi_case/ang/crmCaseType.js
+@@ -436,7 +436,8 @@
+           reference_activity: 'Open Case',
+           reference_offset: '1',
+           reference_select: 'newest',
+-          default_assignee_type: $scope.defaultAssigneeTypeValues.NONE
++          default_assignee_type: $scope.defaultAssigneeTypeValues.NONE,
++          default_subject: null
+       };
+       activitySet.activityTypes.push(activity);
+       if(typeof activitySet.timeline !== "undefined" && activitySet.timeline == "1") {
+diff --git a/ext/civi_case/ang/crmCaseType/sequenceTable.html b/ext/civi_case/ang/crmCaseType/sequenceTable.html
+index fb13564cc918..92e9b7c34b91 100644
+--- a/ext/civi_case/ang/crmCaseType/sequenceTable.html
++++ b/ext/civi_case/ang/crmCaseType/sequenceTable.html
+@@ -7,6 +7,7 @@
+   <tr>
+     <th></th>
+     <th>{{:: ts('Activity') }}</th>
++    <th>{{:: ts('Default subject') }}</th>
+     <th></th>
+   </tr>
+   </thead>
+@@ -20,6 +21,14 @@
+       <i class="crm-i {{ activityTypes[activity.name].icon }}" role="img" aria-hidden="true"></i>
+       {{ activity.name }}
+     </td>
++    <td>
++      <input
++        class="crm-form-text"
++        type="text"
++        ng-model="activity.default_subject"
++        placeholder="{{:: ts('(no subject)') }}"
++        />
++    </td>
+     <td>
+       <a crm-icon="fa-trash" class="crm-hover-button" ng-click="removeItem(activitySet.activityTypes, activity)" title="{{:: ts('Remove') }}"></a>
+     </td>
+@@ -28,7 +37,7 @@
+ 
+   <tfoot>
+   <tr class="addRow">
+-    <td colspan="3">
++    <td colspan="4">
+       <span crm-add-name
+            crm-options="activityTypeOptions"
+            crm-var="newActivity"
+diff --git a/ext/civi_case/ang/crmCaseType/timelineTable.html b/ext/civi_case/ang/crmCaseType/timelineTable.html
+index 8fa378560859..bc6756a20bc7 100644
+--- a/ext/civi_case/ang/crmCaseType/timelineTable.html
++++ b/ext/civi_case/ang/crmCaseType/timelineTable.html
+@@ -12,6 +12,7 @@
+     <th>{{:: ts('Offset') }}</th>
+     <th>{{:: ts('Select') }}</th>
+     <th>{{:: ts('Default assignee') }}</th>
++    <th>{{:: ts('Default subject') }}</th>
+     <th></th>
+   </tr>
+   </thead>
+@@ -86,6 +87,14 @@
+           required />
+       </p>
+     </td>
++    <td>
++      <input
++        class="crm-form-text"
++        type="text"
++        ng-model="activity.default_subject"
++        placeholder="{{:: ts('(no subject)') }}"
++        />
++    </td>
+     <td>
+       <a class="crm-hover-button"
+          crm-icon="fa-trash"
+@@ -99,7 +108,7 @@
+ 
+   <tfoot>
+   <tr class="addRow">
+-    <td colspan="8">
++    <td colspan="9">
+       <span crm-add-name=""
+            crm-options="activityTypeOptions"
+            crm-var="newActivity"

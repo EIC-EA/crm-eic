@@ -1,0 +1,14 @@
+uuid: 4a1518ff-8341-4902-a5fc-411820611096
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.bas_contractor
+  module:
+    - user
+id: user_remove_role_action.bas_contractor
+label: 'Remove the BAS Contractor role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: bas_contractor

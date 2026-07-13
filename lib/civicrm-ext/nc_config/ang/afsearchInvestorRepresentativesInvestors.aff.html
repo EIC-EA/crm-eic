@@ -1,0 +1,13 @@
+<div af-fieldset="" af-title="Investors and Investor Representatives">
+  <div class="af-container af-layout-cols" af-title="FIlters">
+    <af-field name="sort_name" defn="{label: 'Representative Name', input_attrs: {}}" />
+    <af-field name="Contact_RelationshipCache_Contact_01.sort_name" defn="{label: 'Investor Name', input_attrs: {}}" />
+    <af-field name="Contact_RelationshipCache_Contact_01.General_Company_Info.Relevant_Verticals" defn="{input_attrs: {multiple: true}, label: 'Investor Preferred Industry'}" />
+    <af-field name="Contact_RelationshipCache_Contact_01.General_Company_Info.Preferred_Stages" defn="{input_attrs: {multiple: true}, label: 'Investor Preferred Stages'}" />
+    <af-field name="Contact_RelationshipCache_Contact_01.General_Company_Info.Geographical_Focus" defn="{input_attrs: {multiple: true}, label: 'Investor Preferred Geography'}" />
+    <af-field name="Contact_RelationshipCache_Contact_01.Financial_information.Ticket_Size_Range_" defn="{input_attrs: {multiple: true}, label: 'Investor Ticket Size Range'}" />
+    <af-field name="Contact_RelationshipCache_Contact_01.General_Company_Info.Investor_Type" defn="{input_attrs: {multiple: true}, label: 'Investor Type'}" />
+  </div>
+  <af-search-param-sets></af-search-param-sets>
+  <crm-search-display-table search-name="Investor_Representatives" display-name="Investor_Representatives_Investors_Custom_Display"></crm-search-display-table>
+</div>
