@@ -101,7 +101,8 @@ RUN set -eux; \
 	curl --location -O https://github.com/systopia/aip/releases/download/1.3.0/aip-1.3.0.zip && unzip aip-1.3.0.zip && rm aip-1.3.0.zip && \
 	curl --location -O https://lab.civicrm.org/extensions/form-processor/-/archive/3.2.0/form-processor-3.2.0.zip && unzip form-processor-3.2.0.zip && rm form-processor-3.2.0.zip && \
 	curl --location -O https://github.com/systopia/de.systopia.sqltasks/releases/download/2.2.0/de.systopia.sqltasks-2.2.0.zip && unzip de.systopia.sqltasks-2.2.0.zip && rm de.systopia.sqltasks-2.2.0.zip && \
-	curl --location -O https://lab.civicrm.org/extensions/action-provider/-/archive/1.196/action-1.196.zip && unzip action-1.196.zip && rm action-1.196.zip
+	curl --location -O https://lab.civicrm.org/extensions/action-provider/-/archive/1.196/action-1.196.zip && unzip action-1.196.zip && rm action-1.196.zip \
+	curl --location -O https://github.com/progressivetech/net.ourpowerbase.exportpermission/archive/1.4.zip  && unzip 1.4.zip && rm 1.4.zip
 
 COPY docker/php/web/sites/default/settings.php /opt/drupal/web/sites/default/settings.php
 COPY docker/php/web/sites/default/civicrm.settings.php /opt/drupal/web/sites/default/civicrm.settings.php
