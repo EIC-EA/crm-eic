@@ -1,8 +1,20 @@
 #!/bin/sh -veux
 
+PHP_MEMORY_LIMIT=${PHP_MEMORY_LIMIT:-1G}
+CV=/opt/drupal/vendor/bin/cv
+
 cv api4 Country.save --in=json < ./config/Country.json
-php -d memory_limit=1G -f /opt/drupal/vendor/bin/cv api4 Setting.set --in=json < ./config/components.json
-php -d memory_limit=1G -f /opt/drupal/vendor/bin/cv api4 Setting.set --in=json < ./config/config.json
+php -d memory_limit=$PHP_MEMORY_LIMIT -f $CV api4 Setting.set --in=json < ./config/components.json
+php -d memory_limit=$PHP_MEMORY_LIMIT -f $CV api4 Setting.set --in=json < ./config/config.json
+
+#check if export permission is enabled, then enable it.
+if ! php -d memory_limit=$PHP_MEMORY_LIMIT -f $CV api4 Extension.get +w 'key=net.ourpowerbase.exportpermission' +w 'status="installed"' +s key | grep -q exportpermission; then
+  echo "installing export permission"
+  php -d memory_limit=$PHP_MEMORY_LIMIT -f $CV ext:enable exportpermission
+else
+   echo " export permission is already installed."
+fi
+
 cv flush
 drush cache:rebuild
 cv ext:enable nc_config
