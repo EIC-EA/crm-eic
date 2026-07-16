@@ -46,6 +46,9 @@
     <format>25.10.2</format>
     <angularModule>crmEicConfig</angularModule>
   </civix>
+  <requires>
+    <ext>ses</ext>
+  </requires>
   <mixins>
     <mixin>mgd-php@2.0.0</mixin>
     <mixin>scan-classes@1.0.0</mixin>

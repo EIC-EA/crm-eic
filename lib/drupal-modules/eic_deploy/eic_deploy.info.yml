@@ -1,0 +1,7 @@
+name: 'EIC Deploy'
+type: module
+description: 'Enables and configures CiviCRM extensions on deploy.'
+core_version_requirement: ^10 || ^11
+package: EIC
+dependencies:
+  - civicrm:civicrm
