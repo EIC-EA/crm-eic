@@ -643,3 +643,28 @@ $civicrm_setting['domain']['extensionsDir'] = '/opt/drupal/civicrm-ext';
 
 $civicrm_setting['domain']['theme_backend'] = 'walbrook';
 $civicrm_setting['domain']['theme_frontend'] = 'walbrook';
+
+/**
+ * Outbound mail configuration.
+ */
+$mailDriver = getenv('MAIL_OUTBOUND_OPTION') ?: '2';
+$civicrm_setting['domain']['mailing_backend'] = [
+      'outBound_option' => $mailDriver,
+];
+
+$civicrm_setting['domain']['mailing_backend'] = [
+  'outBound_option' => 0,
+  'smtpServer' => getenv('SMTP_SERVER') ?: 'smtp',
+  'smtpPort' => getenv('SMTP_PORT') ?: '25',
+  'smtpAuth' => getenv('SMTP_AUTH_ENABLED') ?: '0',
+  'smtpUsername' => getenv('SMTP_USERNAME') ?: '',
+  'smtpPassword' => getenv('SMTP_PASSWORD') ?: '',
+];
+
+// Override "From" display name and email if set.
+$fromName = getenv('SITE_FROM_DISPLAY_NAME');
+$fromEmail = getenv('SITE_FROM_MAIL');
+if ($fromName && $fromEmail) {
+  $civicrm_setting['domain']['from_name'] = $fromName;
+  $civicrm_setting['domain']['from_email'] = $fromEmail;
+}

@@ -48,6 +48,7 @@
   </civix>
   <requires>
     <ext>ses</ext>
+    <ext>org.civicoop.civirules</ext>
   </requires>
   <mixins>
     <mixin>mgd-php@2.0.0</mixin>
