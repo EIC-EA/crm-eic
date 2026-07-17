@@ -36,3 +36,18 @@ function eic_deploy_update_10004(): void {
     );
   }
 }
+
+/**
+ * Enable the CiviRules extension (dependency of eic_config).
+ */
+function eic_deploy_update_10005(): void {
+  \Drupal::service('civicrm')->initialize();
+
+  $result = civicrm_api3('Extension', 'enable', ['keys' => 'org.civicoop.civirules']);
+
+  if (!empty($result['is_error'])) {
+    throw new \Drupal\Core\Utility\UpdateException(
+      'Failed to enable CiviRules extension: ' . ($result['error_message'] ?? 'Unknown error')
+    );
+  }
+}
