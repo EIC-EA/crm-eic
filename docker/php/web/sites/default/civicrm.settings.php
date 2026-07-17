@@ -653,7 +653,6 @@ $civicrm_setting['domain']['mailing_backend'] = [
 ];
 
 $civicrm_setting['domain']['mailing_backend'] = [
-  'outBound_option' => 0,
   'smtpServer' => getenv('SMTP_SERVER') ?: 'smtp',
   'smtpPort' => getenv('SMTP_PORT') ?: '25',
   'smtpAuth' => getenv('SMTP_AUTH_ENABLED') ?: '0',
