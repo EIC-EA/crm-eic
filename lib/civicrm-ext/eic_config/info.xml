@@ -46,9 +46,12 @@
     <format>25.10.2</format>
     <angularModule>crmEicConfig</angularModule>
   </civix>
+  <upgrader>CRM_EicConfig_Upgrader</upgrader>
   <requires>
     <ext>ses</ext>
     <ext>org.civicoop.civirules</ext>
+    <ext>org.civicrm.contactlayout</ext>
+    <ext>net.ourpowerbase.exportpermission</ext>
   </requires>
   <mixins>
     <mixin>mgd-php@2.0.0</mixin>
