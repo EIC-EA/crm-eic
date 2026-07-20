@@ -643,3 +643,34 @@ $civicrm_setting['domain']['extensionsDir'] = '/opt/drupal/civicrm-ext';
 
 $civicrm_setting['domain']['theme_backend'] = 'walbrook';
 $civicrm_setting['domain']['theme_frontend'] = 'walbrook';
+
+/**
+ * Outbound mail configuration.
+ * 
+ * 0	OUTBOUND_OPTION_SMTP	Send via SMTP
+ * 1	OUTBOUND_OPTION_SENDMAIL	Send via sendmail
+ * 2	OUTBOUND_OPTION_DISABLED	Disable outbound mail entirely
+ * 3	OUTBOUND_OPTION_REDIRECT_TO_DB	Redirect to database (store in civicrm_mailing_spool)
+ * 4	OUTBOUND_OPTION_MAIL	Send via PHP mail() function / Used by SES
+ * 5	OUTBOUND_OPTION_MOCK	Mock (used for testing)
+ */
+$mailDriver = getenv('MAIL_OUTBOUND_OPTION') ?: '2';
+$civicrm_setting['domain']['mailing_backend'] = [
+  'outBound_option' => (int) $mailDriver,
+  'smtpServer' => getenv('SMTP_SERVER') ?: 'smtp',
+  'smtpPort' => getenv('SMTP_PORT') ?: '25',
+  'smtpAuth' => getenv('SMTP_AUTH_ENABLED') ?: '0',
+  'smtpUsername' => getenv('SMTP_USERNAME') ?: '',
+  'smtpPassword' => getenv('SMTP_PASSWORD') ?: '',
+];
+
+// SES extension AWS region setting.
+$civicrm_setting['domain']['ses_region'] = getenv('SES_REGION') ?: 'dummy-1';
+
+// Override "From" display name and email if set.
+$fromName = getenv('SITE_FROM_DISPLAY_NAME');
+$fromEmail = getenv('SITE_FROM_MAIL');
+if ($fromName && $fromEmail) {
+  $civicrm_setting['domain']['from_name'] = $fromName;
+  $civicrm_setting['domain']['from_email'] = $fromEmail;
+}
