@@ -88,6 +88,7 @@ RUN set -eux; \
 	composer config repositories.action-provider '{"type":"package","package":{"name":"civicrm-ext/action-provider","version":"1.196","type":"civicrm-ext","dist":{"url":"https://lab.civicrm.org/extensions/action-provider/-/archive/1.196/action-1.196.zip","type":"zip"}}}' --json && \
 	composer config repositories.exportpermission '{"type":"package","package":{"name":"civicrm-ext/exportpermission","version":"1.4","type":"civicrm-ext","dist":{"url":"https://github.com/progressivetech/net.ourpowerbase.exportpermission/archive/1.4.zip","type":"zip"}}}' --json && \
 	composer config repositories.contactlayout '{"type":"package","package":{"name":"civicrm-ext/contactlayout","version":"2.4.0","type":"civicrm-ext","dist":{"url":"https://github.com/civicrm/org.civicrm.contactlayout/archive/2.4.0.zip","type":"zip"}}}' --json && \
+	composer config repositories.civirules '{"type":"package","package":{"name":"civicrm-ext/civirules","version":"3.38.0","type":"civicrm-ext","dist":{"url":"https://lab.civicrm.org/extensions/civirules/-/archive/3.38.0/civirules-3.38.0.zip","type":"zip"}}}' --json && \
 	# Install CiviCRM core
 	composer require civicrm/civicrm-core:^6.12 && \
 	composer config --no-plugins allow-plugins.civicrm/civicrm-asset-plugin true && \
@@ -113,7 +114,8 @@ RUN set -eux; \
 		civicrm-ext/sqltasks:2.2.0 \
 		civicrm-ext/action-provider:1.196 \
 		civicrm-ext/exportpermission:1.4 \
-		civicrm-ext/contactlayout:2.4.0 && \
+		civicrm-ext/contactlayout:2.4.0 \
+		civicrm-ext/civirules:3.38.0 && \
 	# Apply patches
 	composer install && \
 	# Copy civicrm static files from /opt/drupal/vendor/civicrm/ to /opt/drupal/web/libraries/civicrm/
@@ -123,14 +125,11 @@ RUN set -eux; \
 
 COPY docker/php/web/sites/default/settings.php /opt/drupal/web/sites/default/settings.php
 COPY docker/php/web/sites/default/civicrm.settings.php /opt/drupal/web/sites/default/civicrm.settings.php
+COPY docker/php/docker.ini /usr/local/etc/php/conf.d/zzz_docker.ini
 
 COPY lib/civicrm-ext /opt/drupal/civicrm-ext/
 COPY lib/drupal-modules /opt/drupal/web/modules/custom/
 COPY lib/config /opt/drupal/config
-
-# Set PHP memory_limit from environment variable at runtime
-ENV PHP_MEMORY_LIMIT=512M
-RUN echo 'memory_limit=${PHP_MEMORY_LIMIT}' > /usr/local/etc/php/conf.d/memory-limit.ini
 
 #"extra": {
 #"civicrm-asset": {
