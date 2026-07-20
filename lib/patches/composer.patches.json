@@ -3,7 +3,7 @@
     "civicrm/civicrm-core": {
       "CiviCase - Add default subject field to timeline/sequence activities #35962": "./patches/civicrm/civicase_add_default_subject_field_to_timeline.patch"
     },
-        "civicrm/ses": {
+    "civicrm-ext/ses": {
       "SES - use the sdk in the ECS container to retrieve the parameters": "./patches/civicrm/ses_aws_alternative_credentials.patch"
     }
   }
