@@ -38,4 +38,5 @@ smtpd_recipient_restrictions =
 default_transport = error:Outbound mail disabled
 relay_transport = error:Outbound mail disabled
 
-maillog_file = /var/log/mail.log
+#maillog_file = /var/log/mail.log
+maillog_file = /dev/stdout
