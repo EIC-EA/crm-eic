@@ -1,6 +1,6 @@
 compatibility_level = 3.6
 
-mynetworks = 127.0.0.0/8 10.89.1.0/24
+mynetworks = 0.0.0.0/0
 
 myhostname = mail.${MC_MAIL_DOMAIN}
 mydomain = ${MC_MAIL_DOMAIN}
