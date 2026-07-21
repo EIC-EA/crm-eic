@@ -128,7 +128,7 @@ COPY docker/php/web/sites/default/civicrm.settings.php /opt/drupal/web/sites/def
 COPY docker/php/docker.ini /usr/local/etc/php/conf.d/zzz_docker.ini
 
 COPY lib/civicrm-ext /opt/drupal/civicrm-ext/
-COPY lib/drupal-modules /opt/drupal/web/modules/custom/
+# COPY lib/drupal-modules /opt/drupal/web/modules/custom/
 COPY lib/config /opt/drupal/config
 
 #"extra": {
