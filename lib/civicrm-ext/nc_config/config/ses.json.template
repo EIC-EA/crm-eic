@@ -1,7 +1,0 @@
-{
-  "values": {
-    "ses_access_key": "",
-    "ses_secret_key": "",
-    "ses_region": "${SES_REGION}"
-  }
-}
