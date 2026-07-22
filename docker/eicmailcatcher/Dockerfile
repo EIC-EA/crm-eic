@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV MC_PRODUCT_NAME="EIC Dev Mailbox"
 ENV MC_IMAP_NAME="CiviMail IMAP"
 ENV MC_MAIL_DOMAIN=test.local
-ENV MC_CATCHALL_USER=$"eicmailcatcher"
+ENV MC_CATCHALL_USER="eicmailcatcher"
 ENV MC_IMAP_USERNAME=${MC_CATCHALL_USER}
 ENV MC_IMAP_PASSWORD=${MC_CATCHALL_USER}
 ENV MC_MAIL_USERS="${MC_CATCHALL_USER}:${MC_IMAP_PASSWORD},gavin:gavin,gery:gery,john:soup"
@@ -40,8 +40,6 @@ COPY entrypoint.sh /entrypoint.sh
 COPY vhosts/roundcube.conf /etc/apache2/conf-available/roundcube.conf
 
 RUN a2enconf roundcube \
-    && echo 'RedirectMatch ^/$ /roundcube/' > /etc/apache2/conf-available/devmail-root.conf \
-    && a2enconf devmail-root \
     && rm -f /var/www/html/index.html
 
 RUN chmod +x /entrypoint.sh
