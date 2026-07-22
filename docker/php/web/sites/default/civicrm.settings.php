@@ -654,7 +654,8 @@ $civicrm_setting['domain']['theme_frontend'] = 'walbrook';
  * 4	OUTBOUND_OPTION_MAIL	Send via PHP mail() function / Used by SES
  * 5	OUTBOUND_OPTION_MOCK	Mock (used for testing)
  */
-$mailDriver = getenv('MAIL_OUTBOUND_OPTION') ?: '2';
+$mailDriver = getenv('MAIL_OUTBOUND_OPTION');
+$mailDriver = ($mailDriver !== false) ? $mailDriver : '2';
 $civicrm_setting['domain']['mailing_backend'] = [
   'outBound_option' => (int) $mailDriver,
   'smtpServer' => getenv('SMTP_SERVER') ?: 'smtp',
@@ -667,10 +668,3 @@ $civicrm_setting['domain']['mailing_backend'] = [
 // SES extension AWS region setting.
 $civicrm_setting['domain']['ses_region'] = getenv('SES_REGION') ?: 'dummy-1';
 
-// Override "From" display name and email if set.
-$fromName = getenv('SITE_FROM_DISPLAY_NAME');
-$fromEmail = getenv('SITE_FROM_MAIL');
-if ($fromName && $fromEmail) {
-  $civicrm_setting['domain']['from_name'] = $fromName;
-  $civicrm_setting['domain']['from_email'] = $fromEmail;
-}

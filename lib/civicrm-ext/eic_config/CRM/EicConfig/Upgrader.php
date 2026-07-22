@@ -41,4 +41,17 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     return TRUE;
   }
 
+  /**
+   * Enable the CiviMail component.
+   */
+  public function upgrade_1004(): bool {
+    $this->ctx->log->info('Enabling CiviMail component');
+    $components = \Civi::settings()->get('enable_components') ?? [];
+    if (!in_array('CiviMail', $components)) {
+      $components[] = 'CiviMail';
+      \Civi::settings()->set('enable_components', $components);
+    }
+    return TRUE;
+  }
+
 }

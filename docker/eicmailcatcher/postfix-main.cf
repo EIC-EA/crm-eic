@@ -1,0 +1,42 @@
+compatibility_level = 3.6
+
+mynetworks = 0.0.0.0/0
+
+myhostname = mail.${MC_MAIL_DOMAIN}
+mydomain = ${MC_MAIL_DOMAIN}
+myorigin = ${MC_MAIL_DOMAIN}
+
+inet_interfaces = all
+inet_protocols = ipv4
+
+mydestination =
+relayhost =
+
+virtual_mailbox_domains = ${MC_MAIL_DOMAIN}
+virtual_mailbox_base = /var/mail/vhosts
+virtual_mailbox_maps = hash:/etc/postfix/maps/vmailbox
+virtual_alias_maps = regexp:/etc/postfix/maps/virtual-alias
+virtual_uid_maps = static:5000
+virtual_gid_maps = static:5000
+
+##relay_domains = regexp:/etc/postfix/maps/relay-domains
+relay_domains = * 
+
+recipient_canonical_maps = regexp:/etc/postfix/maps/recipient-canonical
+recipient_canonical_classes = envelope_recipient
+
+
+smtpd_relay_restrictions =
+    permit_mynetworks,
+    defer_unauth_destination
+
+smtpd_recipient_restrictions =
+    permit_mynetworks,
+    permit
+
+# Safety net: if something is not virtual/local, do not send it out.
+default_transport = error:Outbound mail disabled
+relay_transport = error:Outbound mail disabled
+
+#maillog_file = /var/log/mail.log
+maillog_file = /dev/stdout

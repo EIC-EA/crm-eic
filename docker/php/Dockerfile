@@ -22,7 +22,8 @@ RUN set -eux; \
 		libicu-dev \
 		imagemagick \
         libmagickwand-dev \
-        mariadb-client \        
+        mariadb-client \
+		gettext \
 	; \
 	\
 	docker-php-ext-install -j "$(nproc)" \
@@ -52,7 +53,7 @@ RUN set -eux; \
 	rm -rf /var/lib/apt/lists/*
 
 RUN apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update \
-  && apt-get -y install imagemagick mariadb-client
+  && apt-get -y install imagemagick mariadb-client gettext-base
 
 # Download cv (https://github.com/civicrm/cv)
 #RUN curl -LsS https://download.civicrm.org/cv/cv.phar -o /usr/local/bin/cv \
@@ -127,7 +128,7 @@ COPY docker/php/web/sites/default/civicrm.settings.php /opt/drupal/web/sites/def
 COPY docker/php/docker.ini /usr/local/etc/php/conf.d/zzz_docker.ini
 
 COPY lib/civicrm-ext /opt/drupal/civicrm-ext/
-COPY lib/drupal-modules /opt/drupal/web/modules/custom/
+# COPY lib/drupal-modules /opt/drupal/web/modules/custom/
 COPY lib/config /opt/drupal/config
 
 #"extra": {
