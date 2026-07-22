@@ -54,4 +54,13 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     return TRUE;
   }
 
-}
+  /**
+   * Enable the AIP extension.
+   */
+  public function upgrade_1005(): bool {
+    $this->ctx->log->info('Enabling AIP extension');
+    civicrm_api3('Extension', 'enable', ['keys' => 'aip']);
+    return TRUE;
+  }
+
+} 

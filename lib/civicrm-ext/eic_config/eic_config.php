@@ -43,6 +43,7 @@ function eic_config_civicrm_enable(): void {
  */
 function _eic_config_ensure_dependencies_enabled(): void {
   $requiredExtensions = [
+    'aip',
     'ses',
     'org.civicoop.civirules',
     'org.civicrm.contactlayout',
