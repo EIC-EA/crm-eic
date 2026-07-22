@@ -68,15 +68,7 @@ function _eic_config_ensure_dependencies_enabled(): void {
  * Ensures required CiviCRM components are enabled.
  */
 function _eic_config_ensure_components(): void {
-  $requiredComponents = ['CiviMail'];
-
-  $currentComponents = \Civi::settings()->get('enable_components') ?? [];
-  $missing = array_diff($requiredComponents, $currentComponents);
-
-  if (!empty($missing)) {
-    $updated = array_unique(array_merge($currentComponents, $missing));
-    \Civi::settings()->set('enable_components', array_values($updated));
-  }
+  civicrm_api3('Extension', 'enable', ['keys' => 'civi_mail']);
 }
 
 /**
