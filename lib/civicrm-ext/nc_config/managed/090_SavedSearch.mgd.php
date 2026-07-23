@@ -6,7 +6,7 @@ return [
     'name' => 'SavedSearch_Investor_Representatives',
     'entity' => 'SavedSearch',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -27,6 +27,7 @@ return [
             'Contact_RelationshipCache_Contact_01.General_Company_Info.Geographical_Focus:label',
             'Contact_RelationshipCache_Contact_01.Financial_information.Ticket_Size_Range_:label',
             'Contact_RelationshipCache_Contact_01.General_Company_Info.Investor_Type:label',
+            'Contact_RelationshipCache_Contact_01.Activity_related.Trusted_Investor_Network_TIN_',
           ],
           'orderBy' => [],
           'where' => [],
@@ -58,7 +59,7 @@ return [
     'name' => 'SavedSearch_Investor_Representatives_SearchDisplay_Investor_Representatives_Investors_Custom_Display',
     'entity' => 'SearchDisplay',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -67,7 +68,7 @@ return [
         'saved_search_id.name' => 'Investor_Representatives',
         'type' => 'table',
         'settings' => [
-          'description' => NULL,
+          'description' => E::ts(NULL),
           'sort' => [
             [
               'Contact_RelationshipCache_Contact_01.near_contact_id.sort_name',
@@ -86,6 +87,21 @@ return [
           'headerCount' => TRUE,
           'toggleColumns' => FALSE,
           'columns' => [
+            [
+              'type' => 'field',
+              'key' => 'Contact_RelationshipCache_Contact_01.near_contact_id.sort_name',
+              'label' => E::ts('Investor Name'),
+              'sortable' => TRUE,
+              'link' => [
+                'path' => '',
+                'entity' => 'Contact',
+                'action' => 'view',
+                'join' => 'Contact_RelationshipCache_Contact_01.near_contact_id',
+                'target' => '_blank',
+                'task' => '',
+              ],
+              'title' => E::ts('View Investor'),
+            ],
             [
               'type' => 'field',
               'key' => 'sort_name',
@@ -124,22 +140,7 @@ return [
               'key' => 'Investment_Focus.Role:label',
               'label' => E::ts('Role​ (Representative)'),
               'sortable' => TRUE,
-              'title' => NULL,
-            ],
-            [
-              'type' => 'field',
-              'key' => 'Contact_RelationshipCache_Contact_01.near_contact_id.sort_name',
-              'label' => E::ts('Investor Name'),
-              'sortable' => TRUE,
-              'link' => [
-                'path' => '',
-                'entity' => 'Contact',
-                'action' => 'view',
-                'join' => 'Contact_RelationshipCache_Contact_01.near_contact_id',
-                'target' => '_blank',
-                'task' => '',
-              ],
-              'title' => E::ts('View Investor'),
+              'title' => E::ts(NULL),
             ],
             [
               'type' => 'field',
@@ -169,6 +170,12 @@ return [
               'type' => 'field',
               'key' => 'Contact_RelationshipCache_Contact_01.General_Company_Info.Investor_Type:label',
               'label' => E::ts('Investor Type​ (Investor)'),
+              'sortable' => TRUE,
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Contact_RelationshipCache_Contact_01.Activity_related.Trusted_Investor_Network_TIN_',
+              'label' => E::ts('Trusted Investor Network'),
               'sortable' => TRUE,
             ],
           ],
