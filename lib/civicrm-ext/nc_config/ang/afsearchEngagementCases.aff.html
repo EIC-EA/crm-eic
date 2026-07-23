@@ -1,0 +1,10 @@
+<div af-fieldset="" af-title="Engagement Cases">
+  <div class="af-container af-layout-cols" af-title="Filters">
+    <af-field name="Client_Roles.Investor.display_name" defn="{label: 'Investor', input_attrs: {}}" />
+    <af-field name="Client_Roles.EIC_Awardee.display_name" defn="{label: 'EIC Awardee', input_attrs: {}}" />
+    <af-field name="Case_CaseContact_Contact_01.Activity_related.Trusted_Investor_Network_TIN_" defn="{label: 'Trusted Investor Network', input_type: 'Radio'}" />
+  </div>
+  <af-search-param-sets></af-search-param-sets>
+  <button class="af-button btn btn-warning" type="reset" crm-icon="fa-undo">Reset</button>
+  <crm-search-display-table search-name="Engagement_Cases" display-name="Engagement_Cases_Display"></crm-search-display-table>
+</div>
