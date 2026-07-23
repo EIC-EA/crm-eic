@@ -203,8 +203,11 @@ return [
           'select' => [
             'Client_Roles.Investor.sort_name',
             'Client_Roles.EIC_Awardee.sort_name',
-            'Case_CaseContact_Contact_01.Activity_related.Trusted_Investor_Network_TIN_',
             'subject',
+            'Case_CaseContact_Contact_01.General_Company_Info.Preferred_Stages:label',
+            'Case_CaseContact_Contact_01.General_Company_Info.Relevant_Verticals:label',
+            'Case_CaseContact_Contact_01.General_Company_Info.Geographical_Focus:label',
+            'Case_CaseContact_Contact_01.Activity_related.Trusted_Investor_Network_TIN_',
             'status_id:label',
           ],
           'orderBy' => [],
@@ -243,7 +246,7 @@ return [
     'name' => 'SavedSearch_Engagement_Cases_SearchDisplay_Engagement_Cases_Display',
     'entity' => 'SearchDisplay',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -252,7 +255,7 @@ return [
         'saved_search_id.name' => 'Engagement_Cases',
         'type' => 'table',
         'settings' => [
-          'description' => E::ts(NULL),
+          'description' => E::ts(''),
           'sort' => [
             [
               'Client_Roles.Investor.sort_name',
@@ -302,12 +305,6 @@ return [
             ],
             [
               'type' => 'field',
-              'key' => 'Case_CaseContact_Contact_01.Activity_related.Trusted_Investor_Network_TIN_',
-              'label' => E::ts('Trusted Investor Network'),
-              'sortable' => TRUE,
-            ],
-            [
-              'type' => 'field',
               'key' => 'subject',
               'label' => E::ts('Case Subject'),
               'sortable' => TRUE,
@@ -320,6 +317,30 @@ return [
                 'task' => '',
               ],
               'title' => E::ts('View Case'),
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Case_CaseContact_Contact_01.Activity_related.Trusted_Investor_Network_TIN_',
+              'label' => E::ts('Trusted Investor Network'),
+              'sortable' => TRUE,
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Case_CaseContact_Contact_01.General_Company_Info.Geographical_Focus:label',
+              'label' => E::ts('Geographical Focus'),
+              'sortable' => TRUE,
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Case_CaseContact_Contact_01.General_Company_Info.Preferred_Stages:label',
+              'label' => E::ts('Preferred Stages'),
+              'sortable' => TRUE,
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Case_CaseContact_Contact_01.General_Company_Info.Relevant_Verticals:label',
+              'label' => E::ts('Relevant Verticals'),
+              'sortable' => TRUE,
             ],
             [
               'type' => 'field',
