@@ -5,6 +5,9 @@
     },
     "civicrm-ext/ses": {
       "SES - use the sdk in the ECS container to retrieve the parameters": "./patches/civicrm/ses_aws_alternative_credentials.patch"
+    },
+    "civicrm-ext/civirules": {
+      "CiviRules - CRM_Civirules_BAO_CiviRulesRuleContidion argument #1 type error fix": "./patches/civicrm/civirules-type-cast-fix.patch"
     }
   }
 }

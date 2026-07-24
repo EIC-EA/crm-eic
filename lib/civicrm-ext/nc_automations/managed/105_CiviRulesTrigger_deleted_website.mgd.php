@@ -7,7 +7,7 @@ return [
     'name' => 'CiviRulesTrigger_deleted_website',
     'entity' => 'CiviRulesTrigger',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [

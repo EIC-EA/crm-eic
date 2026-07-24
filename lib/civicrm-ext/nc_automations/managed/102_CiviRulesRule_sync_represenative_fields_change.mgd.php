@@ -6,7 +6,7 @@ return [
     'name' => 'CiviRulesRule_sync_represenative_fields_change',
     'entity' => 'CiviRulesRule',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -21,7 +21,7 @@ return [
     'name' => 'CiviRulesRule_sync_represenative_fields_change_CiviRulesRuleAction_1',
     'entity' => 'CiviRulesRuleAction',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -34,7 +34,7 @@ return [
     'name' => 'CiviRulesRule_sync_represenative_fields_change_CiviRulesRuleCondition_1',
     'entity' => 'CiviRulesRuleCondition',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
