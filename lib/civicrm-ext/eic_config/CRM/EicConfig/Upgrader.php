@@ -42,22 +42,27 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
   }
 
   /**
-   * Enable the CiviMail component.
+   * Enable the CiviMail extension.
    */
   public function upgrade_1004(): bool {
-    $this->ctx->log->info('Enabling CiviMail component');
-    $components = \Civi::settings()->get('enable_components') ?? [];
-    if (!in_array('CiviMail', $components)) {
-      $components[] = 'CiviMail';
-      \Civi::settings()->set('enable_components', $components);
-    }
+    $this->ctx->log->info('Enabling CiviMail extension');
+    civicrm_api3('Extension', 'enable', ['keys' => 'civi_mail']);
+    return TRUE;
+  }
+
+  /**
+   * Enable the AIP extension.
+   */
+  public function upgrade_1005(): bool {
+    $this->ctx->log->info('Enabling AIP extension');
+    civicrm_api3('Extension', 'enable', ['keys' => 'aip']);
     return TRUE;
   }
 
   /**
    * Enable the Civi Calendar extension.
    */
-  public function upgrade_1005(): bool {
+  public function upgrade_1006(): bool {
     $this->ctx->log->info('Enabling CiviCalendar extension');
     civicrm_api3('Extension', 'enable', ['keys' => 'com.agiliway.civicalendar']);
     return TRUE;
