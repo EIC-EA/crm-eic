@@ -89,6 +89,7 @@ RUN set -eux; \
 	composer config repositories.exportpermission '{"type":"package","package":{"name":"civicrm-ext/exportpermission","version":"1.4","type":"civicrm-ext","dist":{"url":"https://github.com/progressivetech/net.ourpowerbase.exportpermission/archive/1.4.zip","type":"zip"}}}' --json && \
 	composer config repositories.contactlayout '{"type":"package","package":{"name":"civicrm-ext/contactlayout","version":"2.4.0","type":"civicrm-ext","dist":{"url":"https://github.com/civicrm/org.civicrm.contactlayout/archive/2.4.0.zip","type":"zip"}}}' --json && \
 	composer config repositories.civirules '{"type":"package","package":{"name":"civicrm-ext/civirules","version":"3.38.0","type":"civicrm-ext","dist":{"url":"https://lab.civicrm.org/extensions/civirules/-/archive/3.38.0/civirules-3.38.0.zip","type":"zip"}}}' --json && \
+	composer config repositories.civicalendar '{"type":"package","package":{"name":"civicrm-ext/civicalendar","version":"3.5.5","type":"civicrm-ext","dist":{"url":"https://lab.civicrm.org/extensions/civicalendar/-/archive/3.5.5/civicalendar-3.5.5.zip","type":"zip"}}}' --json && \
 	# Install CiviCRM core
 	composer require civicrm/civicrm-core:^6.12 && \
 	composer config --no-plugins allow-plugins.civicrm/civicrm-asset-plugin true && \
@@ -115,7 +116,8 @@ RUN set -eux; \
 		civicrm-ext/action-provider:1.196 \
 		civicrm-ext/exportpermission:1.4 \
 		civicrm-ext/contactlayout:2.4.0 \
-		civicrm-ext/civirules:3.38.0 && \
+		civicrm-ext/civirules:3.38.0 \
+		civicrm-ext/civicalendar:3.5.5 && \
 	# Apply patches
 	composer install && \
 	# Copy civicrm static files from /opt/drupal/vendor/civicrm/ to /opt/drupal/web/libraries/civicrm/

@@ -59,4 +59,12 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     return TRUE;
   }
 
-} 
+  /**
+   * Enable the Civi Calendar extension.
+   */
+  public function upgrade_1006(): bool {
+    $this->ctx->log->info('Enabling CiviCalendar extension');
+    civicrm_api3('Extension', 'enable', ['keys' => 'com.agiliway.civicalendar']);
+    return TRUE;
+  }
+}
