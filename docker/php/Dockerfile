@@ -91,11 +91,11 @@ RUN set -eux; \
 	composer config repositories.civirules '{"type":"package","package":{"name":"civicrm-ext/civirules","version":"3.38.0","type":"civicrm-ext","dist":{"url":"https://lab.civicrm.org/extensions/civirules/-/archive/3.38.0/civirules-3.38.0.zip","type":"zip"}}}' --json && \
 	composer config repositories.civicalendar '{"type":"package","package":{"name":"civicrm-ext/civicalendar","version":"3.5.5","type":"civicrm-ext","dist":{"url":"https://lab.civicrm.org/extensions/civicalendar/-/archive/3.5.5/civicalendar-3.5.5.zip","type":"zip"}}}' --json && \
 	# Install CiviCRM core
-	composer require civicrm/civicrm-core:^6.12 && \
+	composer require civicrm/civicrm-core:^6.17 && \
 	composer config --no-plugins allow-plugins.civicrm/civicrm-asset-plugin true && \
-	composer require civicrm/civicrm-packages:^6.12 && \
-	composer require civicrm/civicrm-drupal-8:^6.12 && \
-	composer require civicrm/cli-tools:^v2025.12.06.1764981525 && \
+	composer require civicrm/civicrm-packages:^6.17 && \
+	composer require civicrm/civicrm-drupal-8:^6.17 && \
+	composer require civicrm/cli-tools:^v2026.03.20.1774037652 && \
 	# Drush
 	composer require drush/drush && \
 	# EU Login
