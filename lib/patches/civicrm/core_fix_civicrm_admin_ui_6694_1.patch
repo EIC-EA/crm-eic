@@ -1,0 +1,13 @@
+diff --git a/ext/civicrm_admin_ui/managed/SavedSearch_Manage_ACLs.mgd.php b/ext/civicrm_admin_ui/managed/SavedSearch_Manage_ACLs.mgd.php
+index 8dce9f09c2..01870e6e26 100644
+--- a/ext/civicrm_admin_ui/managed/SavedSearch_Manage_ACLs.mgd.php
++++ b/ext/civicrm_admin_ui/managed/SavedSearch_Manage_ACLs.mgd.php
+@@ -109,7 +109,7 @@ return [
+               'key' => 'deny',
+               'label' => 'Mode',
+               'sortable' => TRUE,
+-              'rewrite' => '{if $deny}{ts}Deny{/ts}{else}{ts}Allow{/ts}',
++              'rewrite' => '{if $deny}{ts}Deny{/ts}{else}{ts}Allow{/ts}{/if}',
+             ],
+             [
+               'type' => 'field',
