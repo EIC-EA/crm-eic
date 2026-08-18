@@ -640,6 +640,8 @@ global $civicrm_setting;$civicrm_setting['Extension Preferences']['ext_repo_url'
 
  // Override the extensions directory.
 $civicrm_setting['domain']['extensionsDir'] = '/opt/drupal/civicrm-ext';
+// Override the extensions assets URL
+$civicrm_setting['domain']['extensionsURL'] = CIVICRM_UF_BASEURL . '/libraries/civicrm';
 
 $civicrm_setting['domain']['theme_backend'] = 'walbrook';
 $civicrm_setting['domain']['theme_frontend'] = 'walbrook';
