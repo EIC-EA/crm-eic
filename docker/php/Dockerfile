@@ -133,6 +133,13 @@ COPY lib/civicrm-ext /opt/drupal/civicrm-ext/
 # COPY lib/drupal-modules /opt/drupal/web/modules/custom/
 COPY lib/config /opt/drupal/config
 
+# Temporary fix for civicrm issue. Civicrm resolves the extension assets using the extension name instead of the extension key.
+RUN cd /opt/drupal/web/libraries/civicrm && \
+    ln -s com.agiliway.civicalendar/ civicalendar && \
+    ln -s org.civicoop.civirules/ civirules && \
+    ln -s org.civicoop.configitems/ configitems && \
+    ln -s org.civicrm.contactlayout contactlayout
+
 #"extra": {
 #"civicrm-asset": {
 #"assets:packages": {
