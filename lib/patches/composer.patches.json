@@ -1,7 +1,8 @@
 {
   "patches": {
     "civicrm/civicrm-core": {
-      "CiviCase - Add default subject field to timeline/sequence activities #35962": "./patches/civicrm/civicase_add_default_subject_field_to_timeline.patch"
+      "CiviCase - Add default subject field to timeline/sequence activities #35962": "./patches/civicrm/civicase_add_default_subject_field_to_timeline.patch",
+      "CiviCRM Core - ACL admin UI template fix": "./patches/civicrm/core_fix_civicrm_admin_ui_6694_1.patch"
     },
     "civicrm-ext/ses": {
       "SES - use the sdk in the ECS container to retrieve the parameters": "./patches/civicrm/ses_aws_alternative_credentials.patch"
