@@ -161,6 +161,45 @@
                     "type": "zip"
                 }
             }
+        },
+        {
+            "name": "advimportformprocessor",
+            "type": "package",
+            "package": {
+                "name": "civicrm-ext/advimportformprocessor",
+                "version": "1.1.2",
+                "type": "civicrm-ext",
+                "dist": {
+                    "url": "https://lab.civicrm.org/extensions/advimportformprocessor/-/archive/1.1.2/advimportformprocessor-1.1.2.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "name": "xcm",
+            "type": "package",
+            "package": {
+                "name": "civicrm-ext/xcm",
+                "version": "1.15.0",
+                "type": "civicrm-ext",
+                "dist": {
+                    "url": "https://github.com/systopia/de.systopia.xcm/archive/refs/tags/1.15.0.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "name": "advimport",
+            "type": "package",
+            "package": {
+                "name": "civicrm-ext/advimport",
+                "version": "1.6.2",
+                "type": "civicrm-ext",
+                "dist": {
+                    "url": "https://lab.civicrm.org/extensions/advimport/-/archive/master/advimport-master.zip",
+                    "type": "zip"
+                }
+            }
         }
     ]
 }

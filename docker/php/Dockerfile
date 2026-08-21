@@ -115,7 +115,10 @@ RUN	composer require \
 		civicrm-ext/exportpermission \
 		civicrm-ext/contactlayout \
 		civicrm-ext/civirules \
-		civicrm-ext/civicalendar
+		civicrm-ext/civicalendar \
+		civicrm-ext/advimportformprocessor \
+		civicrm-ext/xcm \
+		civicrm-ext/advimport
 
 	# Apply patches
 RUN	composer install && \

@@ -55,6 +55,9 @@
     <ext>org.civicrm.contactlayout</ext>
     <ext>net.ourpowerbase.exportpermission</ext>
     <ext>com.agiliway.civicalendar</ext>
+    <ext>de.systopia.xcm</ext>
+    <ext>advimport</ext>
+    <ext>advimportformprocessor</ext>
   </requires>
   <mixins>
     <mixin>mgd-php@2.0.0</mixin>

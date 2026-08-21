@@ -64,7 +64,37 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
    */
   public function upgrade_1006(): bool {
     $this->ctx->log->info('Enabling CiviCalendar extension');
-    civicrm_api3('Extension', 'enable', ['keys' => 'com.agiliway.civicalendar']);
+    $statuses = \CRM_Extension_System::singleton()->getManager()->getStatuses();
+    if (isset($statuses['com.agiliway.civicalendar'])) {
+      civicrm_api3('Extension', 'enable', ['keys' => 'com.agiliway.civicalendar']);
+    } else {
+      $this->ctx->log->warning('CiviCalendar extension not available, skipping');
+    }
+    return TRUE;
+  }
+
+  public function upgrade_1007(): bool {
+    $this->ctx->log->info('Enabling de.systopia.xcm extension');
+    $statuses = \CRM_Extension_System::singleton()->getManager()->getStatuses();
+    if (isset($statuses['de.systopia.xcm'])) {
+      civicrm_api3('Extension', 'enable', ['keys' => 'de.systopia.xcm']);
+    } else {
+      $this->ctx->log->warning('de.systopia.xcm extension not available, skipping');
+    }
+    $this->ctx->log->info('Enabling advimport extension');
+    $statuses = \CRM_Extension_System::singleton()->getManager()->getStatuses();
+    if (isset($statuses['advimport'])) {
+      civicrm_api3('Extension', 'enable', ['keys' => 'advimport']);
+    } else {
+      $this->ctx->log->warning('advimport extension not available, skipping');
+    }
+    $this->ctx->log->info('Enabling adv import form processor extension');
+    $statuses = \CRM_Extension_System::singleton()->getManager()->getStatuses();
+    if (isset($statuses['advimportformprocessor'])) {
+      civicrm_api3('Extension', 'enable', ['keys' => 'advimportformprocessor']);
+    } else {
+      $this->ctx->log->warning('adv import form processor extension not available, skipping');
+    }
     return TRUE;
   }
 }
