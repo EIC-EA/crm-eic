@@ -99,6 +99,9 @@ $databases['default']['default'] = [
   'collation' => 'utf8mb4_general_ci',
 ];
 
+if ( getenv('MYSQL_NO_SSL') == false )
+  $databases['default']['default']['pdo'] = [ PDO::MYSQL_ATTR_SSL_CA => '/opt/drupal/ssl/mysql-ca.pem' ];
+
 /**
  * Customizing database settings.
  *

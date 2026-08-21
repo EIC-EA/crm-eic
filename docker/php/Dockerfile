@@ -1,9 +1,10 @@
-ARG PHP_VERSION=8.4
+ARG PHP_VERSION=8.5
 ARG DRUPAL_VERSION=11.3
-ARG CIVICRM_VERSION=6.12
 ARG ENV
 
 FROM drupal:${DRUPAL_VERSION}-php${PHP_VERSION}-fpm
+
+ARG CIVICRM_VERSION=6.17.2
 
 # install the PHP extensions we need
 RUN set -eux; \
@@ -77,24 +78,11 @@ RUN set -eux; \
 	composer config --no-plugins allow-plugins.composer/installers true && \
 	# Set install path for civicrm-ext type packages
 	composer config extra.installer-paths.civicrm-ext/{\$name} '["type:civicrm-ext"]' --json && \
-	# Define CiviCRM extensions as package repositories
-	composer config repositories.ses '{"type":"package","package":{"name":"civicrm-ext/ses","version":"1.3.15","type":"civicrm-ext","dist":{"url":"https://lab.civicrm.org/extensions/ses/-/archive/1.3.15/ses-1.3.15.zip","type":"zip"}}}' --json && \
-	composer config repositories.eck '{"type":"package","package":{"name":"civicrm-ext/eck","version":"1.0.1","type":"civicrm-ext","dist":{"url":"https://github.com/systopia/de.systopia.eck/archive/1.0.1.zip","type":"zip"}}}' --json && \
-	composer config repositories.configitems '{"type":"package","package":{"name":"civicrm-ext/configitems","version":"2.0.0","type":"civicrm-ext","dist":{"url":"https://lab.civicrm.org/extensions/configitems/-/archive/2.0.0/configitems-2.0.0.zip","type":"zip"}}}' --json && \
-	composer config repositories.activitytypeacl '{"type":"package","package":{"name":"civicrm-ext/activitytypeacl","version":"1.6.1","type":"civicrm-ext","dist":{"url":"https://lab.civicrm.org/extensions/activitytypeacl/-/archive/1.6.1/activitytypeacl-1.6.1.zip","type":"zip"}}}' --json && \
-	composer config repositories.aip '{"type":"package","package":{"name":"civicrm-ext/aip","version":"1.3.0","type":"civicrm-ext","dist":{"url":"https://github.com/systopia/aip/releases/download/1.3.0/aip-1.3.0.zip","type":"zip"}}}' --json && \
-	composer config repositories.form-processor '{"type":"package","package":{"name":"civicrm-ext/form-processor","version":"3.2.0","type":"civicrm-ext","dist":{"url":"https://lab.civicrm.org/extensions/form-processor/-/archive/3.2.0/form-processor-3.2.0.zip","type":"zip"}}}' --json && \
-	composer config repositories.sqltasks '{"type":"package","package":{"name":"civicrm-ext/sqltasks","version":"2.2.0","type":"civicrm-ext","dist":{"url":"https://github.com/systopia/de.systopia.sqltasks/releases/download/2.2.0/de.systopia.sqltasks-2.2.0.zip","type":"zip"}}}' --json && \
-	composer config repositories.action-provider '{"type":"package","package":{"name":"civicrm-ext/action-provider","version":"1.196","type":"civicrm-ext","dist":{"url":"https://lab.civicrm.org/extensions/action-provider/-/archive/1.196/action-1.196.zip","type":"zip"}}}' --json && \
-	composer config repositories.exportpermission '{"type":"package","package":{"name":"civicrm-ext/exportpermission","version":"1.4","type":"civicrm-ext","dist":{"url":"https://github.com/progressivetech/net.ourpowerbase.exportpermission/archive/1.4.zip","type":"zip"}}}' --json && \
-	composer config repositories.contactlayout '{"type":"package","package":{"name":"civicrm-ext/contactlayout","version":"2.4.0","type":"civicrm-ext","dist":{"url":"https://github.com/civicrm/org.civicrm.contactlayout/archive/2.4.0.zip","type":"zip"}}}' --json && \
-	composer config repositories.civirules '{"type":"package","package":{"name":"civicrm-ext/civirules","version":"3.38.0","type":"civicrm-ext","dist":{"url":"https://lab.civicrm.org/extensions/civirules/-/archive/3.38.0/civirules-3.38.0.zip","type":"zip"}}}' --json && \
-	composer config repositories.civicalendar '{"type":"package","package":{"name":"civicrm-ext/civicalendar","version":"3.5.5","type":"civicrm-ext","dist":{"url":"https://lab.civicrm.org/extensions/civicalendar/-/archive/3.5.5/civicalendar-3.5.5.zip","type":"zip"}}}' --json && \
 	# Install CiviCRM core
-	composer require civicrm/civicrm-core:^6.17 && \
+	composer require civicrm/civicrm-core:^${CIVICRM_VERSION} && \
 	composer config --no-plugins allow-plugins.civicrm/civicrm-asset-plugin true && \
-	composer require civicrm/civicrm-packages:^6.17 && \
-	composer require civicrm/civicrm-drupal-8:^6.17 && \
+	composer require civicrm/civicrm-packages:^${CIVICRM_VERSION} && \
+	composer require civicrm/civicrm-drupal-8:^${CIVICRM_VERSION} && \
 	composer require civicrm/cli-tools:^v2026.03.20.1774037652 && \
 	# Drush
 	composer require drush/drush && \
@@ -103,23 +91,34 @@ RUN set -eux; \
 	# Redirect after login
 	composer require drupal/user_redirect:^2.0 && \
 	# Masquerade
-	composer require drupal/masquerade && \
-	# Install CiviCRM extensions (via composer/installers -> civicrm-ext/)
-	composer require \
-		civicrm-ext/ses:1.3.15 \
-		civicrm-ext/eck:1.0.1 \
-		civicrm-ext/configitems:2.0.0 \
-		civicrm-ext/activitytypeacl:1.6.1 \
-		civicrm-ext/aip:1.3.0 \
-		civicrm-ext/form-processor:3.2.0 \
-		civicrm-ext/sqltasks:2.2.0 \
-		civicrm-ext/action-provider:1.196 \
-		civicrm-ext/exportpermission:1.4 \
-		civicrm-ext/contactlayout:2.4.0 \
-		civicrm-ext/civirules:3.38.0 \
-		civicrm-ext/civicalendar:3.5.5 && \
+	composer require drupal/masquerade
+
+# Install CiviCRM extensions
+RUN composer config --no-plugins allow-plugins.wikimedia/composer-merge-plugin true && \
+	composer config --no-plugins allow-plugins.symfony/runtime true && \
+	composer require wikimedia/composer-merge-plugin && \
+	composer config extra.merge-plugin.include civicrm-ext/civicrm-ext-composer.json && \
+	composer update
+
+COPY lib/civicrm-ext /opt/drupal/civicrm-ext/
+
+# Install CiviCRM extensions (via composer/installers -> civicrm-ext/)
+RUN	composer require \
+		civicrm-ext/ses \
+		civicrm-ext/eck \
+		civicrm-ext/configitems \
+		civicrm-ext/activitytypeacl \
+		civicrm-ext/aip \
+		civicrm-ext/form-processor \
+		civicrm-ext/sqltasks \
+		civicrm-ext/action-provider \
+		civicrm-ext/exportpermission \
+		civicrm-ext/contactlayout \
+		civicrm-ext/civirules \
+		civicrm-ext/civicalendar
+
 	# Apply patches
-	composer install && \
+RUN	composer install && \
 	# Copy civicrm static files from /opt/drupal/vendor/civicrm/ to /opt/drupal/web/libraries/civicrm/
 	composer civicrm:publish -D && \
 	# Delete composer cache
@@ -140,8 +139,5 @@ RUN cd /opt/drupal/web/libraries/civicrm && \
     ln -s org.civicoop.configitems/ configitems && \
     ln -s org.civicrm.contactlayout contactlayout
 
-#"extra": {
-#"civicrm-asset": {
-#"assets:packages": {
-#"+include": [
-#"kcfinder/**"
+# Download AWS CA certificate for RDS
+RUN mkdir /opt/drupal/ssl/ && curl --output /opt/drupal/ssl/mysql-ca.pem https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
