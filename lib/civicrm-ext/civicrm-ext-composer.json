@@ -1,0 +1,166 @@
+{
+    "_comment" : " Reference: https://civicrm.org/blog/bradleyt/composer-installers-and-civicrm",
+    "extra" : { 
+        "installer-paths" : {
+            "civicrm-ext/{$name}" : ["type:civicrm-ext"]
+        }
+    },
+    "repositories": [
+        {
+            "name": "civicalendar",
+            "type": "package",
+            "package": {
+                "name": "civicrm-ext/civicalendar",
+                "version": "3.5.5",
+                "type": "civicrm-ext",
+                "dist": {
+                    "url": "https://lab.civicrm.org/extensions/civicalendar/-/archive/3.5.5/civicalendar-3.5.5.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "name": "civirules",
+            "type": "package",
+            "package": {
+                "name": "civicrm-ext/civirules",
+                "version": "3.38.0",
+                "type": "civicrm-ext",
+                "dist": {
+                    "url": "https://lab.civicrm.org/extensions/civirules/-/archive/3.38.0/civirules-3.38.0.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "name": "contactlayout",
+            "type": "package",
+            "package": {
+                "name": "civicrm-ext/contactlayout",
+                "version": "2.4.0",
+                "type": "civicrm-ext",
+                "dist": {
+                    "url": "https://github.com/civicrm/org.civicrm.contactlayout/archive/2.4.0.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "name": "exportpermission",
+            "type": "package",
+            "package": {
+                "name": "civicrm-ext/exportpermission",
+                "version": "1.4",
+                "type": "civicrm-ext",
+                "dist": {
+                    "url": "https://github.com/progressivetech/net.ourpowerbase.exportpermission/archive/1.4.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "name": "action-provider",
+            "type": "package",
+            "package": {
+                "name": "civicrm-ext/action-provider",
+                "version": "1.196",
+                "type": "civicrm-ext",
+                "dist": {
+                    "url": "https://lab.civicrm.org/extensions/action-provider/-/archive/1.196/action-1.196.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "name": "sqltasks",
+            "type": "package",
+            "package": {
+                "name": "civicrm-ext/sqltasks",
+                "version": "2.2.0",
+                "type": "civicrm-ext",
+                "dist": {
+                    "url": "https://github.com/systopia/de.systopia.sqltasks/releases/download/2.2.0/de.systopia.sqltasks-2.2.0.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "name": "form-processor",
+            "type": "package",
+            "package": {
+                "name": "civicrm-ext/form-processor",
+                "version": "3.2.0",
+                "type": "civicrm-ext",
+                "dist": {
+                    "url": "https://lab.civicrm.org/extensions/form-processor/-/archive/3.2.0/form-processor-3.2.0.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "name": "aip",
+            "type": "package",
+            "package": {
+                "name": "civicrm-ext/aip",
+                "version": "1.3.0",
+                "type": "civicrm-ext",
+                "dist": {
+                    "url": "https://github.com/systopia/aip/releases/download/1.3.0/aip-1.3.0.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "name": "activitytypeacl",
+            "type": "package",
+            "package": {
+                "name": "civicrm-ext/activitytypeacl",
+                "version": "1.6.1",
+                "type": "civicrm-ext",
+                "dist": {
+                    "url": "https://lab.civicrm.org/extensions/activitytypeacl/-/archive/1.6.1/activitytypeacl-1.6.1.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "name": "configitems",
+            "type": "package",
+            "package": {
+                "name": "civicrm-ext/configitems",
+                "version": "2.0.0",
+                "type": "civicrm-ext",
+                "dist": {
+                    "url": "https://lab.civicrm.org/extensions/configitems/-/archive/2.0.0/configitems-2.0.0.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "name": "eck",
+            "type": "package",
+            "package": {
+                "name": "civicrm-ext/eck",
+                "version": "1.0.1",
+                "type": "civicrm-ext",
+                "dist": {
+                    "url": "https://github.com/systopia/de.systopia.eck/archive/1.0.1.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "name": "ses",
+            "type": "package",
+            "package": {
+                "name": "civicrm-ext/ses",
+                "version": "1.3.15",
+                "type": "civicrm-ext",
+                "dist": {
+                    "url": "https://lab.civicrm.org/extensions/ses/-/archive/1.3.15/ses-1.3.15.zip",
+                    "type": "zip"
+                }
+            }
+        }
+    ]
+}
