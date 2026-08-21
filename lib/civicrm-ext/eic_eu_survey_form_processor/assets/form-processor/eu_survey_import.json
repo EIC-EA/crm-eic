@@ -1,0 +1,955 @@
+{
+    "title": "EU Survey Import",
+    "name": "eu_survey_import",
+    "is_active": "1",
+    "description": "This FormProcessor creates an activity that stores the received EU Survey data.\r\nThe activity will be attached to a case.\r\n\r\nThe case will be identified by:\r\n\r\n- the received  `PIC Number`, that is matched to the corresponding custom field of a case\r\n- the case title, which is supposed to be set to `EIC Awardee Onboarding`.\r\n\r\nThis FormProcessor also creates an individual contact from the transmitted applicant data\r\nif no contact yet exists that match the recceived contact data (First Name, Last Name, Professional Email).",
+    "output_handler": "OutputAllActionOutput",
+    "output_handler_configuration": [],
+    "enable_default_data": "0",
+    "default_data_output_configuration": [],
+    "calculation_output_configuration": [],
+    "permission": "",
+    "inputs": [
+        {
+            "weight": "1",
+            "include_formatted_params": "0",
+            "title": "Organisation PIC number",
+            "name": "org_pic_number",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "2",
+            "include_formatted_params": "0",
+            "title": "Company Website",
+            "name": "org_website",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "3",
+            "include_formatted_params": "0",
+            "title": "First name",
+            "name": "ind_first_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "4",
+            "include_formatted_params": "0",
+            "title": "Last name",
+            "name": "ind_last_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "5",
+            "include_formatted_params": "0",
+            "title": "Phone number",
+            "name": "ind_phone_number",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "6",
+            "include_formatted_params": "0",
+            "title": "Professional email",
+            "name": "ind_professional_email",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "7",
+            "include_formatted_params": "0",
+            "title": "Role in organisation",
+            "name": "ind_role_in_organisation",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "8",
+            "include_formatted_params": "0",
+            "title": "EIC Project ID",
+            "name": "survey_eic_project_id",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "9",
+            "include_formatted_params": "0",
+            "title": "EIC Project Acronym",
+            "name": "survey_eic_project_acronym",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "10",
+            "include_formatted_params": "0",
+            "title": "Are you fundraising within the next 18 months?",
+            "name": "survey_fundraising_within_next_18_months",
+            "type": "YesNoOptionList",
+            "is_required": "0",
+            "default_value": "No",
+            "configuration": {
+                "yes_label": "Yes",
+                "no_label": "No"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "11",
+            "include_formatted_params": "0",
+            "title": "Are you fundraising within:",
+            "name": "survey_fundraising_within",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "12",
+            "include_formatted_params": "0",
+            "title": "What fundraising support do you need most?",
+            "name": "survey_support_fundraising",
+            "type": "Text",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "13",
+            "include_formatted_params": "0",
+            "title": "Would you like to receive investment support?",
+            "name": "survey_support_investment",
+            "type": "YesNoOptionList",
+            "is_required": "0",
+            "default_value": "No",
+            "configuration": {
+                "yes_label": "Yes",
+                "no_label": "No"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "14",
+            "include_formatted_params": "0",
+            "title": "Are you actively seeking corporate or industrial partners?",
+            "name": "survey_actively_seeking_corporate_industrial_partners",
+            "type": "YesNoOptionList",
+            "is_required": "0",
+            "default_value": "No",
+            "configuration": {
+                "yes_label": "Yes",
+                "no_label": "No"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "15",
+            "include_formatted_params": "0",
+            "title": "What type of partner are you targeting?",
+            "name": "survey_what_type_of_partner_are_you_targeting",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "16",
+            "include_formatted_params": "0",
+            "title": "Are you planning to sell your innovative solution to public or private buyers, e.g. through tender opportunities?",
+            "name": "survey_plan_to_sell_solution_to_public_private_buyers",
+            "type": "YesNoOptionList",
+            "is_required": "0",
+            "default_value": "No",
+            "configuration": {
+                "yes_label": "Yes",
+                "no_label": "No"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "17",
+            "include_formatted_params": "0",
+            "title": "Where are you in the process?",
+            "name": "survey_where_are_you_in_the_process",
+            "type": "Text",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "18",
+            "include_formatted_params": "0",
+            "title": "Would you like procurement support or training?",
+            "name": "survey_support_training_procurement",
+            "type": "YesNoOptionList",
+            "is_required": "0",
+            "default_value": "No",
+            "configuration": {
+                "yes_label": "Yes",
+                "no_label": "No"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "19",
+            "include_formatted_params": "0",
+            "title": "Are you planning to expand internationally in the next 18 months?",
+            "name": "survey_plan_to_expand_internationally_within_next_18_months",
+            "type": "YesNoOptionList",
+            "is_required": "0",
+            "default_value": "No",
+            "configuration": {
+                "yes_label": "Yes",
+                "no_label": "No"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "20",
+            "include_formatted_params": "0",
+            "title": "Which markets?",
+            "name": "survey_expansion_markets",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "21",
+            "include_formatted_params": "0",
+            "title": "What is your main barrier?",
+            "name": "survey_expansion_main_barrier",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "22",
+            "include_formatted_params": "0",
+            "title": "Would you like to receive support entering new markets?",
+            "name": "survey_support_entering_new_markets",
+            "type": "YesNoOptionList",
+            "is_required": "0",
+            "default_value": "No",
+            "configuration": {
+                "yes_label": "Yes",
+                "no_label": "No"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "23",
+            "include_formatted_params": "0",
+            "title": "Are you planning to participate in International trade fairs in the next 12 months?",
+            "name": "survey_plan_to_participate_in_international_trade_fairs_within_next_12_months",
+            "type": "YesNoOptionList",
+            "is_required": "0",
+            "default_value": "No",
+            "configuration": {
+                "yes_label": "Yes",
+                "no_label": "No"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "24",
+            "include_formatted_params": "0",
+            "title": "Which region?",
+            "name": "survey_internation_trade_fairs_region",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "25",
+            "include_formatted_params": "0",
+            "title": "Type of events?",
+            "name": "survey_international_trade_fairs_type_of_events",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "26",
+            "include_formatted_params": "0",
+            "title": "Would you benefit from industry experts or coaches support?",
+            "name": "survey_would_support_industry_experts_coaches",
+            "type": "YesNoOptionList",
+            "is_required": "0",
+            "default_value": "No",
+            "configuration": {
+                "yes_label": "Yes",
+                "no_label": "No"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "27",
+            "include_formatted_params": "0",
+            "title": "What type of support?",
+            "name": "survey_type_of_industry_export_support",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "28",
+            "include_formatted_params": "0",
+            "title": "What is your main challenge?",
+            "name": "survey_main_challenge",
+            "type": "Text",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "29",
+            "include_formatted_params": "0",
+            "title": "Does your company have a woman founder or executive who would benefit from a dedicated leadership programme?",
+            "name": "survey_woman_founder_or_executive_benefit_from_a_dedicated_leadership_programme",
+            "type": "YesNoOptionList",
+            "is_required": "0",
+            "default_value": "No",
+            "configuration": {
+                "yes_label": "Yes",
+                "no_label": "No"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "30",
+            "include_formatted_params": "0",
+            "title": "What type of other support are you interested in?",
+            "name": "survey_suport_other_types",
+            "type": "Text",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "31",
+            "include_formatted_params": "0",
+            "title": "Are there any other support items you would like to benefit from",
+            "name": "support_support_other_items",
+            "type": "Text",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "32",
+            "include_formatted_params": "0",
+            "title": "Do you have any comment or general feedback you would like to share?",
+            "name": "survey_general_feedback",
+            "type": "Text",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        }
+    ],
+    "actions": [
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Catch-All Activity Title",
+            "name": "get_catch_all_activity_title",
+            "type": "SetValue",
+            "configuration": {
+                "value": "EU survey Data - Unmatched"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Catch-All Company PIC Number",
+            "name": "get_catch_all_company_pic_number",
+            "type": "SetValue",
+            "configuration": {
+                "value": "Catch-All Beneficiary"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Catch-All Case Title",
+            "name": "get_case_title_catch_all",
+            "type": "SetValue",
+            "configuration": {
+                "value": "EIC Awardee Onboarding - Unmatched"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Case Title: EIC Awardee Onboarding",
+            "name": "get_case_title_awardee_onboarding",
+            "type": "SetValue",
+            "configuration": {
+                "value": "EIC Awardee Onboarding"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Beneficiary Company by PIC number or website",
+            "name": "get_beneficiary_company_by_pic_number_or_website",
+            "type": "XcmGetOrCreate",
+            "configuration": {
+                "xcm_profile": "eu_survey_company",
+                "contact_type": "Organization",
+                "variable_target_1": "",
+                "variable_target_2": ""
+            },
+            "mapping": {
+                "display_name": "",
+                "household_name": "",
+                "organization_name": "",
+                "first_name": "",
+                "last_name": "",
+                "middle_name": "",
+                "nick_name": "",
+                "legal_name": "",
+                "prefix_id": "",
+                "suffix_id": "",
+                "birth_date": "",
+                "gender_id": "",
+                "formal_title": "",
+                "job_title": "",
+                "do_not_email": "",
+                "do_not_mail": "",
+                "do_not_phone": "",
+                "do_not_sms": "",
+                "do_not_trade": "",
+                "is_opt_out": "",
+                "preferred_language": "",
+                "preferred_communication_method": "",
+                "legal_identifier": "",
+                "external_identifier": "input.org_pic_number",
+                "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "",
+                "custom_EU_Survey_Company_Data_Founder_Gender": "",
+                "contact_type": "",
+                "id": "",
+                "source": "",
+                "email": "",
+                "phone": "",
+                "phone2": "",
+                "phone3": "",
+                "website": "input.org_website",
+                "name": "",
+                "location_type_id": "",
+                "phone_type_id": "",
+                "provider_id": "",
+                "website_type_id": "",
+                "supplemental_address_1": "",
+                "supplemental_address_2": "",
+                "supplemental_address_3": "",
+                "street_address": "",
+                "city": "",
+                "postal_code": "",
+                "state_province_id": "",
+                "county_id": "",
+                "country_id": "",
+                "is_billing": "",
+                "variable_value_1": "",
+                "variable_value_2": ""
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find EU-Survey Case by PIC number and title",
+            "name": "find_eu_survey_case",
+            "type": "GetCaseDataByCustomField",
+            "configuration": [],
+            "mapping": {
+                "custom_EIC_Project_EIC_Title": "action.get_case_title_awardee_onboarding.value",
+                "custom_EIC_Project_Organisation_PIC_number": "input.org_pic_number"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find or Create Applicant Contact",
+            "name": "find_create_applicant_contact",
+            "type": "XcmGetOrCreate",
+            "configuration": {
+                "xcm_profile": "eu_survey_applicant",
+                "contact_type": "Individual",
+                "variable_target_1": "",
+                "variable_target_2": ""
+            },
+            "mapping": {
+                "display_name": "",
+                "household_name": "",
+                "organization_name": "",
+                "first_name": "input.ind_first_name",
+                "last_name": "input.ind_last_name",
+                "middle_name": "",
+                "nick_name": "",
+                "legal_name": "",
+                "prefix_id": "",
+                "suffix_id": "",
+                "birth_date": "",
+                "gender_id": "",
+                "formal_title": "",
+                "job_title": "input.ind_role_in_organisation",
+                "do_not_email": "",
+                "do_not_mail": "",
+                "do_not_phone": "",
+                "do_not_sms": "",
+                "do_not_trade": "",
+                "is_opt_out": "",
+                "preferred_language": "",
+                "preferred_communication_method": "",
+                "legal_identifier": "",
+                "external_identifier": "",
+                "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "",
+                "custom_EU_Survey_Company_Data_Founder_Gender": "",
+                "contact_type": "",
+                "id": "",
+                "source": "",
+                "email": "input.ind_professional_email",
+                "phone": "input.ind_phone_number",
+                "phone2": "",
+                "phone3": "",
+                "website": "",
+                "name": "",
+                "location_type_id": "",
+                "phone_type_id": "",
+                "provider_id": "",
+                "website_type_id": "",
+                "supplemental_address_1": "",
+                "supplemental_address_2": "",
+                "supplemental_address_3": "",
+                "street_address": "",
+                "city": "",
+                "postal_code": "",
+                "state_province_id": "",
+                "county_id": "",
+                "country_id": "",
+                "is_billing": "",
+                "variable_value_1": "",
+                "variable_value_2": ""
+            },
+            "delay_configuration": "",
+            "condition_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Create Activity for EU Survey data and assign to case - if EU-Survey Case is available",
+            "name": "create_activity_and_assign_to_case",
+            "type": "CreateActivity",
+            "configuration": {
+                "activity_type": "eu_survey",
+                "activity_status": "Scheduled",
+                "subject": "EU Survey Data",
+                "priority": "Normal"
+            },
+            "mapping": {
+                "source_contact_id": "action.find_create_applicant_contact.contact_id",
+                "target_contact_id": [
+                    "action.get_beneficiary_company_by_pic_number_or_website.contact_id"
+                ],
+                "assignee_contact_id": "",
+                "activity_type_id": "",
+                "location": "",
+                "activity_date": "",
+                "duration": "",
+                "id": "",
+                "campaign_id": "",
+                "subject": "",
+                "details": "",
+                "case_id": "action.find_eu_survey_case.id",
+                "custom_eu_survey_data_EIC_Project_Acronym": "input.survey_eic_project_acronym",
+                "custom_eu_survey_data_EIC_Project_ID": "input.survey_eic_project_id",
+                "custom_eu_survey_data_survey_fundraising_within_the_next_18_months": "input.survey_fundraising_within_next_18_months",
+                "custom_eu_survey_data_survey_fundraising_within": "input.survey_fundraising_within",
+                "custom_eu_survey_data_survey_receive_suport_fundraising_items": "input.survey_support_fundraising",
+                "custom_eu_survey_data_survey_receive_support_investment": "input.survey_support_investment",
+                "custom_eu_survey_data_survey_partenrs_actively_seeking": "input.survey_actively_seeking_corporate_industrial_partners",
+                "custom_eu_survey_data_survey_partners_types": "input.survey_what_type_of_partner_are_you_targeting",
+                "custom_eu_survey_data_survey_selling_to_public_private_buyers": "input.survey_plan_to_sell_solution_to_public_private_buyers",
+                "custom_eu_survey_data_survey_receive_support_procurement": "input.survey_support_training_procurement",
+                "custom_eu_survey_data_survey_international_expansion_in_the_next_18_months": "input.survey_plan_to_expand_internationally_within_next_18_months",
+                "custom_eu_survey_data_survey_international_expansion_markets": "input.survey_expansion_markets",
+                "custom_eu_survey_data_survey_international_expansion_main_barrier": "input.survey_expansion_main_barrier",
+                "custom_eu_survey_data_survey_receive_support_entering_new_markets": "input.survey_support_entering_new_markets",
+                "custom_eu_survey_data_survey_international_trade_fairs_region": "input.survey_internation_trade_fairs_region",
+                "custom_eu_survey_data_survey_international_trade_fairs_events": "input.survey_international_trade_fairs_type_of_events",
+                "custom_eu_survey_data_survey_receive_support_industry_experts_or_coaches": "input.survey_would_support_industry_experts_coaches",
+                "custom_eu_survey_data_survey_receive_support_industry_experts_or_coaches_types": "input.survey_type_of_industry_export_support",
+                "custom_eu_survey_data_survey_main_challenge": "input.survey_main_challenge",
+                "custom_eu_survey_data_survey_receive_support_other_types": "input.survey_suport_other_types",
+                "custom_eu_survey_data_survey_receive_support_other_items": "input.support_support_other_items",
+                "custom_eu_survey_data_survey_feedback": "input.survey_general_feedback"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_eu_survey_case.id"
+                },
+                "output_mapping": {
+                    "id": ""
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Add Role for Applicant to case - if EU-Survey Case is available",
+            "name": "add_role_for_applicant_to_case_",
+            "type": "CaseAddRole",
+            "configuration": {
+                "relationship_type": "5_b_a",
+                "replace": "0"
+            },
+            "mapping": {
+                "contact_id": "action.find_create_applicant_contact.contact_id",
+                "case_id": "action.find_eu_survey_case.id"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_eu_survey_case.id"
+                },
+                "output_mapping": {
+                    "first_relationship_id": "",
+                    "relationship_ids": []
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find Catch-All Case by PIC number and title - if no EU-Survey Case is available",
+            "name": "find_catch_all_case_by_pic_number_and_title",
+            "type": "GetCaseDataByCustomField",
+            "configuration": [],
+            "mapping": {
+                "custom_EIC_Project_EIC_Title": "action.get_case_title_catch_all.value",
+                "custom_EIC_Project_Organisation_PIC_number": "action.get_catch_all_company_pic_number.value"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_eu_survey_case.id"
+                },
+                "output_mapping": {
+                    "type_id": "",
+                    "subject": "",
+                    "start_date": "",
+                    "end_date": "",
+                    "details": "",
+                    "status_id": "",
+                    "is_deleted": "",
+                    "created_date": "",
+                    "modified_date": "",
+                    "id": "",
+                    "contact_id": "",
+                    "activity_id": "",
+                    "tag_id": "",
+                    "custom_EIC_Project_EIC_Title": "",
+                    "custom_EIC_Project_Organisation_PIC_number": ""
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find Catch-All Company by PIC number - if no EU-Survey Case is available ",
+            "name": "find_catch_all_company_by_pic_number",
+            "type": "XcmGetOrCreate",
+            "configuration": {
+                "xcm_profile": "eu_survey_company",
+                "contact_type": "Individual",
+                "variable_target_1": "",
+                "variable_target_2": ""
+            },
+            "mapping": {
+                "display_name": "",
+                "household_name": "",
+                "organization_name": "",
+                "first_name": "",
+                "last_name": "",
+                "middle_name": "",
+                "nick_name": "",
+                "legal_name": "",
+                "prefix_id": "",
+                "suffix_id": "",
+                "birth_date": "",
+                "gender_id": "",
+                "formal_title": "",
+                "job_title": "",
+                "do_not_email": "",
+                "do_not_mail": "",
+                "do_not_phone": "",
+                "do_not_sms": "",
+                "do_not_trade": "",
+                "is_opt_out": "",
+                "preferred_language": "",
+                "preferred_communication_method": "",
+                "legal_identifier": "",
+                "external_identifier": "action.get_catch_all_company_pic_number.value",
+                "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "",
+                "custom_EU_Survey_Company_Data_Founder_Gender": "",
+                "contact_type": "",
+                "id": "",
+                "source": "",
+                "email": "",
+                "phone": "",
+                "phone2": "",
+                "phone3": "",
+                "website": "",
+                "name": "",
+                "location_type_id": "",
+                "phone_type_id": "",
+                "provider_id": "",
+                "website_type_id": "",
+                "supplemental_address_1": "",
+                "supplemental_address_2": "",
+                "supplemental_address_3": "",
+                "street_address": "",
+                "city": "",
+                "postal_code": "",
+                "state_province_id": "",
+                "county_id": "",
+                "country_id": "",
+                "is_billing": "",
+                "variable_value_1": "",
+                "variable_value_2": ""
+            },
+            "condition_configuration": {
+                "name": "ParameterIsEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_eu_survey_case.id"
+                },
+                "output_mapping": {
+                    "contact_id": ""
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Create Activity for EU-Survey and assign to Catch-All Case - if no EU-Survey Case is available",
+            "name": "create_activity_for_eu_survey_and_assign_to_catch_all_case",
+            "type": "CreateActivity",
+            "configuration": {
+                "activity_type": "eu_survey",
+                "activity_status": "Scheduled",
+                "subject": "EU-Survey Data - Unmatched",
+                "priority": "Normal"
+            },
+            "mapping": {
+                "source_contact_id": "action.find_create_applicant_contact.contact_id",
+                "target_contact_id": [
+                    "action.find_catch_all_company_by_pic_number.contact_id"
+                ],
+                "assignee_contact_id": "",
+                "activity_type_id": "",
+                "location": "",
+                "activity_date": "",
+                "duration": "",
+                "id": "",
+                "campaign_id": "",
+                "subject": "action.get_catch_all_activity_title.value",
+                "details": "",
+                "case_id": "action.find_catch_all_case_by_pic_number_and_title.id",
+                "custom_eu_survey_data_Organisation_PIC_number": "input.org_pic_number",
+                "custom_eu_survey_data_EIC_Project_Acronym": "input.survey_eic_project_acronym",
+                "custom_eu_survey_data_EIC_Project_ID": "input.survey_eic_project_id",
+                "custom_eu_survey_data_survey_fundraising_within_the_next_18_months": "input.survey_fundraising_within_next_18_months",
+                "custom_eu_survey_data_survey_fundraising_within": "input.survey_fundraising_within",
+                "custom_eu_survey_data_survey_receive_suport_fundraising_items": "input.survey_support_fundraising",
+                "custom_eu_survey_data_survey_receive_support_investment": "input.survey_support_investment",
+                "custom_eu_survey_data_survey_partenrs_actively_seeking": "input.survey_actively_seeking_corporate_industrial_partners",
+                "custom_eu_survey_data_survey_partners_types": "input.survey_what_type_of_partner_are_you_targeting",
+                "custom_eu_survey_data_survey_selling_to_public_private_buyers": "input.survey_plan_to_sell_solution_to_public_private_buyers",
+                "custom_eu_survey_data_survey_receive_support_procurement": "input.survey_support_training_procurement",
+                "custom_eu_survey_data_survey_international_expansion_in_the_next_18_months": "input.survey_plan_to_expand_internationally_within_next_18_months",
+                "custom_eu_survey_data_survey_international_expansion_markets": "input.survey_expansion_markets",
+                "custom_eu_survey_data_survey_international_expansion_main_barrier": "input.survey_expansion_main_barrier",
+                "custom_eu_survey_data_survey_receive_support_entering_new_markets": "input.survey_support_entering_new_markets",
+                "custom_eu_survey_data_survey_international_trade_fairs_region": "input.survey_internation_trade_fairs_region",
+                "custom_eu_survey_data_survey_international_trade_fairs_events": "",
+                "custom_eu_survey_data_survey_receive_support_industry_experts_or_coaches": "input.survey_would_support_industry_experts_coaches",
+                "custom_eu_survey_data_survey_receive_support_industry_experts_or_coaches_types": "input.survey_type_of_industry_export_support",
+                "custom_eu_survey_data_survey_main_challenge": "input.survey_main_challenge",
+                "custom_eu_survey_data_survey_receive_support_other_types": "input.survey_suport_other_types",
+                "custom_eu_survey_data_survey_receive_support_other_items": "input.support_support_other_items",
+                "custom_eu_survey_data_survey_feedback": "input.survey_general_feedback"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_eu_survey_case.id"
+                },
+                "output_mapping": {
+                    "id": ""
+                }
+            },
+            "delay_configuration": ""
+        }
+    ],
+    "default_data_inputs": [],
+    "default_data_actions": [],
+    "validate_actions": [],
+    "validate_validators": [],
+    "calculate_actions": [],
+    "uploaded_source_file": "",
+    "calculations_configuration_url": "http://localhost/dev_eic/civicrm/admin/automation/formprocessor/calculationconfiguration?action=update&reset=1&id=1"
+}
