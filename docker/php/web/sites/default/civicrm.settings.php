@@ -30,8 +30,11 @@
  */
 global $civicrm_root, $civicrm_setting, $civicrm_paths;
 
+if ( getenv('MYSQL_NO_SSL') == false )
+  define('CIVICRM_UF_DSN', 'mysql://'.getenv('DRUPAL_DATABASE_USERNAME').':'.getenv('DRUPAL_DATABASE_PASSWORD').'@'.getenv('DRUPAL_DATABASE_HOST').':'.getenv('DRUPAL_DATABASE_PORT').'/'.getenv('DRUPAL_DATABASE_NAME').'?new_link=true&ca=%2Fopt%2Fdrupal%2Fssl%2Fmysql-ca.pem');
+else
+  define('CIVICRM_UF_DSN', 'mysql://'.getenv('DRUPAL_DATABASE_USERNAME').':'.getenv('DRUPAL_DATABASE_PASSWORD').'@'.getenv('DRUPAL_DATABASE_HOST').':'.getenv('DRUPAL_DATABASE_PORT').'/'.getenv('DRUPAL_DATABASE_NAME').'?new_link=true');
 
-define('CIVICRM_UF_DSN', 'mysql://'.getenv('DRUPAL_DATABASE_USERNAME').':'.getenv('DRUPAL_DATABASE_PASSWORD').'@'.getenv('DRUPAL_DATABASE_HOST').':'.getenv('DRUPAL_DATABASE_PORT').'/'.getenv('DRUPAL_DATABASE_NAME').'?new_link=true');
 define('CIVICRM_DSN', CIVICRM_UF_DSN);
 define('CIVICRM_UF_BASEURL', getenv('CIVICRM_UF_BASEURL'));
 
