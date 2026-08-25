@@ -655,9 +655,9 @@ $civicrm_setting['domain']['theme_frontend'] = 'walbrook';
  * 0	OUTBOUND_OPTION_SMTP	Send via SMTP
  * 1	OUTBOUND_OPTION_SENDMAIL	Send via sendmail
  * 2	OUTBOUND_OPTION_DISABLED	Disable outbound mail entirely
- * 3	OUTBOUND_OPTION_REDIRECT_TO_DB	Redirect to database (store in civicrm_mailing_spool)
- * 4	OUTBOUND_OPTION_MAIL	Send via PHP mail() function / Used by SES
- * 5	OUTBOUND_OPTION_MOCK	Mock (used for testing)
+ * 3	OUTBOUND_OPTION_MAIL	Send via PHP mail() function / Used by SES
+ * 4	OUTBOUND_OPTION_MOCK	Mock (used for testing)
+ * 5	OUTBOUND_OPTION_REDIRECT_TO_DB	Redirect to database (store in civicrm_mailing_spool)
  */
 $mailDriver = getenv('MAIL_OUTBOUND_OPTION');
 $mailDriver = ($mailDriver !== false) ? $mailDriver : '2';
@@ -671,5 +671,15 @@ $civicrm_setting['domain']['mailing_backend'] = [
 ];
 
 // SES extension AWS region setting.
-$civicrm_setting['domain']['ses_region'] = getenv('SES_REGION') ?: 'dummy-1';
+if (getenv('SES_REGION'))
+ $civicrm_setting['domain']['ses_region'] = getenv('SES_REGION');
+else
+ if (getenv('AWS_DEFAULT_REGION'))
+	 $civicrm_setting['domain']['ses_region'] = getenv('AWS_DEFAULT_REGION');
+ else
+	$civicrm_setting['domain']['ses_region'] = 'eu-west-1';
+
+ // Set SES to use SDK auth
+$civicrm_setting['domain']['ses_sdk_auth'] = '1';
+
 
