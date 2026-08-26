@@ -659,8 +659,13 @@ $civicrm_setting['domain']['theme_frontend'] = 'walbrook';
  * 4	OUTBOUND_OPTION_MOCK	Mock (used for testing)
  * 5	OUTBOUND_OPTION_REDIRECT_TO_DB	Redirect to database (store in civicrm_mailing_spool)
  */
-$mailDriver = getenv('MAIL_OUTBOUND_OPTION');
-$mailDriver = ($mailDriver !== false) ? $mailDriver : '2';
+
+$mailDriver = '2';
+if (getenv('MAIL_OUTGOING')) {
+  $option = json_decode(getenv('MAIL_OUTGOING'), true);
+  if (array_key_exists('mail_driver', $option))
+    $mailDriver = $option['mail_driver'];
+}
 $civicrm_setting['domain']['mailing_backend'] = [
   'outBound_option' => (int) $mailDriver,
   'smtpServer' => getenv('SMTP_SERVER') ?: 'smtp',
