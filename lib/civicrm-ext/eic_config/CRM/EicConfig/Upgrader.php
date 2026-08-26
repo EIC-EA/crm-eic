@@ -97,4 +97,17 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     }
     return TRUE;
   }
+
+  public function upgrade_1008(): bool {
+    $extension_name="de.systopia.signatures";
+    $this->ctx->log->info("Enabling {$extension_name} extension");
+    $statuses = \CRM_Extension_System::singleton()->getManager()->getStatuses();
+    if (isset($statuses[$extension_name])) {
+      civicrm_api3('Extension', 'enable', ['keys' => $extension_name]);
+    } else {
+      $this->ctx->log->warning("{$extension_name} extension not available, skipping");
+    }
+    return TRUE;
+  }
+
 }
