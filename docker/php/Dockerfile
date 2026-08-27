@@ -118,7 +118,8 @@ RUN	composer require \
 		civicrm-ext/civicalendar \
 		civicrm-ext/advimportformprocessor \
 		civicrm-ext/xcm \
-		civicrm-ext/advimport
+		civicrm-ext/advimport \
+		civicrm-ext/signatures
 
 	# Apply patches
 RUN	composer install && \

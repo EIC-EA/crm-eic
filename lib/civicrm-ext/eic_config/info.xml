@@ -58,6 +58,7 @@
     <ext>de.systopia.xcm</ext>
     <ext>advimport</ext>
     <ext>advimportformprocessor</ext>
+    <ext>de.systopia.signatures</ext>
   </requires>
   <mixins>
     <mixin>mgd-php@2.0.0</mixin>

@@ -200,6 +200,19 @@
                     "type": "zip"
                 }
             }
+        },
+        {
+            "name": "signatures",
+            "type": "package",
+            "package": {
+                "name": "civicrm-ext/signatures",
+                "version": "1.3",
+                "type": "civicrm-ext",
+                "dist": {
+                    "url": "https://github.com/systopia/de.systopia.signatures/releases/download/1.3.0/de.systopia.signatures-1.3.0.zip",
+                    "type": "zip"
+                }
+            }
         }
     ]
 }

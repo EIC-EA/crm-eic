@@ -4,97 +4,91 @@
  * Collection of upgrade steps for eic_config.
  */
 class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
-
+  /**
+   * Enable one or more extensions by key.
+   *
+   * @param array $extensions List of extension keys to enable.
+   * @return bool TRUE if all extensions were enabled, FALSE if any were unavailable.
+   */
+  private function enable_extension(array $extensions): bool {
+    $statuses = \CRM_Extension_System::singleton()->getManager()->getStatuses();
+    $all_enabled = TRUE;
+    foreach ($extensions as $extension_name) {
+      $this->ctx->log->info("Enabling {$extension_name} extension");
+      if (isset($statuses[$extension_name])) {
+        civicrm_api3('Extension', 'enable', ['keys' => $extension_name]);
+      } else {
+        $this->ctx->log->warning("{$extension_name} extension not available, skipping");
+        $all_enabled = FALSE;
+      }
+    }
+    return $all_enabled;
+  }
   /**
    * Enable the SES extension.
    */
   public function upgrade_1000(): bool {
-    $this->ctx->log->info('Enabling SES extension');
-    civicrm_api3('Extension', 'enable', ['keys' => 'ses']);
-    return TRUE;
+    return $this->enable_extension(['ses']);
   }
 
   /**
    * Enable the CiviRules extension.
    */
   public function upgrade_1001(): bool {
-    $this->ctx->log->info('Enabling CiviRules extension');
-    civicrm_api3('Extension', 'enable', ['keys' => 'org.civicoop.civirules']);
-    return TRUE;
+    return $this->enable_extension(['org.civicoop.civirules']);
   }
 
   /**
    * Enable the Contact Layout Editor extension.
    */
   public function upgrade_1002(): bool {
-    $this->ctx->log->info('Enabling Contact Layout Editor extension');
-    civicrm_api3('Extension', 'enable', ['keys' => 'org.civicrm.contactlayout']);
-    return TRUE;
+    return $this->enable_extension(['org.civicrm.contactlayout']);
   }
 
   /**
    * Enable the Export Permission extension.
    */
   public function upgrade_1003(): bool {
-    $this->ctx->log->info('Enabling Export Permission extension');
-    civicrm_api3('Extension', 'enable', ['keys' => 'net.ourpowerbase.exportpermission']);
-    return TRUE;
+    return $this->enable_extension(['net.ourpowerbase.exportpermission']);
   }
 
   /**
    * Enable the CiviMail extension.
    */
   public function upgrade_1004(): bool {
-    $this->ctx->log->info('Enabling CiviMail extension');
-    civicrm_api3('Extension', 'enable', ['keys' => 'civi_mail']);
-    return TRUE;
+    return $this->enable_extension(['civi_mail']);
   }
 
   /**
    * Enable the AIP extension.
    */
   public function upgrade_1005(): bool {
-    $this->ctx->log->info('Enabling AIP extension');
-    civicrm_api3('Extension', 'enable', ['keys' => 'aip']);
-    return TRUE;
+    return $this->enable_extension(['aip']);
   }
 
   /**
-   * Enable the Civi Calendar extension.
+   * Enable the CiviCalendar extension.
    */
   public function upgrade_1006(): bool {
-    $this->ctx->log->info('Enabling CiviCalendar extension');
-    $statuses = \CRM_Extension_System::singleton()->getManager()->getStatuses();
-    if (isset($statuses['com.agiliway.civicalendar'])) {
-      civicrm_api3('Extension', 'enable', ['keys' => 'com.agiliway.civicalendar']);
-    } else {
-      $this->ctx->log->warning('CiviCalendar extension not available, skipping');
-    }
-    return TRUE;
+    return $this->enable_extension(['com.agiliway.civicalendar']);
   }
 
+  /**
+   * Enable XCM, advimport and advimportformprocessor extensions.
+   */
   public function upgrade_1007(): bool {
-    $this->ctx->log->info('Enabling de.systopia.xcm extension');
-    $statuses = \CRM_Extension_System::singleton()->getManager()->getStatuses();
-    if (isset($statuses['de.systopia.xcm'])) {
-      civicrm_api3('Extension', 'enable', ['keys' => 'de.systopia.xcm']);
-    } else {
-      $this->ctx->log->warning('de.systopia.xcm extension not available, skipping');
-    }
-    $this->ctx->log->info('Enabling advimport extension');
-    $statuses = \CRM_Extension_System::singleton()->getManager()->getStatuses();
-    if (isset($statuses['advimport'])) {
-      civicrm_api3('Extension', 'enable', ['keys' => 'advimport']);
-    } else {
-      $this->ctx->log->warning('advimport extension not available, skipping');
-    }
-    $this->ctx->log->info('Enabling adv import form processor extension');
-    $statuses = \CRM_Extension_System::singleton()->getManager()->getStatuses();
-    if (isset($statuses['advimportformprocessor'])) {
-      civicrm_api3('Extension', 'enable', ['keys' => 'advimportformprocessor']);
-    } else {
-      $this->ctx->log->warning('adv import form processor extension not available, skipping');
-    }
-    return TRUE;
+    return $this->enable_extension([
+      'de.systopia.xcm',
+      'advimport',
+      'advimportformprocessor',
+    ]);
   }
+
+  /**
+   * Enable the Signatures extension.
+   */
+  public function upgrade_1008(): bool {
+    return $this->enable_extension(['de.systopia.signatures']);
+  }
+
 }
