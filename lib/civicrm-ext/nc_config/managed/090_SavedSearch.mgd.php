@@ -6,7 +6,7 @@ return [
     'name' => 'SavedSearch_Investor_Representatives',
     'entity' => 'SavedSearch',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -27,6 +27,7 @@ return [
             'Contact_RelationshipCache_Contact_01.General_Company_Info.Geographical_Focus:label',
             'Contact_RelationshipCache_Contact_01.Financial_information.Ticket_Size_Range_:label',
             'Contact_RelationshipCache_Contact_01.General_Company_Info.Investor_Type:label',
+            'Contact_RelationshipCache_Contact_01.Activity_related.Trusted_Investor_Network_TIN_',
           ],
           'orderBy' => [],
           'where' => [],
@@ -58,7 +59,7 @@ return [
     'name' => 'SavedSearch_Investor_Representatives_SearchDisplay_Investor_Representatives_Investors_Custom_Display',
     'entity' => 'SearchDisplay',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -67,7 +68,7 @@ return [
         'saved_search_id.name' => 'Investor_Representatives',
         'type' => 'table',
         'settings' => [
-          'description' => NULL,
+          'description' => E::ts(NULL),
           'sort' => [
             [
               'Contact_RelationshipCache_Contact_01.near_contact_id.sort_name',
@@ -86,6 +87,21 @@ return [
           'headerCount' => TRUE,
           'toggleColumns' => FALSE,
           'columns' => [
+            [
+              'type' => 'field',
+              'key' => 'Contact_RelationshipCache_Contact_01.near_contact_id.sort_name',
+              'label' => E::ts('Investor Name'),
+              'sortable' => TRUE,
+              'link' => [
+                'path' => '',
+                'entity' => 'Contact',
+                'action' => 'view',
+                'join' => 'Contact_RelationshipCache_Contact_01.near_contact_id',
+                'target' => '_blank',
+                'task' => '',
+              ],
+              'title' => E::ts('View Investor'),
+            ],
             [
               'type' => 'field',
               'key' => 'sort_name',
@@ -124,22 +140,7 @@ return [
               'key' => 'Investment_Focus.Role:label',
               'label' => E::ts('Role​ (Representative)'),
               'sortable' => TRUE,
-              'title' => NULL,
-            ],
-            [
-              'type' => 'field',
-              'key' => 'Contact_RelationshipCache_Contact_01.near_contact_id.sort_name',
-              'label' => E::ts('Investor Name'),
-              'sortable' => TRUE,
-              'link' => [
-                'path' => '',
-                'entity' => 'Contact',
-                'action' => 'view',
-                'join' => 'Contact_RelationshipCache_Contact_01.near_contact_id',
-                'target' => '_blank',
-                'task' => '',
-              ],
-              'title' => E::ts('View Investor'),
+              'title' => E::ts(NULL),
             ],
             [
               'type' => 'field',
@@ -171,7 +172,185 @@ return [
               'label' => E::ts('Investor Type​ (Investor)'),
               'sortable' => TRUE,
             ],
+            [
+              'type' => 'field',
+              'key' => 'Contact_RelationshipCache_Contact_01.Activity_related.Trusted_Investor_Network_TIN_',
+              'label' => E::ts('Trusted Investor Network'),
+              'sortable' => TRUE,
+            ],
           ],
+        ],
+      ],
+      'match' => [
+        'saved_search_id',
+        'name',
+      ],
+    ],
+  ],
+  [
+    'name' => 'SavedSearch_Engagement_Cases',
+    'entity' => 'SavedSearch',
+    'cleanup' => 'unused',
+    'update' => 'always',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'name' => 'Engagement_Cases',
+        'label' => E::ts('Engagement Cases'),
+        'api_entity' => 'Case',
+        'api_params' => [
+          'version' => 4,
+          'select' => [
+            'Client_Roles.Investor.sort_name',
+            'Client_Roles.EIC_Awardee.sort_name',
+            'subject',
+            'Case_CaseContact_Contact_01.General_Company_Info.Preferred_Stages:label',
+            'Case_CaseContact_Contact_01.General_Company_Info.Relevant_Verticals:label',
+            'Case_CaseContact_Contact_01.General_Company_Info.Geographical_Focus:label',
+            'Case_CaseContact_Contact_01.Activity_related.Trusted_Investor_Network_TIN_',
+            'status_id:label',
+          ],
+          'orderBy' => [],
+          'where' => [
+            [
+              'case_type_id:name',
+              '=',
+              'eic_engagement',
+            ],
+          ],
+          'groupBy' => [],
+          'join' => [
+            [
+              'Contact AS Case_CaseContact_Contact_01',
+              'LEFT',
+              'CaseContact',
+              [
+                'id',
+                '=',
+                'Case_CaseContact_Contact_01.case_id',
+              ],
+              [
+                'Case_CaseContact_Contact_01.contact_sub_type:name',
+                'CONTAINS',
+                ['Investor'],
+              ],
+            ],
+          ],
+          'having' => [],
+        ],
+      ],
+      'match' => ['name'],
+    ],
+  ],
+  [
+    'name' => 'SavedSearch_Engagement_Cases_SearchDisplay_Engagement_Cases_Display',
+    'entity' => 'SearchDisplay',
+    'cleanup' => 'unused',
+    'update' => 'always',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'name' => 'Engagement_Cases_Display',
+        'label' => E::ts('Engagement Cases Display'),
+        'saved_search_id.name' => 'Engagement_Cases',
+        'type' => 'table',
+        'settings' => [
+          'description' => E::ts(''),
+          'sort' => [
+            [
+              'Client_Roles.Investor.sort_name',
+              'ASC',
+            ],
+            [
+              'Client_Roles.EIC_Awardee.sort_name',
+              'ASC',
+            ],
+          ],
+          'limit' => 50,
+          'pager' => [],
+          'placeholder' => 5,
+          'actions' => FALSE,
+          'classes' => ['table', 'table-striped'],
+          'columnMode' => 'custom',
+          'columns' => [
+            [
+              'type' => 'field',
+              'key' => 'Client_Roles.Investor.sort_name',
+              'label' => E::ts('Investor'),
+              'sortable' => TRUE,
+              'link' => [
+                'path' => '',
+                'entity' => 'Organization',
+                'action' => 'view',
+                'join' => 'Client_Roles.Investor',
+                'target' => '_blank',
+                'task' => '',
+              ],
+              'title' => E::ts('View Investor'),
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Client_Roles.EIC_Awardee.sort_name',
+              'label' => E::ts('EIC Awardee'),
+              'sortable' => TRUE,
+              'link' => [
+                'path' => '',
+                'entity' => 'Organization',
+                'action' => 'view',
+                'join' => 'Client_Roles.EIC_Awardee',
+                'target' => '_blank',
+                'task' => '',
+              ],
+              'title' => E::ts('View EIC Awardee'),
+            ],
+            [
+              'type' => 'field',
+              'key' => 'subject',
+              'label' => E::ts('Case Subject'),
+              'sortable' => TRUE,
+              'link' => [
+                'path' => '',
+                'entity' => 'Case',
+                'action' => 'view',
+                'join' => '',
+                'target' => '_blank',
+                'task' => '',
+              ],
+              'title' => E::ts('View Case'),
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Case_CaseContact_Contact_01.Activity_related.Trusted_Investor_Network_TIN_',
+              'label' => E::ts('Trusted Investor Network'),
+              'sortable' => TRUE,
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Case_CaseContact_Contact_01.General_Company_Info.Geographical_Focus:label',
+              'label' => E::ts('Geographical Focus'),
+              'sortable' => TRUE,
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Case_CaseContact_Contact_01.General_Company_Info.Preferred_Stages:label',
+              'label' => E::ts('Preferred Stages'),
+              'sortable' => TRUE,
+            ],
+            [
+              'type' => 'field',
+              'key' => 'Case_CaseContact_Contact_01.General_Company_Info.Relevant_Verticals:label',
+              'label' => E::ts('Relevant Verticals'),
+              'sortable' => TRUE,
+            ],
+            [
+              'type' => 'field',
+              'key' => 'status_id:label',
+              'label' => E::ts('Case Status'),
+              'sortable' => TRUE,
+            ],
+          ],
+          'button' => 'Search',
+          'headerCount' => TRUE,
         ],
       ],
       'match' => [
