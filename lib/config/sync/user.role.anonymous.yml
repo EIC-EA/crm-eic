@@ -1,11 +1,14 @@
 uuid: ce5998dc-eced-4eb8-89b4-6e4febc5af3f
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - civicrm
 _core:
   default_config_hash: xLG41YbRo2NP-0SgRNTkMzLEuaeibanGXgUTbdIcIIg
 id: anonymous
 label: 'Anonymous user'
 weight: 0
 is_admin: false
-permissions: {  }
+permissions:
+  - 'access postactivity endpoint'

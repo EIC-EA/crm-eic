@@ -1,0 +1,14 @@
+uuid: 3af3109a-b6fe-47fd-8c2d-7f64b210929a
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.eic_staff
+  module:
+    - user
+id: user_add_role_action.eic_staff
+label: 'Add the EIC Staff role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: eic_staff

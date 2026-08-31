@@ -1,0 +1,14 @@
+uuid: 9dfef167-fc92-4004-8f94-d3034d9e3461
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.eic_staff
+  module:
+    - user
+id: user_remove_role_action.eic_staff
+label: 'Remove the EIC Staff role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: eic_staff
