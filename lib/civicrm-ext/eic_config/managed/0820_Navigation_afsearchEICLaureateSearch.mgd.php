@@ -3,21 +3,21 @@ use CRM_EicConfig_ExtensionUtil as E;
 
 return [
   [
-    'name' => 'Navigation_afsearchEICAwardeesRepresentativesSearch',
+    'name' => 'Navigation_afsearchEICLaureateSearch',
     'entity' => 'Navigation',
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
-        'label' => E::ts('EIC Awardees representatives'),
-        'name' => 'afsearchEICAwardeesRepresentativesSearch',
-        'url' => 'civicrm/EICAwardeesRepresentatives',
-        'icon' => 'crm-i fa-person',
+        'label' => E::ts('EIC Awardees Organisation'),
+        'name' => 'afsearchEICLaureateSearch',
+        'url' => 'civicrm/EICAwardees',
+        'icon' => 'crm-i fa-medal',
         'permission' => ['access CiviCRM'],
         'permission_operator' => 'AND',
-        'parent_id.name' => 'Find Contacts',
-        'weight' => 1,
+        'parent_id.name' => 'Search',
+        'weight' => 5,
       ],
       'match' => ['name', 'domain_id'],
     ],
