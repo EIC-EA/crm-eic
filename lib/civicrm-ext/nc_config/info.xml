@@ -52,8 +52,14 @@
     <mixin>setting-php@1.0.0</mixin>
     <mixin>smarty@1.0.3</mixin>
   </mixins>
+  <upgrader>CRM_NcConfig_Upgrader</upgrader>
   <requires>
     <ext>civi_case</ext>
+    <ext>civi_report</ext>
     <ext>eic_config</ext>
+    <ext>de.systopia.xcm</ext>
+    <ext>form-processor</ext>
+    <ext>advimport</ext>
+    <ext>advimportformprocessor</ext>
   </requires>
 </extension>
