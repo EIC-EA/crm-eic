@@ -131,6 +131,7 @@ RUN	composer install && \
 COPY docker/php/web/sites/default/settings.php /opt/drupal/web/sites/default/settings.php
 COPY docker/php/web/sites/default/civicrm.settings.php /opt/drupal/web/sites/default/civicrm.settings.php
 COPY docker/php/docker.ini /usr/local/etc/php/conf.d/zzz_docker.ini
+COPY docker/php/deploy.sh /opt/drupal/deploy.sh
 
 COPY lib/civicrm-ext /opt/drupal/civicrm-ext/
 # COPY lib/drupal-modules /opt/drupal/web/modules/custom/
