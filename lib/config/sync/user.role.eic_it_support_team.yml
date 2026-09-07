@@ -4,6 +4,9 @@ status: true
 dependencies:
   module:
     - civicrm
+    - comment
+    - contextual
+    - file
 id: eic_it_support_team
 label: 'EIC IT Support team'
 weight: 5
@@ -16,7 +19,9 @@ permissions:
   - 'access all cases and activities'
   - 'access all custom data'
   - 'access contact reference fields'
+  - 'access contextual links'
   - 'access deleted contacts'
+  - 'access files overview'
   - 'access uploaded files'
   - 'add cases'
   - 'add contact notes'
@@ -34,6 +39,9 @@ permissions:
   - 'edit all contacts'
   - 'edit groups'
   - 'edit my contact'
+  - 'edit own api keys'
+  - 'edit own comments'
+  - 'export own manual batches'
   - 'force merge duplicate contacts'
   - 'manage own afform'
   - 'manage own search_kit'

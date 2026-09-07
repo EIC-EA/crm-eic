@@ -7,7 +7,7 @@ return [
     'name' => 'CaseType_eic_investor_onboarding',
     'entity' => 'CaseType',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -132,7 +132,7 @@ return [
     'name' => 'CaseType_eic_engagement',
     'entity' => 'CaseType',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -230,7 +230,7 @@ return [
     'name' => 'CaseType_eic_vm_beneficiary_onboarding',
     'entity' => 'CaseType',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -355,7 +355,7 @@ return [
     'name' => 'CaseType_eic_vm_beneficiary_support',
     'entity' => 'CaseType',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -400,7 +400,17 @@ return [
                   'reference_offset' => '1',
                   'reference_select' => 'newest',
                   'default_assignee_type' => '1',
-                  'default_subject' => 'Beneficiary Support Task',
+                  'default_subject' => 'Planning',
+                ],
+                [
+                  'name' => 'Task',
+                  'label' => E::ts('Task'),
+                  'status' => 'Scheduled',
+                  'reference_activity' => 'Task',
+                  'reference_offset' => '1',
+                  'reference_select' => 'newest',
+                  'default_assignee_type' => '1',
+                  'default_subject' => 'Execution',
                 ],
               ],
             ],
@@ -414,7 +424,17 @@ return [
               'reference_offset' => '1',
               'reference_select' => 'newest',
               'default_assignee_type' => '1',
-              'default_subject' => 'Beneficiary Support Task',
+              'default_subject' => 'Planning',
+            ],
+            [
+              'name' => 'Task',
+              'label' => E::ts('Task'),
+              'status' => 'Scheduled',
+              'reference_activity' => 'Task',
+              'reference_offset' => '1',
+              'reference_select' => 'newest',
+              'default_assignee_type' => '1',
+              'default_subject' => 'Execution',
             ],
           ],
           'caseRoles' => [

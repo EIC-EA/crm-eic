@@ -8,6 +8,15 @@ login:
   administrator:
     redirect_url: /civicrm
     weight: '-10'
+  bas_contractor:
+    redirect_url: /civicrm
+    weight: '-10'
+  eic_it_support_team:
+    redirect_url: /civicrm
+    weight: '-10'
+  eic_staff:
+    redirect_url: /civicrm
+    weight: '-10'
 logout:
   authenticated:
     redirect_url: ''
@@ -16,6 +25,15 @@ logout:
     redirect_url: ''
     weight: '-10'
   administrator:
+    redirect_url: ''
+    weight: '-10'
+  bas_contractor:
+    redirect_url: ''
+    weight: '-10'
+  eic_it_support_team:
+    redirect_url: ''
+    weight: '-10'
+  eic_staff:
     redirect_url: ''
     weight: '-10'
 ignore:
