@@ -1,0 +1,791 @@
+{
+    "title": "EIC Investor Import",
+    "name": "eic_investor_import",
+    "is_active": "1",
+    "description": "This FormProcessor imports investors from an XLSX file. Do NOT use for Investor Onboarding from EU Survey. This FormProcessor does not create an onboarding case.",
+    "output_handler": "OutputAllActionOutput",
+    "output_handler_configuration": [],
+    "enable_default_data": "0",
+    "default_data_output_configuration": [],
+    "calculation_output_configuration": [],
+    "permission": "",
+    "inputs": [
+        {
+            "weight": "1",
+            "include_formatted_params": "0",
+            "title": "First name",
+            "name": "eic_fp_inv_first_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "2",
+            "include_formatted_params": "0",
+            "title": "Last name",
+            "name": "eic_fp_inv_last_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "3",
+            "include_formatted_params": "0",
+            "title": "Role",
+            "name": "eic_fp_inv_role",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "4",
+            "include_formatted_params": "0",
+            "title": "E-mail",
+            "name": "eic_fp_inv_email",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "5",
+            "include_formatted_params": "0",
+            "title": "Organisation name",
+            "name": "eic_fp_inv_org_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "6",
+            "include_formatted_params": "0",
+            "title": "Organisation website",
+            "name": "eic_fp_inv_org_website",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "7",
+            "include_formatted_params": "0",
+            "title": "Investor type",
+            "name": "eic_fp_inv_investor_type",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "8",
+            "include_formatted_params": "0",
+            "title": "Preferred stages",
+            "name": "eic_fp_inv_preferred_stages",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "9",
+            "include_formatted_params": "0",
+            "title": "Relevant verticals",
+            "name": "eic_fp_inv_relevant_verticals",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "10",
+            "include_formatted_params": "0",
+            "title": "Regional focus",
+            "name": "eic_fp_inv_regional_focus",
+            "type": "Text",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "11",
+            "include_formatted_params": "0",
+            "title": "Ticket size range",
+            "name": "eic_fp_inv_ticket_size_range",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "12",
+            "include_formatted_params": "0",
+            "title": "Current fund size",
+            "name": "eic_fp_inv_current_fund_size",
+            "type": "Integer",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "13",
+            "include_formatted_params": "0",
+            "title": "Dry powder",
+            "name": "eic_fp_inv_dry_powder",
+            "type": "Integer",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "14",
+            "include_formatted_params": "0",
+            "title": "Vintage year",
+            "name": "eic_fp_inv_vintage_year",
+            "type": "Date",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "format": "Y",
+                "include_time": "0"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "15",
+            "include_formatted_params": "0",
+            "title": "Software products",
+            "name": "eic_fp_inv_software_products",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "16",
+            "include_formatted_params": "0",
+            "title": "Rounds lead",
+            "name": "eic_fp_inv_rounds_lead",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "No",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "17",
+            "include_formatted_params": "0",
+            "title": "Trusted Investor Network",
+            "name": "eic_fp_inv_trusted_investor_network",
+            "type": "Boolean",
+            "is_required": "0",
+            "default_value": "No",
+            "configuration": {
+                "return_as": "boolean"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "18",
+            "include_formatted_params": "0",
+            "title": "Number of investments made in the last 2 years",
+            "name": "eic_fp_inv_number_of_investments_made_in_the_last_2_years",
+            "type": "Integer",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "19",
+            "include_formatted_params": "0",
+            "title": "Co-investments with public sector",
+            "name": "eic_fp_inv_co_investments_with_public_sector",
+            "type": "Boolean",
+            "is_required": "0",
+            "default_value": "No",
+            "configuration": {
+                "return_as": "boolean"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "20",
+            "include_formatted_params": "0",
+            "title": "Comments",
+            "name": "eic_fp_inv_comments",
+            "type": "Text",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        }
+    ],
+    "actions": {
+        "0": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Software Focus",
+            "name": "get_software_focus",
+            "type": "MapValue",
+            "configuration": {
+                "json_mapping": "{\"Both\": \"Hardware;Software\"}",
+                "not_found": "keep"
+            },
+            "mapping": {
+                "input_value": [
+                    "input.eic_fp_inv_software_products"
+                ]
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "1": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Software Focus List",
+            "name": "get_software_focus_list",
+            "type": "ExplodeList",
+            "configuration": {
+                "separator": ";"
+            },
+            "mapping": {
+                "value": "action.get_software_focus.value"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "2": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Regional Focus List",
+            "name": "get_regional_focus_list",
+            "type": "ExplodeList",
+            "configuration": {
+                "separator": ","
+            },
+            "mapping": {
+                "value": "input.eic_fp_inv_regional_focus"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "4": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Relevant Verticals List",
+            "name": "get_relevant_verticals_list",
+            "type": "ExplodeList",
+            "configuration": {
+                "separator": ","
+            },
+            "mapping": {
+                "value": "input.eic_fp_inv_relevant_verticals"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "5": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Preferred Stages List",
+            "name": "get_preferred_stages_list",
+            "type": "ExplodeList",
+            "configuration": {
+                "separator": ","
+            },
+            "mapping": {
+                "value": "input.eic_fp_inv_preferred_stages"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "6": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Ticket Size Range List",
+            "name": "get_ticket_size_range_list",
+            "type": "ExplodeList",
+            "configuration": {
+                "separator": ","
+            },
+            "mapping": {
+                "value": "input.eic_fp_inv_ticket_size_range"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "7": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Lead Rounds",
+            "name": "lead_rounds",
+            "type": "MapValue",
+            "configuration": {
+                "json_mapping": "{\"FP\": 0, \"Yes\": 1, \"No\": 0}",
+                "not_found": "delete"
+            },
+            "mapping": {
+                "input_value": [
+                    "input.eic_fp_inv_rounds_lead"
+                ]
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "8": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Is Financial Partner",
+            "name": "is_financial_partner",
+            "type": "MapValue",
+            "configuration": {
+                "json_mapping": "{\"FP\": 1, \"Yes\": 0, \"No\": 0}",
+                "not_found": "delete"
+            },
+            "mapping": {
+                "input_value": [
+                    "input.eic_fp_inv_rounds_lead"
+                ]
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "9": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get domain from website",
+            "name": "get_domain_from_website",
+            "type": "RegexReplaceValue",
+            "configuration": {
+                "regex_find": "\/^(?:[a-zA-Z][a-zA-Z\\d+\\-.]*:\\\/\\\/)?(?:[^\\\/?#@]+@)?(?:www\\.)?([^\\\/?#:]+).*$\/",
+                "regex_replace": "$1",
+                "replace_count": "-1"
+            },
+            "mapping": {
+                "input_value": "input.eic_fp_inv_org_website"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "10": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Website Normalizer",
+            "name": "website_normalizer",
+            "type": "RegexReplaceValue",
+            "configuration": {
+                "regex_find": "\/^(?!https?:\\\/\\\/)(.*)$\/",
+                "regex_replace": "https:\/\/$1",
+                "replace_count": "-1"
+            },
+            "mapping": {
+                "input_value": "input.eic_fp_inv_org_website"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "11": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Create or Update Investor Representative",
+            "name": "create_or_update_investor_representative",
+            "type": "XcmGetOrCreate",
+            "configuration": {
+                "xcm_profile": "investor_representative",
+                "contact_type": "Investor_Representative",
+                "variable_target_1": "",
+                "variable_target_2": ""
+            },
+            "mapping": {
+                "display_name": "",
+                "household_name": "",
+                "organization_name": "",
+                "first_name": "input.eic_fp_inv_first_name",
+                "last_name": "input.eic_fp_inv_last_name",
+                "middle_name": "",
+                "nick_name": "",
+                "legal_name": "",
+                "prefix_id": "",
+                "suffix_id": "",
+                "birth_date": "",
+                "gender_id": "",
+                "formal_title": "",
+                "job_title": "",
+                "do_not_email": "",
+                "do_not_mail": "",
+                "do_not_phone": "",
+                "do_not_sms": "",
+                "do_not_trade": "",
+                "is_opt_out": "",
+                "preferred_language": "",
+                "preferred_communication_method": "",
+                "legal_identifier": "",
+                "external_identifier": "",
+                "custom_EIC_Awardee_representative_eulogin": "",
+                "custom_EIC_Organisation_identifiers_SMEDId": "",
+                "custom_EIC_Organisation_identifiers_PIC": "",
+                "custom_EIC_Awardee_Additionnal_Information_Program": "",
+                "custom_EIC_Awardee_Additionnal_Information_Research_organisation": "",
+                "custom_EIC_Awardee_Additionnal_Information_Large_research_infrastructure": "",
+                "custom_EIC_Awardee_Additionnal_Information_Non_profit_organisation": "",
+                "custom_EIC_Awardee_Additionnal_Information_Public_body": "",
+                "custom_EIC_Awardee_Additionnal_Information_International_organisation": "",
+                "custom_EIC_Awardee_Additionnal_Information_European_interest": "",
+                "custom_EIC_Awardee_Additionnal_Information_Legal_status": "",
+                "custom_EIC_Awardee_Additionnal_Information_SME_vs_mid_cap_status": "",
+                "custom_EIC_Awardee_Additionnal_Information_SME_status_type": "",
+                "custom_EIC_Awardee_Additionnal_Information_higher_or_secondary_education_establishment": "",
+                "custom_EIC_Awardee_Additionnal_Information_Legal_personality": "",
+                "custom_Financial_information_Funds_Vintage_Year": "",
+                "custom_Financial_information_Ticket_Size_Range_": [],
+                "custom_Financial_information_Estimated_Dry_Powder_": "",
+                "custom_Financial_information_Current_Fund_Size_": "",
+                "custom_Investment_Focus_Preferred_Stages": [
+                    "action.get_preferred_stages_list.value"
+                ],
+                "custom_Investment_Focus_Relevant_Verticals": [
+                    "action.get_relevant_verticals_list.value"
+                ],
+                "custom_Investment_Focus_Role": [
+                    "input.eic_fp_inv_role"
+                ],
+                "custom_Investment_Focus_Geographical_Focus": [
+                    "action.get_regional_focus_list.value"
+                ],
+                "custom_Activity_related_Onboarded": "",
+                "custom_Activity_related_Trusted_Investor_Network_TIN_": "",
+                "custom_General_Company_Info_Investor_Type": [],
+                "custom_General_Company_Info_Preferred_Stages": [],
+                "custom_General_Company_Info_Relevant_Verticals": [],
+                "custom_General_Company_Info_Geographical_Focus": [],
+                "custom_General_Company_Info_Software_Focus": "",
+                "custom_General_Company_Info_Investment_Lead_Role": "",
+                "custom_General_Company_Info_Co_investments_with_public_sector": "",
+                "custom_General_Company_Info__of_investments_made_in_vertical_in_the_last_2_years": "",
+                "custom_General_Company_Info_Financial_Partner": "",
+                "custom_EIC_Organisation_identifiers_Company_Domain_Name": "",
+                "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "",
+                "custom_EU_Survey_Company_Data_Founder_Gender": "",
+                "contact_type": "",
+                "id": "",
+                "source": "",
+                "email": "input.eic_fp_inv_email",
+                "phone": "",
+                "phone2": "",
+                "phone3": "",
+                "website": "",
+                "name": "",
+                "location_type_id": "",
+                "phone_type_id": "",
+                "provider_id": "",
+                "website_type_id": "",
+                "supplemental_address_1": "",
+                "supplemental_address_2": "",
+                "supplemental_address_3": "",
+                "street_address": "",
+                "city": "",
+                "postal_code": "",
+                "state_province_id": "",
+                "county_id": "",
+                "country_id": "",
+                "is_billing": "",
+                "variable_value_1": "",
+                "variable_value_2": ""
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "12": {
+            "pid": "0",
+            "conditional_processing_group": "1",
+            "title": "Create note for investor representative",
+            "name": "create_note_for_investor_representative",
+            "type": "__conditional_processing_group__",
+            "configuration": [],
+            "mapping": [],
+            "condition_configuration": [
+                {
+                    "name": "ParameterIsNotEmpty",
+                    "configuration": [],
+                    "parameter_mapping": {
+                        "parameter": "action.create_or_update_investor_representative.contact_id"
+                    },
+                    "description": "Investor Representative Exists",
+                    "link": "and"
+                },
+                {
+                    "name": "ParameterIsNotEmpty",
+                    "configuration": [],
+                    "parameter_mapping": {
+                        "parameter": "input.eic_fp_inv_comments"
+                    },
+                    "description": "Note Exists",
+                    "link": "and"
+                }
+            ],
+            "delay_configuration": "",
+            "actions": [
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Investor Representative - Create Note",
+                    "name": "investor_representative_create_note",
+                    "type": "ContactCreateNote",
+                    "configuration": [],
+                    "mapping": {
+                        "contact_id": "action.create_or_update_investor_representative.contact_id",
+                        "note": "input.eic_fp_inv_comments",
+                        "subject": "",
+                        "note_date": ""
+                    },
+                    "condition_configuration": "",
+                    "delay_configuration": ""
+                }
+            ]
+        },
+        "13": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Create or Update Investor",
+            "name": "create_or_replace_investor",
+            "type": "XcmGetOrCreate",
+            "configuration": {
+                "xcm_profile": "eu_survey_investor",
+                "contact_type": "Investor",
+                "variable_target_1": "",
+                "variable_target_2": ""
+            },
+            "mapping": {
+                "display_name": "",
+                "household_name": "",
+                "organization_name": "input.eic_fp_inv_org_name",
+                "first_name": "",
+                "last_name": "",
+                "middle_name": "",
+                "nick_name": "",
+                "legal_name": "",
+                "prefix_id": "",
+                "suffix_id": "",
+                "birth_date": "",
+                "gender_id": "",
+                "formal_title": "",
+                "job_title": "",
+                "do_not_email": "",
+                "do_not_mail": "",
+                "do_not_phone": "",
+                "do_not_sms": "",
+                "do_not_trade": "",
+                "is_opt_out": "",
+                "preferred_language": "",
+                "preferred_communication_method": "",
+                "legal_identifier": "",
+                "external_identifier": "",
+                "custom_EIC_Awardee_representative_eulogin": "",
+                "custom_EIC_Organisation_identifiers_SMEDId": "",
+                "custom_EIC_Organisation_identifiers_PIC": "",
+                "custom_EIC_Awardee_Additionnal_Information_Program": "",
+                "custom_EIC_Awardee_Additionnal_Information_Research_organisation": "",
+                "custom_EIC_Awardee_Additionnal_Information_Large_research_infrastructure": "",
+                "custom_EIC_Awardee_Additionnal_Information_Non_profit_organisation": "",
+                "custom_EIC_Awardee_Additionnal_Information_Public_body": "",
+                "custom_EIC_Awardee_Additionnal_Information_International_organisation": "",
+                "custom_EIC_Awardee_Additionnal_Information_European_interest": "",
+                "custom_EIC_Awardee_Additionnal_Information_Legal_status": "",
+                "custom_EIC_Awardee_Additionnal_Information_SME_vs_mid_cap_status": "",
+                "custom_EIC_Awardee_Additionnal_Information_SME_status_type": "",
+                "custom_EIC_Awardee_Additionnal_Information_higher_or_secondary_education_establishment": "",
+                "custom_EIC_Awardee_Additionnal_Information_Legal_personality": "",
+                "custom_Financial_information_Funds_Vintage_Year": "input.eic_fp_inv_vintage_year",
+                "custom_Financial_information_Ticket_Size_Range_": [
+                    "action.get_ticket_size_range_list.value"
+                ],
+                "custom_Financial_information_Estimated_Dry_Powder_": "input.eic_fp_inv_dry_powder",
+                "custom_Financial_information_Current_Fund_Size_": "input.eic_fp_inv_current_fund_size",
+                "custom_Investment_Focus_Preferred_Stages": [],
+                "custom_Investment_Focus_Relevant_Verticals": [],
+                "custom_Investment_Focus_Role": [],
+                "custom_Investment_Focus_Geographical_Focus": [],
+                "custom_Activity_related_Onboarded": "",
+                "custom_Activity_related_Trusted_Investor_Network_TIN_": "input.eic_fp_inv_trusted_investor_network",
+                "custom_General_Company_Info_Investor_Type": [
+                    "input.eic_fp_inv_investor_type"
+                ],
+                "custom_General_Company_Info_Preferred_Stages": [
+                    "action.get_preferred_stages_list.value"
+                ],
+                "custom_General_Company_Info_Relevant_Verticals": [
+                    "action.get_relevant_verticals_list.value"
+                ],
+                "custom_General_Company_Info_Geographical_Focus": [
+                    "action.get_regional_focus_list.value"
+                ],
+                "custom_General_Company_Info_Software_Focus": [
+                    "action.get_software_focus_list.value"
+                ],
+                "custom_General_Company_Info_Investment_Lead_Role": "action.lead_rounds.value",
+                "custom_General_Company_Info_Co_investments_with_public_sector": "input.eic_fp_inv_co_investments_with_public_sector",
+                "custom_General_Company_Info__of_investments_made_in_vertical_in_the_last_2_years": "input.eic_fp_inv_number_of_investments_made_in_the_last_2_years",
+                "custom_General_Company_Info_Financial_Partner": "action.is_financial_partner.value",
+                "custom_EIC_Organisation_identifiers_Company_Domain_Name": "action.get_domain_from_website.value",
+                "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "",
+                "custom_EU_Survey_Company_Data_Founder_Gender": "",
+                "contact_type": "",
+                "id": "",
+                "source": "",
+                "email": "",
+                "phone": "",
+                "phone2": "",
+                "phone3": "",
+                "website": "action.website_normalizer.value",
+                "name": "",
+                "location_type_id": "",
+                "phone_type_id": "",
+                "provider_id": "",
+                "website_type_id": "",
+                "supplemental_address_1": "",
+                "supplemental_address_2": "",
+                "supplemental_address_3": "",
+                "street_address": "",
+                "city": "",
+                "postal_code": "",
+                "state_province_id": "",
+                "county_id": "",
+                "country_id": "",
+                "is_billing": "",
+                "variable_value_1": "",
+                "variable_value_2": ""
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "14": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Update organisation website",
+            "name": "update_organisation_website",
+            "type": "CreateUpdateWebsite",
+            "configuration": {
+                "website_type": "2"
+            },
+            "mapping": {
+                "contact_id": "action.create_or_replace_investor.contact_id",
+                "url": "action.website_normalizer.value"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "15": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Link representative with investor",
+            "name": "link_representative_with_investor",
+            "type": "CreateOrUpdateRelationship",
+            "configuration": {
+                "relationship_type_id": "Investor at",
+                "set_start_date": "0",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "also_update_inactive": "0"
+            },
+            "mapping": {
+                "relationship_type_id": "",
+                "contact_id_a": "action.create_or_update_investor_representative.contact_id",
+                "contact_id_b": "action.create_or_replace_investor.contact_id",
+                "start_date": "",
+                "end_date": "",
+                "description": "",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "case_id": "",
+                "custom_EIC_Horizon_europe_Relationship_Horizon_Europe_Project": ""
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        }
+    },
+    "default_data_inputs": [],
+    "default_data_actions": [],
+    "validate_actions": [],
+    "validate_validators": [],
+    "calculate_actions": [],
+    "calculations_configuration_url": "http:\/\/localhost:8080\/civicrm\/admin\/automation\/formprocessor\/calculationconfiguration?action=update&reset=1&id=9"
+}

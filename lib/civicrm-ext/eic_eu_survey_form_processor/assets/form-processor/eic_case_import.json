@@ -1,0 +1,254 @@
+{
+    "title": "EIC Case Import",
+    "name": "eic_case_import",
+    "is_active": "1",
+    "description": "This FormProcessor creates a case and sets the case title to `EIC Awardee Onboarding`.\r\n\r\nIt will link a company by its `PIC Number` as client to the newly created case.\r\n\r\nLater on, when EU Survey data is being imported:\r\n\r\n- An organisation's `PIC Number` can be used to identitfy the organisation belonging to the case.\r\n\r\n- The case title can be used to identify the proper case as a company may have more than one case it is a client of.",
+    "output_handler": "OutputAllActionOutput",
+    "output_handler_configuration": [],
+    "enable_default_data": "0",
+    "default_data_output_configuration": [],
+    "calculation_output_configuration": [],
+    "permission": "",
+    "inputs": [
+        {
+            "weight": "1",
+            "include_formatted_params": "0",
+            "title": "Organisation PIC number",
+            "name": "org_pic_number",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "2",
+            "include_formatted_params": "0",
+            "title": "Company Website",
+            "name": "org_website",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        }
+    ],
+    "actions": {
+        "0": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Placeholder Case-Id",
+            "name": "get_placeholder_case_id",
+            "type": "SetValue",
+            "configuration": {
+                "value": "NOOP"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "2": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Case Title: EIC Awardee Onboarding",
+            "name": "get_case_title_awardee_onboarding",
+            "type": "SetValue",
+            "configuration": {
+                "value": "EIC Awardee Onboarding"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "4": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Beneficiary Company by PIC number or website",
+            "name": "get_beneficiary_company_by_pic_number_or_website",
+            "type": "XcmGetOrCreate",
+            "configuration": {
+                "xcm_profile": "eu_survey_company",
+                "contact_type": "Organization",
+                "variable_target_1": "",
+                "variable_target_2": ""
+            },
+            "mapping": {
+                "display_name": "",
+                "household_name": "",
+                "organization_name": "",
+                "first_name": "",
+                "last_name": "",
+                "middle_name": "",
+                "nick_name": "",
+                "legal_name": "",
+                "prefix_id": "",
+                "suffix_id": "",
+                "birth_date": "",
+                "gender_id": "",
+                "formal_title": "",
+                "job_title": "",
+                "do_not_email": "",
+                "do_not_mail": "",
+                "do_not_phone": "",
+                "do_not_sms": "",
+                "do_not_trade": "",
+                "is_opt_out": "",
+                "preferred_language": "",
+                "preferred_communication_method": "",
+                "legal_identifier": "",
+                "external_identifier": "input.org_pic_number",
+                "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "",
+                "custom_EU_Survey_Company_Data_Founder_Gender": "",
+                "contact_type": "",
+                "id": "",
+                "source": "",
+                "email": "",
+                "phone": "",
+                "phone2": "",
+                "phone3": "",
+                "website": "input.org_website",
+                "name": "",
+                "location_type_id": "",
+                "phone_type_id": "",
+                "provider_id": "",
+                "website_type_id": "",
+                "supplemental_address_1": "",
+                "supplemental_address_2": "",
+                "supplemental_address_3": "",
+                "street_address": "",
+                "city": "",
+                "postal_code": "",
+                "state_province_id": "",
+                "county_id": "",
+                "country_id": "",
+                "is_billing": "",
+                "variable_value_1": "",
+                "variable_value_2": ""
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "5": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find EU-Survey Case by title and PIC number",
+            "name": "find_eu_survey_case_by_title_and_pic_number_2",
+            "type": "GetCaseDataByCustomField",
+            "configuration": [],
+            "mapping": {
+                "custom_EIC_Project_EIC_Title": "action.get_case_title_awardee_onboarding.value",
+                "custom_EIC_Project_Organisation_PIC_number": "input.org_pic_number"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "input.org_pic_number"
+                },
+                "output_mapping": {
+                    "type_id": "",
+                    "subject": "",
+                    "start_date": "",
+                    "end_date": "",
+                    "details": "",
+                    "status_id": "",
+                    "is_deleted": "",
+                    "created_date": "",
+                    "modified_date": "",
+                    "id": "",
+                    "contact_id": "",
+                    "activity_id": "",
+                    "tag_id": "",
+                    "custom_EIC_Project_EIC_Title": "",
+                    "custom_EIC_Project_Organisation_PIC_number": ""
+                }
+            },
+            "delay_configuration": ""
+        },
+        "6": {
+            "pid": "0",
+            "conditional_processing_group": "1",
+            "title": "Create Case if not exists already",
+            "name": "create_cases_if_pic_number_is_available",
+            "type": "__conditional_processing_group__",
+            "configuration": [],
+            "mapping": [],
+            "condition_configuration": [
+                {
+                    "name": "ParameterIsNotEmpty",
+                    "configuration": [],
+                    "parameter_mapping": {
+                        "parameter": "input.org_pic_number"
+                    },
+                    "description": "Pic Number is Available",
+                    "link": "and"
+                },
+                {
+                    "name": "ParameterIsEmpty",
+                    "configuration": [],
+                    "parameter_mapping": {
+                        "parameter": "action.find_eu_survey_case_by_title_and_pic_number_2.type_id"
+                    },
+                    "description": "EU Survey Case does not exists already",
+                    "link": "and"
+                }
+            ],
+            "delay_configuration": "",
+            "actions": [
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Create EU-Survey Case and connect to beneficiary company",
+                    "name": "create_eu_survey_case_and_connect_to_beneficiary_company",
+                    "type": "CreateCase",
+                    "configuration": {
+                        "case_type_id": "4",
+                        "subject": "EIC Awardee Onboarding",
+                        "creator_id": "",
+                        "case_status": "1"
+                    },
+                    "mapping": {
+                        "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
+                        "creator_id": "",
+                        "case_status": "",
+                        "subject": "action.get_case_title_awardee_onboarding.value",
+                        "created_date": "",
+                        "start_date": "",
+                        "end_date": "",
+                        "case_type_id": ""
+                    },
+                    "condition_configuration": "",
+                    "delay_configuration": ""
+                },
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Update PIC Number of EU Survey Case",
+                    "name": "update_pic_number_of_eu_survey_case",
+                    "type": "CaseUpdateCustomData",
+                    "configuration": [],
+                    "mapping": {
+                        "case_id": "action.create_cases_if_pic_number_is_available.create_eu_survey_case_and_connect_to_beneficiary_company.case_id",
+                        "custom_EIC_Project_EIC_Title": "action.get_case_title_awardee_onboarding.value",
+                        "custom_EIC_Project_Organisation_PIC_number": "input.org_pic_number"
+                    },
+                    "condition_configuration": "",
+                    "delay_configuration": ""
+                }
+            ]
+        }
+    },
+    "default_data_inputs": [],
+    "default_data_actions": [],
+    "validate_actions": [],
+    "validate_validators": [],
+    "calculate_actions": [],
+    "uploaded_source_file": "",
+    "calculations_configuration_url": "http://localhost/dev_eic/civicrm/admin/automation/formprocessor/calculationconfiguration?action=update&reset=1&id=4"
+}

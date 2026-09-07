@@ -2431,7 +2431,7 @@ return [
       'version' => 4,
       'values' => [
         'option_group_id.name' => 'eic_software_focus',
-        'label' => E::ts('Software-only'),
+        'label' => E::ts('Software'),
         'value' => 'software_only',
         'name' => 'Software-only',
       ],
@@ -2451,29 +2451,9 @@ return [
       'version' => 4,
       'values' => [
         'option_group_id.name' => 'eic_software_focus',
-        'label' => E::ts('Hardware-only'),
+        'label' => E::ts('Hardware'),
         'value' => 'hardware_only',
         'name' => 'Hardware-only',
-      ],
-      'match' => [
-        'option_group_id',
-        'name',
-        'value',
-      ],
-    ],
-  ],
-  [
-    'name' => 'OptionGroup_eic_software_focus_OptionValue_Both',
-    'entity' => 'OptionValue',
-    'cleanup' => 'unused',
-    'update' => 'unmodified',
-    'params' => [
-      'version' => 4,
-      'values' => [
-        'option_group_id.name' => 'eic_software_focus',
-        'label' => E::ts('Both'),
-        'value' => 'both',
-        'name' => 'Both',
       ],
       'match' => [
         'option_group_id',
@@ -2500,6 +2480,7 @@ return [
         'note_rows' => 4,
         'option_group_id.name' => 'eic_software_focus',
         "column_name" => "software_focus",
+        'serialize' => 1,
       ],
       'match' => [
         'name',

@@ -1,8 +1,0 @@
-{
-	"values": {
-		"civicaseAllowMultipleClients": "1",
-		"defaultCurrency": "EUR",
-		"logging": true,
-		"logging_all_tables_uniquid": 1
-	}
-}

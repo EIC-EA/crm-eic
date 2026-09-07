@@ -1,0 +1,213 @@
+{
+
+    "title": "EIC Default Case and Beneficiary Company",
+    "name": "eic_default_case",
+    "is_active": "1",
+    "description": "This Form Processor creates a default case that can be used to assign 'EU-Survey Data' activities to, if during EU-Survey data import an error occurs and the activity that represents the imported data cannot be added to its supposed case.\r\n\r\nThis case can be found via\r\n\r\n- PIC Number: CatchAll Beneficiary\r\n- Title: EIC Awardee Onboarding - Unmatched",
+    "output_handler": "OutputAllActionOutput",
+    "output_handler_configuration": [],
+    "enable_default_data": "0",
+    "permission": "",
+    "inputs": [],
+    "actions": [
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Catch-All Company Name",
+            "name": "get_catch_all_company_name",
+            "type": "SetValue",
+            "configuration": {
+                "value": "Catch-All Beneficiary"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Catch-All Company PIC Number",
+            "name": "get_catch_all_company_pic_number",
+            "type": "SetValue",
+            "configuration": {
+                "value": "Catch-All Beneficiary"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Catch-All Case Title",
+            "name": "get_catch_all_case_title",
+            "type": "SetValue",
+            "configuration": {
+                "value": "EIC Awardee Onboarding - Unmatched"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find Catch-All Company",
+            "name": "find_catch_all_company_contact",
+            "type": "FindByExternalId",
+            "configuration": {
+                "contact_type": "3"
+            },
+            "mapping": {
+                "external_identifier": "action.get_catch_all_company_pic_number.value"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Create Catch-All Company Contact if not exists",
+            "name": "create_catch_all_company_contact_if_not_exists",
+            "type": "CreateUpdateOrganization",
+            "configuration": {
+                "address_is_primary": "0",
+                "address_location_type": "2",
+                "address_update_existing": "0",
+                "email_is_primary": "0",
+                "email_is_bulk": "0",
+                "email_location_type": "2",
+                "email_update_existing": "0",
+                "phone_is_primary": "0",
+                "phone_location_type": "2",
+                "phone_phone_type": "2",
+                "phone_update_existing": "0"
+            },
+            "mapping": {
+                "contact_id": "",
+                "external_identifier": "action.get_catch_all_company_pic_number.value",
+                "contact_sub_type": [],
+                "organization_name": "action.get_catch_all_company_name.value",
+                "legal_name": "",
+                "nick_name": "",
+                "sic_code": "",
+                "source": "",
+                "created_date": "",
+                "do_not_mail": "",
+                "do_not_email": "",
+                "do_not_phone": "",
+                "do_not_sms": "",
+                "preferred_language": "",
+                "name": "",
+                "street_address": "",
+                "supplemental_address_1": "",
+                "supplemental_address_2": "",
+                "supplemental_address_3": "",
+                "street_name": "",
+                "street_number": "",
+                "street_unit": "",
+                "postal_code": "",
+                "city": "",
+                "state_province_id": "",
+                "country_id": "",
+                "manual_geo_code": "",
+                "latitude": "",
+                "longitude": "",
+                "email": "",
+                "phone": ""
+            },
+            "condition_configuration": {
+                "name": "ParameterIsEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_catch_all_company_contact.contact_id"
+                },
+                "output_mapping": {
+                    "contact_id": "action.find_catch_all_company_contact.contact_id",
+                    "address_id": "",
+                    "email_id": "",
+                    "phone_id": ""
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find Catch-All Case",
+            "name": "find_catch_all_case",
+            "type": "GetCaseDataByCustomField",
+            "configuration": [],
+            "mapping": {
+                "custom_EIC_Project_EIC_Title": "action.get_catch_all_case_title.value",
+                "custom_EIC_Project_Organisation_PIC_number": "action.get_catch_all_case_pic_number.value"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Create Catch-All Case if not exists",
+            "name": "create_catch_all_case_if_not_exists",
+            "type": "CreateCase",
+            "configuration": {
+                "case_type_id": "4",
+                "subject": "EIC Awardee Onboarding - Unmatched",
+                "creator_id": "",
+                "case_status": "1"
+            },
+            "mapping": {
+                "contact_id": "action.create_catch_all_company_contact_if_not_exists.contact_id",
+                "creator_id": "",
+                "case_status": "",
+                "subject": "action.get_catch_all_case_title.value",
+                "created_date": "",
+                "start_date": "",
+                "end_date": "",
+                "case_type_id": ""
+            },
+            "condition_configuration": {
+                "name": "ParameterIsEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_catch_all_case.id"
+                },
+                "output_mapping": {
+                    "case_id": ""
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Set Title and PIC number if Catch-All Case has been created",
+            "name": "set_catch_all_case_title_and_pic_number",
+            "type": "CaseUpdateCustomData",
+            "configuration": [],
+            "mapping": {
+                "case_id": "action.create_catch_all_case_if_not_exists.case_id",
+                "custom_EIC_Project_EIC_Title": "action.get_catch_all_case_title.value",
+                "custom_EIC_Project_Organisation_PIC_number": "action.get_catch_all_company_pic_number.value"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_catch_all_case.id"
+                },
+                "output_mapping": []
+            },
+            "delay_configuration": ""
+        }
+    ],
+    "default_data_inputs": [],
+    "default_data_actions": [],
+    "validate_actions": [],
+    "validate_validators": [],
+    "calculate_actions": [],
+    "default_data_output_configuration": [],
+    "calculation_output_configuration": [],
+    "calculations_configuration_url": "http://localhost/dev_eic/civicrm/admin/automation/formprocessor/calculationconfiguration?action=update&reset=1&id=22"
+}

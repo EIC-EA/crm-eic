@@ -33,3 +33,16 @@ function nc_config_civicrm_install(): void {
 function nc_config_civicrm_enable(): void {
   _nc_config_civix_civicrm_enable();
 }
+
+/**
+ * Implements hook_civicrm_postInstall().
+ *
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postInstall
+ *
+ * @return void
+ *
+ * @throws Exception
+ */
+function nc_config_civicrm_postInstall(): void {
+  CRM_NcConfig_Upgrader::postInstallSetup();
+}

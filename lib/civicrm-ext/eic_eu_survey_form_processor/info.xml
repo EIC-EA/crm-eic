@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<extension key="eic_eu_survey_form_processor" type="module">
+  <file>eic_eu_survey_form_processor</file>
+  <name>EIC EU-Survey Form-Processor</name>
+  <description>A simple Extension that provides CiviCRM Form-Processors, managed entities and a simple mechanism fo import availble Form-Processors into CiviCRM upon Extension loading.</description>
+  <license>AGPL-3.0</license>
+  <authors>
+    <author>
+      <name>Sven Nowotnik</name>
+      <email>nowotnik@systopia.de</email>
+      <role>Maintainer</role>
+    </author>
+  </authors>
+  <urls>
+    <url desc="Main Extension Page">https://github.com/EIC-EA/eic_eu_survey_form_processor</url>
+    <url desc="Documentation">https://github.com/EIC-EA/eic_eu_survey_form_processor</url>
+    <url desc="Support">https://github.com/EIC-EA/eic_eu_survey_form_processor</url>
+    <url desc="Licensing">https://www.gnu.org/licenses/agpl-3.0.html</url>
+  </urls>
+  <releaseDate>2026-08-17</releaseDate>
+  <version>1.0.0</version>
+  <develStage>alpha</develStage>
+  <compatibility>
+    <ver>6.16</ver>
+  </compatibility>
+  <requires>
+    <ext>de.systopia.xcm</ext>
+  </requires>
+  <comments>This is a new module, work in progress.</comments>
+  <classloader>
+    <psr0 prefix="CRM_" path="."/>
+    <psr4 prefix="Civi\" path="Civi"/>
+  </classloader>
+  <civix>
+    <namespace>CRM/EicEuSurveyFormProcessor</namespace>
+    <format>25.01.1</format>
+    <angularModule>crmEicEuSurveyFormProcessor</angularModule>
+    <setting-page-title>Settings for EIC EU-Survey Form-Processor Automation</setting-page-title>
+  </civix>
+  <mixins>
+    <mixin>mgd-php@1.0.0</mixin>
+    <mixin>setting-php@1.0.0</mixin>
+    <mixin>smarty@1.0.3</mixin>
+    <mixin>setting-admin@1.0.1</mixin>
+    <mixin>menu-xml@1.0.0</mixin>
+  </mixins>
+  <requires>
+    <ext>civi_case</ext>
+    <ext>eic_config</ext>
+    <ext>nc_config</ext>
+    <ext>de.systopia.xcm</ext>
+    <ext>form-processor</ext>
+    <ext>advimport</ext>
+    <ext>advimportformprocessor</ext>
+  </requires>
+</extension>

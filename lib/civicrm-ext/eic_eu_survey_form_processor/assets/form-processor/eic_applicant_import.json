@@ -1,0 +1,166 @@
+{
+    "title": "EIC Applicant Import",
+    "name": "eic_applicant_import",
+    "is_active": "1",
+    "description": "This FormProcessor creates Applicant contacts form EU Survey data, if no contact yet exists that match the provided applicant data.\r\n\r\nWith this FormProcessor one can already import some applicants as contacts prior to importing EU-Survey data. Then, no contacts will  be created during EU-Survey data import if applicant contacts are already existing.",
+    "output_handler": "OutputAllActionOutput",
+    "output_handler_configuration": [],
+    "enable_default_data": "0",
+    "default_data_output_configuration": [],
+    "calculation_output_configuration": [],
+    "permission": "",
+    "inputs": [
+        {
+            "weight": "1",
+            "include_formatted_params": "0",
+            "title": "First Name",
+            "name": "ind_first_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "2",
+            "include_formatted_params": "0",
+            "title": "Last Name",
+            "name": "ind_last_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "3",
+            "include_formatted_params": "0",
+            "title": "Professional email",
+            "name": "ind_professional_email",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "4",
+            "include_formatted_params": "0",
+            "title": "Phone number",
+            "name": "ind_phone_number",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "5",
+            "include_formatted_params": "0",
+            "title": "Role in organisation",
+            "name": "ind_role",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        }
+    ],
+    "actions": [
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Create Applicant Contact - if not exists",
+            "name": "create_applicant_contact_if_not_exsists",
+            "type": "XcmGetOrCreate",
+            "configuration": {
+                "xcm_profile": "eu_survey_applicant",
+                "contact_type": "Individual",
+                "variable_target_1": "",
+                "variable_target_2": ""
+            },
+            "mapping": {
+                "display_name": "",
+                "household_name": "",
+                "organization_name": "",
+                "first_name": "input.ind_first_name",
+                "last_name": "input.ind_last_name",
+                "middle_name": "",
+                "nick_name": "",
+                "legal_name": "",
+                "prefix_id": "",
+                "suffix_id": "",
+                "birth_date": "",
+                "gender_id": "",
+                "formal_title": "",
+                "job_title": "input.ind_role",
+                "do_not_email": "",
+                "do_not_mail": "",
+                "do_not_phone": "",
+                "do_not_sms": "",
+                "do_not_trade": "",
+                "is_opt_out": "",
+                "preferred_language": "",
+                "preferred_communication_method": "",
+                "legal_identifier": "",
+                "external_identifier": "",
+                "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "",
+                "custom_EU_Survey_Company_Data_Founder_Gender": "",
+                "contact_type": "",
+                "id": "",
+                "source": "",
+                "email": "input.ind_professional_email",
+                "phone": "input.ind_phone_number",
+                "phone2": "",
+                "phone3": "",
+                "website": "",
+                "name": "",
+                "location_type_id": "",
+                "phone_type_id": "",
+                "provider_id": "",
+                "website_type_id": "",
+                "supplemental_address_1": "",
+                "supplemental_address_2": "",
+                "supplemental_address_3": "",
+                "street_address": "",
+                "city": "",
+                "postal_code": "",
+                "state_province_id": "",
+                "county_id": "",
+                "country_id": "",
+                "is_billing": "",
+                "variable_value_1": "",
+                "variable_value_2": ""
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        }
+    ],
+    "default_data_inputs": [],
+    "default_data_actions": [],
+    "validate_actions": [],
+    "validate_validators": [],
+    "calculate_actions": [],
+    "uploaded_source_file": "",
+    "calculations_configuration_url": ""
+}
