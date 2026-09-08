@@ -20,6 +20,8 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
 
     $upgrader->upgrade_1001();
     $upgrader->upgrade_1002();
+    $upgrader->upgrade_1003();
+    $upgrader->upgrade_1004();
 
     // Return success.
     return TRUE;
@@ -76,6 +78,41 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
       $log->warning('Configuration import failed: ' . $e->getMessage());
       throw $e;
     }
+  }
+
+  /**
+   * Enable the eic_eu_survey_form_processor extension.
+   */
+  public function upgrade_1003(): bool {
+    return $this->enable_extension(['eic_eu_survey_form_processor']);
+  }
+
+  /**
+   * Enable the nc_automations extension.
+   */
+  public function upgrade_1004(): bool {
+    return $this->enable_extension(['nc_automations']);
+  }
+
+  /**
+   * Enable one or more extensions by key.
+   *
+   * @param array $extensions List of extension keys to enable.
+   * @return bool TRUE if all extensions were enabled, FALSE if any were unavailable.
+   */
+  private function enable_extension(array $extensions): bool {
+    $statuses = \CRM_Extension_System::singleton()->getManager()->getStatuses();
+    $all_enabled = TRUE;
+    foreach ($extensions as $extension_name) {
+      $this->ctx->log->info("Enabling {$extension_name} extension");
+      if (isset($statuses[$extension_name])) {
+        civicrm_api3('Extension', 'enable', ['keys' => $extension_name]);
+      } else {
+        $this->ctx->log->warning("{$extension_name} extension not available, skipping");
+        $all_enabled = FALSE;
+      }
+    }
+    return $all_enabled;
   }
 
 }
