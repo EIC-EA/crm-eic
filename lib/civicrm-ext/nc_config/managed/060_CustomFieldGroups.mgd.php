@@ -2431,7 +2431,7 @@ return [
       'version' => 4,
       'values' => [
         'option_group_id.name' => 'eic_software_focus',
-        'label' => E::ts('Software'),
+        'label' => E::ts('Software-only'),
         'value' => 'software_only',
         'name' => 'Software-only',
       ],
@@ -2451,7 +2451,7 @@ return [
       'version' => 4,
       'values' => [
         'option_group_id.name' => 'eic_software_focus',
-        'label' => E::ts('Hardware'),
+        'label' => E::ts('Hardware-only'),
         'value' => 'hardware_only',
         'name' => 'Hardware-only',
       ],

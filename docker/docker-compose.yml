@@ -28,6 +28,7 @@ services:
       - ../lib/civicrm-ext/eic_import:/opt/drupal/civicrm-ext/eic_import:bind
       - ../lib/civicrm-ext/eic_eu_survey_form_processor:/opt/drupal/civicrm-ext/eic_eu_survey_form_processor:bind
       - ../lib/civicrm-ext/nc_automations:/opt/drupal/civicrm-ext/nc_automations:bind
+      - ../lib/civicrm-ext/eic_fp_action_provider:/opt/drupal/civicrm-ext/eic_fp_action_provider:bind
       - ../lib/drupal-modules:/opt/drupal/web/modules/custom:bind
       - ../lib/tmp:/opt/drupal/tmp:bind
       - ../lib/config:/opt/drupal/config:bind

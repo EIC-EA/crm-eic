@@ -110,8 +110,6 @@ function eic_eu_survey_form_processor_civicrm_navigationMenu(&$menu): void {
 function eic_eu_survey_form_processor_civicrm_install(): void {
   \Civi::log()->debug('Install Extension');
   _eic_eu_survey_form_processor_civix_civicrm_install();
-  load_civicrm_settings_callback();
-  load_form_processor_callback();
 }
 
 /**
@@ -122,8 +120,6 @@ function eic_eu_survey_form_processor_civicrm_install(): void {
 function eic_eu_survey_form_processor_civicrm_enable(): void {
   \Civi::log()->debug('Enable Extension');
   _eic_eu_survey_form_processor_civix_civicrm_enable();
-  load_civicrm_settings_callback();
-  load_form_processor_callback();
 }
 
 /**
@@ -135,4 +131,18 @@ function eic_eu_survey_form_processor_civicrm_enable(): void {
 function eic_eu_survey_form_processor_civicrm_managed($params): void {
   \Civi::log()->debug('Load Managed Entities');
   _eic_eu_survey_form_processor_civix_civicrm_install();
+}
+
+/**
+ * Implements hook_civicrm_postInstall().
+ *
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postInstall
+ *
+ * @return void
+ *
+ * @throws Exception
+ */
+function eic_eu_survey_form_processor_civicrm_postInstall(): void {
+  load_civicrm_settings_callback();
+  load_form_processor_callback();
 }
