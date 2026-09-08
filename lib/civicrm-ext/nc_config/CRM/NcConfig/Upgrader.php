@@ -101,14 +101,15 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
    * @return bool TRUE if all extensions were enabled, FALSE if any were unavailable.
    */
   private function enable_extension(array $extensions): bool {
+    $log = $this->ctx->log ?? \Civi::log();
     $statuses = \CRM_Extension_System::singleton()->getManager()->getStatuses();
     $all_enabled = TRUE;
     foreach ($extensions as $extension_name) {
-      $this->ctx->log->info("Enabling {$extension_name} extension");
+      $log->info("Enabling {$extension_name} extension");
       if (isset($statuses[$extension_name])) {
         civicrm_api3('Extension', 'enable', ['keys' => $extension_name]);
       } else {
-        $this->ctx->log->warning("{$extension_name} extension not available, skipping");
+        $log->warning("{$extension_name} extension not available, skipping");
         $all_enabled = FALSE;
       }
     }

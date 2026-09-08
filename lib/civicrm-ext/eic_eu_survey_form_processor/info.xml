@@ -44,13 +44,10 @@
     <mixin>setting-admin@1.0.1</mixin>
     <mixin>menu-xml@1.0.0</mixin>
   </mixins>
+  <upgrader>CRM_EicEuSurveyFormProcessor_Upgrader</upgrader>
   <requires>
-    <ext>civi_case</ext>
     <ext>eic_config</ext>
     <ext>nc_config</ext>
-    <ext>de.systopia.xcm</ext>
-    <ext>form-processor</ext>
-    <ext>advimport</ext>
-    <ext>advimportformprocessor</ext>
+    <ext>eic_fp_action_provider</ext>
   </requires>
 </extension>

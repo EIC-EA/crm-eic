@@ -46,7 +46,7 @@
             "title": "Role",
             "name": "eic_fp_inv_role",
             "type": "String",
-            "is_required": "1",
+            "is_required": "0",
             "default_value": "",
             "configuration": {
                 "trim": "1"
@@ -61,7 +61,7 @@
             "title": "E-mail",
             "name": "eic_fp_inv_email",
             "type": "String",
-            "is_required": "1",
+            "is_required": "0",
             "default_value": "",
             "configuration": {
                 "trim": "1"
@@ -91,7 +91,7 @@
             "title": "Organisation website",
             "name": "eic_fp_inv_org_website",
             "type": "String",
-            "is_required": "1",
+            "is_required": "0",
             "default_value": "",
             "configuration": {
                 "trim": "1"
@@ -106,7 +106,7 @@
             "title": "Investor type",
             "name": "eic_fp_inv_investor_type",
             "type": "String",
-            "is_required": "1",
+            "is_required": "0",
             "default_value": "",
             "configuration": {
                 "trim": "1"
@@ -121,7 +121,7 @@
             "title": "Preferred stages",
             "name": "eic_fp_inv_preferred_stages",
             "type": "String",
-            "is_required": "1",
+            "is_required": "0",
             "default_value": "",
             "configuration": {
                 "trim": "1"
@@ -136,7 +136,7 @@
             "title": "Relevant verticals",
             "name": "eic_fp_inv_relevant_verticals",
             "type": "String",
-            "is_required": "1",
+            "is_required": "0",
             "default_value": "",
             "configuration": {
                 "trim": "1"
@@ -190,7 +190,7 @@
             "title": "Ticket size range",
             "name": "eic_fp_inv_ticket_size_range",
             "type": "String",
-            "is_required": "1",
+            "is_required": "0",
             "default_value": "",
             "configuration": {
                 "trim": "1"
@@ -247,7 +247,7 @@
             "title": "Software products",
             "name": "eic_fp_inv_software_products",
             "type": "String",
-            "is_required": "1",
+            "is_required": "0",
             "default_value": "",
             "configuration": {
                 "trim": "1"
@@ -334,7 +334,7 @@
             "name": "get_software_focus",
             "type": "MapValue",
             "configuration": {
-                "json_mapping": "{\"Both\": \"Hardware;Software\"}",
+                "json_mapping": "{\"Both\": \"Hardware-only;Software-only\"}",
                 "not_found": "keep"
             },
             "mapping": {
@@ -345,7 +345,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "1": {
+        "6": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get Software Focus List",
@@ -360,7 +360,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "2": {
+        "9": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get Regional Focus",
@@ -382,7 +382,7 @@
             },
             "delay_configuration": ""
         },
-        "4": {
+        "11": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Regional Focus Normalizer Step 1",
@@ -399,7 +399,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "5": {
+        "13": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Regional Focus Normalizer Step 2",
@@ -416,7 +416,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "6": {
+        "15": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Regional Focus Normalizer Step 3",
@@ -433,7 +433,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "7": {
+        "16": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get Regional Focus List",
@@ -448,7 +448,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "8": {
+        "17": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Relevant Verticals Normalizer Step 1",
@@ -465,7 +465,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "9": {
+        "18": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Relevant Verticals Normalizer Step 2",
@@ -482,7 +482,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "10": {
+        "19": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get Relevant Verticals List",
@@ -497,7 +497,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "11": {
+        "20": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Preferred Stages Normalizer Step 1",
@@ -514,7 +514,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "12": {
+        "21": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Preferred Stages Normalizer Step 2",
@@ -531,7 +531,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "13": {
+        "22": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get Preferred Stages List",
@@ -546,7 +546,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "14": {
+        "23": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Ticket Size Range Normalizer Step 1",
@@ -563,7 +563,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "15": {
+        "24": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Ticket Size Range Normalizer Step 2",
@@ -580,7 +580,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "16": {
+        "25": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get Ticket Size Range List",
@@ -595,25 +595,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "17": {
-            "pid": "0",
-            "conditional_processing_group": "0",
-            "title": "Lead Rounds",
-            "name": "lead_rounds",
-            "type": "MapValue",
-            "configuration": {
-                "json_mapping": "{\"FP\": 0, \"Yes\": 1, \"No\": 0}",
-                "not_found": "delete"
-            },
-            "mapping": {
-                "input_value": [
-                    "input.eic_fp_inv_rounds_lead"
-                ]
-            },
-            "condition_configuration": "",
-            "delay_configuration": ""
-        },
-        "18": {
+        "26": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Is Financial Partner",
@@ -631,7 +613,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "19": {
+        "27": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get domain from website",
@@ -648,7 +630,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "20": {
+        "28": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Website Normalizer",
@@ -662,10 +644,19 @@
             "mapping": {
                 "input_value": "input.eic_fp_inv_org_website"
             },
-            "condition_configuration": "",
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "input.eic_fp_inv_org_website"
+                },
+                "output_mapping": {
+                    "value": ""
+                }
+            },
             "delay_configuration": ""
         },
-        "21": {
+        "29": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Create or Update Investor Representative",
@@ -774,7 +765,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "22": {
+        "30": {
             "pid": "0",
             "conditional_processing_group": "1",
             "title": "Create note for investor representative",
@@ -821,7 +812,7 @@
                 }
             ]
         },
-        "23": {
+        "31": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Create or Update Investor",
@@ -873,12 +864,12 @@
                 "custom_EIC_Awardee_Additionnal_Information_SME_status_type": "",
                 "custom_EIC_Awardee_Additionnal_Information_higher_or_secondary_education_establishment": "",
                 "custom_EIC_Awardee_Additionnal_Information_Legal_personality": "",
-                "custom_Financial_information_Funds_Vintage_Year": "input.eic_fp_inv_vintage_year",
+                "custom_Financial_information_Funds_Vintage_Year": "",
                 "custom_Financial_information_Ticket_Size_Range_": [
                     "action.get_ticket_size_range_list.value"
                 ],
-                "custom_Financial_information_Estimated_Dry_Powder_": "input.eic_fp_inv_dry_powder",
-                "custom_Financial_information_Current_Fund_Size_": "input.eic_fp_inv_current_fund_size",
+                "custom_Financial_information_Estimated_Dry_Powder_": "",
+                "custom_Financial_information_Current_Fund_Size_": "",
                 "custom_Investment_Focus_Preferred_Stages": [],
                 "custom_Investment_Focus_Relevant_Verticals": [],
                 "custom_Investment_Focus_Role": [],
@@ -900,13 +891,11 @@
                 "custom_General_Company_Info_Software_Focus": [
                     "action.get_software_focus_list.value"
                 ],
-                "custom_General_Company_Info_Investment_Lead_Role": "action.lead_rounds.value",
+                "custom_General_Company_Info_Investment_Lead_Role": "",
                 "custom_General_Company_Info_Co_investments_with_public_sector": "input.eic_fp_inv_co_investments_with_public_sector",
                 "custom_General_Company_Info__of_investments_made_in_vertical_in_the_last_2_years": "input.eic_fp_inv_number_of_investments_made_in_the_last_2_years",
                 "custom_General_Company_Info_Financial_Partner": "action.is_financial_partner.value",
                 "custom_EIC_Organisation_identifiers_Company_Domain_Name": "action.get_domain_from_website.value",
-                "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "",
-                "custom_EU_Survey_Company_Data_Founder_Gender": "",
                 "contact_type": "",
                 "id": "",
                 "source": "",
@@ -936,7 +925,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "24": {
+        "32": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Update organisation website",
@@ -952,7 +941,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "25": {
+        "33": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Link representative with investor",
@@ -980,7 +969,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "26": {
+        "34": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get Case",
@@ -996,7 +985,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "27": {
+        "35": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Create Onboarding Case",
@@ -1030,7 +1019,7 @@
             },
             "delay_configuration": ""
         },
-        "28": {
+        "36": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Update Case Custom Data",
@@ -1053,6 +1042,343 @@
                 "output_mapping": []
             },
             "delay_configuration": ""
+        },
+        "37": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Investor Get by ID",
+            "name": "investor_get_by_id",
+            "type": "ContactDataById",
+            "configuration": [],
+            "mapping": {
+                "contact_id": "action.create_or_replace_investor.contact_id"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "38": {
+            "pid": "0",
+            "conditional_processing_group": "1",
+            "title": "Consolidation Rules - Investor Current Fund Size",
+            "name": "consolidation_rules_investor_current_fund_size",
+            "type": "__conditional_processing_group__",
+            "configuration": [],
+            "mapping": [],
+            "condition_configuration": [
+                {
+                    "name": "ParameterIsNotEmpty",
+                    "configuration": [],
+                    "parameter_mapping": {
+                        "parameter": "input.eic_fp_inv_current_fund_size"
+                    },
+                    "description": "Input - Current Fund Size Validation",
+                    "link": "and"
+                }
+            ],
+            "delay_configuration": "",
+            "actions": [
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Keep Maximum Current Fund Size",
+                    "name": "keep_maximum_current_fund_size",
+                    "type": "SetParameterValue",
+                    "configuration": [],
+                    "mapping": {
+                        "value": "input.eic_fp_inv_current_fund_size"
+                    },
+                    "condition_configuration": {
+                        "name": "CompareParameters",
+                        "configuration": {
+                            "comparison": ">"
+                        },
+                        "parameter_mapping": {
+                            "parameter1": "input.eic_fp_inv_current_fund_size",
+                            "parameter2": "action.investor_get_by_id.custom_Financial_information_Current_Fund_Size_"
+                        },
+                        "output_mapping": {
+                            "value": "action.investor_get_by_id.custom_Financial_information_Current_Fund_Size_"
+                        },
+                        "title": "Compare two parameters"
+                    },
+                    "delay_configuration": ""
+                }
+            ]
+        },
+        "39": {
+            "pid": "0",
+            "conditional_processing_group": "1",
+            "title": "Consolidation Rules - Investor Dry Powder",
+            "name": "consolidation_rules_investor_dry_powder",
+            "type": "__conditional_processing_group__",
+            "configuration": [],
+            "mapping": [],
+            "condition_configuration": [
+                {
+                    "name": "ParameterIsNotEmpty",
+                    "configuration": [],
+                    "parameter_mapping": {
+                        "parameter": "input.eic_fp_inv_dry_powder"
+                    },
+                    "description": "Input - Dry Powder Validation",
+                    "link": "and"
+                }
+            ],
+            "delay_configuration": "",
+            "actions": [
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Keep Maximum Dry Powder",
+                    "name": "keep_maximum_dry_powder",
+                    "type": "SetParameterValue",
+                    "configuration": [],
+                    "mapping": {
+                        "value": "input.eic_fp_inv_dry_powder"
+                    },
+                    "condition_configuration": {
+                        "name": "CompareParameters",
+                        "configuration": {
+                            "comparison": ">"
+                        },
+                        "parameter_mapping": {
+                            "parameter1": "input.eic_fp_inv_dry_powder",
+                            "parameter2": "action.investor_get_by_id.custom_Financial_information_Estimated_Dry_Powder_"
+                        },
+                        "output_mapping": {
+                            "value": "action.investor_get_by_id.custom_Financial_information_Estimated_Dry_Powder_"
+                        },
+                        "title": "Compare two parameters"
+                    },
+                    "delay_configuration": ""
+                }
+            ]
+        },
+        "40": {
+            "pid": "0",
+            "conditional_processing_group": "1",
+            "title": "Consolidation Rules - Investor Lead Rounds",
+            "name": "consolidation_rules_investor_lead_rounds",
+            "type": "__conditional_processing_group__",
+            "configuration": [],
+            "mapping": [],
+            "condition_configuration": [
+                {
+                    "name": "ParameterIsNotEmpty",
+                    "configuration": [],
+                    "parameter_mapping": {
+                        "parameter": "input.eic_fp_inv_rounds_lead"
+                    },
+                    "description": "Input - Investor Lead Rounds Validation",
+                    "link": "and"
+                }
+            ],
+            "delay_configuration": "",
+            "actions": [
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Keep Positive Lead Rounds Value",
+                    "name": "keep_positive_lead_rounds_value",
+                    "type": "SetParameterValue",
+                    "configuration": [],
+                    "mapping": {
+                        "value": "action.investor_get_by_id.custom_General_Company_Info_Investment_Lead_Role"
+                    },
+                    "condition_configuration": {
+                        "name": "CompareParameterValue",
+                        "configuration": {
+                            "value": "1",
+                            "comparison": "="
+                        },
+                        "parameter_mapping": {
+                            "parameter": "action.investor_get_by_id.custom_General_Company_Info_Investment_Lead_Role"
+                        },
+                        "output_mapping": {
+                            "value": "input.eic_fp_inv_rounds_lead"
+                        },
+                        "title": "Compare parameter value"
+                    },
+                    "delay_configuration": ""
+                },
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Map Lead Rounds",
+                    "name": "map_lead_rounds",
+                    "type": "MapValue",
+                    "configuration": {
+                        "json_mapping": "{\"FP\": 0, \"Yes\": 1, \"No\": 0}",
+                        "not_found": "keep"
+                    },
+                    "mapping": {
+                        "input_value": [
+                            "action.consolidation_rules_investor_lead_rounds.keep_positive_lead_rounds_value.value"
+                        ]
+                    },
+                    "condition_configuration": "",
+                    "delay_configuration": ""
+                }
+            ]
+        },
+        "41": {
+            "pid": "0",
+            "conditional_processing_group": "1",
+            "title": "Consolidation Rules - Investor Vintage Year",
+            "name": "consolidation_rules_investor_vintage_year",
+            "type": "__conditional_processing_group__",
+            "configuration": [],
+            "mapping": [],
+            "condition_configuration": [
+                {
+                    "name": "ParameterIsNotEmpty",
+                    "configuration": [],
+                    "parameter_mapping": {
+                        "parameter": "input.eic_fp_inv_vintage_year"
+                    },
+                    "description": "Input - Investor Vintage Year Validation",
+                    "link": "and"
+                }
+            ],
+            "delay_configuration": "",
+            "actions": [
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Default Comparison Date",
+                    "name": "default_comparison_date",
+                    "type": "SetDateValue",
+                    "configuration": {
+                        "date": "1000-01-01",
+                        "include_time": "0"
+                    },
+                    "mapping": [],
+                    "condition_configuration": "",
+                    "delay_configuration": ""
+                },
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Date Format - Default Date",
+                    "name": "date_format_default_date",
+                    "type": "FormatDateValue",
+                    "configuration": {
+                        "format": "Y"
+                    },
+                    "mapping": {
+                        "value": "action.consolidation_rules_investor_vintage_year.default_comparison_date.date"
+                    },
+                    "condition_configuration": "",
+                    "delay_configuration": ""
+                },
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Date Format - Vintage Year From DB",
+                    "name": "date_format_vintage_year_from_db",
+                    "type": "FormatDateValue",
+                    "configuration": {
+                        "format": "Y"
+                    },
+                    "mapping": {
+                        "value": "action.investor_get_by_id.custom_Financial_information_Funds_Vintage_Year"
+                    },
+                    "condition_configuration": {
+                        "name": "ParameterIsNotEmpty",
+                        "configuration": [],
+                        "parameter_mapping": {
+                            "parameter": "action.investor_get_by_id.custom_Financial_information_Funds_Vintage_Year"
+                        },
+                        "output_mapping": {
+                            "value": "action.consolidation_rules_investor_vintage_year.date_format_default_date.value"
+                        },
+                        "title": "Parameter is not empty"
+                    },
+                    "delay_configuration": ""
+                },
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Date Format - Vintage Year From Input",
+                    "name": "date_format_vintage_year_from_input",
+                    "type": "FormatDateValue",
+                    "configuration": {
+                        "format": "Y"
+                    },
+                    "mapping": {
+                        "value": "input.eic_fp_inv_vintage_year"
+                    },
+                    "condition_configuration": "",
+                    "delay_configuration": ""
+                },
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Keep Maximum Vintage Year",
+                    "name": "keep_maximum_vintage_year",
+                    "type": "SetParameterValue",
+                    "configuration": [],
+                    "mapping": {
+                        "value": "input.eic_fp_inv_vintage_year"
+                    },
+                    "condition_configuration": {
+                        "name": "CompareParameters",
+                        "configuration": {
+                            "comparison": ">"
+                        },
+                        "parameter_mapping": {
+                            "parameter1": "action.consolidation_rules_investor_vintage_year.date_format_vintage_year_from_input.value",
+                            "parameter2": "action.consolidation_rules_investor_vintage_year.date_format_vintage_year_from_db.value"
+                        },
+                        "output_mapping": {
+                            "value": "action.investor_get_by_id.custom_Financial_information_Funds_Vintage_Year"
+                        },
+                        "title": "Compare two parameters"
+                    },
+                    "delay_configuration": ""
+                }
+            ]
+        },
+        "42": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Investor - Update Custom Data",
+            "name": "investor_update_custom_data",
+            "type": "UpdateCustomData",
+            "configuration": [],
+            "mapping": {
+                "contact_id": "action.investor_get_by_id.id",
+                "custom_Investment_Focus_Preferred_Stages": [],
+                "custom_Investment_Focus_Relevant_Verticals": [],
+                "custom_Investment_Focus_Role": [],
+                "custom_Investment_Focus_Geographical_Focus": [],
+                "custom_EIC_Awardee_representative_eulogin": "",
+                "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "",
+                "custom_EU_Survey_Company_Data_Founder_Gender": "",
+                "custom_Activity_related_Onboarded": "",
+                "custom_Activity_related_Trusted_Investor_Network_TIN_": "",
+                "custom_General_Company_Info_Investor_Type": [],
+                "custom_General_Company_Info_Preferred_Stages": [],
+                "custom_General_Company_Info_Relevant_Verticals": [],
+                "custom_General_Company_Info_Geographical_Focus": [],
+                "custom_General_Company_Info_Software_Focus": [],
+                "custom_General_Company_Info_Investment_Lead_Role": "action.consolidation_rules_investor_lead_rounds.map_lead_rounds.value",
+                "custom_General_Company_Info_Co_investments_with_public_sector": "",
+                "custom_General_Company_Info__of_investments_made_in_vertical_in_the_last_2_years": "",
+                "custom_General_Company_Info_Financial_Partner": "",
+                "custom_EIC_Organisation_identifiers_SMEDId": "",
+                "custom_EIC_Organisation_identifiers_PIC": "",
+                "custom_EIC_Organisation_identifiers_Company_Domain_Name": "",
+                "custom_EIC_Awardee_Additionnal_Information_Program": "",
+                "custom_EIC_Awardee_Additionnal_Information_Research_organisation": "",
+                "custom_EIC_Awardee_Additionnal_Information_Large_research_infrastructure": "",
+                "custom_EIC_Awardee_Additionnal_Information_Non_profit_organisation": "",
+                "custom_EIC_Awardee_Additionnal_Information_Public_body": "",
+                "custom_EIC_Awardee_Additionnal_Information_International_organisation": "",
+                "custom_EIC_Awardee_Additionnal_Information_European_interest": "",
+                "custom_EIC_Awardee_Additionnal_Information_Legal_status": "",
+                "custom_EIC_Awardee_Additionnal_Information_SME_vs_mid_cap_status": "",
+                "custom_EIC_Awardee_Additionnal_Information_SME_status_type": "",
+                "custom_EIC_Awardee_Additionnal_Information_higher_or_secondary_education_establishment": "",
+                "custom_EIC_Awardee_Additionnal_Information_Legal_personality": "",
+                "custom_Financial_information_Funds_Vintage_Year": "action.consolidation_rules_investor_vintage_year.keep_maximum_vintage_year.value",
+                "custom_Financial_information_Ticket_Size_Range_": [],
+                "custom_Financial_information_Estimated_Dry_Powder_": "action.consolidation_rules_investor_dry_powder.keep_maximum_dry_powder.value",
+                "custom_Financial_information_Current_Fund_Size_": "action.consolidation_rules_investor_current_fund_size.keep_maximum_current_fund_size.value"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
         }
     },
     "default_data_inputs": [],
@@ -1060,5 +1386,6 @@
     "validate_actions": [],
     "validate_validators": [],
     "calculate_actions": [],
-    "calculations_configuration_url": "http:\/\/localhost:8080\/civicrm\/admin\/automation\/formprocessor\/calculationconfiguration?action=update&reset=1&id=8"
+    "uploaded_source_file": "",
+    "calculations_configuration_url": "http:\/\/localhost:8080\/civicrm\/admin\/automation\/formprocessor\/calculationconfiguration?action=update&reset=1&id=6"
 }
