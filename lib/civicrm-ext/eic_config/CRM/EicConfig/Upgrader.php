@@ -91,4 +91,11 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     return $this->enable_extension(['de.systopia.signatures']);
   }
 
+  /**
+   * Enable the EIC Anonymiser extension.
+   */
+  public function upgrade_1009(): bool {
+    return $this->enable_extension(['eic_anonymiser']);
+  }
+
 }
