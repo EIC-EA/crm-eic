@@ -114,7 +114,7 @@ Contains all assets that will be loaded upon installation or (re)enabling of ext
 
 | Form Processors       | Description                                                                                       |
 |-----------------------|---------------------------------------------------------------------------------------------------|
-| EIC Applicant Import  | Create applicant contacts from EU-Survey dataset                                                  |
+| EIC Individual Import | Create individual contacts from EU-Survey dataset                                                 |
 | EIC Company Import    | Create beneficiary companies from EU-Survey dataset                                               |
 | EIC Case Import       | Create cases of type _EU-Survey Import_ from EU-Survey dataset                                    |
 | EIC Default Case      | Create a default case type _EU-Survey Import_ for catching failures during EU-Survey data import  |
@@ -277,20 +277,19 @@ Later on, when EU Survey data is being imported:
 | EIC Project ID                  | case_eic_project_id             | short text    | not used yet  |
 | PIC Number                      | org_pic_number                  | short text    |               |
 
-Import Applicant Data
----------------------
+Import Individual Data
+----------------------
 
-**Notes on creating applicant contacts**
+**Notes on creating individual contacts**
 
-This FormProcessor is mainly for test purposes. Applicant contacts will be created upon importing EU Survey data
-if no contact yet exists that match the provided applicant data.
+Creates Individual contacts from EU Survey data when no matching contact already exists.
 
-With this FormProcessor one can already import some applicants as contacts and test during EU Survey data import
-if the contact matching works properly. Then, no contacts will should be created if already existing.
+Use it to pre-import individuals as contacts before importing EU-Survey data, so the EU-Survey import won't
+create duplicates for contacts that already exist.
 
 **Form Processor**
 
-- Title: `EIC Applicant Import `
+- Title: `EIC Individual Import`
 - Name: `eic_applicant_import`
 
 **Fieldmapping**
@@ -300,7 +299,7 @@ if the contact matching works properly. Then, no contacts will should be created
 | First Name                      | ind_first_name                  | short text    |           |
 | Last Name                       | ind_last_name                   | short text    |           |
 | Professional Email              | ind_professional_email          | short text    |           |
-| Phone                           | ind_phone                       | short text    |           |
+| Phone                           | ind_phone_number                | short text    |           |
 | Role                            | ind_role                        | short text    |           |
 
 Import EU-Survey Data
