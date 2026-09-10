@@ -322,7 +322,7 @@ create duplicates for contacts that already exist.
 **Form Processor**
 
 - Title: `EIC Individual Import`
-- Name: `eic_applicant_import`
+- Name: `eic_individual_import`
 
 **Fieldmapping**
 
