@@ -1,8 +1,8 @@
 {
-    "title": "EIC Applicant Import",
+    "title": "EIC Individual Import",
     "name": "eic_applicant_import",
     "is_active": "1",
-    "description": "This FormProcessor creates Applicant contacts form EU Survey data, if no contact yet exists that match the provided applicant data.\r\n\r\nWith this FormProcessor one can already import some applicants as contacts prior to importing EU-Survey data. Then, no contacts will  be created during EU-Survey data import if applicant contacts are already existing.",
+    "description": "Creates Individual contacts from EU Survey data when no matching contact already exists.\r\n\r\nUse it to pre-import individuals as contacts before importing EU-Survey data, so the EU-Survey import won't create duplicates for contacts that already exist.",
     "output_handler": "OutputAllActionOutput",
     "output_handler_configuration": [],
     "enable_default_data": "0",
