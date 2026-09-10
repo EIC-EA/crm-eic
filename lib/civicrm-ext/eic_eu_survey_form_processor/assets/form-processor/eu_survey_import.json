@@ -617,7 +617,7 @@
             "name": "find_create_applicant_contact",
             "type": "XcmGetOrCreate",
             "configuration": {
-                "xcm_profile": "eu_survey_applicant",
+                "xcm_profile": "eu_survey_individual",
                 "contact_type": "Individual",
                 "variable_target_1": "",
                 "variable_target_2": ""

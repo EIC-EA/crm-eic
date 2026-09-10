@@ -25,6 +25,37 @@ This extension does the following:
 
 A cache clear won't (re)trigger the loading of `FormProcessor` configuration. Only installation ot (ee)enabling the extension does.
 
+Beneficiary Onboarding Context
+==============================
+
+The EU-Survey onboarding form is sent to a company once it becomes an EIC beneficiary
+(awardee). The company completes the survey and provides its contact person(s).
+
+**Multiple onboarding forms per scheme**
+
+There is currently more than one EU-Survey onboarding form, depending on the scheme of the
+beneficiary, and more may be added in the future. The Form-Processors in this extension are
+designed to be **reused across all of these forms** as much as possible: each form maps its
+fields onto the same Form-Processor input field names, so a single set of Form-Processors can
+process any of the scheme-specific surveys.
+
+Known onboarding forms (EU-Survey runners):
+
+- https://ec.europa.eu/eusurvey/runner/194e8c91-ccd7-df92-f76c-32fb6fddaf8a
+- https://ec.europa.eu/eusurvey/runner/05bb435d-fbe4-f5c7-54d1-1dde703a79c6
+- https://ec.europa.eu/eusurvey/runner/e39f8f88-c1f4-cb92-05aa-3de3054ddc1d
+- https://ec.europa.eu/eusurvey/runner/bf853027-0f52-beab-94b4-e1291bed50c2
+
+**Contacts and their relationship to the beneficiary**
+
+Each onboarding form collects a **main contact person** and allows the beneficiary to provide
+**up to three additional contacts** (contacts 2 to 4). Each contact also declares their role in
+the organisation (stored on the Individual's `job_title`). Contacts are linked to the beneficiary
+Organisation via two relationship types shipped as `ManagedEntities`:
+
+- `Main contact for` / `Main contact is` — links the main contact person to the beneficiary organisation.
+- `Contact for` / `Contact is` — links each additional contact (2 to 4) to the beneficiary organisation.
+
 Settings
 ========
 
@@ -86,7 +117,7 @@ as `ManagedEntities` are available in CiviCRM and are enabled:
 - the `ActivityType` _EU Survey data_ will sometimes be disabled for yet unknown reasons. Re-enable that acticity type under `/civicrm/admin/options/activity_type`
 - check if all CustomGroups are enabled and also if their fields are enabled under `/civicrm/admin/custom/group`
 - check if `CaseType` _EU Survey Import_ is available and enabled under `/civicrm/a/#/caseType`
-- check if `RelationshipType` _Applicant for_ is available and enabled under `/civicrm/admin/reltype`
+- check if `RelationshipType` _Main contact for_ and _Contact for_ are available and enabled under `/civicrm/admin/reltype`
 
 Folder Structure
 ================
@@ -100,7 +131,8 @@ Contains all ManagedEntities that will be loaded upon installation or (re)enabli
 |-----------------------|-----------------------------------------------------------------|
 | CaseType              | `EU Survey Import`                                              |
 | OptionGroup           | contains Activity `EU Survey Data` (value=67)                   |
-| RelationshipType      | `Applicant For` for `Contact`                                   |
+| RelationshipType      | `Main contact for` (Individual to Organisation)                 |
+| RelationshipType      | `Contact for` (Individual to Organisation)                      |
 | CustomGroup           | `EIC Project` for `Case` of case type `EU Survey Import`        |
 | CustomGroup           | `EU Survey Data` for `Activity` of activity type `EU Survey`    |
 | CustomGroup           | `EU_Survey_Company_Data` for `Contact` of type `Organisation`   |
@@ -130,7 +162,7 @@ and must therefore be available in the system.
 |-----------------------|---------------------------|
 | xcm_config_profiles   | contains XCM Profiles:    |
 |                       | _EU Survey - Company_     |
-|                       | _EU Survey - Applicant_   |
+|                       | _EU Survey - Individual_  |
 
 Mapping EU Survey Fields to CiviCRM Entities
 ============================================

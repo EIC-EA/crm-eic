@@ -90,11 +90,11 @@
         {
             "pid": "0",
             "conditional_processing_group": "0",
-            "title": "Create Applicant Contact - if not exists",
+            "title": "Create Individual Contact - if not exists",
             "name": "create_applicant_contact_if_not_exsists",
             "type": "XcmGetOrCreate",
             "configuration": {
-                "xcm_profile": "eu_survey_applicant",
+                "xcm_profile": "eu_survey_individual",
                 "contact_type": "Individual",
                 "variable_target_1": "",
                 "variable_target_2": ""
