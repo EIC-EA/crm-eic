@@ -237,10 +237,11 @@ Contact(Organisation) - Custom Fields
 |------------------|-------------------------|-------------------------|
 |                  | EU Survey Company Data  | eu_survey_company_data  |
 
-| **CustomFields** | Label                                                                                                          | Name                                                              |
-|------------------|----------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
-|                  | CEO or project leader gender                                                                                   | CEO_or_project_leader_gender                                      |
-|                  | Founder Gender                                                                                                 | Founder_Gender                                                    |
+| **CustomFields** | Label                                                                                                          | Name                                                              | Type                                                     |
+|------------------|----------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|----------------------------------------------------------|
+|                  | CEO or project leader gender                                                                                   | CEO_or_project_leader_gender                                      | Select (option group `eu_survey_gender`, value = label)  |
+|                  | Founder Gender                                                                                                 | Founder_Gender                                                    | Select (option group `eu_survey_gender`, value = label)  |
+|                  | Sector                                                                                                         | Sector                                                            | Select (option group `eu_survey_sector`, value = label)  |
 
 
 EU Survey Fields mapped to standard fields of Entities
@@ -277,11 +278,14 @@ cases to the company.
 
 **Fieldmapping**
 
-| EU Survey Field                 | Form Processor Input Field name  | Data Type   | Notes     |
-|---------------------------------|----------------------------------|-------------|-----------|
-| PIC number                      | org_pic_number                   | short text  |           |
-| Company Name                    | org_name                         | short text  |           |
-| Website                         | org_website                      | short text  |           |
+| EU Survey Field                              | Form Processor Input Field name  | Data Type   | Notes                                        |
+|----------------------------------------------|----------------------------------|-------------|----------------------------------------------|
+| PIC number                                   | org_pic_number                   | short text  | stored in `external_identifier`              |
+| Company Name                                 | org_name                         | short text  |                                              |
+| Website                                      | org_website                      | short text  |                                              |
+| CEO / project leader gender                  | org_ceo_project_leader_gender    | short text  | value must match an `eu_survey_gender` option |
+| Founder Gender                               | org_founder_gender               | short text  | value must match an `eu_survey_gender` option |
+| Sector you operate in                        | org_sector                       | short text  | value must match an `eu_survey_sector` option |
 
 Import Cases
 ------------

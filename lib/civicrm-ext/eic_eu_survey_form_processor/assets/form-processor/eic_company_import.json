@@ -80,6 +80,21 @@
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
+        },
+        {
+            "weight": "6",
+            "include_formatted_params": "0",
+            "title": "Please indicate the sector you operate in",
+            "name": "org_sector",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
         }
     ],
     "actions": [
@@ -122,6 +137,7 @@
                 "external_identifier": "input.org_pic_number",
                 "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "input.org_ceo_project_leader_gender",
                 "custom_EU_Survey_Company_Data_Founder_Gender": "input.org_founder_gender",
+                "custom_EU_Survey_Company_Data_Sector": "input.org_sector",
                 "contact_type": "",
                 "id": "",
                 "source": "",
