@@ -3,7 +3,7 @@ use CRM_EicEuSurveyFormProcessor_ExtensionUtil as E;
 
 return [
   [
-    'name' => 'RelationshipType_2',
+    'name' => 'RelationshipType_Contact',
     'entity' => 'RelationshipType',
     'cleanup' => 'unused',
     'update' => 'unmodified',
