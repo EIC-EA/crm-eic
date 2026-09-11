@@ -1,7 +1,7 @@
 {
 
-    "title": "EIC Default Case and Beneficiary Company",
-    "name": "eic_default_case",
+    "title": "EIC Awardee Onboarding Default Case",
+    "name": "eic_awardee_onboarding_default_case",
     "is_active": "1",
     "description": "This Form Processor creates a default case that can be used to assign 'EU-Survey Data' activities to, if during EU-Survey data import an error occurs and the activity that represents the imported data cannot be added to its supposed case.\r\n\r\nThis case can be found via\r\n\r\n- PIC Number: CatchAll Beneficiary\r\n- Title: EIC Awardee Onboarding - Unmatched",
     "output_handler": "OutputAllActionOutput",
