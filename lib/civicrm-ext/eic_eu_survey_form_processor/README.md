@@ -242,6 +242,10 @@ Contact(Organisation) - Custom Fields
 |                  | CEO or project leader gender                                                                                   | CEO_or_project_leader_gender                                      | Select (option group `eu_survey_gender`, value = label)  |
 |                  | Founder Gender                                                                                                 | Founder_Gender                                                    | Select (option group `eu_survey_gender`, value = label)  |
 |                  | Sector                                                                                                         | Sector                                                            | Select (option group `eu_survey_sector`, value = label)  |
+|                  | Technology Readiness Level (TRL)                                                                               | TRL                                                               | Multi-Select (`eu_survey_trl`, value = short code); one per project |
+|                  | Commercial Readiness Level (CRL) - Self-Assessed                                                               | CRL                                                               | Select (`eu_survey_crl`, value = short code); latest wins |
+|                  | Business Readiness Level (BRL) - Self-Assessed                                                                 | BRL                                                               | Select (`eu_survey_brl`, value = short code); latest wins |
+|                  | Funding Readiness Level (FRL) - Self-Assessed                                                                  | FRL                                                               | Select (`eu_survey_frl`, value = short code); latest wins |
 
 
 EU Survey Fields mapped to standard fields of Entities
@@ -286,6 +290,24 @@ cases to the company.
 | CEO / project leader gender                  | org_ceo_project_leader_gender    | short text  | value must match an `eu_survey_gender` option |
 | Founder Gender                               | org_founder_gender               | short text  | value must match an `eu_survey_gender` option |
 | Sector you operate in                        | org_sector                       | short text  | value must match an `eu_survey_sector` option |
+| TRL - Technology Readiness Level             | org_trl                          | short text  | full survey label accepted (e.g. `TRL 4 - ...`); normalised to the short code `TRL 4` in-processor (see below) |
+| CRL - Commercial Readiness Level             | org_crl                          | short text  | full survey label accepted; normalised to `CRL 1` in-processor |
+| BRL - Business Readiness Level               | org_brl                          | short text  | full survey label accepted; normalised to `BRL 3` in-processor |
+| FRL - Funding Readiness Level                | org_frl                          | short text  | full survey label accepted; normalised to `FRL 7` in-processor |
+
+**Readiness level normalisation**
+
+The survey transmits the full readiness label (e.g. `TRL 4 - Technology validation in laboratory`), but the
+custom fields store the short code (e.g. `TRL 4`) which is the option value. The processor normalises each
+readiness input with a `Modify Value with Regular Expression` action (`RegexReplaceValue`) before the company
+is created:
+
+- Find: `/^\s*(\S+\s+\S+).*$/`
+- Replace: `$1`
+
+This captures the first two tokens (the code and its number) and drops the ` - description` part, tolerating
+inconsistent spacing around the dash. The company create action then reads the normalised value from
+`action.<trl|crl|brl|frl>_code.value`.
 
 Import Cases
 ------------

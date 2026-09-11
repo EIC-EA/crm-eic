@@ -95,9 +95,137 @@
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
+        },
+        {
+            "weight": "7",
+            "include_formatted_params": "0",
+            "title": "Technology Readiness Level (TRL)",
+            "name": "org_trl",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "8",
+            "include_formatted_params": "0",
+            "title": "Commercial Readiness Level (CRL)",
+            "name": "org_crl",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "9",
+            "include_formatted_params": "0",
+            "title": "Business Readiness Level (BRL)",
+            "name": "org_brl",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "10",
+            "include_formatted_params": "0",
+            "title": "Funding Readiness Level (FRL)",
+            "name": "org_frl",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
         }
     ],
     "actions": [
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "TRL code",
+            "name": "trl_code",
+            "type": "RegexReplaceValue",
+            "configuration": {
+                "regex_find": "/^\\s*(\\S+\\s+\\S+).*$/",
+                "regex_replace": "$1",
+                "replace_count": "-1"
+            },
+            "mapping": {
+                "input_value": "input.org_trl"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "CRL code",
+            "name": "crl_code",
+            "type": "RegexReplaceValue",
+            "configuration": {
+                "regex_find": "/^\\s*(\\S+\\s+\\S+).*$/",
+                "regex_replace": "$1",
+                "replace_count": "-1"
+            },
+            "mapping": {
+                "input_value": "input.org_crl"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "BRL code",
+            "name": "brl_code",
+            "type": "RegexReplaceValue",
+            "configuration": {
+                "regex_find": "/^\\s*(\\S+\\s+\\S+).*$/",
+                "regex_replace": "$1",
+                "replace_count": "-1"
+            },
+            "mapping": {
+                "input_value": "input.org_brl"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "FRL code",
+            "name": "frl_code",
+            "type": "RegexReplaceValue",
+            "configuration": {
+                "regex_find": "/^\\s*(\\S+\\s+\\S+).*$/",
+                "regex_replace": "$1",
+                "replace_count": "-1"
+            },
+            "mapping": {
+                "input_value": "input.org_frl"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
         {
             "pid": "0",
             "conditional_processing_group": "0",
@@ -138,6 +266,10 @@
                 "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "input.org_ceo_project_leader_gender",
                 "custom_EU_Survey_Company_Data_Founder_Gender": "input.org_founder_gender",
                 "custom_EU_Survey_Company_Data_Sector": "input.org_sector",
+                "custom_EU_Survey_Company_Data_TRL": "action.trl_code.value",
+                "custom_EU_Survey_Company_Data_CRL": "action.crl_code.value",
+                "custom_EU_Survey_Company_Data_BRL": "action.brl_code.value",
+                "custom_EU_Survey_Company_Data_FRL": "action.frl_code.value",
                 "contact_type": "",
                 "id": "",
                 "source": "",
