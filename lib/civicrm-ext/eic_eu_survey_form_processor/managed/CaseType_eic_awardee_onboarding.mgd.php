@@ -3,15 +3,15 @@ use CRM_EicEuSurveyFormProcessor_ExtensionUtil as E;
 
 return [
   [
-    'name' => 'CaseType_eu_survey_import',
+    'name' => 'CaseType_eic_awardee_onboarding',
     'entity' => 'CaseType',
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
-        'name' => 'eu_survey_import',
-        'title' => E::ts('EU Survey Import'),
+        'name' => 'eic_awardee_onboarding',
+        'title' => E::ts('EIC Awardee Onboarding'),
         'definition' => [
           'restrictActivityAsgmtToCmsUser' => 0,
           'activityTypes' => [

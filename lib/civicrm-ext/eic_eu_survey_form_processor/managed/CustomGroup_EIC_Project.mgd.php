@@ -67,4 +67,75 @@ return [
       ],
     ],
   ],
+  [
+    // EIC Project ID (proposal number) provided by the EU-Survey. Also used to
+    // match the corresponding EIC_Awardee_Project activity by Project_Number.
+    'name' => 'CustomGroup_EIC_Project_CustomField_EIC_Project_ID',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'EIC_Project',
+        'name' => 'EIC_Project_ID',
+        'label' => E::ts('EIC Project ID'),
+        'html_type' => 'Text',
+        'is_view' => TRUE,
+        'text_length' => 255,
+      ],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
+    ],
+  ],
+  [
+    // EIC Project Acronym provided by the EU-Survey. Used as the fallback match
+    // for the EIC_Awardee_Project activity (matched on the activity subject).
+    'name' => 'CustomGroup_EIC_Project_CustomField_EIC_Project_Acronym',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'EIC_Project',
+        'name' => 'EIC_Project_Acronym',
+        'label' => E::ts('EIC Project Acronym'),
+        'html_type' => 'Text',
+        'is_view' => TRUE,
+        'text_length' => 255,
+      ],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
+    ],
+  ],
+  [
+    // Clickable link to the matched EIC_Awardee_Project activity. Stored as an
+    // Entity Reference (FK to civicrm_activity) so the case can link through to
+    // the EIC Project activity.
+    'name' => 'CustomGroup_EIC_Project_CustomField_EIC_Project_Activity',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'EIC_Project',
+        'name' => 'EIC_Project_Activity',
+        'label' => E::ts('EIC Project (activity)'),
+        'data_type' => 'EntityReference',
+        'html_type' => 'Autocomplete-Select',
+        'fk_entity' => 'Activity',
+        'is_view' => TRUE,
+      ],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
+    ],
+  ],
 ];

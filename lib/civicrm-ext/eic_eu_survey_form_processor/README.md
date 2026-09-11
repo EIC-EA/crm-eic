@@ -116,7 +116,7 @@ as `ManagedEntities` are available in CiviCRM and are enabled:
 
 - the `ActivityType` _EU Survey data_ will sometimes be disabled for yet unknown reasons. Re-enable that acticity type under `/civicrm/admin/options/activity_type`
 - check if all CustomGroups are enabled and also if their fields are enabled under `/civicrm/admin/custom/group`
-- check if `CaseType` _EU Survey Import_ is available and enabled under `/civicrm/a/#/caseType`
+- check if `CaseType` _EIC Awardee Onboarding_ is available and enabled under `/civicrm/a/#/caseType`
 - check if `RelationshipType` _Main contact for_ and _Contact for_ are available and enabled under `/civicrm/admin/reltype`
 
 Folder Structure
@@ -129,11 +129,11 @@ Contains all ManagedEntities that will be loaded upon installation or (re)enabli
 
 | ManagedEntity         | Value                                                           |
 |-----------------------|-----------------------------------------------------------------|
-| CaseType              | `EU Survey Import`                                              |
+| CaseType              | `EIC Awardee Onboarding`                                        |
 | OptionGroup           | contains Activity `EU Survey Data` (value=67)                   |
 | RelationshipType      | `Main contact for` (Individual to Organisation)                 |
 | RelationshipType      | `Contact for` (Individual to Organisation)                      |
-| CustomGroup           | `EIC Project` for `Case` of case type `EU Survey Import`        |
+| CustomGroup           | `EIC Project` for `Case` of case type `EIC Awardee Onboarding`  |
 | CustomGroup           | `EU Survey Data` for `Activity` of activity type `EU Survey`    |
 | CustomGroup           | `EU_Survey_Company_Data` for `Contact` of type `Organisation`   |
 
@@ -148,8 +148,8 @@ Contains all assets that will be loaded upon installation or (re)enabling of ext
 |-----------------------|---------------------------------------------------------------------------------------------------|
 | EIC Individual Import | Create individual contacts from EU-Survey dataset                                                 |
 | EIC Company Import    | Create beneficiary companies from EU-Survey dataset                                               |
-| EIC Case Import       | Create cases of type _EU-Survey Import_ from EU-Survey dataset                                    |
-| EIC Default Case      | Create a default case type _EU-Survey Import_ for catching failures during EU-Survey data import  |
+| EIC Awardee Onboarding Case Import    | Create cases of type _EIC Awardee Onboarding_ from EU-Survey dataset                    |
+| EIC Awardee Onboarding Default Case   | Create a default _EIC Awardee Onboarding_ case for catching failures during EU-Survey data import |
 | EU Survey Import      | Created activites of type _EU-Survey data_ and assign all EU-Survey data to activity  |
 
 **CiviCRM Settings**
@@ -175,7 +175,7 @@ The following types are made available through `ManagedEntities`.
 | for Entitiy | Type                    |
 |-------------|-------------------------|
 | Activity    | _EU-Survey Data_        |
-| Case        | _EU-Survey Import_      |
+| Case        | _EIC Awardee Onboarding_ |
 
 
 Case - CustomFields
@@ -187,10 +187,13 @@ The following custom-groups and fields are made available through `ManagedEntiti
 |------------------|-------------------------|-------------------------|
 |                  | EIC Project Data        | EIC_Project             |
 
-| **CustomFields** | Label                   | Name                    |
-|------------------|-------------------------|-------------------------|
-|                  | EIC Title               | EIC_Title               |
-|                  | Organisation PIC number | Organisation_PIC_number |
+| **CustomFields** | Label                   | Name                    | Type                                      |
+|------------------|-------------------------|-------------------------|-------------------------------------------|
+|                  | EIC Title               | EIC_Title               | Text                                      |
+|                  | Organisation PIC number | Organisation_PIC_number | Text                                      |
+|                  | EIC Project ID          | EIC_Project_ID          | Text                                      |
+|                  | EIC Project Acronym     | EIC_Project_Acronym     | Text                                      |
+|                  | EIC Project (activity)  | EIC_Project_Activity    | Entity Reference (FK to `Activity`)       |
 
 
 Activity - Custom Fields
@@ -324,16 +327,38 @@ Later on, when EU Survey data is being imported:
 
 **Form Processor**
 
-- Title: `EIC Case Import`
-- Name: `eic_case_import`
+- Title: `EIC Awardee Onboarding Case Import`
+- Name: `eic_awardee_onboarding_case_import`
 
 **Fieldmapping**
 
-| EU Survey Field                 | Form Processor Input Field Name | Data Type     | Notes         |
-|---------------------------------|---------------------------------|---------------|---------------|
-| EIC Project Acronym             | case_eic_project_acronym        | short text    | not used yet  |
-| EIC Project ID                  | case_eic_project_id             | short text    | not used yet  |
-| PIC Number                      | org_pic_number                  | short text    |               |
+| EU Survey Field                 | Form Processor Input Field Name | Data Type     | Notes                                        |
+|---------------------------------|---------------------------------|---------------|----------------------------------------------|
+| PIC Number                      | org_pic_number                  | short text    | identifies / creates the beneficiary company |
+| Company Website                 | org_website                     | short text    | used as a secondary company match            |
+| EIC Project ID                  | case_eic_project_id             | short text    | stored on the case; primary project match    |
+| EIC Project Acronym             | case_eic_project_acronym        | short text    | stored on the case; fallback project match   |
+
+**Linking the case to the EIC Project activity**
+
+EIC Project activities (`activity_type = EIC_Awardee_Project`) are imported separately by the `eic_import`
+pipeline. On each project activity the Project ID is stored in the custom field
+`EIC_Horizon_Europe_Project_information.Project_Number`, and the acronym is stored in the activity `subject`.
+
+When a case is imported, this Form Processor links it to the matching project activity and records the result in
+three case custom fields (`EIC_Project_ID`, `EIC_Project_Acronym`, `EIC_Project_Activity`):
+
+1. `find_project_activity_by_id` — matches the `EIC_Awardee_Project` activity whose `Project_Number` equals the
+   submitted `case_eic_project_id` (runs when a Project ID is provided).
+2. `find_project_activity_by_acronym` — fallback that matches on the activity `subject` equal to
+   `case_eic_project_acronym` (runs only when the ID match found nothing).
+
+The matched activity is stored in the `EIC_Project_Activity` Entity Reference field, which renders as a clickable
+link to the EIC Project activity.
+
+> **Note:** both match actions use `FindSimilarActivities`, whose output `activity_Ids` is a list. Confirm on
+> import that the single matched activity is written into the Entity Reference field (first element), and that the
+> acronym-fallback result is mapped when the ID match is empty.
 
 Import Individual Data
 ----------------------

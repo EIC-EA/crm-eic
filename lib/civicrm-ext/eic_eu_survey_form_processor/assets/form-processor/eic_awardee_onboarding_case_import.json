@@ -1,6 +1,6 @@
 {
-    "title": "EIC Case Import",
-    "name": "eic_case_import",
+    "title": "EIC Awardee Onboarding Case Import",
+    "name": "eic_awardee_onboarding_case_import",
     "is_active": "1",
     "description": "This FormProcessor creates a case and sets the case title to `EIC Awardee Onboarding`.\r\n\r\nIt will link a company by its `PIC Number` as client to the newly created case.\r\n\r\nLater on, when EU Survey data is being imported:\r\n\r\n- An organisation's `PIC Number` can be used to identitfy the organisation belonging to the case.\r\n\r\n- The case title can be used to identify the proper case as a company may have more than one case it is a client of.",
     "output_handler": "OutputAllActionOutput",
@@ -30,6 +30,36 @@
             "include_formatted_params": "0",
             "title": "Company Website",
             "name": "org_website",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "3",
+            "include_formatted_params": "0",
+            "title": "EIC Project ID",
+            "name": "case_eic_project_id",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "4",
+            "include_formatted_params": "0",
+            "title": "EIC Project Acronym",
+            "name": "case_eic_project_acronym",
             "type": "String",
             "is_required": "0",
             "default_value": "",
@@ -173,6 +203,48 @@
             },
             "delay_configuration": ""
         },
+        "7": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find EIC Project Activity by Project ID",
+            "name": "find_project_activity_by_id",
+            "type": "FindSimilarActivities",
+            "configuration": {
+                "activity_type_id": "EIC_Awardee_Project"
+            },
+            "mapping": {
+                "custom_EIC_Horizon_Europe_Project_information_Project_Number": "input.case_eic_project_id"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "input.case_eic_project_id"
+                }
+            },
+            "delay_configuration": ""
+        },
+        "8": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find EIC Project Activity by Acronym (fallback)",
+            "name": "find_project_activity_by_acronym",
+            "type": "FindSimilarActivities",
+            "configuration": {
+                "activity_type_id": "EIC_Awardee_Project"
+            },
+            "mapping": {
+                "subject": "input.case_eic_project_acronym"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_project_activity_by_id.activity_Ids"
+                }
+            },
+            "delay_configuration": ""
+        },
         "6": {
             "pid": "0",
             "conditional_processing_group": "1",
@@ -236,7 +308,10 @@
                     "mapping": {
                         "case_id": "action.create_cases_if_pic_number_is_available.create_eu_survey_case_and_connect_to_beneficiary_company.case_id",
                         "custom_EIC_Project_EIC_Title": "action.get_case_title_awardee_onboarding.value",
-                        "custom_EIC_Project_Organisation_PIC_number": "input.org_pic_number"
+                        "custom_EIC_Project_Organisation_PIC_number": "input.org_pic_number",
+                        "custom_EIC_Project_EIC_Project_ID": "input.case_eic_project_id",
+                        "custom_EIC_Project_EIC_Project_Acronym": "input.case_eic_project_acronym",
+                        "custom_EIC_Project_EIC_Project_Activity": "action.find_project_activity_by_id.activity_Ids"
                     },
                     "condition_configuration": "",
                     "delay_configuration": ""
