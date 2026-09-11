@@ -64,9 +64,9 @@
           "created_add_activity_campaign": ""
         }
       },
-      "eu_survey_applicant": {
+      "eu_survey_individual": {
         "is_default": 0,
-        "label": "Eu Survey - Applicant",
+        "label": "EU Survey - Individual",
         "options": {
           "fill_address": "0",
           "fill_fields_multivalue": null,
