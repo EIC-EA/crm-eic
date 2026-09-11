@@ -98,6 +98,19 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
+        "3": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Case Type: EIC Awardee Onboarding",
+            "name": "get_case_type_awardee_onboarding",
+            "type": "SetValue",
+            "configuration": {
+                "value": "eic_awardee_onboarding"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
         "4": {
             "pid": "0",
             "conditional_processing_group": "0",
@@ -281,7 +294,7 @@
                     "name": "create_eu_survey_case_and_connect_to_beneficiary_company",
                     "type": "CreateCase",
                     "configuration": {
-                        "case_type_id": "4",
+                        "case_type_id": "eic_awardee_onboarding",
                         "subject": "EIC Awardee Onboarding",
                         "creator_id": "",
                         "case_status": "1"
@@ -294,7 +307,7 @@
                         "created_date": "",
                         "start_date": "",
                         "end_date": "",
-                        "case_type_id": ""
+                        "case_type_id": "action.get_case_type_awardee_onboarding.value"
                     },
                     "condition_configuration": "",
                     "delay_configuration": ""

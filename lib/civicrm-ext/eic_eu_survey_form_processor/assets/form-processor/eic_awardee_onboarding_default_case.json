@@ -52,6 +52,19 @@
         {
             "pid": "0",
             "conditional_processing_group": "0",
+            "title": "Get Case Type: EIC Awardee Onboarding",
+            "name": "get_case_type_awardee_onboarding",
+            "type": "SetValue",
+            "configuration": {
+                "value": "eic_awardee_onboarding"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
             "title": "Find Catch-All Company",
             "name": "find_catch_all_company_contact",
             "type": "FindByExternalId",
@@ -152,7 +165,7 @@
             "name": "create_catch_all_case_if_not_exists",
             "type": "CreateCase",
             "configuration": {
-                "case_type_id": "4",
+                "case_type_id": "eic_awardee_onboarding",
                 "subject": "EIC Awardee Onboarding - Unmatched",
                 "creator_id": "",
                 "case_status": "1"
@@ -165,7 +178,7 @@
                 "created_date": "",
                 "start_date": "",
                 "end_date": "",
-                "case_type_id": ""
+                "case_type_id": "action.get_case_type_awardee_onboarding.value"
             },
             "condition_configuration": {
                 "name": "ParameterIsEmpty",
