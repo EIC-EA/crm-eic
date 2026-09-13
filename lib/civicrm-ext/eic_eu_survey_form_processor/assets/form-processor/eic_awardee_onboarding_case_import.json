@@ -245,6 +245,21 @@
             },
             "delay_configuration": ""
         },
+        "9": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Reduce matched project activity ids to a single value",
+            "name": "project_activity_id",
+            "type": "ImplodeList",
+            "configuration": {
+                "separator": ","
+            },
+            "mapping": {
+                "value": "action.find_project_activity_by_id.activity_Ids"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
         "6": {
             "pid": "0",
             "conditional_processing_group": "1",
@@ -311,7 +326,7 @@
                         "custom_EIC_Project_Organisation_PIC_number": "input.org_pic_number",
                         "custom_EIC_Project_EIC_Project_ID": "input.case_eic_project_id",
                         "custom_EIC_Project_EIC_Project_Acronym": "input.case_eic_project_acronym",
-                        "custom_EIC_Project_EIC_Project_Activity": "action.find_project_activity_by_id.activity_Ids"
+                        "custom_EIC_Project_EIC_Project_Activity": "action.project_activity_id.value"
                     },
                     "condition_configuration": "",
                     "delay_configuration": ""
