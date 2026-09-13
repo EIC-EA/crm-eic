@@ -13,7 +13,7 @@ return [
         'name' => 'eu_survey_data',
         'title' => E::ts('EU-Survey Data'),
         'extends' => 'Activity',
-        'extends_entity_column_value' => ['67'],
+        'extends_entity_column_value:name' => ['eu_survey'],
         'collapse_adv_display' => TRUE,
       ],
       'match' => ['name'],

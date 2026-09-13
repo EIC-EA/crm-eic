@@ -13,7 +13,7 @@ return [
         'name' => 'EIC_Project',
         'title' => E::ts('EIC Project Data'),
         'extends' => 'Case',
-        'extends_entity_column_value' => ['4'],
+        'extends_entity_column_value:name' => ['eic_awardee_onboarding'],
         'weight' => 3,
         'collapse_adv_display' => TRUE,
       ],
