@@ -152,7 +152,7 @@
             "name": "create_catch_all_case_if_not_exists",
             "type": "CreateCase",
             "configuration": {
-                "case_type_id": "8",
+                "case_type_id": "7",
                 "subject": "EIC Awardee Onboarding - Unmatched",
                 "creator_id": "",
                 "case_status": "1"
