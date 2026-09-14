@@ -29,6 +29,9 @@ return [
             [
               'name' => 'Follow up',
             ],
+            [
+              'name' => 'Task',
+            ],
           ],
           'activitySets' => [
             [
@@ -56,14 +59,13 @@ return [
           'caseRoles' => [
             [
               'name' => 'Case Coordinator',
-              'creator' => '1',
               'manager' => '1',
             ],
             [
-              'name' => 'Employee of',
+              'name' => 'Main contact is',
             ],
             [
-              'name' => 'Employer of',
+              'name' => 'Contact is',
             ],
           ],
         ],

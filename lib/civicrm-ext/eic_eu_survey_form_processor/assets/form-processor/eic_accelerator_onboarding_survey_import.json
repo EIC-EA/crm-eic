@@ -929,7 +929,7 @@
             "name": "create_main_contact_relationship",
             "type": "CreateOrUpdateRelationship",
             "configuration": {
-                "relationship_type_id": "",
+                "relationship_type_id": "Main contact for",
                 "set_start_date": "0",
                 "is_permission_a_b": "",
                 "is_permission_b_a": "",
@@ -944,7 +944,7 @@
                 "description": "",
                 "is_permission_a_b": "",
                 "is_permission_b_a": "",
-                "case_id": ""
+                "case_id": "action.find_eu_survey_case.id"
             },
             "condition_configuration": {
                 "name": "ParameterIsNotEmpty",
@@ -1016,7 +1016,7 @@
             "name": "create_contact_2_relationship",
             "type": "CreateOrUpdateRelationship",
             "configuration": {
-                "relationship_type_id": "",
+                "relationship_type_id": "Contact for",
                 "set_start_date": "0",
                 "is_permission_a_b": "",
                 "is_permission_b_a": "",
@@ -1031,7 +1031,7 @@
                 "description": "",
                 "is_permission_a_b": "",
                 "is_permission_b_a": "",
-                "case_id": ""
+                "case_id": "action.find_eu_survey_case.id"
             },
             "condition_configuration": {
                 "name": "ParameterIsNotEmpty",
@@ -1077,7 +1077,7 @@
             "name": "create_contact_3_relationship",
             "type": "CreateOrUpdateRelationship",
             "configuration": {
-                "relationship_type_id": "",
+                "relationship_type_id": "Contact for",
                 "set_start_date": "0",
                 "is_permission_a_b": "",
                 "is_permission_b_a": "",
@@ -1092,7 +1092,7 @@
                 "description": "",
                 "is_permission_a_b": "",
                 "is_permission_b_a": "",
-                "case_id": ""
+                "case_id": "action.find_eu_survey_case.id"
             },
             "condition_configuration": {
                 "name": "ParameterIsNotEmpty",
@@ -1138,7 +1138,7 @@
             "name": "create_contact_4_relationship",
             "type": "CreateOrUpdateRelationship",
             "configuration": {
-                "relationship_type_id": "",
+                "relationship_type_id": "Contact for",
                 "set_start_date": "0",
                 "is_permission_a_b": "",
                 "is_permission_b_a": "",
@@ -1153,7 +1153,7 @@
                 "description": "",
                 "is_permission_a_b": "",
                 "is_permission_b_a": "",
-                "case_id": ""
+                "case_id": "action.find_eu_survey_case.id"
             },
             "condition_configuration": {
                 "name": "ParameterIsNotEmpty",
@@ -1225,33 +1225,6 @@
                 },
                 "output_mapping": {
                     "id": ""
-                }
-            },
-            "delay_configuration": ""
-        },
-        {
-            "pid": "0",
-            "conditional_processing_group": "0",
-            "title": "Add Main Contact role to case - if EU-Survey Case is available",
-            "name": "add_main_contact_role_to_case",
-            "type": "CaseAddRole",
-            "configuration": {
-                "relationship_type": "5_b_a",
-                "replace": "0"
-            },
-            "mapping": {
-                "contact_id": "action.find_create_main_contact.contact_id",
-                "case_id": "action.find_eu_survey_case.id"
-            },
-            "condition_configuration": {
-                "name": "ParameterIsNotEmpty",
-                "configuration": [],
-                "parameter_mapping": {
-                    "parameter": "action.find_eu_survey_case.id"
-                },
-                "output_mapping": {
-                    "first_relationship_id": "",
-                    "relationship_ids": []
                 }
             },
             "delay_configuration": ""
