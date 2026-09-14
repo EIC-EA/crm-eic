@@ -1,8 +1,8 @@
 {
-    "title": "EU Survey Import",
-    "name": "eu_survey_import",
+    "title": "EIC Accelerator Onboarding Survey Import",
+    "name": "eic_accelerator_onboarding_survey_import",
     "is_active": "1",
-    "description": "This FormProcessor creates an activity that stores the received EU Survey data.\r\nThe activity will be attached to a case.\r\n\r\nThe case will be identified by:\r\n\r\n- the received  `PIC Number`, that is matched to the corresponding custom field of a case\r\n- the case title, which is supposed to be set to `EIC Awardee Onboarding`.\r\n\r\nThis FormProcessor also creates an individual contact from the transmitted applicant data\r\nif no contact yet exists that match the recceived contact data (First Name, Last Name, Professional Email).",
+    "description": "This FormProcessor ingests the EU Survey EIC Onboarding survey for the ACCELERATOR scheme. It is scheme-specific: other schemes have their own onboarding surveys with different questions, so each scheme has its own survey-import FormProcessor. (The Company Import and Individual Import FormProcessors, by contrast, are common across all schemes.)\r\n\r\nIt creates an activity that stores the received EU Survey data and attaches it to a case. The case is identified by:\r\n\r\n- the received `PIC Number`, matched to the corresponding custom field of the case\r\n- the case title, which is supposed to be set to `EIC Awardee Onboarding`.\r\n\r\nThis FormProcessor also creates an individual contact from the transmitted contact data if no contact yet exists that matches the received contact data (First Name, Last Name, Professional Email).",
     "output_handler": "OutputAllActionOutput",
     "output_handler_configuration": [],
     "enable_default_data": "0",
@@ -353,7 +353,7 @@
             "weight": "24",
             "include_formatted_params": "0",
             "title": "Which region?",
-            "name": "survey_internation_trade_fairs_region",
+            "name": "survey_international_trade_fairs_region",
             "type": "String",
             "is_required": "0",
             "default_value": "",
@@ -439,7 +439,7 @@
             "weight": "30",
             "include_formatted_params": "0",
             "title": "What type of other support are you interested in?",
-            "name": "survey_suport_other_types",
+            "name": "survey_support_other_types",
             "type": "Text",
             "is_required": "0",
             "default_value": "",
@@ -452,7 +452,7 @@
             "weight": "31",
             "include_formatted_params": "0",
             "title": "Are there any other support items you would like to benefit from",
-            "name": "support_support_other_items",
+            "name": "survey_support_other_items",
             "type": "Text",
             "is_required": "0",
             "default_value": "",
@@ -473,6 +473,201 @@
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
+        },
+        {
+            "weight": "33",
+            "include_formatted_params": "0",
+            "title": "First Name contact 2",
+            "name": "ind_2_first_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "34",
+            "include_formatted_params": "0",
+            "title": "Last Name contact 2",
+            "name": "ind_2_last_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "35",
+            "include_formatted_params": "0",
+            "title": "E-mail contact 2",
+            "name": "ind_2_professional_email",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "36",
+            "include_formatted_params": "0",
+            "title": "Phone number contact 2",
+            "name": "ind_2_phone_number",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "37",
+            "include_formatted_params": "0",
+            "title": "Role in organization contact 2",
+            "name": "ind_2_role_in_organisation",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "38",
+            "include_formatted_params": "0",
+            "title": "First Name contact 3",
+            "name": "ind_3_first_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "39",
+            "include_formatted_params": "0",
+            "title": "Last Name contact 3",
+            "name": "ind_3_last_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "40",
+            "include_formatted_params": "0",
+            "title": "E-mail contact 3",
+            "name": "ind_3_professional_email",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "41",
+            "include_formatted_params": "0",
+            "title": "Phone number contact 3",
+            "name": "ind_3_phone_number",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "42",
+            "include_formatted_params": "0",
+            "title": "Role in organization contact 3",
+            "name": "ind_3_role_in_organisation",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "43",
+            "include_formatted_params": "0",
+            "title": "First Name contact 4",
+            "name": "ind_4_first_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "44",
+            "include_formatted_params": "0",
+            "title": "Last Name contact 4",
+            "name": "ind_4_last_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "45",
+            "include_formatted_params": "0",
+            "title": "E-mail contact 4",
+            "name": "ind_4_professional_email",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "46",
+            "include_formatted_params": "0",
+            "title": "Phone number contact 4",
+            "name": "ind_4_phone_number",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "47",
+            "include_formatted_params": "0",
+            "title": "Role in organization contact 4",
+            "name": "ind_4_role_in_organisation",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
         }
     ],
     "actions": [
@@ -483,7 +678,7 @@
             "name": "get_catch_all_activity_title",
             "type": "SetValue",
             "configuration": {
-                "value": "EU survey Data - Unmatched"
+                "value": "EIC Accelerator Onboarding Survey Data - Unmatched"
             },
             "mapping": [],
             "condition_configuration": "",
@@ -531,6 +726,28 @@
         {
             "pid": "0",
             "conditional_processing_group": "0",
+            "title": "Get company using the PIC",
+            "name": "get_company_using_the_pic",
+            "type": "FindContactByCustomField",
+            "configuration": {
+                "contact_type": "",
+                "fail_not_found": "0"
+            },
+            "mapping": {
+                "custom_EIC_Organisation_identifiers_PIC": "input.org_pic_number"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "input.org_pic_number"
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
             "title": "Get Beneficiary Company by PIC number or website",
             "name": "get_beneficiary_company_by_pic_number_or_website",
             "type": "XcmGetOrCreate",
@@ -564,11 +781,12 @@
                 "preferred_language": "",
                 "preferred_communication_method": "",
                 "legal_identifier": "",
-                "external_identifier": "input.org_pic_number",
+                "external_identifier": "",
+                "custom_EIC_Organisation_identifiers_PIC": "input.org_pic_number",
                 "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "",
                 "custom_EU_Survey_Company_Data_Founder_Gender": "",
                 "contact_type": "",
-                "id": "",
+                "id": "action.get_company_using_the_pic.contact_id",
                 "source": "",
                 "email": "",
                 "phone": "",
@@ -613,8 +831,8 @@
         {
             "pid": "0",
             "conditional_processing_group": "0",
-            "title": "Find or Create Applicant Contact",
-            "name": "find_create_applicant_contact",
+            "title": "Find or Create Main Contact",
+            "name": "find_create_main_contact",
             "type": "XcmGetOrCreate",
             "configuration": {
                 "xcm_profile": "eu_survey_individual",
@@ -681,17 +899,285 @@
         {
             "pid": "0",
             "conditional_processing_group": "0",
+            "title": "Get 'Main contact for' relationship type name",
+            "name": "get_main_contact_relationship_type_name",
+            "type": "SetValue",
+            "configuration": {
+                "value": "Main contact for"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Resolve 'Main contact for' relationship type id",
+            "name": "get_main_contact_relationship_type_id",
+            "type": "GetRelationshipTypeIdByName",
+            "configuration": [],
+            "mapping": {
+                "name": "action.get_main_contact_relationship_type_name.value"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Link main contact to company (Main contact for)",
+            "name": "create_main_contact_relationship",
+            "type": "CreateOrUpdateRelationship",
+            "configuration": {
+                "relationship_type_id": "",
+                "set_start_date": "0",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "also_update_inactive": "0"
+            },
+            "mapping": {
+                "relationship_type_id": "action.get_main_contact_relationship_type_id.id",
+                "contact_id_a": "action.find_create_main_contact.contact_id",
+                "contact_id_b": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
+                "start_date": "",
+                "end_date": "",
+                "description": "",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "case_id": ""
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_create_main_contact.contact_id"
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get 'Contact for' relationship type name",
+            "name": "get_contact_relationship_type_name",
+            "type": "SetValue",
+            "configuration": {
+                "value": "Contact for"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Resolve 'Contact for' relationship type id",
+            "name": "get_contact_relationship_type_id",
+            "type": "GetRelationshipTypeIdByName",
+            "configuration": [],
+            "mapping": {
+                "name": "action.get_contact_relationship_type_name.value"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find or Create Contact 2 - if provided",
+            "name": "find_create_contact_2",
+            "type": "XcmGetOrCreate",
+            "configuration": {
+                "xcm_profile": "eu_survey_individual",
+                "contact_type": "Individual",
+                "variable_target_1": "",
+                "variable_target_2": ""
+            },
+            "mapping": {
+                "first_name": "input.ind_2_first_name",
+                "last_name": "input.ind_2_last_name",
+                "job_title": "input.ind_2_role_in_organisation",
+                "email": "input.ind_2_professional_email",
+                "phone": "input.ind_2_phone_number"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "input.ind_2_professional_email"
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Link contact 2 to company (Contact for)",
+            "name": "create_contact_2_relationship",
+            "type": "CreateOrUpdateRelationship",
+            "configuration": {
+                "relationship_type_id": "",
+                "set_start_date": "0",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "also_update_inactive": "0"
+            },
+            "mapping": {
+                "relationship_type_id": "action.get_contact_relationship_type_id.id",
+                "contact_id_a": "action.find_create_contact_2.contact_id",
+                "contact_id_b": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
+                "start_date": "",
+                "end_date": "",
+                "description": "",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "case_id": ""
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_create_contact_2.contact_id"
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find or Create Contact 3 - if provided",
+            "name": "find_create_contact_3",
+            "type": "XcmGetOrCreate",
+            "configuration": {
+                "xcm_profile": "eu_survey_individual",
+                "contact_type": "Individual",
+                "variable_target_1": "",
+                "variable_target_2": ""
+            },
+            "mapping": {
+                "first_name": "input.ind_3_first_name",
+                "last_name": "input.ind_3_last_name",
+                "job_title": "input.ind_3_role_in_organisation",
+                "email": "input.ind_3_professional_email",
+                "phone": "input.ind_3_phone_number"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "input.ind_3_professional_email"
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Link contact 3 to company (Contact for)",
+            "name": "create_contact_3_relationship",
+            "type": "CreateOrUpdateRelationship",
+            "configuration": {
+                "relationship_type_id": "",
+                "set_start_date": "0",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "also_update_inactive": "0"
+            },
+            "mapping": {
+                "relationship_type_id": "action.get_contact_relationship_type_id.id",
+                "contact_id_a": "action.find_create_contact_3.contact_id",
+                "contact_id_b": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
+                "start_date": "",
+                "end_date": "",
+                "description": "",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "case_id": ""
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_create_contact_3.contact_id"
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find or Create Contact 4 - if provided",
+            "name": "find_create_contact_4",
+            "type": "XcmGetOrCreate",
+            "configuration": {
+                "xcm_profile": "eu_survey_individual",
+                "contact_type": "Individual",
+                "variable_target_1": "",
+                "variable_target_2": ""
+            },
+            "mapping": {
+                "first_name": "input.ind_4_first_name",
+                "last_name": "input.ind_4_last_name",
+                "job_title": "input.ind_4_role_in_organisation",
+                "email": "input.ind_4_professional_email",
+                "phone": "input.ind_4_phone_number"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "input.ind_4_professional_email"
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Link contact 4 to company (Contact for)",
+            "name": "create_contact_4_relationship",
+            "type": "CreateOrUpdateRelationship",
+            "configuration": {
+                "relationship_type_id": "",
+                "set_start_date": "0",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "also_update_inactive": "0"
+            },
+            "mapping": {
+                "relationship_type_id": "action.get_contact_relationship_type_id.id",
+                "contact_id_a": "action.find_create_contact_4.contact_id",
+                "contact_id_b": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
+                "start_date": "",
+                "end_date": "",
+                "description": "",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "case_id": ""
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_create_contact_4.contact_id"
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
             "title": "Create Activity for EU Survey data and assign to case - if EU-Survey Case is available",
             "name": "create_activity_and_assign_to_case",
             "type": "CreateActivity",
             "configuration": {
-                "activity_type": "eu_survey",
+                "activity_type": "eic_accelerator_onboarding_survey",
                 "activity_status": "Scheduled",
-                "subject": "EU Survey Data",
+                "subject": "EIC Accelerator Onboarding Survey Data",
                 "priority": "Normal"
             },
             "mapping": {
-                "source_contact_id": "action.find_create_applicant_contact.contact_id",
+                "source_contact_id": "action.find_create_main_contact.contact_id",
                 "target_contact_id": [
                     "action.get_beneficiary_company_by_pic_number_or_website.contact_id"
                 ],
@@ -705,28 +1191,31 @@
                 "subject": "",
                 "details": "",
                 "case_id": "action.find_eu_survey_case.id",
-                "custom_eu_survey_data_EIC_Project_Acronym": "input.survey_eic_project_acronym",
-                "custom_eu_survey_data_EIC_Project_ID": "input.survey_eic_project_id",
-                "custom_eu_survey_data_survey_fundraising_within_the_next_18_months": "input.survey_fundraising_within_next_18_months",
-                "custom_eu_survey_data_survey_fundraising_within": "input.survey_fundraising_within",
-                "custom_eu_survey_data_survey_receive_suport_fundraising_items": "input.survey_support_fundraising",
-                "custom_eu_survey_data_survey_receive_support_investment": "input.survey_support_investment",
-                "custom_eu_survey_data_survey_partenrs_actively_seeking": "input.survey_actively_seeking_corporate_industrial_partners",
-                "custom_eu_survey_data_survey_partners_types": "input.survey_what_type_of_partner_are_you_targeting",
-                "custom_eu_survey_data_survey_selling_to_public_private_buyers": "input.survey_plan_to_sell_solution_to_public_private_buyers",
-                "custom_eu_survey_data_survey_receive_support_procurement": "input.survey_support_training_procurement",
-                "custom_eu_survey_data_survey_international_expansion_in_the_next_18_months": "input.survey_plan_to_expand_internationally_within_next_18_months",
-                "custom_eu_survey_data_survey_international_expansion_markets": "input.survey_expansion_markets",
-                "custom_eu_survey_data_survey_international_expansion_main_barrier": "input.survey_expansion_main_barrier",
-                "custom_eu_survey_data_survey_receive_support_entering_new_markets": "input.survey_support_entering_new_markets",
-                "custom_eu_survey_data_survey_international_trade_fairs_region": "input.survey_internation_trade_fairs_region",
-                "custom_eu_survey_data_survey_international_trade_fairs_events": "input.survey_international_trade_fairs_type_of_events",
-                "custom_eu_survey_data_survey_receive_support_industry_experts_or_coaches": "input.survey_would_support_industry_experts_coaches",
-                "custom_eu_survey_data_survey_receive_support_industry_experts_or_coaches_types": "input.survey_type_of_industry_export_support",
-                "custom_eu_survey_data_survey_main_challenge": "input.survey_main_challenge",
-                "custom_eu_survey_data_survey_receive_support_other_types": "input.survey_suport_other_types",
-                "custom_eu_survey_data_survey_receive_support_other_items": "input.support_support_other_items",
-                "custom_eu_survey_data_survey_feedback": "input.survey_general_feedback"
+                "custom_eic_accelerator_onboarding_survey_data_EIC_Project_Acronym": "input.survey_eic_project_acronym",
+                "custom_eic_accelerator_onboarding_survey_data_EIC_Project_ID": "input.survey_eic_project_id",
+                "custom_eic_accelerator_onboarding_survey_data_survey_fundraising_within_the_next_18_months": "input.survey_fundraising_within_next_18_months",
+                "custom_eic_accelerator_onboarding_survey_data_survey_fundraising_within": "input.survey_fundraising_within",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_suport_fundraising_items": "input.survey_support_fundraising",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_investment": "input.survey_support_investment",
+                "custom_eic_accelerator_onboarding_survey_data_survey_partenrs_actively_seeking": "input.survey_actively_seeking_corporate_industrial_partners",
+                "custom_eic_accelerator_onboarding_survey_data_survey_partners_types": "input.survey_what_type_of_partner_are_you_targeting",
+                "custom_eic_accelerator_onboarding_survey_data_survey_selling_to_public_private_buyers": "input.survey_plan_to_sell_solution_to_public_private_buyers",
+                "custom_eic_accelerator_onboarding_survey_data_survey_selling_to_public_private_buyers_where_are_you_in_the_process": "input.survey_where_are_you_in_the_process",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_procurement": "input.survey_support_training_procurement",
+                "custom_eic_accelerator_onboarding_survey_data_survey_international_expansion_in_the_next_18_months": "input.survey_plan_to_expand_internationally_within_next_18_months",
+                "custom_eic_accelerator_onboarding_survey_data_survey_international_expansion_markets": "input.survey_expansion_markets",
+                "custom_eic_accelerator_onboarding_survey_data_survey_international_expansion_main_barrier": "input.survey_expansion_main_barrier",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_entering_new_markets": "input.survey_support_entering_new_markets",
+                "custom_eic_accelerator_onboarding_survey_data_survey_international_trade_fairs_participate_in_the_next_12_months": "input.survey_plan_to_participate_in_international_trade_fairs_within_next_12_months",
+                "custom_eic_accelerator_onboarding_survey_data_survey_international_trade_fairs_region": "input.survey_international_trade_fairs_region",
+                "custom_eic_accelerator_onboarding_survey_data_survey_international_trade_fairs_events": "input.survey_international_trade_fairs_type_of_events",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_industry_experts_or_coaches": "input.survey_would_support_industry_experts_coaches",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_industry_experts_or_coaches_types": "input.survey_type_of_industry_export_support",
+                "custom_eic_accelerator_onboarding_survey_data_survey_main_challenge": "input.survey_main_challenge",
+                "custom_eic_accelerator_onboarding_survey_data_survey_Does_your_company_have_a_woman_founder_or_executive_who": "input.survey_woman_founder_or_executive_benefit_from_a_dedicated_leadership_programme",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_other_types": "input.survey_support_other_types",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_other_items": "input.survey_support_other_items",
+                "custom_eic_accelerator_onboarding_survey_data_survey_feedback": "input.survey_general_feedback"
             },
             "condition_configuration": {
                 "name": "ParameterIsNotEmpty",
@@ -743,15 +1232,15 @@
         {
             "pid": "0",
             "conditional_processing_group": "0",
-            "title": "Add Role for Applicant to case - if EU-Survey Case is available",
-            "name": "add_role_for_applicant_to_case_",
+            "title": "Add Main Contact role to case - if EU-Survey Case is available",
+            "name": "add_main_contact_role_to_case",
             "type": "CaseAddRole",
             "configuration": {
                 "relationship_type": "5_b_a",
                 "replace": "0"
             },
             "mapping": {
-                "contact_id": "action.find_create_applicant_contact.contact_id",
+                "contact_id": "action.find_create_main_contact.contact_id",
                 "case_id": "action.find_eu_survey_case.id"
             },
             "condition_configuration": {
@@ -812,7 +1301,7 @@
             "type": "XcmGetOrCreate",
             "configuration": {
                 "xcm_profile": "eu_survey_company",
-                "contact_type": "Individual",
+                "contact_type": "Organization",
                 "variable_target_1": "",
                 "variable_target_2": ""
             },
@@ -888,13 +1377,13 @@
             "name": "create_activity_for_eu_survey_and_assign_to_catch_all_case",
             "type": "CreateActivity",
             "configuration": {
-                "activity_type": "eu_survey",
+                "activity_type": "eic_accelerator_onboarding_survey",
                 "activity_status": "Scheduled",
-                "subject": "EU-Survey Data - Unmatched",
+                "subject": "EIC Accelerator Onboarding Survey Data - Unmatched",
                 "priority": "Normal"
             },
             "mapping": {
-                "source_contact_id": "action.find_create_applicant_contact.contact_id",
+                "source_contact_id": "action.find_create_main_contact.contact_id",
                 "target_contact_id": [
                     "action.find_catch_all_company_by_pic_number.contact_id"
                 ],
@@ -908,29 +1397,32 @@
                 "subject": "action.get_catch_all_activity_title.value",
                 "details": "",
                 "case_id": "action.find_catch_all_case_by_pic_number_and_title.id",
-                "custom_eu_survey_data_Organisation_PIC_number": "input.org_pic_number",
-                "custom_eu_survey_data_EIC_Project_Acronym": "input.survey_eic_project_acronym",
-                "custom_eu_survey_data_EIC_Project_ID": "input.survey_eic_project_id",
-                "custom_eu_survey_data_survey_fundraising_within_the_next_18_months": "input.survey_fundraising_within_next_18_months",
-                "custom_eu_survey_data_survey_fundraising_within": "input.survey_fundraising_within",
-                "custom_eu_survey_data_survey_receive_suport_fundraising_items": "input.survey_support_fundraising",
-                "custom_eu_survey_data_survey_receive_support_investment": "input.survey_support_investment",
-                "custom_eu_survey_data_survey_partenrs_actively_seeking": "input.survey_actively_seeking_corporate_industrial_partners",
-                "custom_eu_survey_data_survey_partners_types": "input.survey_what_type_of_partner_are_you_targeting",
-                "custom_eu_survey_data_survey_selling_to_public_private_buyers": "input.survey_plan_to_sell_solution_to_public_private_buyers",
-                "custom_eu_survey_data_survey_receive_support_procurement": "input.survey_support_training_procurement",
-                "custom_eu_survey_data_survey_international_expansion_in_the_next_18_months": "input.survey_plan_to_expand_internationally_within_next_18_months",
-                "custom_eu_survey_data_survey_international_expansion_markets": "input.survey_expansion_markets",
-                "custom_eu_survey_data_survey_international_expansion_main_barrier": "input.survey_expansion_main_barrier",
-                "custom_eu_survey_data_survey_receive_support_entering_new_markets": "input.survey_support_entering_new_markets",
-                "custom_eu_survey_data_survey_international_trade_fairs_region": "input.survey_internation_trade_fairs_region",
-                "custom_eu_survey_data_survey_international_trade_fairs_events": "",
-                "custom_eu_survey_data_survey_receive_support_industry_experts_or_coaches": "input.survey_would_support_industry_experts_coaches",
-                "custom_eu_survey_data_survey_receive_support_industry_experts_or_coaches_types": "input.survey_type_of_industry_export_support",
-                "custom_eu_survey_data_survey_main_challenge": "input.survey_main_challenge",
-                "custom_eu_survey_data_survey_receive_support_other_types": "input.survey_suport_other_types",
-                "custom_eu_survey_data_survey_receive_support_other_items": "input.support_support_other_items",
-                "custom_eu_survey_data_survey_feedback": "input.survey_general_feedback"
+                "custom_eic_accelerator_onboarding_survey_data_Organisation_PIC_number": "input.org_pic_number",
+                "custom_eic_accelerator_onboarding_survey_data_EIC_Project_Acronym": "input.survey_eic_project_acronym",
+                "custom_eic_accelerator_onboarding_survey_data_EIC_Project_ID": "input.survey_eic_project_id",
+                "custom_eic_accelerator_onboarding_survey_data_survey_fundraising_within_the_next_18_months": "input.survey_fundraising_within_next_18_months",
+                "custom_eic_accelerator_onboarding_survey_data_survey_fundraising_within": "input.survey_fundraising_within",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_suport_fundraising_items": "input.survey_support_fundraising",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_investment": "input.survey_support_investment",
+                "custom_eic_accelerator_onboarding_survey_data_survey_partenrs_actively_seeking": "input.survey_actively_seeking_corporate_industrial_partners",
+                "custom_eic_accelerator_onboarding_survey_data_survey_partners_types": "input.survey_what_type_of_partner_are_you_targeting",
+                "custom_eic_accelerator_onboarding_survey_data_survey_selling_to_public_private_buyers": "input.survey_plan_to_sell_solution_to_public_private_buyers",
+                "custom_eic_accelerator_onboarding_survey_data_survey_selling_to_public_private_buyers_where_are_you_in_the_process": "input.survey_where_are_you_in_the_process",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_procurement": "input.survey_support_training_procurement",
+                "custom_eic_accelerator_onboarding_survey_data_survey_international_expansion_in_the_next_18_months": "input.survey_plan_to_expand_internationally_within_next_18_months",
+                "custom_eic_accelerator_onboarding_survey_data_survey_international_expansion_markets": "input.survey_expansion_markets",
+                "custom_eic_accelerator_onboarding_survey_data_survey_international_expansion_main_barrier": "input.survey_expansion_main_barrier",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_entering_new_markets": "input.survey_support_entering_new_markets",
+                "custom_eic_accelerator_onboarding_survey_data_survey_international_trade_fairs_participate_in_the_next_12_months": "input.survey_plan_to_participate_in_international_trade_fairs_within_next_12_months",
+                "custom_eic_accelerator_onboarding_survey_data_survey_international_trade_fairs_region": "input.survey_international_trade_fairs_region",
+                "custom_eic_accelerator_onboarding_survey_data_survey_international_trade_fairs_events": "",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_industry_experts_or_coaches": "input.survey_would_support_industry_experts_coaches",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_industry_experts_or_coaches_types": "input.survey_type_of_industry_export_support",
+                "custom_eic_accelerator_onboarding_survey_data_survey_main_challenge": "input.survey_main_challenge",
+                "custom_eic_accelerator_onboarding_survey_data_survey_Does_your_company_have_a_woman_founder_or_executive_who": "input.survey_woman_founder_or_executive_benefit_from_a_dedicated_leadership_programme",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_other_types": "input.survey_support_other_types",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_other_items": "input.survey_support_other_items",
+                "custom_eic_accelerator_onboarding_survey_data_survey_feedback": "input.survey_general_feedback"
             },
             "condition_configuration": {
                 "name": "ParameterIsEmpty",
