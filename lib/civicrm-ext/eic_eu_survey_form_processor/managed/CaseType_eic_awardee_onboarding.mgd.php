@@ -20,7 +20,7 @@ return [
               'max_instances' => '1',
             ],
             [
-              'name' => 'eu_survey',
+              'name' => 'eic_accelerator_onboarding_survey',
               'max_instances' => '1',
             ],
             [

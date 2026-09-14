@@ -3,7 +3,7 @@ use CRM_EicEuSurveyFormProcessor_ExtensionUtil as E;
 
 return [
   [
-    'name' => 'OptionValue_eu_survey',
+    'name' => 'OptionValue_eic_accelerator_onboarding_survey',
     'entity' => 'OptionValue',
     'cleanup' => 'unused',
     'update' => 'unmodified',
@@ -11,8 +11,8 @@ return [
       'version' => 4,
       'values' => [
         'option_group_id.name' => 'activity_type',
-        'label' => E::ts('EU-Survey Data'),
-        'name' => 'eu_survey',
+        'label' => E::ts('EIC Accelerator Onboarding Survey Data'),
+        'name' => 'eic_accelerator_onboarding_survey',
         'weight' => 117,
         'description' => E::ts('<p>represents eu-survey data</p>'),
         'component_id:name' => 'CiviCase',

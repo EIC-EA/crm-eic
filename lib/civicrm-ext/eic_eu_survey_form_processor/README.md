@@ -114,7 +114,7 @@ Check after Installation or after (Re)Enabling
 Once the extension has been installed or (re)enabled, please check if all entities that has been loaded
 as `ManagedEntities` are available in CiviCRM and are enabled:
 
-- the `ActivityType` _EU Survey data_ will sometimes be disabled for yet unknown reasons. Re-enable that acticity type under `/civicrm/admin/options/activity_type`
+- the `ActivityType` _EIC Accelerator Onboarding Survey Data_ (machine name `eic_accelerator_onboarding_survey`) will sometimes be disabled for yet unknown reasons. Re-enable that acticity type under `/civicrm/admin/options/activity_type`
 - check if all CustomGroups are enabled and also if their fields are enabled under `/civicrm/admin/custom/group`
 - check if `CaseType` _EIC Awardee Onboarding_ is available and enabled under `/civicrm/a/#/caseType`
 - check if `RelationshipType` _Main contact for_ and _Contact for_ are available and enabled under `/civicrm/admin/reltype`
@@ -130,11 +130,11 @@ Contains all ManagedEntities that will be loaded upon installation or (re)enabli
 | ManagedEntity         | Value                                                           |
 |-----------------------|-----------------------------------------------------------------|
 | CaseType              | `EIC Awardee Onboarding`                                        |
-| OptionGroup           | contains Activity `EU Survey Data` (value=67)                   |
+| OptionGroup           | contains Activity `EIC Accelerator Onboarding Survey Data` (machine name `eic_accelerator_onboarding_survey`) |
 | RelationshipType      | `Main contact for` (Individual to Organisation)                 |
 | RelationshipType      | `Contact for` (Individual to Organisation)                      |
 | CustomGroup           | `EIC Awardee information` for `Case` of case type `EIC Awardee Onboarding` |
-| CustomGroup           | `EU Survey Data` for `Activity` of activity type `EU Survey`    |
+| CustomGroup           | `EIC Accelerator Onboarding Survey Data` (machine name `eic_accelerator_onboarding_survey_data`) for `Activity` of activity type `eic_accelerator_onboarding_survey` |
 | CustomGroup           | `EU_Survey_Company_Data` for `Contact` of type `Organisation`   |
 
 assets
@@ -150,7 +150,7 @@ Contains all assets that will be loaded upon installation or (re)enabling of ext
 | EIC Company Import    | Create beneficiary companies from EU-Survey dataset                                               |
 | EIC Awardee Onboarding Case Import    | Create cases of type _EIC Awardee Onboarding_ from EU-Survey dataset                    |
 | EIC Awardee Onboarding Default Case   | Create a default _EIC Awardee Onboarding_ case for catching failures during EU-Survey data import |
-| EIC Accelerator Onboarding Survey Import | Scheme-specific (Accelerator): create an _EU-Survey data_ activity and assign all EU-Survey data to it |
+| EIC Accelerator Onboarding Survey Import | Scheme-specific (Accelerator): create an _EIC Accelerator Onboarding Survey Data_ activity and assign all survey data to it |
 
 **CiviCRM Settings**
 
@@ -201,7 +201,7 @@ Activity - Custom Fields
 
 | **CustomGroup**  | Title                   | Name                    |
 |------------------|-------------------------|-------------------------|
-|                  | EU Survey Data          | eu_survey_data          |
+|                  | EIC Accelerator Onboarding Survey Data | eic_accelerator_onboarding_survey_data |
 
 | **CustomFields** | Label                                                                                                          | Name                                                              |
 |------------------|----------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
