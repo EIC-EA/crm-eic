@@ -229,6 +229,28 @@
         {
             "pid": "0",
             "conditional_processing_group": "0",
+            "title": "Get company using the PIC",
+            "name": "get_company_using_the_pic",
+            "type": "FindContactByCustomField",
+            "configuration": {
+                "contact_type": "",
+                "fail_not_found": "0"
+            },
+            "mapping": {
+                "custom_EIC_Organisation_identifiers_PIC": "input.org_pic_number"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "input.org_pic_number"
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
             "title": "Create Company Contact if not exists",
             "name": "create_company_contact_if_not_exists",
             "type": "XcmGetOrCreate",
@@ -262,7 +284,8 @@
                 "preferred_language": "",
                 "preferred_communication_method": "",
                 "legal_identifier": "",
-                "external_identifier": "input.org_pic_number",
+                "external_identifier": "",
+                "custom_EIC_Organisation_identifiers_PIC": "input.org_pic_number",
                 "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "input.org_ceo_project_leader_gender",
                 "custom_EU_Survey_Company_Data_Founder_Gender": "input.org_founder_gender",
                 "custom_EU_Survey_Company_Data_Sector": "input.org_sector",
@@ -296,7 +319,16 @@
                 "variable_value_1": "",
                 "variable_value_2": ""
             },
-            "condition_configuration": "",
+            "condition_configuration": {
+                "name": "ParameterIsEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.get_company_using_the_pic.contact_id"
+                },
+                "output_mapping": {
+                    "contact_id": ""
+                }
+            },
             "delay_configuration": ""
         }
     ],
