@@ -536,7 +536,7 @@
             "type": "XcmGetOrCreate",
             "configuration": {
                 "xcm_profile": "eu_survey_company",
-                "contact_type": "Organization",
+                "contact_type": "EIC_Organization",
                 "variable_target_1": "",
                 "variable_target_2": ""
             },
