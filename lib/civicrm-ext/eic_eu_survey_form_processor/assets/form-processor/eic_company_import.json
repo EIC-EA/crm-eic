@@ -234,7 +234,7 @@
             "type": "XcmGetOrCreate",
             "configuration": {
                 "xcm_profile": "eu_survey_company",
-                "contact_type": "EIC_Organization",
+                "contact_type": "EIC_Organisation",
                 "variable_target_1": "",
                 "variable_target_2": ""
             },
