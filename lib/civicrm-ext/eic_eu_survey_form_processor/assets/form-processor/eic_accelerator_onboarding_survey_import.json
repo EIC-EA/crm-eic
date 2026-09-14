@@ -1,8 +1,8 @@
 {
-    "title": "EU Survey Import",
-    "name": "eu_survey_import",
+    "title": "EIC Accelerator Onboarding Survey Import",
+    "name": "eic_accelerator_onboarding_survey_import",
     "is_active": "1",
-    "description": "This FormProcessor creates an activity that stores the received EU Survey data.\r\nThe activity will be attached to a case.\r\n\r\nThe case will be identified by:\r\n\r\n- the received  `PIC Number`, that is matched to the corresponding custom field of a case\r\n- the case title, which is supposed to be set to `EIC Awardee Onboarding`.\r\n\r\nThis FormProcessor also creates an individual contact from the transmitted applicant data\r\nif no contact yet exists that match the recceived contact data (First Name, Last Name, Professional Email).",
+    "description": "This FormProcessor ingests the EU Survey EIC Onboarding survey for the ACCELERATOR scheme. It is scheme-specific: other schemes have their own onboarding surveys with different questions, so each scheme has its own survey-import FormProcessor. (The Company Import and Individual Import FormProcessors, by contrast, are common across all schemes.)\r\n\r\nIt creates an activity that stores the received EU Survey data and attaches it to a case. The case is identified by:\r\n\r\n- the received `PIC Number`, matched to the corresponding custom field of the case\r\n- the case title, which is supposed to be set to `EIC Awardee Onboarding`.\r\n\r\nThis FormProcessor also creates an individual contact from the transmitted contact data if no contact yet exists that matches the received contact data (First Name, Last Name, Professional Email).",
     "output_handler": "OutputAllActionOutput",
     "output_handler_configuration": [],
     "enable_default_data": "0",
@@ -613,8 +613,8 @@
         {
             "pid": "0",
             "conditional_processing_group": "0",
-            "title": "Find or Create Applicant Contact",
-            "name": "find_create_applicant_contact",
+            "title": "Find or Create Main Contact",
+            "name": "find_create_main_contact",
             "type": "XcmGetOrCreate",
             "configuration": {
                 "xcm_profile": "eu_survey_individual",
@@ -691,7 +691,7 @@
                 "priority": "Normal"
             },
             "mapping": {
-                "source_contact_id": "action.find_create_applicant_contact.contact_id",
+                "source_contact_id": "action.find_create_main_contact.contact_id",
                 "target_contact_id": [
                     "action.get_beneficiary_company_by_pic_number_or_website.contact_id"
                 ],
@@ -743,15 +743,15 @@
         {
             "pid": "0",
             "conditional_processing_group": "0",
-            "title": "Add Role for Applicant to case - if EU-Survey Case is available",
-            "name": "add_role_for_applicant_to_case_",
+            "title": "Add Main Contact role to case - if EU-Survey Case is available",
+            "name": "add_main_contact_role_to_case",
             "type": "CaseAddRole",
             "configuration": {
                 "relationship_type": "5_b_a",
                 "replace": "0"
             },
             "mapping": {
-                "contact_id": "action.find_create_applicant_contact.contact_id",
+                "contact_id": "action.find_create_main_contact.contact_id",
                 "case_id": "action.find_eu_survey_case.id"
             },
             "condition_configuration": {
@@ -894,7 +894,7 @@
                 "priority": "Normal"
             },
             "mapping": {
-                "source_contact_id": "action.find_create_applicant_contact.contact_id",
+                "source_contact_id": "action.find_create_main_contact.contact_id",
                 "target_contact_id": [
                     "action.find_catch_all_company_by_pic_number.contact_id"
                 ],

@@ -150,7 +150,7 @@ Contains all assets that will be loaded upon installation or (re)enabling of ext
 | EIC Company Import    | Create beneficiary companies from EU-Survey dataset                                               |
 | EIC Awardee Onboarding Case Import    | Create cases of type _EIC Awardee Onboarding_ from EU-Survey dataset                    |
 | EIC Awardee Onboarding Default Case   | Create a default _EIC Awardee Onboarding_ case for catching failures during EU-Survey data import |
-| EU Survey Import      | Created activites of type _EU-Survey data_ and assign all EU-Survey data to activity  |
+| EIC Accelerator Onboarding Survey Import | Scheme-specific (Accelerator): create an _EU-Survey data_ activity and assign all EU-Survey data to it |
 
 **CiviCRM Settings**
 
@@ -382,8 +382,13 @@ create duplicates for contacts that already exist.
 | Phone                           | ind_phone_number                | short text    |           |
 | Role                            | ind_role                        | short text    |           |
 
-Import EU-Survey Data
----------------------
+Import EU-Survey Data (Accelerator)
+-----------------------------------
+
+**Scheme-specific.** This FormProcessor ingests the EU Survey EIC Onboarding survey for the
+**Accelerator** scheme. Other schemes have their own onboarding surveys with different questions, so
+each scheme has its own survey-import FormProcessor. (The Company Import and Individual Import
+FormProcessors are common across all schemes.)
 
 This FormProcessor creates an activity that stores the received EU Survey data.
 The activity will be attached to a case.
@@ -393,13 +398,14 @@ The case will be identified by:
 - the received  `PIC Number`, that is matched to the corresponding custom field of a case
 - the case title, which is supposed to be set to `EIC Awardee Onboarding`.
 
-This FormProcessor also creates an individual contact from the transmitted applicant data
-if no contact yet exists that match the recceived contact data (First Name, Last Name, Professional Email).
+This FormProcessor also creates an individual contact from the transmitted contact data
+if no contact yet exists that matches the received contact data (First Name, Last Name, Professional Email).
 
 **Form Processor**
 
-- Title: `EU Survey Import`
-- Name: `eu_survey_import`
+- Title: `EIC Accelerator Onboarding Survey Import`
+- Name: `eic_accelerator_onboarding_survey_import`
+- Scheme: **Accelerator** (scheme-specific; other schemes have their own survey-import FormProcessor)
 
 **Fieldmapping**
 
