@@ -604,8 +604,8 @@
             "type": "GetCaseDataByCustomField",
             "configuration": [],
             "mapping": {
-                "custom_EIC_Project_EIC_Title": "action.get_case_title_awardee_onboarding.value",
-                "custom_EIC_Project_Organisation_PIC_number": "input.org_pic_number"
+                "custom_EIC_Awardee_information_EIC_Title": "action.get_case_title_awardee_onboarding.value",
+                "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number"
             },
             "condition_configuration": "",
             "delay_configuration": ""
@@ -775,8 +775,8 @@
             "type": "GetCaseDataByCustomField",
             "configuration": [],
             "mapping": {
-                "custom_EIC_Project_EIC_Title": "action.get_case_title_catch_all.value",
-                "custom_EIC_Project_Organisation_PIC_number": "action.get_catch_all_company_pic_number.value"
+                "custom_EIC_Awardee_information_EIC_Title": "action.get_case_title_catch_all.value",
+                "custom_EIC_Awardee_information_Organisation_PIC_number": "action.get_catch_all_company_pic_number.value"
             },
             "condition_configuration": {
                 "name": "ParameterIsEmpty",
@@ -798,8 +798,8 @@
                     "contact_id": "",
                     "activity_id": "",
                     "tag_id": "",
-                    "custom_EIC_Project_EIC_Title": "",
-                    "custom_EIC_Project_Organisation_PIC_number": ""
+                    "custom_EIC_Awardee_information_EIC_Title": "",
+                    "custom_EIC_Awardee_information_Organisation_PIC_number": ""
                 }
             },
             "delay_configuration": ""

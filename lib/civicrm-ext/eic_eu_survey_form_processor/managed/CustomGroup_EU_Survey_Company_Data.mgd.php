@@ -15,6 +15,7 @@ return [
         'extends' => 'Organization',
         'weight' => 4,
         'collapse_adv_display' => TRUE,
+        'table_name' => 'civicrm_value_srm_eu_survey_company_data',
       ],
       'match' => ['name'],
     ],

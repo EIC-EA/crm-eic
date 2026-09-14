@@ -133,7 +133,7 @@ Contains all ManagedEntities that will be loaded upon installation or (re)enabli
 | OptionGroup           | contains Activity `EU Survey Data` (value=67)                   |
 | RelationshipType      | `Main contact for` (Individual to Organisation)                 |
 | RelationshipType      | `Contact for` (Individual to Organisation)                      |
-| CustomGroup           | `EIC Project` for `Case` of case type `EIC Awardee Onboarding`  |
+| CustomGroup           | `EIC Awardee information` for `Case` of case type `EIC Awardee Onboarding` |
 | CustomGroup           | `EU Survey Data` for `Activity` of activity type `EU Survey`    |
 | CustomGroup           | `EU_Survey_Company_Data` for `Contact` of type `Organisation`   |
 
@@ -185,7 +185,7 @@ The following custom-groups and fields are made available through `ManagedEntiti
 
 | **CustomGroup**  | Title                   | Name                    |
 |------------------|-------------------------|-------------------------|
-|                  | EIC Project Data        | EIC_Project             |
+|                  | EIC Awardee information | EIC_Awardee_information |
 
 | **CustomFields** | Label                   | Name                    | Type                                      |
 |------------------|-------------------------|-------------------------|-------------------------------------------|
