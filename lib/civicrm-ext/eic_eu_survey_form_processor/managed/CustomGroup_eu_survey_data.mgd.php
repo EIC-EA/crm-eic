@@ -15,6 +15,7 @@ return [
         'extends' => 'Activity',
         'extends_entity_column_value:name' => ['eu_survey'],
         'collapse_adv_display' => TRUE,
+        'table_name' => 'civicrm_value_srm_eu_survey_data',
       ],
       'match' => ['name'],
     ],
