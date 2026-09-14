@@ -345,20 +345,17 @@ EIC Project activities (`activity_type = EIC_Awardee_Project`) are imported sepa
 pipeline. On each project activity the Project ID is stored in the custom field
 `EIC_Horizon_Europe_Project_information.Project_Number`, and the acronym is stored in the activity `subject`.
 
-When a case is imported, this Form Processor links it to the matching project activity and records the result in
-three case custom fields (`EIC_Project_ID`, `EIC_Project_Acronym`, `EIC_Project_Activity`):
+When a case is imported, this Form Processor stores the submitted Project ID and Acronym on the case
+(`EIC_Project_ID`, `EIC_Project_Acronym`).
 
-1. `find_project_activity_by_id` — matches the `EIC_Awardee_Project` activity whose `Project_Number` equals the
-   submitted `case_eic_project_id` (runs when a Project ID is provided).
-2. `find_project_activity_by_acronym` — fallback that matches on the activity `subject` equal to
-   `case_eic_project_acronym` (runs only when the ID match found nothing).
-
-The matched activity is stored in the `EIC_Project_Activity` Entity Reference field, which renders as a clickable
-link to the EIC Project activity.
-
-> **Note:** both match actions use `FindSimilarActivities`, whose output `activity_Ids` is a list. Confirm on
-> import that the single matched activity is written into the Entity Reference field (first element), and that the
-> acronym-fallback result is mapped when the ID match is empty.
+**Deferred — linking the case to the EIC Project activity:** the case custom group also defines an
+`EIC_Project_Activity` Entity Reference field intended to hold a clickable link to the matched
+`EIC_Awardee_Project` activity. Automatic population of this field is **not yet implemented**. The intended
+matching logic is: match the project activity by `Project_Number` = submitted Project ID first; if none is found,
+fall back to matching the activity `subject` = submitted Acronym; if still none, leave the field empty. This will
+be implemented via a dedicated custom Form Processor action (returning a single activity id) in a future
+extension, because the generic `FindSimilarActivities` action returns a list and cannot populate the
+single-value Entity Reference field reliably.
 
 Import Individual Data
 ----------------------

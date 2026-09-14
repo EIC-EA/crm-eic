@@ -12,7 +12,6 @@ return [
       'values' => [
         'option_group_id.name' => 'activity_type',
         'label' => E::ts('EU-Survey Data'),
-        'value' => '67',
         'name' => 'eu_survey',
         'weight' => 117,
         'description' => E::ts('<p>represents eu-survey data</p>'),
@@ -20,9 +19,8 @@ return [
         'icon' => 'fa-file-text-o',
       ],
       'match' => [
-        'option_group_id',
+        'option_group_id.name',
         'name',
-        'value',
       ],
     ],
   ],
