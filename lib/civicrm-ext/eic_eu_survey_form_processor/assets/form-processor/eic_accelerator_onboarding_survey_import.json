@@ -473,6 +473,201 @@
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
+        },
+        {
+            "weight": "33",
+            "include_formatted_params": "0",
+            "title": "First Name contact 2",
+            "name": "ind_2_first_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "34",
+            "include_formatted_params": "0",
+            "title": "Last Name contact 2",
+            "name": "ind_2_last_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "35",
+            "include_formatted_params": "0",
+            "title": "E-mail contact 2",
+            "name": "ind_2_professional_email",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "36",
+            "include_formatted_params": "0",
+            "title": "Phone number contact 2",
+            "name": "ind_2_phone_number",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "37",
+            "include_formatted_params": "0",
+            "title": "Role in organization contact 2",
+            "name": "ind_2_role_in_organisation",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "38",
+            "include_formatted_params": "0",
+            "title": "First Name contact 3",
+            "name": "ind_3_first_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "39",
+            "include_formatted_params": "0",
+            "title": "Last Name contact 3",
+            "name": "ind_3_last_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "40",
+            "include_formatted_params": "0",
+            "title": "E-mail contact 3",
+            "name": "ind_3_professional_email",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "41",
+            "include_formatted_params": "0",
+            "title": "Phone number contact 3",
+            "name": "ind_3_phone_number",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "42",
+            "include_formatted_params": "0",
+            "title": "Role in organization contact 3",
+            "name": "ind_3_role_in_organisation",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "43",
+            "include_formatted_params": "0",
+            "title": "First Name contact 4",
+            "name": "ind_4_first_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "44",
+            "include_formatted_params": "0",
+            "title": "Last Name contact 4",
+            "name": "ind_4_last_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "45",
+            "include_formatted_params": "0",
+            "title": "E-mail contact 4",
+            "name": "ind_4_professional_email",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "46",
+            "include_formatted_params": "0",
+            "title": "Phone number contact 4",
+            "name": "ind_4_phone_number",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "47",
+            "include_formatted_params": "0",
+            "title": "Role in organization contact 4",
+            "name": "ind_4_role_in_organisation",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": { "trim": "1" },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
         }
     ],
     "actions": [
@@ -733,6 +928,215 @@
                 "configuration": [],
                 "parameter_mapping": {
                     "parameter": "action.find_create_main_contact.contact_id"
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get 'Contact for' relationship type name",
+            "name": "get_contact_relationship_type_name",
+            "type": "SetValue",
+            "configuration": {
+                "value": "Contact for"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Resolve 'Contact for' relationship type id",
+            "name": "get_contact_relationship_type_id",
+            "type": "GetRelationshipTypeIdByName",
+            "configuration": [],
+            "mapping": {
+                "name": "action.get_contact_relationship_type_name.value"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find or Create Contact 2 - if provided",
+            "name": "find_create_contact_2",
+            "type": "XcmGetOrCreate",
+            "configuration": {
+                "xcm_profile": "eu_survey_individual",
+                "contact_type": "Individual",
+                "variable_target_1": "",
+                "variable_target_2": ""
+            },
+            "mapping": {
+                "first_name": "input.ind_2_first_name",
+                "last_name": "input.ind_2_last_name",
+                "job_title": "input.ind_2_role_in_organisation",
+                "email": "input.ind_2_professional_email",
+                "phone": "input.ind_2_phone_number"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "input.ind_2_professional_email"
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Link contact 2 to company (Contact for)",
+            "name": "create_contact_2_relationship",
+            "type": "CreateOrUpdateRelationship",
+            "configuration": {
+                "relationship_type_id": "",
+                "set_start_date": "0",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "also_update_inactive": "0"
+            },
+            "mapping": {
+                "relationship_type_id": "action.get_contact_relationship_type_id.id",
+                "contact_id_a": "action.find_create_contact_2.contact_id",
+                "contact_id_b": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
+                "start_date": "",
+                "end_date": "",
+                "description": "",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "case_id": ""
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_create_contact_2.contact_id"
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find or Create Contact 3 - if provided",
+            "name": "find_create_contact_3",
+            "type": "XcmGetOrCreate",
+            "configuration": {
+                "xcm_profile": "eu_survey_individual",
+                "contact_type": "Individual",
+                "variable_target_1": "",
+                "variable_target_2": ""
+            },
+            "mapping": {
+                "first_name": "input.ind_3_first_name",
+                "last_name": "input.ind_3_last_name",
+                "job_title": "input.ind_3_role_in_organisation",
+                "email": "input.ind_3_professional_email",
+                "phone": "input.ind_3_phone_number"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "input.ind_3_professional_email"
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Link contact 3 to company (Contact for)",
+            "name": "create_contact_3_relationship",
+            "type": "CreateOrUpdateRelationship",
+            "configuration": {
+                "relationship_type_id": "",
+                "set_start_date": "0",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "also_update_inactive": "0"
+            },
+            "mapping": {
+                "relationship_type_id": "action.get_contact_relationship_type_id.id",
+                "contact_id_a": "action.find_create_contact_3.contact_id",
+                "contact_id_b": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
+                "start_date": "",
+                "end_date": "",
+                "description": "",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "case_id": ""
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_create_contact_3.contact_id"
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find or Create Contact 4 - if provided",
+            "name": "find_create_contact_4",
+            "type": "XcmGetOrCreate",
+            "configuration": {
+                "xcm_profile": "eu_survey_individual",
+                "contact_type": "Individual",
+                "variable_target_1": "",
+                "variable_target_2": ""
+            },
+            "mapping": {
+                "first_name": "input.ind_4_first_name",
+                "last_name": "input.ind_4_last_name",
+                "job_title": "input.ind_4_role_in_organisation",
+                "email": "input.ind_4_professional_email",
+                "phone": "input.ind_4_phone_number"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "input.ind_4_professional_email"
+                }
+            },
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Link contact 4 to company (Contact for)",
+            "name": "create_contact_4_relationship",
+            "type": "CreateOrUpdateRelationship",
+            "configuration": {
+                "relationship_type_id": "",
+                "set_start_date": "0",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "also_update_inactive": "0"
+            },
+            "mapping": {
+                "relationship_type_id": "action.get_contact_relationship_type_id.id",
+                "contact_id_a": "action.find_create_contact_4.contact_id",
+                "contact_id_b": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
+                "start_date": "",
+                "end_date": "",
+                "description": "",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "case_id": ""
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_create_contact_4.contact_id"
                 }
             },
             "delay_configuration": ""
