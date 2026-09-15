@@ -27,6 +27,17 @@ class ContainerSpecs implements CompilerPassInterface {
       'addCondition',
       [$conditionDefinition]
     );
+
+    // Register the GetCaseTypeIdByName action (resolves a case type id from its
+    // machine name so Form Processors do not need to hardcode the numeric id).
+    $getCaseTypeIdByNameDefinition = new Definition(\Civi\EicFpActionProvider\ActionProvider\Action\GetCaseTypeIdByName::class);
+    $actionProviderDefinition->addMethodCall(
+      'addAction',
+      [
+        'GetCaseTypeIdByName',
+        $getCaseTypeIdByNameDefinition,
+      ]
+    );
   }
 
 }
