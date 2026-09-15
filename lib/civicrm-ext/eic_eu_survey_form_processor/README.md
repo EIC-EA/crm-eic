@@ -136,6 +136,14 @@ Contains all ManagedEntities that will be loaded upon installation or (re)enabli
 | CustomGroup           | `EIC Awardee information` for `Case` of case type `EIC Awardee Onboarding` |
 | CustomGroup           | `EIC Accelerator Onboarding Survey Data` (machine name `eic_accelerator_onboarding_survey_data`) for `Activity` of activity type `eic_accelerator_onboarding_survey` |
 | CustomGroup           | `EU_Survey_Company_Data` for `Contact` of type `Organisation`   |
+| CustomGroup           | `Survey - Company Data` (machine name `srm_survey_company_snapshot`) on the survey `Activity` — a collapsed snapshot of the company fields (name, PIC, website, genders, TRL/CRL/BRL/FRL) so the activity holds the full survey response. Reusable across surveys (add future survey activity types to its `extends_entity_column_value`). |
+| CustomGroup           | `Survey - Main Contact Data` (machine name `srm_survey_contact_snapshot`) on the survey `Activity` — a collapsed snapshot of the main contact fields (name, email, phone, role). Reusable across surveys. |
+| CaseType (x10)        | Service Request cases, one per BAS programme (machine names `eic_sr_*`): `Service Request - EIC VentureMatch`, `- EIC Coaching`, `- EIC Ecosystem Partnership`, `- EIC Global Business Expansion`, `- EIC Innovation Procurement`, `- EIC Women Leadership Programme`, `- EIC InnoNext`, `- EIC Corporate Partnership`, `- EIC International Trade Fairs`, `- EIC Community` (bonus, TBD) |
+| CustomGroup (x10)     | One context group per Service Request case type (machine names `eic_sr_*_data`), each with an `EU Survey (activity)` reference back to the originating survey activity, plus per-programme context fields |
+
+**Onboarding case status.** When the EU Survey activity is created and assigned to the matched Onboarding case, the survey import processor sets that case's status to `Onboarded` (via the `UpdateCaseStatus` action, with a logged "Change Case Status" activity). This only runs when a matching EU-Survey case is found. The status value `6` is used directly: unlike case-type ids, the `Onboarded` `case_status` option value is a managed OptionValue with an explicitly forced `value => '6'` (see `nc_config/managed/040_CaseStatuses.mgd.php`), so it is deterministic across environments and safe to reference by value.
+
+**Requirement 7 — Service Request cases.** When the EU Survey activity is created, the survey import processor creates a distinct Service Request case per BAS programme whose trigger answer matches. Case Coordinator is left empty; each case links back to the EU Survey activity. Triggers: VentureMatch/Coaching/Global Business Expansion/Innovation Procurement/Women Leadership/Corporate Partnership/International Trade Fairs on `= "Yes"`; Ecosystem Partnership on `<> "None"` (any option selected); InnoNext on the "main challenge" answer containing "Human Resources". EIC Community is shipped but not triggered (bonus, TBD). Case type ids are resolved by name via `GetCaseTypeIdByName` (no hardcoded ids); trigger conditions use the `action-provider` conditions `CompareParameterValue` (`=`/`!=`) and `CompareParameterRegex` (contains).
 
 assets
 ------
@@ -150,7 +158,7 @@ Contains all assets that will be loaded upon installation or (re)enabling of ext
 | EIC Company Import    | Create beneficiary companies from EU-Survey dataset                                               |
 | EIC Awardee Onboarding Case Import    | Create cases of type _EIC Awardee Onboarding_ from EU-Survey dataset                    |
 | EIC Awardee Onboarding Default Case   | Create a default _EIC Awardee Onboarding_ case for catching failures during EU-Survey data import |
-| EIC Accelerator Onboarding Survey Import | Scheme-specific (Accelerator): create an _EIC Accelerator Onboarding Survey Data_ activity and assign all survey data to it |
+| EIC Accelerator Onboarding Survey Import | Scheme-specific (Accelerator): create an _EIC Accelerator Onboarding Survey Data_ activity and assign all survey data to it; link the main and additional contacts to the company and case; and create the per-programme _Service Request_ cases triggered by the survey answers (Requirement 7) |
 
 **CiviCRM Settings**
 
