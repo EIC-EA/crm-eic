@@ -307,8 +307,10 @@ class CRM_EicAnonymiser_SqlWorker {
     $names = [
       'Alex', 'Sam', 'Jordan', 'Taylor', 'Morgan', 'Casey', 'Riley', 'Jamie',
       'Robin', 'Charlie', 'Drew', 'Quinn', 'Avery', 'Parker', 'Reese', 'Skyler',
-      'Emerson', 'Rowan', 'Sage', 'Blake',
-    ];
+      'Emerson', 'Rowan', 'Sage', 'Blake', 'Harper', 'Finley', 'Dakota',
+      'Elliot', 'Hayden', 'Kai', 'Lennon', 'Marlowe', 'Noel', 'Oakley',
+      'Peyton', 'River', 'Sawyer', 'Tatum', 'Wren', 'Ari', 'Bellamy',
+    ]; // 37 entries (prime)
     return $this->eltExpr($names);
   }
 
@@ -320,23 +322,35 @@ class CRM_EicAnonymiser_SqlWorker {
    * @return string
    */
   protected function fakeCompanyExpr(): string {
-    // Pool sizes are PRIME (19 and 17) and thus coprime with the id spacing
+    // Pool sizes are PRIME (37 and 31) and thus coprime with the id spacing
     // seen in the data (contacts often step by a fixed amount like 20). If a
     // pool size shares a factor with that step, every stepped id lands on the
     // same word and names repeat; coprime sizes avoid that and spread names.
+    // 37 x 31 = 1147 distinct base names.
     $first = [
       'Nova', 'Apex', 'Vertex', 'Lumen', 'Orbit', 'Pulse', 'Delta', 'Zenith',
       'Aster', 'Helix', 'Quantum', 'Vega', 'Cobalt', 'Ember', 'Solaris',
-      'Meridian', 'Axiom', 'Nimbus', 'Fathom',
-    ]; // 19 entries (prime)
+      'Meridian', 'Axiom', 'Nimbus', 'Fathom', 'Ionix', 'Kappa', 'Lyra',
+      'Onyx', 'Polaris', 'Radian', 'Sable', 'Tesseract', 'Umbra', 'Vanta',
+      'Wraith', 'Xenon', 'Ycon', 'Zephyr', 'Arcadia', 'Beacon', 'Cinder',
+      'Drift',
+    ]; // 37 entries (prime)
     $second = [
       'Systems', 'Labs', 'Technologies', 'Dynamics', 'Solutions', 'Industries',
       'Group', 'Works', 'Analytics', 'Robotics', 'Sciences', 'Materials',
-      'Energy', 'Digital', 'Networks', 'Instruments', 'Ventures',
-    ]; // 17 entries (prime)
+      'Energy', 'Digital', 'Networks', 'Instruments', 'Ventures', 'Research',
+      'Holdings', 'Partners', 'Systems Group', 'Innovations', 'Automation',
+      'Logistics', 'Biotech', 'Aerospace', 'Photonics', 'Semiconductors',
+      'Diagnostics', 'Therapeutics', 'Mobility',
+    ]; // 31 entries (prime)
+    // A third, independent numeric segment (10..98 via a prime modulo) is
+    // appended so total variety far exceeds the word-pair count without
+    // needing enormous word lists: 37 x 31 x 89 = 102,083 distinct base names.
+    // Companies commonly carry a number, so this stays realistic.
     $w1 = $this->eltExpr($first);
     $w2 = $this->eltExpr($second);
-    return "CONCAT({$w1}, ' ', {$w2})";
+    $num = "(10 + (id MOD 89))";
+    return "CONCAT({$w1}, ' ', {$w2}, ' ', {$num})";
   }
 
   /**
@@ -348,8 +362,11 @@ class CRM_EicAnonymiser_SqlWorker {
     $names = [
       'Turner', 'Rivera', 'Bennett', 'Coleman', 'Hayes', 'Fisher', 'Reed',
       'Palmer', 'Ellis', 'Ford', 'Grant', 'Hunt', 'Lane', 'Marsh', 'Nash',
-      'Owens', 'Pierce', 'Shaw', 'Todd', 'Wells',
-    ];
+      'Owens', 'Pierce', 'Shaw', 'Todd', 'Wells', 'Barrett', 'Chambers',
+      'Dalton', 'Everett', 'Franklin', 'Griffin', 'Holloway', 'Ingram',
+      'Jennings', 'Kirby', 'Lawson', 'Mercer', 'Norton', 'Osborne', 'Preston',
+      'Quimby', 'Rhodes',
+    ]; // 37 entries (prime)
     return $this->eltExpr($names);
   }
 

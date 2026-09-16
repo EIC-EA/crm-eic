@@ -56,6 +56,13 @@ class EicAnonymiser extends AbstractEntity {
           'required'  => FALSE,
           'default_value' => FALSE,
         ],
+        [
+          'name'  => 'anonymize_organizations',
+          'title' => 'Anonymize Organizations',
+          'data_type' => 'Boolean',
+          'required'  => FALSE,
+          'default_value' => TRUE,
+        ],
       ];
     }))->setCheckPermissions($checkPermissions);
   }

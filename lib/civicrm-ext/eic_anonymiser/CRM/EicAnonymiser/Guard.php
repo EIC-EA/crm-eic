@@ -30,8 +30,9 @@ class CRM_EicAnonymiser_Guard {
     if (!self::isAllowed()) {
       throw new CRM_Core_Exception(E::ts(
         'Anonymisation is disabled: the "allow_anonymization" environment '
-        . 'variable is not set to a truthy value (true/1/yes/on). Refusing to '
-        . 'modify data. Set allow_anonymization=true to enable, or use dryRun '
+        . 'variable is not set or value mismatch. '
+        . 'Refusing to modify the data.'
+        . 'Please, set allow_anonymization=true to enable, or use dryRun '
         . 'to preview without writing.'
       ));
     }

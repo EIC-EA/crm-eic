@@ -30,6 +30,8 @@ use Civi\Api4\Generic\Result;
  * @method int getLimit()
  * @method $this setUseSql(bool $useSql)
  * @method bool getUseSql()
+ * @method $this setAnonymizeOrganizations(bool $anonymizeOrganizations)
+ * @method bool getAnonymizeOrganizations()
  *
  * @package Civi\Api4\Action\EicAnonymiser
  */
@@ -74,12 +76,39 @@ class AnonymiseAll extends AbstractAction {
   protected $useSql = TRUE;
 
   /**
+   * Whether to anonymise Organization contacts. When FALSE, organizations are
+   * excluded entirely — their names, org custom fields (SMEDId, Company Domain
+   * Name) and any activities/projects linked only to organizations are left
+   * untouched. Individuals are still processed.
+   *
+   * @var bool
+   */
+  protected $anonymizeOrganizations = TRUE;
+
+  /**
+   * The effective contact types after applying the anonymizeOrganizations
+   * flag (removes 'Organization' when the flag is FALSE).
+   *
+   * @return string[]
+   */
+  protected function effectiveContactTypes(): array {
+    $types = $this->contactTypes;
+    if (!$this->anonymizeOrganizations) {
+      $types = array_values(array_filter($types, function ($t) {
+        return $t !== 'Organization';
+      }));
+    }
+    return $types;
+  }
+
+  /**
    * @param \Civi\Api4\Generic\Result $result
    *
    * @throws \CRM_Core_Exception
    */
   public function _run(Result $result) {
     $dryRun = (bool) $this->dryRun;
+    $contactTypes = $this->effectiveContactTypes();
 
     // Fast path: bulk set-based UPDATEs. `limit` is not supported here
     // because the operation is set-based; use the loop path for staged runs.
@@ -87,23 +116,24 @@ class AnonymiseAll extends AbstractAction {
       $outcome = \CRM_EicAnonymiser_SqlWorker::anonymiseAll(
         $dryRun,
         (bool) $this->includeDeleted,
-        $this->contactTypes
+        $contactTypes
       );
       $result[] = [
-        'dry_run'         => $outcome['dry_run'],
-        'mode'            => 'sql',
-        'total_matched'   => $outcome['total_matched'],
-        'include_deleted' => $this->includeDeleted,
-        'contact_types'   => $this->contactTypes,
-        'updated'         => $outcome['updated'],
-        'log'             => $outcome['log'],
+        'dry_run'                 => $outcome['dry_run'],
+        'mode'                    => 'sql',
+        'total_matched'           => $outcome['total_matched'],
+        'include_deleted'         => $this->includeDeleted,
+        'anonymize_organizations' => $this->anonymizeOrganizations,
+        'contact_types'           => $contactTypes,
+        'updated'                 => $outcome['updated'],
+        'log'                     => $outcome['log'],
       ];
       return;
     }
 
     $get = \Civi\Api4\Contact::get(FALSE)
       ->addSelect('id')
-      ->addWhere('contact_type', 'IN', $this->contactTypes)
+      ->addWhere('contact_type', 'IN', $contactTypes)
       ->addOrderBy('id', 'ASC');
 
     if ($this->includeDeleted) {
@@ -146,15 +176,16 @@ class AnonymiseAll extends AbstractAction {
     }
 
     $result[] = [
-      'dry_run'         => $dryRun,
-      'mode'            => 'loop',
-      'total_matched'   => count($contactIds),
-      'processed'       => $processed,
-      'failed'          => $failed,
-      'include_deleted' => $this->includeDeleted,
-      'contact_types'   => $this->contactTypes,
-      'errors'          => $errors,
-      'sample_changes'  => $sample,
+      'dry_run'                 => $dryRun,
+      'mode'                    => 'loop',
+      'total_matched'           => count($contactIds),
+      'processed'               => $processed,
+      'failed'                  => $failed,
+      'include_deleted'         => $this->includeDeleted,
+      'anonymize_organizations' => $this->anonymizeOrganizations,
+      'contact_types'           => $contactTypes,
+      'errors'                  => $errors,
+      'sample_changes'          => $sample,
     ];
   }
 
