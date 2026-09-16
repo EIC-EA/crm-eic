@@ -1670,7 +1670,7 @@
                     "name": "ParameterIsNotEmpty",
                     "configuration": [],
                     "parameter_mapping": {
-                        "parameter": "input.survey_type_of_industry_export_support"
+                        "parameter": "input.survey_support_other_types"
                     },
                     "description": "What type of other support are you interested in is not empty",
                     "link": "and"
@@ -1710,7 +1710,8 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_ecosystem_group.create_sr_ecosystem_case.case_id",
-                        "custom_eic_sr_ecosystem_partnership_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id"
+                        "custom_eic_sr_ecosystem_partnership_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
+                        "custom_eic_sr_ecosystem_partnership_data_support_interested_in": "input.survey_support_other_types"
                     },
                     "condition_configuration": "",
                     "delay_configuration": ""
