@@ -221,7 +221,7 @@ return [
     ],
   ],
   [
-    'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_selling_to_public_private_buyers_where_are_you_in_the_',
+    'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_buyers_where_in_process',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
     'update' => 'unmodified',
@@ -229,7 +229,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'eic_accelerator_onboarding_survey_data',
-        'name' => 'survey_selling_to_public_private_buyers_where_are_you_in_the_process',
+        'name' => 'survey_buyers_where_in_process',
         'column_name' => 'survey_buyers_where_in_process',
         'label' => E::ts('Where are you in the process'),
         'html_type' => 'Text',
@@ -319,7 +319,7 @@ return [
     ],
   ],
   [
-    'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_international_trade_fairs_participate_in_the_next_12_m_',
+    'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_trade_fairs_next_12_months',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
     'update' => 'unmodified',
@@ -327,7 +327,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'eic_accelerator_onboarding_survey_data',
-        'name' => 'survey_international_trade_fairs_participate_in_the_next_12_months',
+        'name' => 'survey_trade_fairs_next_12_months',
         'column_name' => 'survey_trade_fairs_next_12_months',
         'label' => E::ts('Are you planning to participate in International trade fairs in the next 12 months'),
         'data_type' => 'Boolean',
@@ -436,7 +436,7 @@ return [
     ],
   ],
   [
-    'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_Does_your_company_have_a_woman_founder_or_executive_wh_',
+    'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_woman_founder_or_executive_who',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
     'update' => 'unmodified',
