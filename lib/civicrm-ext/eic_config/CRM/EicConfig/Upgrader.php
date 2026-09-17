@@ -98,4 +98,11 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     return $this->enable_extension(['eic_anonymiser']);
   }
 
+  /**
+   * Enable the Chart Kit extension.
+   */
+  public function upgrade_1010(): bool {
+    return $this->enable_extension(['chart_kit']);
+  }
+
 }
