@@ -122,6 +122,26 @@ return [
     ],
   ],
   [
+    'name' => 'CustomGroup_srm_survey_company_snapshot_CustomField_Sector',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'srm_survey_company_snapshot',
+        'name' => 'Sector',
+        'label' => E::ts('Sector'),
+        'data_type' => 'String',
+        'html_type' => 'Select',
+        'option_group_id.name' => 'eu_survey_sector',
+        'text_length' => 255,
+        'column_name' => 'sector',
+      ],
+      'match' => ['name', 'custom_group_id'],
+    ],
+  ],
+  [
     'name' => 'CustomGroup_srm_survey_company_snapshot_CustomField_TRL',
     'entity' => 'CustomField',
     'cleanup' => 'unused',

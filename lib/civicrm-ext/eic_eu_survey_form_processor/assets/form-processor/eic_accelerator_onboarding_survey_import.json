@@ -144,6 +144,21 @@
             "validators": []
         },
         {
+            "weight": "2",
+            "include_formatted_params": "0",
+            "title": "Please indicate the sector you operate in",
+            "name": "org_sector",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {
+                "trim": "1"
+            },
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
             "weight": "3",
             "include_formatted_params": "0",
             "title": "First name",
@@ -251,12 +266,11 @@
             "include_formatted_params": "0",
             "title": "Are you fundraising within the next 18 months?",
             "name": "survey_fundraising_within_next_18_months",
-            "type": "YesNoOptionList",
+            "type": "Boolean",
             "is_required": "0",
-            "default_value": "No",
+            "default_value": "",
             "configuration": {
-                "yes_label": "Yes",
-                "no_label": "No"
+                "return_as": "boolean"
             },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
@@ -295,12 +309,11 @@
             "include_formatted_params": "0",
             "title": "Would you like to receive investment support?",
             "name": "survey_support_investment",
-            "type": "YesNoOptionList",
+            "type": "Boolean",
             "is_required": "0",
-            "default_value": "No",
+            "default_value": "",
             "configuration": {
-                "yes_label": "Yes",
-                "no_label": "No"
+                "return_as": "boolean"
             },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
@@ -311,12 +324,11 @@
             "include_formatted_params": "0",
             "title": "Are you actively seeking corporate or industrial partners?",
             "name": "survey_actively_seeking_corporate_industrial_partners",
-            "type": "YesNoOptionList",
+            "type": "Boolean",
             "is_required": "0",
-            "default_value": "No",
+            "default_value": "",
             "configuration": {
-                "yes_label": "Yes",
-                "no_label": "No"
+                "return_as": "boolean"
             },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
@@ -340,12 +352,11 @@
             "include_formatted_params": "0",
             "title": "Are you planning to sell your innovative solution to public or private buyers, e.g. through tender opportunities?",
             "name": "survey_plan_to_sell_solution_to_public_private_buyers",
-            "type": "YesNoOptionList",
+            "type": "Boolean",
             "is_required": "0",
-            "default_value": "No",
+            "default_value": "",
             "configuration": {
-                "yes_label": "Yes",
-                "no_label": "No"
+                "return_as": "boolean"
             },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
@@ -356,10 +367,12 @@
             "include_formatted_params": "0",
             "title": "Where are you in the process?",
             "name": "survey_where_are_you_in_the_process",
-            "type": "Text",
+            "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": [],
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -369,12 +382,11 @@
             "include_formatted_params": "0",
             "title": "Would you like procurement support or training?",
             "name": "survey_support_training_procurement",
-            "type": "YesNoOptionList",
+            "type": "Boolean",
             "is_required": "0",
-            "default_value": "No",
+            "default_value": "",
             "configuration": {
-                "yes_label": "Yes",
-                "no_label": "No"
+                "return_as": "boolean"
             },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
@@ -385,12 +397,11 @@
             "include_formatted_params": "0",
             "title": "Are you planning to expand internationally in the next 18 months?",
             "name": "survey_plan_to_expand_internationally_within_next_18_months",
-            "type": "YesNoOptionList",
+            "type": "Boolean",
             "is_required": "0",
-            "default_value": "No",
+            "default_value": "",
             "configuration": {
-                "yes_label": "Yes",
-                "no_label": "No"
+                "return_as": "boolean"
             },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
@@ -427,12 +438,11 @@
             "include_formatted_params": "0",
             "title": "Would you like to receive support entering new markets?",
             "name": "survey_support_entering_new_markets",
-            "type": "YesNoOptionList",
+            "type": "Boolean",
             "is_required": "0",
-            "default_value": "No",
+            "default_value": "",
             "configuration": {
-                "yes_label": "Yes",
-                "no_label": "No"
+                "return_as": "boolean"
             },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
@@ -443,12 +453,11 @@
             "include_formatted_params": "0",
             "title": "Are you planning to participate in International trade fairs in the next 12 months?",
             "name": "survey_plan_to_participate_in_international_trade_fairs_within_next_12_months",
-            "type": "YesNoOptionList",
+            "type": "Boolean",
             "is_required": "0",
-            "default_value": "No",
+            "default_value": "",
             "configuration": {
-                "yes_label": "Yes",
-                "no_label": "No"
+                "return_as": "boolean"
             },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
@@ -485,12 +494,11 @@
             "include_formatted_params": "0",
             "title": "Would you benefit from industry experts or coaches support?",
             "name": "survey_would_support_industry_experts_coaches",
-            "type": "YesNoOptionList",
+            "type": "Boolean",
             "is_required": "0",
-            "default_value": "No",
+            "default_value": "",
             "configuration": {
-                "yes_label": "Yes",
-                "no_label": "No"
+                "return_as": "boolean"
             },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
@@ -529,12 +537,11 @@
             "include_formatted_params": "0",
             "title": "Does your company have a woman founder or executive who would benefit from a dedicated leadership programme?",
             "name": "survey_woman_founder_or_executive_benefit_from_a_dedicated_leadership_programme",
-            "type": "YesNoOptionList",
+            "type": "Boolean",
             "is_required": "0",
-            "default_value": "No",
+            "default_value": "",
             "configuration": {
-                "yes_label": "Yes",
-                "no_label": "No"
+                "return_as": "boolean"
             },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
@@ -779,6 +786,74 @@
         {
             "pid": "0",
             "conditional_processing_group": "0",
+            "title": "TRL code",
+            "name": "trl_code",
+            "type": "RegexReplaceValue",
+            "configuration": {
+                "regex_find": "/^\\s*(\\S+\\s+\\S+).*$/",
+                "regex_replace": "$1",
+                "replace_count": "-1"
+            },
+            "mapping": {
+                "input_value": "input.org_trl"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "CRL code",
+            "name": "crl_code",
+            "type": "RegexReplaceValue",
+            "configuration": {
+                "regex_find": "/^\\s*(\\S+\\s+\\S+).*$/",
+                "regex_replace": "$1",
+                "replace_count": "-1"
+            },
+            "mapping": {
+                "input_value": "input.org_crl"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "BRL code",
+            "name": "brl_code",
+            "type": "RegexReplaceValue",
+            "configuration": {
+                "regex_find": "/^\\s*(\\S+\\s+\\S+).*$/",
+                "regex_replace": "$1",
+                "replace_count": "-1"
+            },
+            "mapping": {
+                "input_value": "input.org_brl"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "FRL code",
+            "name": "frl_code",
+            "type": "RegexReplaceValue",
+            "configuration": {
+                "regex_find": "/^\\s*(\\S+\\s+\\S+).*$/",
+                "regex_replace": "$1",
+                "replace_count": "-1"
+            },
+            "mapping": {
+                "input_value": "input.org_frl"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        {
+            "pid": "0",
+            "conditional_processing_group": "0",
             "title": "Get Catch-All Activity Title",
             "name": "get_catch_all_activity_title",
             "type": "SetValue",
@@ -888,8 +963,13 @@
                 "legal_identifier": "",
                 "external_identifier": "",
                 "custom_EIC_Organisation_identifiers_PIC": "input.org_pic_number",
-                "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "",
-                "custom_EU_Survey_Company_Data_Founder_Gender": "",
+                "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "input.org_ceo_project_leader_gender",
+                "custom_EU_Survey_Company_Data_Founder_Gender": "input.org_founder_gender",
+                "custom_EU_Survey_Company_Data_Sector": "input.org_sector",
+                "custom_EU_Survey_Company_Data_TRL": "action.trl_code.value",
+                "custom_EU_Survey_Company_Data_CRL": "action.crl_code.value",
+                "custom_EU_Survey_Company_Data_BRL": "action.brl_code.value",
+                "custom_EU_Survey_Company_Data_FRL": "action.frl_code.value",
                 "contact_type": "",
                 "id": "action.get_company_using_the_pic.contact_id",
                 "source": "",
@@ -1305,13 +1385,13 @@
                 "custom_eic_accelerator_onboarding_survey_data_survey_partenrs_actively_seeking": "input.survey_actively_seeking_corporate_industrial_partners",
                 "custom_eic_accelerator_onboarding_survey_data_survey_partners_types": "input.survey_what_type_of_partner_are_you_targeting",
                 "custom_eic_accelerator_onboarding_survey_data_survey_selling_to_public_private_buyers": "input.survey_plan_to_sell_solution_to_public_private_buyers",
-                "custom_eic_accelerator_onboarding_survey_data_survey_selling_to_public_private_buyers_where_are_you_in_the_process": "input.survey_where_are_you_in_the_process",
+                "custom_eic_accelerator_onboarding_survey_data_survey_buyers_where_in_process": "input.survey_where_are_you_in_the_process",
                 "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_procurement": "input.survey_support_training_procurement",
                 "custom_eic_accelerator_onboarding_survey_data_survey_international_expansion_in_the_next_18_months": "input.survey_plan_to_expand_internationally_within_next_18_months",
                 "custom_eic_accelerator_onboarding_survey_data_survey_international_expansion_markets": "input.survey_expansion_markets",
                 "custom_eic_accelerator_onboarding_survey_data_survey_international_expansion_main_barrier": "input.survey_expansion_main_barrier",
                 "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_entering_new_markets": "input.survey_support_entering_new_markets",
-                "custom_eic_accelerator_onboarding_survey_data_survey_international_trade_fairs_participate_in_the_next_12_months": "input.survey_plan_to_participate_in_international_trade_fairs_within_next_12_months",
+                "custom_eic_accelerator_onboarding_survey_data_survey_trade_fairs_next_12_months": "input.survey_plan_to_participate_in_international_trade_fairs_within_next_12_months",
                 "custom_eic_accelerator_onboarding_survey_data_survey_international_trade_fairs_region": "input.survey_international_trade_fairs_region",
                 "custom_eic_accelerator_onboarding_survey_data_survey_international_trade_fairs_events": "input.survey_international_trade_fairs_type_of_events",
                 "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_industry_experts_or_coaches": "input.survey_would_support_industry_experts_coaches",
@@ -1326,10 +1406,11 @@
                 "custom_srm_survey_company_snapshot_Website": "input.org_website",
                 "custom_srm_survey_company_snapshot_CEO_or_project_leader_gender": "input.org_ceo_project_leader_gender",
                 "custom_srm_survey_company_snapshot_Founder_Gender": "input.org_founder_gender",
-                "custom_srm_survey_company_snapshot_TRL": "input.org_trl",
-                "custom_srm_survey_company_snapshot_CRL": "input.org_crl",
-                "custom_srm_survey_company_snapshot_BRL": "input.org_brl",
-                "custom_srm_survey_company_snapshot_FRL": "input.org_frl",
+                "custom_srm_survey_company_snapshot_Sector": "input.org_sector",
+                "custom_srm_survey_company_snapshot_TRL": "action.trl_code.value",
+                "custom_srm_survey_company_snapshot_CRL": "action.crl_code.value",
+                "custom_srm_survey_company_snapshot_BRL": "action.brl_code.value",
+                "custom_srm_survey_company_snapshot_FRL": "action.frl_code.value",
                 "custom_srm_survey_contact_snapshot_First_Name": "input.ind_first_name",
                 "custom_srm_survey_contact_snapshot_Last_Name": "input.ind_last_name",
                 "custom_srm_survey_contact_snapshot_Professional_Email": "input.ind_professional_email",
@@ -1408,10 +1489,9 @@
             "mapping": [],
             "condition_configuration": [
                 {
-                    "name": "CompareParameterValue",
+                    "name": "ParameterHasValue",
                     "configuration": {
-                        "value": "Yes",
-                        "comparison": "="
+                        "value": "True"
                     },
                     "parameter_mapping": {
                         "parameter": "input.survey_fundraising_within_next_18_months"
@@ -1498,10 +1578,9 @@
             "mapping": [],
             "condition_configuration": [
                 {
-                    "name": "CompareParameterValue",
+                    "name": "ParameterHasValue",
                     "configuration": {
-                        "value": "Yes",
-                        "comparison": "="
+                        "value": "True"
                     },
                     "parameter_mapping": {
                         "parameter": "input.survey_would_support_industry_experts_coaches"
@@ -1588,15 +1667,12 @@
             "mapping": [],
             "condition_configuration": [
                 {
-                    "name": "CompareParameterValue",
-                    "configuration": {
-                        "value": "None",
-                        "comparison": "!="
-                    },
+                    "name": "ParameterIsNotEmpty",
+                    "configuration": [],
                     "parameter_mapping": {
-                        "parameter": "input.survey_type_of_industry_export_support"
+                        "parameter": "input.survey_support_other_types"
                     },
-                    "description": "What type of other support are you interested in <> None",
+                    "description": "What type of other support are you interested in is not empty",
                     "link": "and"
                 }
             ],
@@ -1634,7 +1710,8 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_ecosystem_group.create_sr_ecosystem_case.case_id",
-                        "custom_eic_sr_ecosystem_partnership_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id"
+                        "custom_eic_sr_ecosystem_partnership_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
+                        "custom_eic_sr_ecosystem_partnership_data_support_interested_in": "input.survey_support_other_types"
                     },
                     "condition_configuration": "",
                     "delay_configuration": ""
@@ -1677,10 +1754,9 @@
             "mapping": [],
             "condition_configuration": [
                 {
-                    "name": "CompareParameterValue",
+                    "name": "ParameterHasValue",
                     "configuration": {
-                        "value": "Yes",
-                        "comparison": "="
+                        "value": "True"
                     },
                     "parameter_mapping": {
                         "parameter": "input.survey_plan_to_expand_internationally_within_next_18_months"
@@ -1768,10 +1844,9 @@
             "mapping": [],
             "condition_configuration": [
                 {
-                    "name": "CompareParameterValue",
+                    "name": "ParameterHasValue",
                     "configuration": {
-                        "value": "Yes",
-                        "comparison": "="
+                        "value": "True"
                     },
                     "parameter_mapping": {
                         "parameter": "input.survey_support_training_procurement"
@@ -1857,10 +1932,9 @@
             "mapping": [],
             "condition_configuration": [
                 {
-                    "name": "CompareParameterValue",
+                    "name": "ParameterHasValue",
                     "configuration": {
-                        "value": "Yes",
-                        "comparison": "="
+                        "value": "True"
                     },
                     "parameter_mapping": {
                         "parameter": "input.survey_woman_founder_or_executive_benefit_from_a_dedicated_leadership_programme"
@@ -2035,10 +2109,9 @@
             "mapping": [],
             "condition_configuration": [
                 {
-                    "name": "CompareParameterValue",
+                    "name": "ParameterHasValue",
                     "configuration": {
-                        "value": "Yes",
-                        "comparison": "="
+                        "value": "True"
                     },
                     "parameter_mapping": {
                         "parameter": "input.survey_actively_seeking_corporate_industrial_partners"
@@ -2126,10 +2199,9 @@
             "mapping": [],
             "condition_configuration": [
                 {
-                    "name": "CompareParameterValue",
+                    "name": "ParameterHasValue",
                     "configuration": {
-                        "value": "Yes",
-                        "comparison": "="
+                        "value": "True"
                     },
                     "parameter_mapping": {
                         "parameter": "input.survey_plan_to_participate_in_international_trade_fairs_within_next_12_months"
@@ -2332,13 +2404,13 @@
                 "custom_eic_accelerator_onboarding_survey_data_survey_partenrs_actively_seeking": "input.survey_actively_seeking_corporate_industrial_partners",
                 "custom_eic_accelerator_onboarding_survey_data_survey_partners_types": "input.survey_what_type_of_partner_are_you_targeting",
                 "custom_eic_accelerator_onboarding_survey_data_survey_selling_to_public_private_buyers": "input.survey_plan_to_sell_solution_to_public_private_buyers",
-                "custom_eic_accelerator_onboarding_survey_data_survey_selling_to_public_private_buyers_where_are_you_in_the_process": "input.survey_where_are_you_in_the_process",
+                "custom_eic_accelerator_onboarding_survey_data_survey_buyers_where_in_process": "input.survey_where_are_you_in_the_process",
                 "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_procurement": "input.survey_support_training_procurement",
                 "custom_eic_accelerator_onboarding_survey_data_survey_international_expansion_in_the_next_18_months": "input.survey_plan_to_expand_internationally_within_next_18_months",
                 "custom_eic_accelerator_onboarding_survey_data_survey_international_expansion_markets": "input.survey_expansion_markets",
                 "custom_eic_accelerator_onboarding_survey_data_survey_international_expansion_main_barrier": "input.survey_expansion_main_barrier",
                 "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_entering_new_markets": "input.survey_support_entering_new_markets",
-                "custom_eic_accelerator_onboarding_survey_data_survey_international_trade_fairs_participate_in_the_next_12_months": "input.survey_plan_to_participate_in_international_trade_fairs_within_next_12_months",
+                "custom_eic_accelerator_onboarding_survey_data_survey_trade_fairs_next_12_months": "input.survey_plan_to_participate_in_international_trade_fairs_within_next_12_months",
                 "custom_eic_accelerator_onboarding_survey_data_survey_international_trade_fairs_region": "input.survey_international_trade_fairs_region",
                 "custom_eic_accelerator_onboarding_survey_data_survey_international_trade_fairs_events": "",
                 "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_industry_experts_or_coaches": "input.survey_would_support_industry_experts_coaches",
@@ -2353,10 +2425,11 @@
                 "custom_srm_survey_company_snapshot_Website": "input.org_website",
                 "custom_srm_survey_company_snapshot_CEO_or_project_leader_gender": "input.org_ceo_project_leader_gender",
                 "custom_srm_survey_company_snapshot_Founder_Gender": "input.org_founder_gender",
-                "custom_srm_survey_company_snapshot_TRL": "input.org_trl",
-                "custom_srm_survey_company_snapshot_CRL": "input.org_crl",
-                "custom_srm_survey_company_snapshot_BRL": "input.org_brl",
-                "custom_srm_survey_company_snapshot_FRL": "input.org_frl",
+                "custom_srm_survey_company_snapshot_Sector": "input.org_sector",
+                "custom_srm_survey_company_snapshot_TRL": "action.trl_code.value",
+                "custom_srm_survey_company_snapshot_CRL": "action.crl_code.value",
+                "custom_srm_survey_company_snapshot_BRL": "action.brl_code.value",
+                "custom_srm_survey_company_snapshot_FRL": "action.frl_code.value",
                 "custom_srm_survey_contact_snapshot_First_Name": "input.ind_first_name",
                 "custom_srm_survey_contact_snapshot_Last_Name": "input.ind_last_name",
                 "custom_srm_survey_contact_snapshot_Professional_Email": "input.ind_professional_email",
