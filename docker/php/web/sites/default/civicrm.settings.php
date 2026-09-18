@@ -30,10 +30,20 @@
  */
 global $civicrm_root, $civicrm_setting, $civicrm_paths;
 
+// DEV-only anonymized database switch: when the "anonimzed_dev=1" cookie is
+// present AND ANON_DATABASE_HOST is configured, use the anonymized DB host.
+// Only the host changes; user/password/port/name stay the same. Kept in sync
+// with sites/default/settings.php. Cookies are spoofable, so the ANON_DATABASE_HOST
+// guard makes this a no-op wherever that var is unset (e.g. production).
+$db_host = (isset($_COOKIE['anonimzed_dev']) && $_COOKIE['anonimzed_dev'] === '1'
+  && getenv('ANON_DATABASE_HOST') !== FALSE)
+  ? getenv('ANON_DATABASE_HOST')
+  : getenv('DRUPAL_DATABASE_HOST');
+
 if ( getenv('MYSQL_NO_SSL') == false )
-  define('CIVICRM_UF_DSN', 'mysql://'.getenv('DRUPAL_DATABASE_USERNAME').':'.getenv('DRUPAL_DATABASE_PASSWORD').'@'.getenv('DRUPAL_DATABASE_HOST').':'.getenv('DRUPAL_DATABASE_PORT').'/'.getenv('DRUPAL_DATABASE_NAME').'?new_link=true&ca=%2Fopt%2Fdrupal%2Fssl%2Fmysql-ca.pem');
+  define('CIVICRM_UF_DSN', 'mysql://'.getenv('DRUPAL_DATABASE_USERNAME').':'.getenv('DRUPAL_DATABASE_PASSWORD').'@'.$db_host.':'.getenv('DRUPAL_DATABASE_PORT').'/'.getenv('DRUPAL_DATABASE_NAME').'?new_link=true&ca=%2Fopt%2Fdrupal%2Fssl%2Fmysql-ca.pem');
 else
-  define('CIVICRM_UF_DSN', 'mysql://'.getenv('DRUPAL_DATABASE_USERNAME').':'.getenv('DRUPAL_DATABASE_PASSWORD').'@'.getenv('DRUPAL_DATABASE_HOST').':'.getenv('DRUPAL_DATABASE_PORT').'/'.getenv('DRUPAL_DATABASE_NAME').'?new_link=true');
+  define('CIVICRM_UF_DSN', 'mysql://'.getenv('DRUPAL_DATABASE_USERNAME').':'.getenv('DRUPAL_DATABASE_PASSWORD').'@'.$db_host.':'.getenv('DRUPAL_DATABASE_PORT').'/'.getenv('DRUPAL_DATABASE_NAME').'?new_link=true');
 
 define('CIVICRM_DSN', CIVICRM_UF_DSN);
 define('CIVICRM_UF_BASEURL', getenv('CIVICRM_UF_BASEURL'));
