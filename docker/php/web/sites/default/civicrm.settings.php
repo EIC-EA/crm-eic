@@ -36,8 +36,8 @@ global $civicrm_root, $civicrm_setting, $civicrm_paths;
 // with sites/default/settings.php. Cookies are spoofable, so the ANON_DATABASE_HOST
 // guard makes this a no-op wherever that var is unset (e.g. production).
 $db_host = (isset($_COOKIE['anonimzed_dev']) && $_COOKIE['anonimzed_dev'] === '1'
-  && getenv('ANON_DATABASE_HOST') !== FALSE)
-  ? getenv('ANON_DATABASE_HOST')
+  && getenv('ANON_DRUPAL_DATABASE_HOST') !== FALSE)
+  ? getenv('ANON_DRUPAL_DATABASE_HOST')
   : getenv('DRUPAL_DATABASE_HOST');
 
 if ( getenv('MYSQL_NO_SSL') == false )
