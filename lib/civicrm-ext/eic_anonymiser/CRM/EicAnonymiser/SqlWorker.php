@@ -95,6 +95,13 @@ class CRM_EicAnonymiser_SqlWorker {
     // Refuse to write unless the environment explicitly opts in.
     CRM_EicAnonymiser_Guard::assertAllowed($this->dryRun);
 
+    // Log the configured DSN so a dry-run confirms the target. The password is
+    // masked so it never lands in the logs.
+    $dsn = defined('CIVICRM_UF_DSN') ? CIVICRM_UF_DSN : '(CIVICRM_UF_DSN undefined)';
+    $dsn = preg_replace('#(://[^:/@]+:)[^@]*@#', '$1****@', $dsn);
+    $dsn = explode('?', $dsn, 2)[0];
+    $this->log(E::ts('Configured DSN: %1', [1 => $dsn]));
+
     $updated = [];
 
     // Resolve the in-scope contact ids in PHP. We must NOT reference
