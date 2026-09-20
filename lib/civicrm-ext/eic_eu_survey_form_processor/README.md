@@ -9,7 +9,6 @@ Notes
 Open
 ----
 
-- Merge existing XCM profiles with loaded XCM profiles.
 - Update this README in order to reflect all current fields of ḾanagedEntities and Form-Processors.
 
 Description
@@ -19,7 +18,7 @@ This extension does the following:
 
 - load `Managed Entities` stored in `managed` folder upon extension installation or after (re)enabling the extension
 - load `FormProcessors` stored in `assets/form-processor` folder upon extension installation or after (re)enabling the extension
-- load `XCM` profiles stored in `assets/xcm` folder up upon extension installation or after (re)enabling 
+- load `XCM` profiles stored in `assets/settings/xcm_config_profiles.json` upon extension installation or after (re)enabling 
 
 **Note**
 
@@ -162,15 +161,40 @@ Contains all assets that will be loaded upon installation or (re)enabling of ext
 
 **CiviCRM Settings**
 
-Currently, only the setting for the XCM Extension is imported. That setting contains XCM-Profiles that
-can be accessed under `/civicrm/admin/setting/xcm`. The imported profiles are used by the Form-Processors
-and must therefore be available in the system.
+Currently, only the setting for the XCM Extension is imported. That setting (`xcm_config_profiles`, in
+`assets/settings/xcm_config_profiles.json`) contains the XCM (Extended Contact Matcher) profiles that
+can be accessed under `/civicrm/admin/setting/xcm`. **This file is the single source of truth for these
+profiles** — they are pushed by the extension, not configured manually. The imported profiles are used by
+the Form-Processors (referenced by name in each `XcmGetOrCreate` action) and must therefore be available.
 
-| Settings              | Description               |
-|-----------------------|---------------------------|
-| xcm_config_profiles   | contains XCM Profiles:    |
-|                       | _EU Survey - Company_     |
-|                       | _EU Survey - Individual_  |
+| XCM profile (name)                        | Used by                                    | Purpose                                                                 |
+|-------------------------------------------|--------------------------------------------|-------------------------------------------------------------------------|
+| `eu_survey_company`                       | Company Import, Awardee Onboarding Case Import | Create/match the beneficiary Organisation early (before the survey). |
+| `EU_Survey_Accelerator_Onboarding_Company`| Accelerator Survey Import                  | Create/match the Organisation at survey time and fill the survey company data. |
+| `eu_survey_individual`                    | Survey Import (main + additional contacts) | Create/match Individual contacts.                                        |
+| `eu_survey_investor`                      | Investor imports                           | Create/match investor Organisations.                                     |
+| `eu_survey_investor_representative`       | Investor onboarding                        | Create/match investor representative Individuals.                        |
+| `investor_representative`                 | Investor import                            | Create/match investor representative Individuals (name/address match).   |
+
+**Company XCM behaviour (important).** Both company profiles (`eu_survey_company` and
+`EU_Survey_Accelerator_Onboarding_Company`) are configured so that:
+
+- **The PIC Number is never overwritten.** The PIC custom field is listed in `fill_fields` (filled only
+  when empty) and `override_fields` is empty, so an existing PIC is preserved. The PIC must never change
+  once set.
+- **The website is additive.** `website` is in `fill_details`, so a new website is added but an existing
+  one is not erased.
+- **Match by contact id is enabled** (`match_contact_id: 1`), so when a company has already been
+  found/created earlier in the chain, it is reused rather than duplicated.
+- Fields are referenced by their numeric custom-field id in `fill_fields` (e.g. `custom_34` = PIC), the
+  same convention already used by the `eu_survey_investor_representative` profile.
+
+**Why a separate `EU_Survey_Accelerator_Onboarding_Company` profile.** The survey company data
+(CEO/founder gender, sector, TRL/CRL/BRL/FRL — fields `custom_102`–`custom_108`) is only available once
+the beneficiary answers the survey, not at company-creation time. So Company Import uses `eu_survey_company`
+(which does not fill those fields), while the Accelerator survey import uses
+`EU_Survey_Accelerator_Onboarding_Company`, which additionally lists those fields in `fill_fields` and
+fills them when the survey is processed.
 
 Mapping EU Survey Fields to CiviCRM Entities
 ============================================
@@ -202,6 +226,10 @@ The following custom-groups and fields are made available through `ManagedEntiti
 |                  | EIC Project ID          | EIC_Project_ID          | Text                                      |
 |                  | EIC Project Acronym     | EIC_Project_Acronym     | Text                                      |
 |                  | EIC Project (activity)  | EIC_Project_Activity    | Entity Reference (FK to `Activity`)       |
+|                  | Funding                 | Project_Funding         | Text (copied from the matched EIC Project activity) |
+|                  | Category                | Project_Category        | Text (copied from the matched EIC Project activity) |
+|                  | Funding Type            | Project_Funding_Type    | Text (copied from the matched EIC Project activity) |
+|                  | Cut-Off-Date            | Project_Cut_Off_Date    | Text (copied from the matched EIC Project activity) |
 
 
 Activity - Custom Fields
@@ -271,7 +299,7 @@ EU Survey Fields mapped to standard fields of Entities
 |                              | Role in organisation     | Individual.job_title                |                             |
 |                              | Company Website          | Organisation.website                |                             |
 |                              | Organisation name        | Organisation.organization_name      |                             |
-|                              | Organisation PIC number  | Organisation.external_identifier    |                             |
+|                              | Organisation PIC number  | Organisation custom field `EIC_Organisation_identifiers.PIC` | not the external_identifier |
 
 
 Available FormProcessors
@@ -282,9 +310,12 @@ Import Company Data
 
 **Notes on identitifying a company**
 
-This FormProcessor just creates organisation contacts. The `External Identifier` field of an organisation contact
-will be used to store the `PIC Number`. That number should uniquely identify a company later on, when attaching
-cases to the company.
+This FormProcessor creates/matches organisation contacts. The `PIC Number` is stored in the custom field
+`EIC_Organisation_identifiers.PIC` (not the External Identifier) and uniquely identifies a company later on,
+when attaching cases to the company. Via the `eu_survey_company` XCM profile, the PIC is only filled when
+empty and never overwritten, the website is added if new, and an already-found company is reused
+(match by contact id). This import does NOT set the survey company data (CEO/founder gender, sector,
+TRL/CRL/BRL/FRL); that is written by the Accelerator survey import where the data first arrives.
 
 **Form Processor**
 
@@ -347,23 +378,32 @@ Later on, when EU Survey data is being imported:
 | EIC Project ID                  | case_eic_project_id             | short text    | stored on the case; primary project match    |
 | EIC Project Acronym             | case_eic_project_acronym        | short text    | stored on the case; fallback project match   |
 
-**Linking the case to the EIC Project activity**
+**One onboarding case per project**
+
+A company (identified by its PIC) can have **more than one onboarding case** — one per EIC project. Cases are
+therefore matched/deduplicated on **PIC number + case title + EIC Project ID** (not on PIC alone). The survey
+import (`find_eu_survey_case`) matches on the same three criteria so the survey data attaches to the correct
+project's case.
+
+**Linking the case to the EIC Project activity, and copying project details**
 
 EIC Project activities (`activity_type = EIC_Awardee_Project`) are imported separately by the `eic_import`
-pipeline. On each project activity the Project ID is stored in the custom field
+pipeline. On each project activity the Project Number is stored in the custom field
 `EIC_Horizon_Europe_Project_information.Project_Number`, and the acronym is stored in the activity `subject`.
 
-When a case is imported, this Form Processor stores the submitted Project ID and Acronym on the case
-(`EIC_Project_ID`, `EIC_Project_Acronym`).
+When a case is imported, this Form Processor:
 
-**Deferred — linking the case to the EIC Project activity:** the case custom group also defines an
-`EIC_Project_Activity` Entity Reference field intended to hold a clickable link to the matched
-`EIC_Awardee_Project` activity. Automatic population of this field is **not yet implemented**. The intended
-matching logic is: match the project activity by `Project_Number` = submitted Project ID first; if none is found,
-fall back to matching the activity `subject` = submitted Acronym; if still none, leave the field empty. This will
-be implemented via a dedicated custom Form Processor action (returning a single activity id) in a future
-extension, because the generic `FindSimilarActivities` action returns a list and cannot populate the
-single-value Entity Reference field reliably.
+1. Stores the submitted Project ID (the project **number**) and Acronym on the case
+   (`EIC_Project_ID`, `EIC_Project_Acronym`).
+2. Finds the matching `EIC_Awardee_Project` activity by `Project_Number` = submitted Project ID, using the
+   `GetActivityIdByCustomField` action (from `eic_fp_action_provider`). This references the custom field and
+   activity type **by name** (no hardcoded numeric ids) and returns a single activity id.
+3. Reads that activity with `GetActivity` and copies the project context onto the case as free-text fields:
+   `Project_Funding`, `Project_Category`, `Project_Funding_Type`, `Project_Cut_Off_Date`.
+4. Stores the matched activity id in the `EIC_Project_Activity` Entity Reference field, giving the case a
+   clickable link through to the EIC Project activity.
+
+If no project activity matches the submitted Project ID, the project detail fields and the link are left empty.
 
 Import Individual Data
 ----------------------

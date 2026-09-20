@@ -10,6 +10,16 @@ for the EIC extensions. It currently ships:
   of hardcoding the numeric id, which is not portable across environments (the
   id is assigned by the database on install). It mirrors the built-in
   `GetRelationshipTypeIdByName` action.
+- **`GetActivityIdByCustomField`** (action) - resolves a single Activity id by
+  matching a value against a named custom field, optionally restricted to an
+  activity type. Config `custom_field` (API name `GroupName.FieldName`, e.g.
+  `EIC_Horizon_Europe_Project_information.Project_Number`) and optional
+  `activity_type` (machine name, e.g. `EIC_Awardee_Project`); input `value`;
+  output `activity_id` (most recent match). This is the Activity equivalent of
+  the built-in `FindContactByCustomField`: it references the field and type by
+  name (no numeric ids) and returns a single id (unlike `FindSimilarActivities`,
+  which returns an array), so it can feed `GetActivity` or a single-value
+  EntityReference field.
 
 This extension is deliberately separate from the form-processor consumers (such
 as `eic_eu_survey_form_processor`) so that the condition and action are
