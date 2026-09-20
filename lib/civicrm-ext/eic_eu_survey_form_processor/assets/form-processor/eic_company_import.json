@@ -2,7 +2,7 @@
     "title": "EIC Company Import",
     "name": "eic_company_import",
     "is_active": "1",
-    "description": "This FormProcessor creates or matches beneficiary organisation contacts (sub-type EIC_Organisation) from the dataset, setting the organisation name, website, and PIC Number.\r\n\r\nThe `PIC Number` is stored in the custom field `EIC_Organisation_identifiers.PIC` (not the External Identifier) and uniquely identifies a company later on, when attaching cases to the company.\r\n\r\nThis import runs before the survey is answered, so it does NOT set the survey company data (CEO/founder gender, sector, TRL/CRL/BRL/FRL) - that data is written by the Accelerator survey import where it first arrives.\r\n",
+    "description": "This FormProcessor creates or matches beneficiary organisation contacts (sub-type EIC_Organisation) from the dataset, setting the organisation name, website, and PIC Number.\r\n\r\nThe `PIC Number` is stored in the custom field `EIC_Organisation_identifiers.PIC` (not the External Identifier) and uniquely identifies a company later on, when attaching cases to the company.\r\n\r\nThis import runs before the survey is answered, so it does NOT set the survey company data (CEO\/founder gender, sector, TRL\/CRL\/BRL\/FRL) - that data is written by the Accelerator survey import where it first arrives.\r\n",
     "output_handler": "OutputAllActionOutput",
     "output_handler_configuration": [],
     "enable_default_data": "0",
@@ -70,14 +70,8 @@
             "mapping": {
                 "custom_EIC_Organisation_identifiers_PIC": "input.org_pic_number"
             },
-            "condition_configuration": {
-                "name": "ParameterIsNotEmpty",
-                "configuration": [],
-                "parameter_mapping": {
-                    "parameter": "input.org_pic_number"
-                }
-            },
-            "delay_configuration": ""
+            "delay_configuration": "",
+            "condition_configuration": ""
         },
         {
             "pid": "0",
@@ -116,9 +110,50 @@
                 "preferred_communication_method": "",
                 "legal_identifier": "",
                 "external_identifier": "",
+                "custom_EIC_Awardee_representative_eulogin": "",
+                "custom_EIC_Organisation_identifiers_SMEDId": "",
                 "custom_EIC_Organisation_identifiers_PIC": "input.org_pic_number",
+                "custom_EIC_Organisation_identifiers_Company_Domain_Name": "",
+                "custom_EIC_Awardee_Additionnal_Information_Program": "",
+                "custom_EIC_Awardee_Additionnal_Information_Research_organisation": "",
+                "custom_EIC_Awardee_Additionnal_Information_Large_research_infrastructure": "",
+                "custom_EIC_Awardee_Additionnal_Information_Non_profit_organisation": "",
+                "custom_EIC_Awardee_Additionnal_Information_Public_body": "",
+                "custom_EIC_Awardee_Additionnal_Information_International_organisation": "",
+                "custom_EIC_Awardee_Additionnal_Information_European_interest": "",
+                "custom_EIC_Awardee_Additionnal_Information_Legal_status": "",
+                "custom_EIC_Awardee_Additionnal_Information_SME_vs_mid_cap_status": "",
+                "custom_EIC_Awardee_Additionnal_Information_SME_status_type": "",
+                "custom_EIC_Awardee_Additionnal_Information_higher_or_secondary_education_establishment": "",
+                "custom_EIC_Awardee_Additionnal_Information_Legal_personality": "",
+                "custom_Financial_information_Funds_Vintage_Year": "",
+                "custom_Financial_information_Ticket_Size_Range_": [],
+                "custom_Financial_information_Estimated_Dry_Powder_": "",
+                "custom_Financial_information_Current_Fund_Size_": "",
+                "custom_Investment_Focus_Preferred_Stages": [],
+                "custom_Investment_Focus_Relevant_Verticals": [],
+                "custom_Investment_Focus_Role": [],
+                "custom_Investment_Focus_Geographical_Focus": [],
+                "custom_Activity_related_Onboarded": "",
+                "custom_Activity_related_Trusted_Investor_Network_TIN_": "",
+                "custom_General_Company_Info_Investor_Type": [],
+                "custom_General_Company_Info_Preferred_Stages": [],
+                "custom_General_Company_Info_Relevant_Verticals": [],
+                "custom_General_Company_Info_Geographical_Focus": [],
+                "custom_General_Company_Info_Software_Focus": [],
+                "custom_General_Company_Info_Investment_Lead_Role": "",
+                "custom_General_Company_Info_Co_investments_with_public_sector": "",
+                "custom_General_Company_Info__of_investments_made_in_vertical_in_the_last_2_years": "",
+                "custom_General_Company_Info_Financial_Partner": "",
+                "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "",
+                "custom_EU_Survey_Company_Data_Founder_Gender": "",
+                "custom_EU_Survey_Company_Data_Sector": "",
+                "custom_EU_Survey_Company_Data_TRL": [],
+                "custom_EU_Survey_Company_Data_CRL": "",
+                "custom_EU_Survey_Company_Data_BRL": "",
+                "custom_EU_Survey_Company_Data_FRL": "",
                 "contact_type": "",
-                "id": "",
+                "id": "action.get_company_using_the_pic.contact_id",
                 "source": "",
                 "email": "",
                 "phone": "",
@@ -143,17 +178,8 @@
                 "variable_value_1": "",
                 "variable_value_2": ""
             },
-            "condition_configuration": {
-                "name": "ParameterIsEmpty",
-                "configuration": [],
-                "parameter_mapping": {
-                    "parameter": "action.get_company_using_the_pic.contact_id"
-                },
-                "output_mapping": {
-                    "contact_id": ""
-                }
-            },
-            "delay_configuration": ""
+            "delay_configuration": "",
+            "condition_configuration": ""
         }
     ],
     "default_data_inputs": [],
@@ -162,5 +188,5 @@
     "validate_validators": [],
     "calculate_actions": [],
     "uploaded_source_file": "",
-    "calculations_configuration_url": ""
+    "calculations_configuration_url": "https:\/\/srm.dev.eic.ec.europa.eu\/civicrm\/admin\/automation\/formprocessor\/calculationconfiguration?action=update&reset=1&id=10"
 }
