@@ -226,6 +226,10 @@ The following custom-groups and fields are made available through `ManagedEntiti
 |                  | EIC Project ID          | EIC_Project_ID          | Text                                      |
 |                  | EIC Project Acronym     | EIC_Project_Acronym     | Text                                      |
 |                  | EIC Project (activity)  | EIC_Project_Activity    | Entity Reference (FK to `Activity`)       |
+|                  | Funding                 | Project_Funding         | Text (copied from the matched EIC Project activity) |
+|                  | Category                | Project_Category        | Text (copied from the matched EIC Project activity) |
+|                  | Funding Type            | Project_Funding_Type    | Text (copied from the matched EIC Project activity) |
+|                  | Cut-Off-Date            | Project_Cut_Off_Date    | Text (copied from the matched EIC Project activity) |
 
 
 Activity - Custom Fields
@@ -374,23 +378,32 @@ Later on, when EU Survey data is being imported:
 | EIC Project ID                  | case_eic_project_id             | short text    | stored on the case; primary project match    |
 | EIC Project Acronym             | case_eic_project_acronym        | short text    | stored on the case; fallback project match   |
 
-**Linking the case to the EIC Project activity**
+**One onboarding case per project**
+
+A company (identified by its PIC) can have **more than one onboarding case** — one per EIC project. Cases are
+therefore matched/deduplicated on **PIC number + case title + EIC Project ID** (not on PIC alone). The survey
+import (`find_eu_survey_case`) matches on the same three criteria so the survey data attaches to the correct
+project's case.
+
+**Linking the case to the EIC Project activity, and copying project details**
 
 EIC Project activities (`activity_type = EIC_Awardee_Project`) are imported separately by the `eic_import`
-pipeline. On each project activity the Project ID is stored in the custom field
+pipeline. On each project activity the Project Number is stored in the custom field
 `EIC_Horizon_Europe_Project_information.Project_Number`, and the acronym is stored in the activity `subject`.
 
-When a case is imported, this Form Processor stores the submitted Project ID and Acronym on the case
-(`EIC_Project_ID`, `EIC_Project_Acronym`).
+When a case is imported, this Form Processor:
 
-**Deferred — linking the case to the EIC Project activity:** the case custom group also defines an
-`EIC_Project_Activity` Entity Reference field intended to hold a clickable link to the matched
-`EIC_Awardee_Project` activity. Automatic population of this field is **not yet implemented**. The intended
-matching logic is: match the project activity by `Project_Number` = submitted Project ID first; if none is found,
-fall back to matching the activity `subject` = submitted Acronym; if still none, leave the field empty. This will
-be implemented via a dedicated custom Form Processor action (returning a single activity id) in a future
-extension, because the generic `FindSimilarActivities` action returns a list and cannot populate the
-single-value Entity Reference field reliably.
+1. Stores the submitted Project ID (the project **number**) and Acronym on the case
+   (`EIC_Project_ID`, `EIC_Project_Acronym`).
+2. Finds the matching `EIC_Awardee_Project` activity by `Project_Number` = submitted Project ID, using the
+   `GetActivityIdByCustomField` action (from `eic_fp_action_provider`). This references the custom field and
+   activity type **by name** (no hardcoded numeric ids) and returns a single activity id.
+3. Reads that activity with `GetActivity` and copies the project context onto the case as free-text fields:
+   `Project_Funding`, `Project_Category`, `Project_Funding_Type`, `Project_Cut_Off_Date`.
+4. Stores the matched activity id in the `EIC_Project_Activity` Entity Reference field, giving the case a
+   clickable link through to the EIC Project activity.
+
+If no project activity matches the submitted Project ID, the project detail fields and the link are left empty.
 
 Import Individual Data
 ----------------------

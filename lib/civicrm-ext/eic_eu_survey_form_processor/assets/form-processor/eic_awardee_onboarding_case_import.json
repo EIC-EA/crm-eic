@@ -111,6 +111,47 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
+        "10": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find EIC Project activity by Project Number",
+            "name": "find_eic_project_activity_by_project_id",
+            "type": "GetActivityIdByCustomField",
+            "configuration": {
+                "custom_field": "EIC_Horizon_Europe_Project_information.Project_Number",
+                "activity_type": "EIC_Awardee_Project"
+            },
+            "mapping": {
+                "value": "input.case_eic_project_id"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "input.case_eic_project_id"
+                }
+            },
+            "delay_configuration": ""
+        },
+        "11": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get EIC Project activity data",
+            "name": "get_eic_project_activity",
+            "type": "GetActivity",
+            "configuration": [],
+            "mapping": {
+                "id": "action.find_eic_project_activity_by_project_id.activity_id"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_eic_project_activity_by_project_id.activity_id"
+                }
+            },
+            "delay_configuration": ""
+        },
         "5": {
             "pid": "0",
             "conditional_processing_group": "0",
@@ -369,7 +410,12 @@
                         "custom_EIC_Awardee_information_EIC_Title": "action.get_case_title_awardee_onboarding.value",
                         "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
                         "custom_EIC_Awardee_information_EIC_Project_ID": "input.case_eic_project_id",
-                        "custom_EIC_Awardee_information_EIC_Project_Acronym": "input.case_eic_project_acronym"
+                        "custom_EIC_Awardee_information_EIC_Project_Acronym": "input.case_eic_project_acronym",
+                        "custom_EIC_Awardee_information_EIC_Project_Activity": "action.find_eic_project_activity_by_project_id.activity_id",
+                        "custom_EIC_Awardee_information_Project_Funding": "action.get_eic_project_activity.custom_EIC_Horizon_Europe_Project_information_Funding",
+                        "custom_EIC_Awardee_information_Project_Category": "action.get_eic_project_activity.custom_EIC_Horizon_Europe_Project_information_Category",
+                        "custom_EIC_Awardee_information_Project_Funding_Type": "action.get_eic_project_activity.custom_EIC_Horizon_Europe_Project_information_Funding_Type",
+                        "custom_EIC_Awardee_information_Project_Cut_Off_Date": "action.get_eic_project_activity.custom_EIC_Horizon_Europe_Project_information_Cut_Off_Date"
                     },
                     "condition_configuration": "",
                     "delay_configuration": ""

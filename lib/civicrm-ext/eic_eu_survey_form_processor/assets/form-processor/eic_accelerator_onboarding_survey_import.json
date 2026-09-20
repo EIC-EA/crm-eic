@@ -1068,13 +1068,14 @@
         "28": {
             "pid": "0",
             "conditional_processing_group": "0",
-            "title": "Find EU-Survey Case by PIC number and title",
+            "title": "Find EU-Survey Case by PIC number, title and Project ID",
             "name": "find_eu_survey_case",
             "type": "GetCaseDataByCustomField",
             "configuration": [],
             "mapping": {
                 "custom_EIC_Awardee_information_EIC_Title": "action.get_case_title_awardee_onboarding.value",
-                "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number"
+                "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
+                "custom_EIC_Awardee_information_EIC_Project_ID": "input.survey_eic_project_id"
             },
             "condition_configuration": "",
             "delay_configuration": ""

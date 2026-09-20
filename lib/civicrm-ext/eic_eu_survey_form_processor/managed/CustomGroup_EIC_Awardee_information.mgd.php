@@ -144,4 +144,95 @@ return [
       ],
     ],
   ],
+  [
+    // EIC project details copied from the matched EIC_Awardee_Project activity
+    // (custom group EIC_Horizon_Europe_Project_information) at case creation, so
+    // the onboarding case carries the project context. Free text snapshots.
+    'name' => 'CustomGroup_EIC_Awardee_information_CustomField_Project_Funding',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'EIC_Awardee_information',
+        'name' => 'Project_Funding',
+        'label' => E::ts('Funding'),
+        'html_type' => 'Text',
+        'is_view' => TRUE,
+        'text_length' => 255,
+        'column_name' => 'project_funding',
+      ],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
+    ],
+  ],
+  [
+    'name' => 'CustomGroup_EIC_Awardee_information_CustomField_Project_Category',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'EIC_Awardee_information',
+        'name' => 'Project_Category',
+        'label' => E::ts('Category'),
+        'html_type' => 'Text',
+        'is_view' => TRUE,
+        'text_length' => 255,
+        'column_name' => 'project_category',
+      ],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
+    ],
+  ],
+  [
+    'name' => 'CustomGroup_EIC_Awardee_information_CustomField_Project_Funding_Type',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'EIC_Awardee_information',
+        'name' => 'Project_Funding_Type',
+        'label' => E::ts('Funding Type'),
+        'html_type' => 'Text',
+        'is_view' => TRUE,
+        'text_length' => 255,
+        'column_name' => 'project_funding_type',
+      ],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
+    ],
+  ],
+  [
+    'name' => 'CustomGroup_EIC_Awardee_information_CustomField_Project_Cut_Off_Date',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'EIC_Awardee_information',
+        'name' => 'Project_Cut_Off_Date',
+        'label' => E::ts('Cut-Off-Date'),
+        'html_type' => 'Text',
+        'is_view' => TRUE,
+        'text_length' => 255,
+        'column_name' => 'project_cut_off_date',
+      ],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
+    ],
+  ],
 ];

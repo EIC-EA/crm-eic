@@ -38,6 +38,18 @@ class ContainerSpecs implements CompilerPassInterface {
         'Get Case Type Id By Name'
       ]
     );
+
+    // Register the GetActivityIdByCustomField action (resolves a single activity
+    // id by matching a value against a named custom field, optionally restricted
+    // to an activity type - all by name, so no numeric ids are hardcoded).
+    $actionProviderDefinition->addMethodCall(
+      'addAction',
+      [
+        'GetActivityIdByCustomField',
+        '\Civi\EicFpActionProvider\ActionProvider\Action\GetActivityIdByCustomField',
+        'Get Activity Id By Custom Field'
+      ]
+    );
   }
 
 }
