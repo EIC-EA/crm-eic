@@ -2636,8 +2636,6 @@
                 "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_other_items": "input.survey_support_other_items",
                 "custom_eic_accelerator_onboarding_survey_data_survey_feedback": "input.survey_general_feedback",
                 "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_entering_new_markets": "input.survey_support_entering_new_markets",
-                "custom_eic_accelerator_onboarding_survey_data_test_input": "",
-                "custom_eic_accelerator_onboarding_survey_data_test_input_2": "",
                 "custom_eic_accelerator_onboarding_survey_data_survey_buyers_where_in_process": "input.survey_where_are_you_in_the_process",
                 "custom_eic_accelerator_onboarding_survey_data_survey_trade_fairs_next_12_months": "input.survey_plan_to_participate_in_international_trade_fairs_within_next_12_months",
                 "custom_eic_accelerator_onboarding_survey_data_survey_Does_your_company_have_a_woman_founder_or_executive_who": "input.survey_woman_founder_or_executive_benefit_from_a_dedicated_leadership_programme",
