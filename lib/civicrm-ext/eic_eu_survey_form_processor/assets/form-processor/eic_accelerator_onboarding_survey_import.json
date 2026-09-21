@@ -813,7 +813,49 @@
         }
     ],
     "actions": {
-        "3": {
+        "0": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find EIC Project activity by Project Number",
+            "name": "find_eic_project_activity_by_project_number",
+            "type": "GetActivityIdByCustomField",
+            "configuration": {
+                "custom_field": "EIC_Horizon_Europe_Project_information.Project_Number",
+                "activity_type": "EIC_Awardee_Project"
+            },
+            "mapping": {
+                "value": "input.survey_eic_project_id"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "1": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get EIC Project activity data",
+            "name": "get_eic_project_activity_data",
+            "type": "GetActivity",
+            "configuration": [],
+            "mapping": {
+                "id": "action.find_eic_project_activity_by_project_number.activity_id"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "2": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get Catch-All Company Name",
+            "name": "get_catch_all_company_name",
+            "type": "SetValue",
+            "configuration": {
+                "value": "Catch-All Beneficiary"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "10": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "TRL code",
@@ -830,7 +872,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "19": {
+        "14": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "CRL code",
@@ -847,7 +889,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "20": {
+        "23": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "BRL code",
@@ -864,7 +906,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "21": {
+        "24": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "FRL code",
@@ -881,7 +923,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "22": {
+        "25": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get Catch-All Activity Title",
@@ -894,7 +936,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "23": {
+        "26": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get Catch-All Company PIC Number",
@@ -907,7 +949,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "24": {
+        "27": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get Catch-All Case Title",
@@ -920,20 +962,32 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "25": {
+        "28": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get Case Title: EIC Awardee Onboarding",
             "name": "get_case_title_awardee_onboarding",
-            "type": "SetValue",
+            "type": "Concatenate",
             "configuration": {
-                "value": "EIC Awardee Onboarding"
+                "text0": "EIC Awardee Onboarding",
+                "text1": "",
+                "text2": "",
+                "text3": "",
+                "text4": "",
+                "separator": " - "
             },
-            "mapping": [],
+            "mapping": {
+                "text0": "",
+                "text1": "action.get_eic_project_activity_data.subject",
+                "text2": "",
+                "text3": "",
+                "text4": "",
+                "separator": ""
+            },
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "26": {
+        "29": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get company using the PIC",
@@ -955,7 +1009,7 @@
             },
             "delay_configuration": ""
         },
-        "27": {
+        "30": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get Beneficiary Company by PIC number or website",
@@ -1065,7 +1119,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "28": {
+        "31": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Find EU-Survey Case by PIC number, title and Project ID",
@@ -1073,14 +1127,43 @@
             "type": "GetCaseDataByCustomField",
             "configuration": [],
             "mapping": {
-                "custom_EIC_Awardee_information_EIC_Title": "action.get_case_title_awardee_onboarding.value",
+                "custom_EIC_Awardee_information_EIC_Title": "",
                 "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
-                "custom_EIC_Awardee_information_EIC_Project_ID": "input.survey_eic_project_id"
+                "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
+                "custom_EIC_Awardee_information_EIC_Project_Acronym": "",
+                "custom_EIC_Awardee_information_EIC_Project_Activity": "",
+                "custom_EIC_Awardee_information_Project_Funding": "",
+                "custom_EIC_Awardee_information_Project_Category": "",
+                "custom_EIC_Awardee_information_Project_Funding_Type": "",
+                "custom_EIC_Awardee_information_Project_Cut_Off_Date": "",
+                "custom_Client_Roles_Investor": "",
+                "custom_Client_Roles_EIC_Awardee": "",
+                "custom_EU_Survey_Investor_Onboarding_Organisation_name": "",
+                "custom_EU_Survey_Investor_Onboarding_Organisation_domain": "",
+                "custom_eic_sr_coaching_data_EU_Survey_Activity": "",
+                "custom_eic_sr_coaching_data_main_challenge": "",
+                "custom_eic_sr_community_data_EU_Survey_Activity": "",
+                "custom_eic_sr_corporate_partnership_data_EU_Survey_Activity": "",
+                "custom_eic_sr_corporate_partnership_data_partner_type": "",
+                "custom_eic_sr_corporate_partnership_data_selling_to_public_private_buyers": "",
+                "custom_eic_sr_ecosystem_partnership_data_EU_Survey_Activity": "",
+                "custom_eic_sr_ecosystem_partnership_data_support_interested_in": "",
+                "custom_eic_sr_global_business_expansion_data_EU_Survey_Activity": "",
+                "custom_eic_sr_global_business_expansion_data_markets": "",
+                "custom_eic_sr_global_business_expansion_data_main_barrier": "",
+                "custom_eic_sr_innonext_data_EU_Survey_Activity": "",
+                "custom_eic_sr_innovation_procurement_data_EU_Survey_Activity": "",
+                "custom_eic_sr_international_trade_fairs_data_EU_Survey_Activity": "",
+                "custom_eic_sr_international_trade_fairs_data_region": "",
+                "custom_eic_sr_international_trade_fairs_data_type_of_events": "",
+                "custom_eic_sr_venturematch_data_EU_Survey_Activity": "",
+                "custom_eic_sr_venturematch_data_fundraising_support_needed": "",
+                "custom_eic_sr_women_leadership_data_EU_Survey_Activity": ""
             },
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "29": {
+        "32": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Find or Create Main Contact",
@@ -1148,7 +1231,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "30": {
+        "33": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get 'Main contact for' relationship type name",
@@ -1161,7 +1244,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "31": {
+        "34": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Resolve 'Main contact for' relationship type id",
@@ -1174,7 +1257,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "32": {
+        "35": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Link main contact to company (Main contact for)",
@@ -1207,7 +1290,7 @@
             },
             "delay_configuration": ""
         },
-        "33": {
+        "36": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get 'Contact for' relationship type name",
@@ -1220,7 +1303,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "34": {
+        "37": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Resolve 'Contact for' relationship type id",
@@ -1233,7 +1316,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "35": {
+        "38": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Find or Create Contact 2 - if provided",
@@ -1261,7 +1344,7 @@
             },
             "delay_configuration": ""
         },
-        "36": {
+        "39": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Link contact 2 to company (Contact for)",
@@ -1294,7 +1377,7 @@
             },
             "delay_configuration": ""
         },
-        "37": {
+        "40": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Find or Create Contact 3 - if provided",
@@ -1322,7 +1405,7 @@
             },
             "delay_configuration": ""
         },
-        "38": {
+        "41": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Link contact 3 to company (Contact for)",
@@ -1355,7 +1438,7 @@
             },
             "delay_configuration": ""
         },
-        "39": {
+        "42": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Find or Create Contact 4 - if provided",
@@ -1383,7 +1466,7 @@
             },
             "delay_configuration": ""
         },
-        "40": {
+        "43": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Link contact 4 to company (Contact for)",
@@ -1416,7 +1499,7 @@
             },
             "delay_configuration": ""
         },
-        "41": {
+        "44": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Create Activity for EU Survey data and assign to case - if EU-Survey Case is available",
@@ -1496,7 +1579,7 @@
             },
             "delay_configuration": ""
         },
-        "42": {
+        "45": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Set Onboarding case status to Onboarded - if EU-Survey Case is available",
@@ -1520,7 +1603,7 @@
             },
             "delay_configuration": ""
         },
-        "43": {
+        "46": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR VentureMatch: case type name",
@@ -1533,7 +1616,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "44": {
+        "47": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR VentureMatch: resolve case type id",
@@ -1546,7 +1629,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "45": {
+        "48": {
             "pid": "0",
             "conditional_processing_group": "1",
             "title": "SR VentureMatch: create case if fundraising within next 18 months = Yes",
@@ -1609,7 +1692,7 @@
                 }
             ]
         },
-        "46": {
+        "49": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR Coaching: case type name",
@@ -1622,7 +1705,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "47": {
+        "50": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR Coaching: resolve case type id",
@@ -1635,7 +1718,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "48": {
+        "51": {
             "pid": "0",
             "conditional_processing_group": "1",
             "title": "SR Coaching: create case if industry experts\/coaches support = Yes",
@@ -1698,7 +1781,7 @@
                 }
             ]
         },
-        "49": {
+        "52": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR Ecosystem Partnership: case type name",
@@ -1711,7 +1794,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "50": {
+        "53": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR Ecosystem Partnership: resolve case type id",
@@ -1724,7 +1807,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "51": {
+        "54": {
             "pid": "0",
             "conditional_processing_group": "1",
             "title": "SR Ecosystem Partnership: create case if other support <> None",
@@ -1785,7 +1868,7 @@
                 }
             ]
         },
-        "52": {
+        "55": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR Global Business Expansion: case type name",
@@ -1798,7 +1881,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "53": {
+        "56": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR Global Business Expansion: resolve case type id",
@@ -1811,7 +1894,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "54": {
+        "57": {
             "pid": "0",
             "conditional_processing_group": "1",
             "title": "SR Global Business Expansion: create case if expand internationally next 18 months = Yes",
@@ -1875,7 +1958,7 @@
                 }
             ]
         },
-        "55": {
+        "58": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR Innovation Procurement: case type name",
@@ -1888,7 +1971,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "56": {
+        "59": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR Innovation Procurement: resolve case type id",
@@ -1901,7 +1984,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "57": {
+        "60": {
             "pid": "0",
             "conditional_processing_group": "1",
             "title": "SR Innovation Procurement: create case if procurement support or training = Yes",
@@ -1963,7 +2046,7 @@
                 }
             ]
         },
-        "58": {
+        "61": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR Women Leadership: case type name",
@@ -1976,7 +2059,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "59": {
+        "62": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR Women Leadership: resolve case type id",
@@ -1989,7 +2072,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "60": {
+        "63": {
             "pid": "0",
             "conditional_processing_group": "1",
             "title": "SR Women Leadership: create case if woman founder\/executive = Yes",
@@ -2051,7 +2134,7 @@
                 }
             ]
         },
-        "61": {
+        "64": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR InnoNext: case type name",
@@ -2064,7 +2147,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "62": {
+        "65": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR InnoNext: resolve case type id",
@@ -2077,7 +2160,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "63": {
+        "66": {
             "pid": "0",
             "conditional_processing_group": "1",
             "title": "SR InnoNext: create case if main challenge contains 'Human Resources'",
@@ -2140,7 +2223,7 @@
                 }
             ]
         },
-        "64": {
+        "67": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR Corporate Partnership: case type name",
@@ -2153,7 +2236,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "65": {
+        "68": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR Corporate Partnership: resolve case type id",
@@ -2166,7 +2249,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "66": {
+        "69": {
             "pid": "0",
             "conditional_processing_group": "1",
             "title": "SR Corporate Partnership: create case if seeking corporate\/industrial partners = Yes",
@@ -2230,7 +2313,7 @@
                 }
             ]
         },
-        "67": {
+        "70": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR International Trade Fairs: case type name",
@@ -2243,7 +2326,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "68": {
+        "71": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR International Trade Fairs: resolve case type id",
@@ -2256,7 +2339,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "69": {
+        "72": {
             "pid": "0",
             "conditional_processing_group": "1",
             "title": "SR International Trade Fairs: create case if participate in trade fairs next 12 months = Yes",
@@ -2320,7 +2403,7 @@
                 }
             ]
         },
-        "70": {
+        "73": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Find Catch-All Case by PIC number and title - if no EU-Survey Case is available",
@@ -2357,20 +2440,20 @@
             },
             "delay_configuration": ""
         },
-        "71": {
+        "74": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Find Catch-All Company by PIC number - if no EU-Survey Case is available ",
             "name": "find_catch_all_company_by_pic_number",
             "type": "XcmGetOrCreate",
             "configuration": {
-                "xcm_profile": "eu_survey_company",
+                "xcm_profile": "eu_survey_company_catchall",
                 "contact_type": "Organization",
                 "variable_target_1": "",
                 "variable_target_2": ""
             },
             "mapping": {
-                "display_name": "",
+                "display_name": "action.get_catch_all_company_name.value",
                 "household_name": "",
                 "organization_name": "",
                 "first_name": "",
@@ -2394,8 +2477,48 @@
                 "preferred_communication_method": "",
                 "legal_identifier": "",
                 "external_identifier": "action.get_catch_all_company_pic_number.value",
+                "custom_EIC_Awardee_representative_eulogin": "",
+                "custom_EIC_Organisation_identifiers_SMEDId": "",
+                "custom_EIC_Organisation_identifiers_PIC": "",
+                "custom_EIC_Organisation_identifiers_Company_Domain_Name": "",
+                "custom_EIC_Awardee_Additionnal_Information_Program": "",
+                "custom_EIC_Awardee_Additionnal_Information_Research_organisation": "",
+                "custom_EIC_Awardee_Additionnal_Information_Large_research_infrastructure": "",
+                "custom_EIC_Awardee_Additionnal_Information_Non_profit_organisation": "",
+                "custom_EIC_Awardee_Additionnal_Information_Public_body": "",
+                "custom_EIC_Awardee_Additionnal_Information_International_organisation": "",
+                "custom_EIC_Awardee_Additionnal_Information_European_interest": "",
+                "custom_EIC_Awardee_Additionnal_Information_Legal_status": "",
+                "custom_EIC_Awardee_Additionnal_Information_SME_vs_mid_cap_status": "",
+                "custom_EIC_Awardee_Additionnal_Information_SME_status_type": "",
+                "custom_EIC_Awardee_Additionnal_Information_higher_or_secondary_education_establishment": "",
+                "custom_EIC_Awardee_Additionnal_Information_Legal_personality": "",
+                "custom_Financial_information_Funds_Vintage_Year": "",
+                "custom_Financial_information_Ticket_Size_Range_": [],
+                "custom_Financial_information_Estimated_Dry_Powder_": "",
+                "custom_Financial_information_Current_Fund_Size_": "",
+                "custom_Investment_Focus_Preferred_Stages": [],
+                "custom_Investment_Focus_Relevant_Verticals": [],
+                "custom_Investment_Focus_Role": [],
+                "custom_Investment_Focus_Geographical_Focus": [],
+                "custom_Activity_related_Onboarded": "",
+                "custom_Activity_related_Trusted_Investor_Network_TIN_": "",
+                "custom_General_Company_Info_Investor_Type": [],
+                "custom_General_Company_Info_Preferred_Stages": [],
+                "custom_General_Company_Info_Relevant_Verticals": [],
+                "custom_General_Company_Info_Geographical_Focus": [],
+                "custom_General_Company_Info_Software_Focus": [],
+                "custom_General_Company_Info_Investment_Lead_Role": "",
+                "custom_General_Company_Info_Co_investments_with_public_sector": "",
+                "custom_General_Company_Info__of_investments_made_in_vertical_in_the_last_2_years": "",
+                "custom_General_Company_Info_Financial_Partner": "",
                 "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "",
                 "custom_EU_Survey_Company_Data_Founder_Gender": "",
+                "custom_EU_Survey_Company_Data_Sector": "",
+                "custom_EU_Survey_Company_Data_TRL": [],
+                "custom_EU_Survey_Company_Data_CRL": "",
+                "custom_EU_Survey_Company_Data_BRL": "",
+                "custom_EU_Survey_Company_Data_FRL": "",
                 "contact_type": "",
                 "id": "",
                 "source": "",
@@ -2434,7 +2557,7 @@
             },
             "delay_configuration": ""
         },
-        "72": {
+        "75": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Create Activity for EU-Survey and assign to Catch-All Case - if no EU-Survey Case is available",
@@ -2461,6 +2584,36 @@
                 "subject": "action.get_catch_all_activity_title.value",
                 "details": "",
                 "case_id": "action.find_catch_all_case_by_pic_number_and_title.id",
+                "custom_EIC_Horizon_Europe_Project_information_Project_Title": "",
+                "custom_EIC_Horizon_Europe_Project_information_Project_Number": "",
+                "custom_EIC_Horizon_Europe_Project_information_EC_tool_status": "",
+                "custom_EIC_Horizon_Europe_Project_information_Coordinator": "",
+                "custom_EIC_Horizon_Europe_Project_information_Partners": [],
+                "custom_EIC_Horizon_Europe_Project_information_Cut_Off_Date": "",
+                "custom_EIC_Horizon_Europe_Project_information_Category": "",
+                "custom_EIC_Horizon_Europe_Project_information_Funding": "",
+                "custom_EIC_Horizon_Europe_Project_information_Funding_Type": "",
+                "custom_EIC_Horizon_Europe_Project_information_Grant_Proposed": "",
+                "custom_EIC_Horizon_Europe_Project_information_Equity_Proposed": "",
+                "custom_EIC_Horizon_Europe_Project_information_Start_Date": "",
+                "custom_EIC_Horizon_Europe_Project_information_End_Date": "",
+                "custom_EIC_Horizon_Europe_Project_information_Duration": "",
+                "custom_EIC_Horizon_Europe_Project_information_Master": "",
+                "custom_EIC_Horizon_Europe_Project_information_Primary": "",
+                "custom_EIC_Horizon_Europe_Project_information_Subsector_1": "",
+                "custom_EIC_Horizon_Europe_Project_information_Subsector_2": "",
+                "custom_EIC_Horizon_Europe_Project_information_Tech_cluster_1": "",
+                "custom_EIC_Horizon_Europe_Project_information_Tech_cluster_2": "",
+                "custom_EIC_Horizon_Europe_Project_information_Tech_cluster_3": "",
+                "custom_EIC_Horizon_Europe_Project_information_Tech_cluster_4": "",
+                "custom_EIC_Horizon_Europe_Project_information_Tech_cluster_5": "",
+                "custom_EIC_Horizon_Europe_Project_information_Tech_cluster_6": "",
+                "custom_EIC_Horizon_Europe_Project_information_Field_Of_Science": "",
+                "custom_EIC_Horizon_Europe_Project_information_Free_Keywords": "",
+                "custom_EIC_Horizon_Europe_Project_information_Termination": "",
+                "custom_EIC_Horizon_Europe_Project_information_Associated_Partners": [],
+                "custom_EIC_Horizon_Europe_Project_information_Terminated_Partners": [],
+                "custom_EIC_Horizon_Europe_Project_information_Phase": "",
                 "custom_eic_accelerator_onboarding_survey_data_EIC_Project_Acronym": "input.survey_eic_project_acronym",
                 "custom_eic_accelerator_onboarding_survey_data_EIC_Project_ID": "input.survey_eic_project_id",
                 "custom_eic_accelerator_onboarding_survey_data_survey_fundraising_within_the_next_18_months": "input.survey_fundraising_within_next_18_months",
@@ -2470,32 +2623,36 @@
                 "custom_eic_accelerator_onboarding_survey_data_survey_partenrs_actively_seeking": "input.survey_actively_seeking_corporate_industrial_partners",
                 "custom_eic_accelerator_onboarding_survey_data_survey_partners_types": "input.survey_what_type_of_partner_are_you_targeting",
                 "custom_eic_accelerator_onboarding_survey_data_survey_selling_to_public_private_buyers": "input.survey_plan_to_sell_solution_to_public_private_buyers",
-                "custom_eic_accelerator_onboarding_survey_data_survey_buyers_where_in_process": "input.survey_where_are_you_in_the_process",
                 "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_procurement": "input.survey_support_training_procurement",
                 "custom_eic_accelerator_onboarding_survey_data_survey_international_expansion_in_the_next_18_months": "input.survey_plan_to_expand_internationally_within_next_18_months",
                 "custom_eic_accelerator_onboarding_survey_data_survey_international_expansion_markets": "input.survey_expansion_markets",
                 "custom_eic_accelerator_onboarding_survey_data_survey_international_expansion_main_barrier": "input.survey_expansion_main_barrier",
-                "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_entering_new_markets": "input.survey_support_entering_new_markets",
-                "custom_eic_accelerator_onboarding_survey_data_survey_trade_fairs_next_12_months": "input.survey_plan_to_participate_in_international_trade_fairs_within_next_12_months",
                 "custom_eic_accelerator_onboarding_survey_data_survey_international_trade_fairs_region": "input.survey_international_trade_fairs_region",
                 "custom_eic_accelerator_onboarding_survey_data_survey_international_trade_fairs_events": "",
                 "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_industry_experts_or_coaches": "input.survey_would_support_industry_experts_coaches",
                 "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_industry_experts_or_coaches_types": "input.survey_type_of_industry_export_support",
                 "custom_eic_accelerator_onboarding_survey_data_survey_main_challenge": "input.survey_main_challenge",
-                "custom_eic_accelerator_onboarding_survey_data_survey_Does_your_company_have_a_woman_founder_or_executive_who": "input.survey_woman_founder_or_executive_benefit_from_a_dedicated_leadership_programme",
                 "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_other_types": "input.survey_support_other_types",
                 "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_other_items": "input.survey_support_other_items",
                 "custom_eic_accelerator_onboarding_survey_data_survey_feedback": "input.survey_general_feedback",
+                "custom_eic_accelerator_onboarding_survey_data_survey_receive_support_entering_new_markets": "input.survey_support_entering_new_markets",
+                "custom_eic_accelerator_onboarding_survey_data_test_input": "",
+                "custom_eic_accelerator_onboarding_survey_data_test_input_2": "",
+                "custom_eic_accelerator_onboarding_survey_data_survey_buyers_where_in_process": "input.survey_where_are_you_in_the_process",
+                "custom_eic_accelerator_onboarding_survey_data_survey_trade_fairs_next_12_months": "input.survey_plan_to_participate_in_international_trade_fairs_within_next_12_months",
+                "custom_eic_accelerator_onboarding_survey_data_survey_Does_your_company_have_a_woman_founder_or_executive_who": "input.survey_woman_founder_or_executive_benefit_from_a_dedicated_leadership_programme",
                 "custom_srm_survey_company_snapshot_Organisation_Name": "input.org_name",
                 "custom_srm_survey_company_snapshot_PIC_Number": "input.org_pic_number",
                 "custom_srm_survey_company_snapshot_Website": "input.org_website",
                 "custom_srm_survey_company_snapshot_CEO_or_project_leader_gender": "input.org_ceo_project_leader_gender",
                 "custom_srm_survey_company_snapshot_Founder_Gender": "input.org_founder_gender",
-                "custom_srm_survey_company_snapshot_Sector": "input.org_sector",
-                "custom_srm_survey_company_snapshot_TRL": "action.trl_code.value",
+                "custom_srm_survey_company_snapshot_TRL": [
+                    "action.trl_code.value"
+                ],
                 "custom_srm_survey_company_snapshot_CRL": "action.crl_code.value",
                 "custom_srm_survey_company_snapshot_BRL": "action.brl_code.value",
                 "custom_srm_survey_company_snapshot_FRL": "action.frl_code.value",
+                "custom_srm_survey_company_snapshot_Sector": "input.org_sector",
                 "custom_srm_survey_contact_snapshot_First_Name": "input.ind_first_name",
                 "custom_srm_survey_contact_snapshot_Last_Name": "input.ind_last_name",
                 "custom_srm_survey_contact_snapshot_Professional_Email": "input.ind_professional_email",
@@ -2520,6 +2677,5 @@
     "validate_actions": [],
     "validate_validators": [],
     "calculate_actions": [],
-    "uploaded_source_file": "",
-    "calculations_configuration_url": "https:\/\/srm.dev.eic.ec.europa.eu\/civicrm\/admin\/automation\/formprocessor\/calculationconfiguration?action=update&reset=1&id=22"
+    "calculations_configuration_url": "https:\/\/srm.dev.eic.ec.europa.eu\/civicrm\/admin\/automation\/formprocessor\/calculationconfiguration?action=update&reset=1&id=24"
 }
