@@ -319,7 +319,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "1": {
+        "2": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get Software Focus List",
@@ -334,7 +334,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "2": {
+        "3": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get Regional Focus List",
@@ -461,7 +461,16 @@
             "mapping": {
                 "input_value": "input.eic_fp_inv_org_website"
             },
-            "condition_configuration": "",
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "input.eic_fp_inv_org_website"
+                },
+                "output_mapping": {
+                    "value": ""
+                }
+            },
             "delay_configuration": ""
         },
         "11": {
@@ -787,5 +796,6 @@
     "validate_actions": [],
     "validate_validators": [],
     "calculate_actions": [],
-    "calculations_configuration_url": "http:\/\/localhost:8080\/civicrm\/admin\/automation\/formprocessor\/calculationconfiguration?action=update&reset=1&id=9"
+    "uploaded_source_file": "",
+    "calculations_configuration_url": "http:\/\/localhost:8080\/civicrm\/admin\/automation\/formprocessor\/calculationconfiguration?action=update&reset=1&id=8"
 }
