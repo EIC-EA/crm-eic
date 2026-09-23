@@ -25,18 +25,18 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_representative_CustomField_eulogin',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Awardee_representative',
         'name' => 'eulogin',
-        'label' => E::ts('eulogin'),
+        'label' => E::ts('EU Login'),
         'html_type' => 'Text',
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
-        'column_name' => 'funds_vintage_year',
+        'column_name' => 'eulogin',
       ],
       'match' => [
         'name',

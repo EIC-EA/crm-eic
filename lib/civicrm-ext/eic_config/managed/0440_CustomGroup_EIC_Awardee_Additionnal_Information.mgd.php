@@ -558,7 +558,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_Additionnal_Information_CustomField_Legal_personality',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -566,7 +566,7 @@ return [
         'name' => 'Legal_personality',
         'label' => E::ts('Legal personality'),
         'data_type' => 'Boolean',
-        'html_type' => 'Text',
+        'html_type' => 'Toggle',
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,

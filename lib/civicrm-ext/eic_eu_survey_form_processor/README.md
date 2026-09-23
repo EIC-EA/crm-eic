@@ -52,8 +52,10 @@ Each onboarding form collects a **main contact person** and allows the beneficia
 the organisation (stored on the Individual's `job_title`). Contacts are linked to the beneficiary
 Organisation via two relationship types shipped as `ManagedEntities`:
 
-- `Main contact for` / `Main contact is` — links the main contact person to the beneficiary organisation.
-- `Contact for` / `Contact is` — links each additional contact (2 to 4) to the beneficiary organisation.
+- machine names `Main contact for` / `Main contact is` (labels **Main EIC BAS Contact for** / **Main EIC BAS Contact is**) — links the main contact person to the beneficiary organisation.
+- machine names `Contact for` / `Contact is` (labels **EIC BAS Contact for** / **EIC BAS Contact is**) — links each additional contact (2 to 4) to the beneficiary organisation.
+
+The display labels were renamed to make the EIC Business Acceleration Services (BAS) context explicit; the **machine names are unchanged** (`Main contact for` / `Contact for`), because the form processors and case roles reference them by machine name. When these relationships are created by a form processor, pass the **machine name** directly to `CreateOrUpdateRelationship` (`relationship_type_id`) — do not resolve a numeric id first.
 
 **KAM (Key Account Manager)**
 
@@ -63,8 +65,9 @@ names `EIC_KAM_For` / `EIC_KAM_Is`; Individual to Organisation), shipped by the 
 the _EIC Awardee Onboarding_ case type the KAM is the **manager** case role (referenced by its machine name
 `EIC_KAM_Is`); the previous roles (`Case Coordinator`, `Main contact for`, `Contact for`) are no longer
 used as case roles for this case type. The KAM is provided to the onboarding case import as an **email**
-(`kam_email`) and matched to the individual contact by that email; the case import resolves the relationship
-type by its machine name `EIC_KAM_For` (see _Import Cases_ below).
+(`kam_email`) and matched to the individual contact by that email; the case import passes the relationship
+type **machine name** `EIC_KAM_For` directly to the `CreateOrUpdateRelationship` action — no numeric id
+lookup is required (see _Import Cases_ below).
 
 Settings
 ========
@@ -401,14 +404,26 @@ an **email address** (`kam_email`, a required input) rather than a contact id or
 identifier used to find the KAM contact. When a case is created, this Form Processor:
 
 1. Finds the KAM Individual by email with the `FindContactByEmail` action (`get_kam_contact_by_email`).
-2. Resolves the `KAM for` relationship type id by name (`GetRelationshipTypeIdByName`).
-3. Creates the `KAM for` relationship (KAM Individual → beneficiary Organisation), scoped to the newly
-   created case, via `CreateOrUpdateRelationship` (`link_to_the_kam`).
+2. Creates the `KAM for` relationship (KAM Individual → beneficiary Organisation), scoped to the newly
+   created case, via `CreateOrUpdateRelationship` (`link_to_the_kam`), passing the relationship type
+   **machine name** `EIC_KAM_For` directly in `relationship_type_id`.
+
+> Note: an earlier configuration resolved the numeric relationship type id first (`SetValue` +
+> `GetRelationshipTypeIdByName`). That is unnecessary — `CreateOrUpdateRelationship` accepts the machine
+> name directly — so those two steps can be removed.
 
 These steps run **inside** the `create_cases_if_pic_number_is_available` conditional group, so the KAM is
 only linked when a new onboarding case is actually created. In the case type, `KAM is` is the manager case
 role, so the linked KAM appears as the case manager. The `KAM for` / `KAM is` relationship type is shipped by
 the `eic_config` extension.
+
+**Relationship type reference — use the machine name, not the id.** The `CreateOrUpdateRelationship` action
+accepts the relationship type **machine name** (e.g. `EIC_KAM_For`, `Main contact for`, `Contact for`)
+directly in its `relationship_type_id` parameter. There is therefore **no need** to resolve a numeric id
+first: the `SetValue` + `GetRelationshipTypeIdByName` pair is not required and should be omitted in new
+configurations. Referencing by machine name also keeps the automation stable when a relationship type's
+**display label** changes (as happened when `Main contact` / `Contact` were relabelled to
+**Main EIC BAS Contact** / **EIC BAS Contact**).
 
 **One onboarding case per project**
 
