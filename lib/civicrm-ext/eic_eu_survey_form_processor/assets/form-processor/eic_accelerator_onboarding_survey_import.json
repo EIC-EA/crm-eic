@@ -1083,7 +1083,9 @@
                 "custom_General_Company_Info_Financial_Partner": "",
                 "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "input.org_ceo_project_leader_gender",
                 "custom_EU_Survey_Company_Data_Founder_Gender": "input.org_founder_gender",
-                "custom_EU_Survey_Company_Data_Sector": "input.org_sector",
+                "custom_EU_Survey_Company_Data_Sector": [
+                    "input.org_sector"
+                ],
                 "custom_EU_Survey_Company_Data_TRL": [
                     "action.trl_code.value"
                 ],
@@ -1604,6 +1606,48 @@
                 "configuration": [],
                 "parameter_mapping": {
                     "parameter": "action.find_eu_survey_case.id"
+                }
+            },
+            "delay_configuration": ""
+        },
+        "100": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Update EIC Project activity with self-assessed data",
+            "name": "update_eic_project_self_assessed_data",
+            "type": "CreateActivity",
+            "configuration": {
+                "activity_type": "EIC_Awardee_Project",
+                "activity_status": "",
+                "subject": "",
+                "priority": ""
+            },
+            "mapping": {
+                "source_contact_id": "",
+                "target_contact_id": "",
+                "assignee_contact_id": "",
+                "activity_type_id": "",
+                "location": "",
+                "activity_date": "",
+                "duration": "",
+                "id": "action.find_eic_project_activity_by_project_number.activity_id",
+                "campaign_id": "",
+                "subject": "",
+                "details": "",
+                "case_id": "",
+                "custom_eic_project_self_assessed_CEO_or_project_leader_gender": "input.org_ceo_project_leader_gender",
+                "custom_eic_project_self_assessed_Founder_Gender": "input.org_founder_gender",
+                "custom_eic_project_self_assessed_Sector": "input.org_sector",
+                "custom_eic_project_self_assessed_TRL": "action.trl_code.value",
+                "custom_eic_project_self_assessed_CRL": "action.crl_code.value",
+                "custom_eic_project_self_assessed_BRL": "action.brl_code.value",
+                "custom_eic_project_self_assessed_FRL": "action.frl_code.value"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_eic_project_activity_by_project_number.activity_id"
                 }
             },
             "delay_configuration": ""
