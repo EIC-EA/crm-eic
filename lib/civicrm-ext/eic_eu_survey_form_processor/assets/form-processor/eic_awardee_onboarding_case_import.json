@@ -506,7 +506,7 @@
                     "name": "get_kam_for_relationship_type_name",
                     "type": "SetValue",
                     "configuration": {
-                        "value": "KAM for"
+                        "value": "EIC_KAM_For"
                     },
                     "mapping": [],
                     "condition_configuration": "",
@@ -530,7 +530,7 @@
                     "name": "link_to_the_kam",
                     "type": "CreateOrUpdateRelationship",
                     "configuration": {
-                        "relationship_type_id": "KAM for",
+                        "relationship_type_id": "EIC_KAM_For",
                         "set_start_date": "0",
                         "is_permission_a_b": "",
                         "is_permission_b_a": "",

@@ -10,9 +10,9 @@ return [
     'params' => [
       'version' => 4,
       'values' => [
-        'name_a_b' => 'KAM for',
+        'name_a_b' => 'EIC_KAM_For',
         'label_a_b' => E::ts('KAM for'),
-        'name_b_a' => 'KAM is',
+        'name_b_a' => 'EIC_KAM_Is',
         'label_b_a' => E::ts('KAM is'),
         'description' => E::ts('Key Account Manager (KAM) responsible for the organisation.'),
         'contact_type_a' => 'Individual',

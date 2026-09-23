@@ -58,12 +58,13 @@ Organisation via two relationship types shipped as `ManagedEntities`:
 **KAM (Key Account Manager)**
 
 Each beneficiary is also assigned a **KAM**, the EIC staff member responsible for the account. The KAM is
-linked to the beneficiary Organisation via the `KAM for` / `KAM is` relationship type (Individual to
-Organisation), shipped by the `eic_config` extension. In the _EIC Awardee Onboarding_ case type the KAM is
-the **manager** case role (`KAM is`); the previous roles (`Case Coordinator`, `Main contact for`,
-`Contact for`) are no longer used as case roles for this case type. The KAM is provided to the
-onboarding case import as an **email** (`kam_email`) and matched to the individual contact by that email
-(see _Import Cases_ below).
+linked to the beneficiary Organisation via the KAM relationship type (labels `KAM for` / `KAM is`, machine
+names `EIC_KAM_For` / `EIC_KAM_Is`; Individual to Organisation), shipped by the `eic_config` extension. In
+the _EIC Awardee Onboarding_ case type the KAM is the **manager** case role (referenced by its machine name
+`EIC_KAM_Is`); the previous roles (`Case Coordinator`, `Main contact for`, `Contact for`) are no longer
+used as case roles for this case type. The KAM is provided to the onboarding case import as an **email**
+(`kam_email`) and matched to the individual contact by that email; the case import resolves the relationship
+type by its machine name `EIC_KAM_For` (see _Import Cases_ below).
 
 Settings
 ========

@@ -58,7 +58,7 @@ return [
           ],
           'caseRoles' => [
             [
-              'name' => 'KAM is',
+              'name' => 'EIC_KAM_Is',
               'manager' => '1',
             ],
           ],
