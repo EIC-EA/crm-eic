@@ -2046,7 +2046,9 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_innov_procurement_group.create_sr_innov_procurement_case.case_id",
-                        "custom_eic_sr_innovation_procurement_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id"
+                        "custom_eic_sr_innovation_procurement_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
+                        "custom_eic_sr_innovation_procurement_data_selling_to_public_private_buyers": "input.survey_plan_to_sell_solution_to_public_private_buyers",
+                        "custom_eic_sr_innovation_procurement_data_where_are_you_in_the_process": "input.survey_where_are_you_in_the_process"
                     },
                     "condition_configuration": "",
                     "delay_configuration": ""

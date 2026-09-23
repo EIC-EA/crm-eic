@@ -124,6 +124,8 @@ Column order matches the request template so a new row can be added directly:
 | Horizon Europe Project Activity | Activity (EIC_Awardee_Project) | Phase | phase | Select | Phase 1, Phase 2 | Manual | No |  |  |  |  | No | *(needs Post Help)* |
 | EIC VentureMatch Service Request | Case (eic_sr_venturematch) | What fundraising support do you need most? | fundraising_support_needed | Text (255) |  | Form processor | No |  |  |  |  | Yes (view) | *(needs Post Help)* |
 | EIC VentureMatch Service Request | Case (eic_sr_venturematch) | Fundraising within | fundraising_within | Text (255) |  | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
+| EIC Innovation Procurement Service Request | Case (eic_sr_innovation_procurement) | Are you planning to sell your innovative solution to public or private buyers, e.g. through tender opportunities? | selling_to_public_private_buyers | Text (255) |  | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
+| EIC Innovation Procurement Service Request | Case (eic_sr_innovation_procurement) | Where are you in the process? | where_are_you_in_the_process | Text (255) |  | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
 
 ---
 
