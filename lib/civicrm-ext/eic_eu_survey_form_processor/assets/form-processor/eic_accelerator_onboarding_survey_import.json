@@ -1087,9 +1087,15 @@
                 "custom_EU_Survey_Company_Data_TRL": [
                     "action.trl_code.value"
                 ],
-                "custom_EU_Survey_Company_Data_CRL": "action.crl_code.value",
-                "custom_EU_Survey_Company_Data_BRL": "action.brl_code.value",
-                "custom_EU_Survey_Company_Data_FRL": "action.frl_code.value",
+                "custom_EU_Survey_Company_Data_CRL": [
+                    "action.crl_code.value"
+                ],
+                "custom_EU_Survey_Company_Data_BRL": [
+                    "action.brl_code.value"
+                ],
+                "custom_EU_Survey_Company_Data_FRL": [
+                    "action.frl_code.value"
+                ],
                 "contact_type": "",
                 "id": "action.get_company_using_the_pic.contact_id",
                 "source": "",
@@ -1685,7 +1691,8 @@
                     "mapping": {
                         "case_id": "action.sr_venturematch_group.create_sr_venturematch_case.case_id",
                         "custom_eic_sr_venturematch_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
-                        "custom_eic_sr_venturematch_data_fundraising_support_needed": "input.survey_support_fundraising"
+                        "custom_eic_sr_venturematch_data_fundraising_support_needed": "input.survey_support_fundraising",
+                        "custom_eic_sr_venturematch_data_fundraising_within": "input.survey_fundraising_within"
                     },
                     "condition_configuration": "",
                     "delay_configuration": ""

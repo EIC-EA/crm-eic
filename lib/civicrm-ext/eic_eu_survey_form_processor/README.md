@@ -55,6 +55,16 @@ Organisation via two relationship types shipped as `ManagedEntities`:
 - `Main contact for` / `Main contact is` — links the main contact person to the beneficiary organisation.
 - `Contact for` / `Contact is` — links each additional contact (2 to 4) to the beneficiary organisation.
 
+**KAM (Key Account Manager)**
+
+Each beneficiary is also assigned a **KAM**, the EIC staff member responsible for the account. The KAM is
+linked to the beneficiary Organisation via the `KAM for` / `KAM is` relationship type (Individual to
+Organisation), shipped by the `eic_config` extension. In the _EIC Awardee Onboarding_ case type the KAM is
+the **manager** case role (`KAM is`); the previous roles (`Case Coordinator`, `Main contact for`,
+`Contact for`) are no longer used as case roles for this case type. The KAM is provided to the
+onboarding case import as an **email** (`kam_email`) and matched to the individual contact by that email
+(see _Import Cases_ below).
+
 Settings
 ========
 
@@ -117,6 +127,7 @@ as `ManagedEntities` are available in CiviCRM and are enabled:
 - check if all CustomGroups are enabled and also if their fields are enabled under `/civicrm/admin/custom/group`
 - check if `CaseType` _EIC Awardee Onboarding_ is available and enabled under `/civicrm/a/#/caseType`
 - check if `RelationshipType` _Main contact for_ and _Contact for_ are available and enabled under `/civicrm/admin/reltype`
+- check if `RelationshipType` _KAM for_ / _KAM is_ (Individual to Organisation) is available and enabled under `/civicrm/admin/reltype`. This one is shipped by the `eic_config` extension (`managed/0350_RelationshipType_KAM.mgd.php`) and is used as the manager case role of the _EIC Awardee Onboarding_ case type.
 
 Folder Structure
 ================
@@ -134,7 +145,7 @@ Contains all ManagedEntities that will be loaded upon installation or (re)enabli
 | RelationshipType      | `Contact for` (Individual to Organisation)                      |
 | CustomGroup           | `EIC Awardee information` for `Case` of case type `EIC Awardee Onboarding` |
 | CustomGroup           | `EIC Accelerator Onboarding Survey Data` (machine name `eic_accelerator_onboarding_survey_data`) for `Activity` of activity type `eic_accelerator_onboarding_survey` |
-| CustomGroup           | `EU_Survey_Company_Data` for `Contact` of type `Organisation`   |
+| CustomGroup           | `Self-Assessed information` (machine name `EU_Survey_Company_Data`) for `Contact` of type `Organisation`. All fields are view-only. TRL/CRL/BRL/FRL are multi-selects that cumulate the Awardee's self-assessed values across all linked projects. |
 | CustomGroup           | `Survey - Company Data` (machine name `srm_survey_company_snapshot`) on the survey `Activity` — a collapsed snapshot of the company fields (name, PIC, website, genders, TRL/CRL/BRL/FRL) so the activity holds the full survey response. Reusable across surveys (add future survey activity types to its `extends_entity_column_value`). |
 | CustomGroup           | `Survey - Main Contact Data` (machine name `srm_survey_contact_snapshot`) on the survey `Activity` — a collapsed snapshot of the main contact fields (name, email, phone, role). Reusable across surveys. |
 | CaseType (x10)        | Service Request cases, one per BAS programme (machine names `eic_sr_*`): `Service Request - EIC VentureMatch`, `- EIC Coaching`, `- EIC Ecosystem Partnership`, `- EIC Global Business Expansion`, `- EIC Innovation Procurement`, `- EIC Women Leadership Programme`, `- EIC InnoNext`, `- EIC Corporate Partnership`, `- EIC International Trade Fairs`, `- EIC Community` (bonus, TBD) |
@@ -272,19 +283,21 @@ Activity - Custom Fields
 Contact(Organisation) - Custom Fields
 -------------------------------------
 
-| **CustomGroup**  | Title                   | Name                    |
-|------------------|-------------------------|-------------------------|
-|                  | EU Survey Company Data  | eu_survey_company_data  |
+| **CustomGroup**  | Title                     | Name                    |
+|------------------|---------------------------|-------------------------|
+|                  | Self-Assessed information | eu_survey_company_data  |
+
+All fields in this group are **View only** (`is_view`); they are populated by the survey import, not edited by hand.
 
 | **CustomFields** | Label                                                                                                          | Name                                                              | Type                                                     |
 |------------------|----------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|----------------------------------------------------------|
-|                  | CEO or project leader gender                                                                                   | CEO_or_project_leader_gender                                      | Select (option group `eu_survey_gender`, value = label)  |
-|                  | Founder Gender                                                                                                 | Founder_Gender                                                    | Select (option group `eu_survey_gender`, value = label)  |
-|                  | Sector                                                                                                         | Sector                                                            | Select (option group `eu_survey_sector`, value = label)  |
-|                  | Technology Readiness Level (TRL)                                                                               | TRL                                                               | Multi-Select (`eu_survey_trl`, value = short code); one per project |
-|                  | Commercial Readiness Level (CRL) - Self-Assessed                                                               | CRL                                                               | Select (`eu_survey_crl`, value = short code); latest wins |
-|                  | Business Readiness Level (BRL) - Self-Assessed                                                                 | BRL                                                               | Select (`eu_survey_brl`, value = short code); latest wins |
-|                  | Funding Readiness Level (FRL) - Self-Assessed                                                                  | FRL                                                               | Select (`eu_survey_frl`, value = short code); latest wins |
+|                  | CEO or project leader gender                                                                                   | CEO_or_project_leader_gender                                      | Select (option group `eu_survey_gender`, value = label); view only |
+|                  | Founder Gender                                                                                                 | Founder_Gender                                                    | Select (option group `eu_survey_gender`, value = label); view only |
+|                  | Sector                                                                                                         | Sector                                                            | Select (option group `eu_survey_sector`, value = label); view only |
+|                  | TRL                                                                                                            | TRL                                                               | Multi-Select (`eu_survey_trl`, value = short code); view only; cumulates every value the Awardee self-assessed across all linked projects |
+|                  | CRL                                                                                                            | CRL                                                               | Multi-Select (`eu_survey_crl`, value = short code); view only; cumulates every value the Awardee self-assessed across all linked projects |
+|                  | BRL                                                                                                            | BRL                                                               | Multi-Select (`eu_survey_brl`, value = short code); view only; cumulates every value the Awardee self-assessed across all linked projects |
+|                  | FRL                                                                                                            | FRL                                                               | Multi-Select (`eu_survey_frl`, value = short code); view only; cumulates every value the Awardee self-assessed across all linked projects |
 
 
 EU Survey Fields mapped to standard fields of Entities
@@ -358,6 +371,7 @@ Import Cases
 
 - This FormProcessor creates a case and sets the case title to `EIC Awardee Onboarding`.
 - It will link a company by its `PIC Number` as client to the newly created case.
+- It will link the KAM (found by the `kam_email` input) to the case via the `KAM for` relationship.
 
 Later on, when EU Survey data is being imported:
 
@@ -377,6 +391,23 @@ Later on, when EU Survey data is being imported:
 | Company Website                 | org_website                     | short text    | used as a secondary company match            |
 | EIC Project ID                  | case_eic_project_id             | short text    | stored on the case; primary project match    |
 | EIC Project Acronym             | case_eic_project_acronym        | short text    | stored on the case; fallback project match   |
+| KAM email                       | kam_email                       | short text    | **required**; identifies the KAM individual by email and links them to the case (see below) |
+
+**Assigning the KAM**
+
+Each onboarding case is assigned a **KAM** (Key Account Manager). The KAM is passed to this Form Processor as
+an **email address** (`kam_email`, a required input) rather than a contact id or name — the email is the
+identifier used to find the KAM contact. When a case is created, this Form Processor:
+
+1. Finds the KAM Individual by email with the `FindContactByEmail` action (`get_kam_contact_by_email`).
+2. Resolves the `KAM for` relationship type id by name (`GetRelationshipTypeIdByName`).
+3. Creates the `KAM for` relationship (KAM Individual → beneficiary Organisation), scoped to the newly
+   created case, via `CreateOrUpdateRelationship` (`link_to_the_kam`).
+
+These steps run **inside** the `create_cases_if_pic_number_is_available` conditional group, so the KAM is
+only linked when a new onboarding case is actually created. In the case type, `KAM is` is the manager case
+role, so the linked KAM appears as the case manager. The `KAM for` / `KAM is` relationship type is shipped by
+the `eic_config` extension.
 
 **One onboarding case per project**
 

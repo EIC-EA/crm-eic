@@ -58,14 +58,8 @@ return [
           ],
           'caseRoles' => [
             [
-              'name' => 'Case Coordinator',
+              'name' => 'KAM is',
               'manager' => '1',
-            ],
-            [
-              'name' => 'Main contact is',
-            ],
-            [
-              'name' => 'Contact is',
             ],
           ],
         ],

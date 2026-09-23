@@ -65,4 +65,27 @@ return [
       ],
     ],
   ],
+  [
+    'name' => 'CustomGroup_eic_sr_venturematch_data_CustomField_fundraising_within',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'eic_sr_venturematch_data',
+        'name' => 'fundraising_within',
+        'label' => E::ts('Fundraising within'),
+        'html_type' => 'Text',
+        'is_view' => TRUE,
+        'text_length' => 255,
+        'help_post' => E::ts('Definition: the timeframe within which the beneficiary intends to fundraise. Source: Form processor (EU-Survey answer "Are you fundraising within:"). Format: free text as provided by the survey. Used for: EIC VentureMatch service request context.'),
+        'column_name' => 'fundraising_within',
+      ],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
+    ],
+  ],
 ];
