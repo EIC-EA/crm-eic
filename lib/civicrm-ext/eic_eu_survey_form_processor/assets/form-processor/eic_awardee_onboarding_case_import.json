@@ -69,6 +69,19 @@
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
+        },
+        {
+            "weight": "5",
+            "include_formatted_params": "0",
+            "title": "KAM email",
+            "name": "kam_email",
+            "type": "String",
+            "is_required": "1",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
         }
     ],
     "actions": {
@@ -333,7 +346,6 @@
                 "custom_eic_sr_community_data_EU_Survey_Activity": "",
                 "custom_eic_sr_corporate_partnership_data_EU_Survey_Activity": "",
                 "custom_eic_sr_corporate_partnership_data_partner_type": "",
-                "custom_eic_sr_corporate_partnership_data_selling_to_public_private_buyers": "",
                 "custom_eic_sr_ecosystem_partnership_data_EU_Survey_Activity": "",
                 "custom_eic_sr_ecosystem_partnership_data_support_interested_in": "",
                 "custom_eic_sr_global_business_expansion_data_EU_Survey_Activity": "",
@@ -372,6 +384,21 @@
                     "custom_EIC_Awardee_information_Organisation_PIC_number": ""
                 }
             },
+            "delay_configuration": ""
+        },
+        "12": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get KAM Contact by Email",
+            "name": "get_kam_contact_by_email",
+            "type": "FindContactByEmail",
+            "configuration": {
+                "contact_type": "1"
+            },
+            "mapping": {
+                "email": "input.kam_email"
+            },
+            "condition_configuration": "",
             "delay_configuration": ""
         },
         "11": {
@@ -454,7 +481,6 @@
                         "custom_eic_sr_community_data_EU_Survey_Activity": "",
                         "custom_eic_sr_corporate_partnership_data_EU_Survey_Activity": "",
                         "custom_eic_sr_corporate_partnership_data_partner_type": "",
-                        "custom_eic_sr_corporate_partnership_data_selling_to_public_private_buyers": "",
                         "custom_eic_sr_ecosystem_partnership_data_EU_Survey_Activity": "",
                         "custom_eic_sr_ecosystem_partnership_data_support_interested_in": "",
                         "custom_eic_sr_global_business_expansion_data_EU_Survey_Activity": "",
@@ -468,6 +494,57 @@
                         "custom_eic_sr_venturematch_data_EU_Survey_Activity": "",
                         "custom_eic_sr_venturematch_data_fundraising_support_needed": "",
                         "custom_eic_sr_women_leadership_data_EU_Survey_Activity": ""
+                    },
+                    "condition_configuration": "",
+                    "delay_configuration": ""
+                },
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Get 'KAM for' relationship type name",
+                    "name": "get_kam_for_relationship_type_name",
+                    "type": "SetValue",
+                    "configuration": {
+                        "value": "EIC_KAM_For"
+                    },
+                    "mapping": [],
+                    "condition_configuration": "",
+                    "delay_configuration": ""
+                },
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Resolve 'KAM for' relationship type id",
+                    "name": "resolve_kam_for_relationship_type_id",
+                    "type": "GetRelationshipTypeIdByName",
+                    "configuration": [],
+                    "mapping": {
+                        "name": "action.create_cases_if_pic_number_is_available.get_kam_for_relationship_type_name.value"
+                    },
+                    "condition_configuration": "",
+                    "delay_configuration": ""
+                },
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Link to the KAM",
+                    "name": "link_to_the_kam",
+                    "type": "CreateOrUpdateRelationship",
+                    "configuration": {
+                        "relationship_type_id": "EIC_KAM_For",
+                        "set_start_date": "0",
+                        "is_permission_a_b": "",
+                        "is_permission_b_a": "",
+                        "also_update_inactive": "0"
+                    },
+                    "mapping": {
+                        "relationship_type_id": "action.create_cases_if_pic_number_is_available.resolve_kam_for_relationship_type_id.id",
+                        "contact_id_a": "action.get_kam_contact_by_email.contact_id",
+                        "contact_id_b": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
+                        "start_date": "",
+                        "end_date": "",
+                        "description": "",
+                        "is_permission_a_b": "",
+                        "is_permission_b_a": "",
+                        "case_id": "action.create_cases_if_pic_number_is_available.create_eu_survey_case_and_connect_to_beneficiary_company.case_id",
+                        "custom_EIC_Horizon_europe_Relationship_Horizon_Europe_Project": ""
                     },
                     "condition_configuration": "",
                     "delay_configuration": ""

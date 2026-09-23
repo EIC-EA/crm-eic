@@ -11,7 +11,7 @@ return [
       'version' => 4,
       'values' => [
         'name' => 'EU_Survey_Company_Data',
-        'title' => E::ts('EU-Survey Company Data'),
+        'title' => E::ts('Self-Assessed information'),
         'extends' => 'Organization',
         'weight' => 4,
         'collapse_adv_display' => TRUE,
@@ -34,6 +34,7 @@ return [
         'data_type' => 'String',
         'html_type' => 'Select',
         'option_group_id.name' => 'eu_survey_gender',
+        'is_view' => TRUE,
         'text_length' => 255,
       ],
       'match' => [
@@ -56,6 +57,7 @@ return [
         'data_type' => 'String',
         'html_type' => 'Select',
         'option_group_id.name' => 'eu_survey_gender',
+        'is_view' => TRUE,
         'text_length' => 255,
       ],
       'match' => [
@@ -78,6 +80,7 @@ return [
         'data_type' => 'String',
         'html_type' => 'Select',
         'option_group_id.name' => 'eu_survey_sector',
+        'is_view' => TRUE,
         'text_length' => 255,
       ],
       'match' => [
@@ -87,9 +90,9 @@ return [
     ],
   ],
   [
-    // TRL is stored as a multi-select: a company may run several projects, each
-    // with its own Technology Readiness Level, so the company can hold multiple
-    // TRL values at once.
+    // TRL/CRL/BRL/FRL are stored as multi-selects: a company may run several
+    // projects, each with its own readiness levels, so the company cumulates
+    // every value the Awardee self-assessed across all linked projects.
     'name' => 'CustomGroup_EU_Survey_Company_Data_CustomField_TRL',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
@@ -99,11 +102,13 @@ return [
       'values' => [
         'custom_group_id.name' => 'EU_Survey_Company_Data',
         'name' => 'TRL',
-        'label' => E::ts('Technology Readiness Level (TRL)'),
+        'label' => E::ts('TRL'),
         'data_type' => 'String',
         'html_type' => 'Select',
         'option_group_id.name' => 'eu_survey_trl',
         'serialize' => 1,
+        'is_view' => TRUE,
+        'help_post' => E::ts('Technology Readiness Level (TRL). Self-assessed by the Awardee. This field cumulates all the values reported by the Awardee across every project linked to them.'),
         'text_length' => 255,
       ],
       'match' => [
@@ -113,8 +118,6 @@ return [
     ],
   ],
   [
-    // CRL/BRL/FRL are self-assessed by the beneficiary and stored as single
-    // values at company level; the latest survey answer wins (overwrites).
     'name' => 'CustomGroup_EU_Survey_Company_Data_CustomField_CRL',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
@@ -124,10 +127,13 @@ return [
       'values' => [
         'custom_group_id.name' => 'EU_Survey_Company_Data',
         'name' => 'CRL',
-        'label' => E::ts('Commercial Readiness Level (CRL) - Self-Assessed'),
+        'label' => E::ts('CRL'),
         'data_type' => 'String',
         'html_type' => 'Select',
         'option_group_id.name' => 'eu_survey_crl',
+        'serialize' => 1,
+        'is_view' => TRUE,
+        'help_post' => E::ts('Commercial Readiness Level (CRL). Self-assessed by the Awardee. This field cumulates all the values reported by the Awardee across every project linked to them.'),
         'text_length' => 255,
       ],
       'match' => [
@@ -146,10 +152,13 @@ return [
       'values' => [
         'custom_group_id.name' => 'EU_Survey_Company_Data',
         'name' => 'BRL',
-        'label' => E::ts('Business Readiness Level (BRL) - Self-Assessed'),
+        'label' => E::ts('BRL'),
         'data_type' => 'String',
         'html_type' => 'Select',
         'option_group_id.name' => 'eu_survey_brl',
+        'serialize' => 1,
+        'is_view' => TRUE,
+        'help_post' => E::ts('Business Readiness Level (BRL). Self-assessed by the Awardee. This field cumulates all the values reported by the Awardee across every project linked to them.'),
         'text_length' => 255,
       ],
       'match' => [
@@ -168,10 +177,13 @@ return [
       'values' => [
         'custom_group_id.name' => 'EU_Survey_Company_Data',
         'name' => 'FRL',
-        'label' => E::ts('Funding Readiness Level (FRL) - Self-Assessed'),
+        'label' => E::ts('FRL'),
         'data_type' => 'String',
         'html_type' => 'Select',
         'option_group_id.name' => 'eu_survey_frl',
+        'serialize' => 1,
+        'is_view' => TRUE,
+        'help_post' => E::ts('Funding Readiness Level (FRL). Self-assessed by the Awardee. This field cumulates all the values reported by the Awardee across every project linked to them.'),
         'text_length' => 255,
       ],
       'match' => [

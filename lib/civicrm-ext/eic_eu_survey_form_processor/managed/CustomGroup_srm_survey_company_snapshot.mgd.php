@@ -151,7 +151,7 @@ return [
       'values' => [
         'custom_group_id.name' => 'srm_survey_company_snapshot',
         'name' => 'TRL',
-        'label' => E::ts('Technology Readiness Level (TRL)'),
+        'label' => E::ts('TRL Self-Assessed'),
         'data_type' => 'String',
         'html_type' => 'Select',
         'option_group_id.name' => 'eu_survey_trl',
@@ -172,7 +172,7 @@ return [
       'values' => [
         'custom_group_id.name' => 'srm_survey_company_snapshot',
         'name' => 'CRL',
-        'label' => E::ts('Commercial Readiness Level (CRL) - Self-Assessed'),
+        'label' => E::ts('CRL Self-Assessed'),
         'data_type' => 'String',
         'html_type' => 'Select',
         'option_group_id.name' => 'eu_survey_crl',
@@ -192,7 +192,7 @@ return [
       'values' => [
         'custom_group_id.name' => 'srm_survey_company_snapshot',
         'name' => 'BRL',
-        'label' => E::ts('Business Readiness Level (BRL) - Self-Assessed'),
+        'label' => E::ts('BRL Self-Assessed'),
         'data_type' => 'String',
         'html_type' => 'Select',
         'option_group_id.name' => 'eu_survey_brl',
@@ -212,7 +212,7 @@ return [
       'values' => [
         'custom_group_id.name' => 'srm_survey_company_snapshot',
         'name' => 'FRL',
-        'label' => E::ts('Funding Readiness Level (FRL) - Self-Assessed'),
+        'label' => E::ts('FRL Self-Assessed'),
         'data_type' => 'String',
         'html_type' => 'Select',
         'option_group_id.name' => 'eu_survey_frl',

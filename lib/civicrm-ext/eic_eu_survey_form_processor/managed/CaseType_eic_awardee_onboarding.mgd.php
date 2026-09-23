@@ -58,14 +58,8 @@ return [
           ],
           'caseRoles' => [
             [
-              'name' => 'Case Coordinator',
+              'name' => 'EIC_KAM_Is',
               'manager' => '1',
-            ],
-            [
-              'name' => 'Main contact is',
-            ],
-            [
-              'name' => 'Contact is',
             ],
           ],
         ],

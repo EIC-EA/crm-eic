@@ -1087,9 +1087,15 @@
                 "custom_EU_Survey_Company_Data_TRL": [
                     "action.trl_code.value"
                 ],
-                "custom_EU_Survey_Company_Data_CRL": "action.crl_code.value",
-                "custom_EU_Survey_Company_Data_BRL": "action.brl_code.value",
-                "custom_EU_Survey_Company_Data_FRL": "action.frl_code.value",
+                "custom_EU_Survey_Company_Data_CRL": [
+                    "action.crl_code.value"
+                ],
+                "custom_EU_Survey_Company_Data_BRL": [
+                    "action.brl_code.value"
+                ],
+                "custom_EU_Survey_Company_Data_FRL": [
+                    "action.frl_code.value"
+                ],
                 "contact_type": "",
                 "id": "action.get_company_using_the_pic.contact_id",
                 "source": "",
@@ -1145,7 +1151,6 @@
                 "custom_eic_sr_community_data_EU_Survey_Activity": "",
                 "custom_eic_sr_corporate_partnership_data_EU_Survey_Activity": "",
                 "custom_eic_sr_corporate_partnership_data_partner_type": "",
-                "custom_eic_sr_corporate_partnership_data_selling_to_public_private_buyers": "",
                 "custom_eic_sr_ecosystem_partnership_data_EU_Survey_Activity": "",
                 "custom_eic_sr_ecosystem_partnership_data_support_interested_in": "",
                 "custom_eic_sr_global_business_expansion_data_EU_Survey_Activity": "",
@@ -1685,7 +1690,8 @@
                     "mapping": {
                         "case_id": "action.sr_venturematch_group.create_sr_venturematch_case.case_id",
                         "custom_eic_sr_venturematch_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
-                        "custom_eic_sr_venturematch_data_fundraising_support_needed": "input.survey_support_fundraising"
+                        "custom_eic_sr_venturematch_data_fundraising_support_needed": "input.survey_support_fundraising",
+                        "custom_eic_sr_venturematch_data_fundraising_within": "input.survey_fundraising_within"
                     },
                     "condition_configuration": "",
                     "delay_configuration": ""
@@ -1774,6 +1780,7 @@
                     "mapping": {
                         "case_id": "action.sr_coaching_group.create_sr_coaching_case.case_id",
                         "custom_eic_sr_coaching_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
+                        "custom_eic_sr_coaching_data_support_required": "input.survey_type_of_industry_export_support",
                         "custom_eic_sr_coaching_data_main_challenge": "input.survey_main_challenge"
                     },
                     "condition_configuration": "",
@@ -2039,7 +2046,9 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_innov_procurement_group.create_sr_innov_procurement_case.case_id",
-                        "custom_eic_sr_innovation_procurement_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id"
+                        "custom_eic_sr_innovation_procurement_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
+                        "custom_eic_sr_innovation_procurement_data_selling_to_public_private_buyers": "input.survey_plan_to_sell_solution_to_public_private_buyers",
+                        "custom_eic_sr_innovation_procurement_data_where_are_you_in_the_process": "input.survey_where_are_you_in_the_process"
                     },
                     "condition_configuration": "",
                     "delay_configuration": ""
@@ -2305,8 +2314,7 @@
                     "mapping": {
                         "case_id": "action.sr_corp_partnership_group.create_sr_corp_partnership_case.case_id",
                         "custom_eic_sr_corporate_partnership_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
-                        "custom_eic_sr_corporate_partnership_data_partner_type": "input.survey_what_type_of_partner_are_you_targeting",
-                        "custom_eic_sr_corporate_partnership_data_selling_to_public_private_buyers": "input.survey_plan_to_sell_solution_to_public_private_buyers"
+                        "custom_eic_sr_corporate_partnership_data_partner_type": "input.survey_what_type_of_partner_are_you_targeting"
                     },
                     "condition_configuration": "",
                     "delay_configuration": ""
