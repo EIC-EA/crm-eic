@@ -126,6 +126,8 @@ Column order matches the request template so a new row can be added directly:
 | EIC VentureMatch Service Request | Case (eic_sr_venturematch) | Fundraising within | fundraising_within | Text (255) |  | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
 | EIC Innovation Procurement Service Request | Case (eic_sr_innovation_procurement) | Are you planning to sell your innovative solution to public or private buyers, e.g. through tender opportunities? | selling_to_public_private_buyers | Text (255) |  | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
 | EIC Innovation Procurement Service Request | Case (eic_sr_innovation_procurement) | Where are you in the process? | where_are_you_in_the_process | Text (255) |  | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
+| EIC Coaching Service Request | Case (eic_sr_coaching) | Support required: | support_required | Text (255) |  | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
+| EIC Coaching Service Request | Case (eic_sr_coaching) | Main challenges | main_challenge | Text (255) |  | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
 
 ---
 

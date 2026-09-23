@@ -1780,6 +1780,7 @@
                     "mapping": {
                         "case_id": "action.sr_coaching_group.create_sr_coaching_case.case_id",
                         "custom_eic_sr_coaching_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
+                        "custom_eic_sr_coaching_data_support_required": "input.survey_type_of_industry_export_support",
                         "custom_eic_sr_coaching_data_main_challenge": "input.survey_main_challenge"
                     },
                     "condition_configuration": "",
