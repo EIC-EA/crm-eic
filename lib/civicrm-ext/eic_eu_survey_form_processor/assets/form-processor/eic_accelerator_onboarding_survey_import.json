@@ -1151,7 +1151,6 @@
                 "custom_eic_sr_community_data_EU_Survey_Activity": "",
                 "custom_eic_sr_corporate_partnership_data_EU_Survey_Activity": "",
                 "custom_eic_sr_corporate_partnership_data_partner_type": "",
-                "custom_eic_sr_corporate_partnership_data_selling_to_public_private_buyers": "",
                 "custom_eic_sr_ecosystem_partnership_data_EU_Survey_Activity": "",
                 "custom_eic_sr_ecosystem_partnership_data_support_interested_in": "",
                 "custom_eic_sr_global_business_expansion_data_EU_Survey_Activity": "",
@@ -2314,8 +2313,7 @@
                     "mapping": {
                         "case_id": "action.sr_corp_partnership_group.create_sr_corp_partnership_case.case_id",
                         "custom_eic_sr_corporate_partnership_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
-                        "custom_eic_sr_corporate_partnership_data_partner_type": "input.survey_what_type_of_partner_are_you_targeting",
-                        "custom_eic_sr_corporate_partnership_data_selling_to_public_private_buyers": "input.survey_plan_to_sell_solution_to_public_private_buyers"
+                        "custom_eic_sr_corporate_partnership_data_partner_type": "input.survey_what_type_of_partner_are_you_targeting"
                     },
                     "condition_configuration": "",
                     "delay_configuration": ""
