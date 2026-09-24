@@ -52,8 +52,10 @@ Each onboarding form collects a **main contact person** and allows the beneficia
 the organisation (stored on the Individual's `job_title`). Contacts are linked to the beneficiary
 Organisation via two relationship types shipped as `ManagedEntities`:
 
-- `Main contact for` / `Main contact is` — links the main contact person to the beneficiary organisation.
-- `Contact for` / `Contact is` — links each additional contact (2 to 4) to the beneficiary organisation.
+- machine names `Main contact for` / `Main contact is` (labels **Main EIC BAS Contact for** / **Main EIC BAS Contact is**) — links the main contact person to the beneficiary organisation.
+- machine names `Contact for` / `Contact is` (labels **EIC BAS Contact for** / **EIC BAS Contact is**) — links each additional contact (2 to 4) to the beneficiary organisation.
+
+The display labels were renamed to make the EIC Business Acceleration Services (BAS) context explicit; the **machine names are unchanged** (`Main contact for` / `Contact for`), because the form processors and case roles reference them by machine name. When these relationships are created by a form processor, pass the **machine name** directly to `CreateOrUpdateRelationship` (`relationship_type_id`) — do not resolve a numeric id first.
 
 **KAM (Key Account Manager)**
 
@@ -63,8 +65,9 @@ names `EIC_KAM_For` / `EIC_KAM_Is`; Individual to Organisation), shipped by the 
 the _EIC Awardee Onboarding_ case type the KAM is the **manager** case role (referenced by its machine name
 `EIC_KAM_Is`); the previous roles (`Case Coordinator`, `Main contact for`, `Contact for`) are no longer
 used as case roles for this case type. The KAM is provided to the onboarding case import as an **email**
-(`kam_email`) and matched to the individual contact by that email; the case import resolves the relationship
-type by its machine name `EIC_KAM_For` (see _Import Cases_ below).
+(`kam_email`) and matched to the individual contact by that email; the case import passes the relationship
+type **machine name** `EIC_KAM_For` directly to the `CreateOrUpdateRelationship` action — no numeric id
+lookup is required (see _Import Cases_ below).
 
 Settings
 ========
@@ -154,7 +157,9 @@ Contains all ManagedEntities that will be loaded upon installation or (re)enabli
 
 **Onboarding case status.** When the EU Survey activity is created and assigned to the matched Onboarding case, the survey import processor sets that case's status to `Onboarded` (via the `UpdateCaseStatus` action, with a logged "Change Case Status" activity). This only runs when a matching EU-Survey case is found. The status value `6` is used directly: unlike case-type ids, the `Onboarded` `case_status` option value is a managed OptionValue with an explicitly forced `value => '6'` (see `nc_config/managed/040_CaseStatuses.mgd.php`), so it is deterministic across environments and safe to reference by value.
 
-**Requirement 7 — Service Request cases.** When the EU Survey activity is created, the survey import processor creates a distinct Service Request case per BAS programme whose trigger answer matches. Case Coordinator is left empty; each case links back to the EU Survey activity. Triggers: VentureMatch/Coaching/Global Business Expansion/Innovation Procurement/Women Leadership/Corporate Partnership/International Trade Fairs are Yes/No questions (the FP input is a `Boolean` with `return_as: "boolean"`) and fire on `ParameterHasValue` = `True`; Ecosystem Partnership fires on `ParameterIsNotEmpty` for the "other support" answer (empty = not selected); InnoNext on the "main challenge" answer containing "Human Resources". EIC Community is shipped but not triggered (bonus, TBD). Case type ids are resolved by name via `GetCaseTypeIdByName` (no hardcoded ids); trigger conditions use the `action-provider` conditions `ParameterHasValue`, `ParameterIsNotEmpty`, and `CompareParameterRegex` (contains). A Yes/No question must NOT use `YesNoOptionList` for a trigger because it always returns `1`.
+**Requirement 7 — Service Request cases.** When the EU Survey activity is created, the survey import processor creates a distinct Service Request case per BAS programme whose trigger answer matches. Each Service Request case is created with status `Requested` (`case_status` value `7`). Case Coordinator is left empty; each case links back to the EU Survey activity.
+
+**Service Request case statuses.** The Service Request case types (`eic_sr_*`) restrict the statuses offered to `Requested`, `Planning`, `Open`, `Resolved`, `Closed`, `Declined` (via the `statuses` key in each case type definition). `Onboarded` is intentionally excluded from Service Request cases — it remains active and is only used in the Onboarding context. `Requested` (value `7`) and `Planning` (value `8`) are managed `case_status` OptionValues (see `nc_config/managed/040_CaseStatuses.mgd.php`) with explicitly forced values, so they are deterministic across environments and safe to reference by value. Triggers: VentureMatch/Coaching/Global Business Expansion/Innovation Procurement/Women Leadership/Corporate Partnership/International Trade Fairs are Yes/No questions (the FP input is a `Boolean` with `return_as: "boolean"`) and fire on `ParameterHasValue` = `True`; Ecosystem Partnership fires on `ParameterIsNotEmpty` for the "other support" answer (empty = not selected); InnoNext on the "main challenge" answer containing "Human Resources". EIC Community is shipped but not triggered (bonus, TBD). Case type ids are resolved by name via `GetCaseTypeIdByName` (no hardcoded ids); trigger conditions use the `action-provider` conditions `ParameterHasValue`, `ParameterIsNotEmpty`, and `CompareParameterRegex` (contains). A Yes/No question must NOT use `YesNoOptionList` for a trigger because it always returns `1`.
 
 assets
 ------
@@ -169,7 +174,7 @@ Contains all assets that will be loaded upon installation or (re)enabling of ext
 | EIC Company Import    | Create/match beneficiary companies from the dataset. Runs _before_ the survey is answered, so it does NOT populate the survey company data (CEO/founder gender, sector, TRL/CRL/BRL/FRL) — those are written later by the Accelerator survey import. |
 | EIC Awardee Onboarding Case Import    | Create cases of type _EIC Awardee Onboarding_ from EU-Survey dataset                    |
 | EIC Awardee Onboarding Default Case   | Create a default _EIC Awardee Onboarding_ case for catching failures during EU-Survey data import |
-| EIC Accelerator Onboarding Survey Import | Scheme-specific (Accelerator): create an _EIC Accelerator Onboarding Survey Data_ activity and assign all survey data to it (incl. a collapsed company + main-contact snapshot); write the company survey data (CEO/founder gender, sector, TRL/CRL/BRL/FRL) onto the Organisation, since this is where that data first arrives; link the main and additional contacts to the company and case; set the Onboarding case to _Onboarded_; and create the per-programme _Service Request_ cases triggered by the survey answers (Requirement 7). TRL/CRL/BRL/FRL long labels are normalised to their option codes via `RegexReplaceValue` actions. |
+| EIC Accelerator Onboarding Survey Import | Scheme-specific (Accelerator): create an _EIC Accelerator Onboarding Survey Data_ activity and assign all survey data to it (incl. a collapsed company + main-contact snapshot); write the company survey data (CEO/founder gender, sector, TRL/CRL/BRL/FRL) onto the Organisation, since this is where that data first arrives; also write the same self-assessed data onto the matched _EIC Project_ activity (`EIC_Awardee_Project`, custom group `Self-Assessed information (by company)`) as single values for that specific project; link the main and additional contacts to the company and case; set the Onboarding case to _Onboarded_; and create the per-programme _Service Request_ cases triggered by the survey answers (Requirement 7). TRL/CRL/BRL/FRL long labels are normalised to their option codes via `RegexReplaceValue` actions. |
 
 **CiviCRM Settings**
 
@@ -294,7 +299,7 @@ All fields in this group are **View only** (`is_view`); they are populated by th
 |------------------|----------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|----------------------------------------------------------|
 |                  | CEO or project leader gender                                                                                   | CEO_or_project_leader_gender                                      | Select (option group `eu_survey_gender`, value = label); view only |
 |                  | Founder Gender                                                                                                 | Founder_Gender                                                    | Select (option group `eu_survey_gender`, value = label); view only |
-|                  | Sector                                                                                                         | Sector                                                            | Select (option group `eu_survey_sector`, value = label); view only |
+|                  | Sector                                                                                                         | Sector                                                            | Multi-Select (option group `eu_survey_sector`, value = label); view only; cumulates every value the Awardee self-assessed across all linked projects |
 |                  | TRL                                                                                                            | TRL                                                               | Multi-Select (`eu_survey_trl`, value = short code); view only; cumulates every value the Awardee self-assessed across all linked projects |
 |                  | CRL                                                                                                            | CRL                                                               | Multi-Select (`eu_survey_crl`, value = short code); view only; cumulates every value the Awardee self-assessed across all linked projects |
 |                  | BRL                                                                                                            | BRL                                                               | Multi-Select (`eu_survey_brl`, value = short code); view only; cumulates every value the Awardee self-assessed across all linked projects |
@@ -401,14 +406,26 @@ an **email address** (`kam_email`, a required input) rather than a contact id or
 identifier used to find the KAM contact. When a case is created, this Form Processor:
 
 1. Finds the KAM Individual by email with the `FindContactByEmail` action (`get_kam_contact_by_email`).
-2. Resolves the `KAM for` relationship type id by name (`GetRelationshipTypeIdByName`).
-3. Creates the `KAM for` relationship (KAM Individual → beneficiary Organisation), scoped to the newly
-   created case, via `CreateOrUpdateRelationship` (`link_to_the_kam`).
+2. Creates the `KAM for` relationship (KAM Individual → beneficiary Organisation), scoped to the newly
+   created case, via `CreateOrUpdateRelationship` (`link_to_the_kam`), passing the relationship type
+   **machine name** `EIC_KAM_For` directly in `relationship_type_id`.
+
+> Note: an earlier configuration resolved the numeric relationship type id first (`SetValue` +
+> `GetRelationshipTypeIdByName`). That is unnecessary — `CreateOrUpdateRelationship` accepts the machine
+> name directly — so those two steps can be removed.
 
 These steps run **inside** the `create_cases_if_pic_number_is_available` conditional group, so the KAM is
 only linked when a new onboarding case is actually created. In the case type, `KAM is` is the manager case
 role, so the linked KAM appears as the case manager. The `KAM for` / `KAM is` relationship type is shipped by
 the `eic_config` extension.
+
+**Relationship type reference — use the machine name, not the id.** The `CreateOrUpdateRelationship` action
+accepts the relationship type **machine name** (e.g. `EIC_KAM_For`, `Main contact for`, `Contact for`)
+directly in its `relationship_type_id` parameter. There is therefore **no need** to resolve a numeric id
+first: the `SetValue` + `GetRelationshipTypeIdByName` pair is not required and should be omitted in new
+configurations. Referencing by machine name also keeps the automation stable when a relationship type's
+**display label** changes (as happened when `Main contact` / `Contact` were relabelled to
+**Main EIC BAS Contact** / **EIC BAS Contact**).
 
 **One onboarding case per project**
 

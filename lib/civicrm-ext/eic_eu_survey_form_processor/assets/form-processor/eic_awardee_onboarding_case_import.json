@@ -500,30 +500,6 @@
                 },
                 {
                     "conditional_processing_group": "0",
-                    "title": "Get 'KAM for' relationship type name",
-                    "name": "get_kam_for_relationship_type_name",
-                    "type": "SetValue",
-                    "configuration": {
-                        "value": "EIC_KAM_For"
-                    },
-                    "mapping": [],
-                    "condition_configuration": "",
-                    "delay_configuration": ""
-                },
-                {
-                    "conditional_processing_group": "0",
-                    "title": "Resolve 'KAM for' relationship type id",
-                    "name": "resolve_kam_for_relationship_type_id",
-                    "type": "GetRelationshipTypeIdByName",
-                    "configuration": [],
-                    "mapping": {
-                        "name": "action.create_cases_if_pic_number_is_available.get_kam_for_relationship_type_name.value"
-                    },
-                    "condition_configuration": "",
-                    "delay_configuration": ""
-                },
-                {
-                    "conditional_processing_group": "0",
                     "title": "Link to the KAM",
                     "name": "link_to_the_kam",
                     "type": "CreateOrUpdateRelationship",
@@ -535,7 +511,7 @@
                         "also_update_inactive": "0"
                     },
                     "mapping": {
-                        "relationship_type_id": "action.create_cases_if_pic_number_is_available.resolve_kam_for_relationship_type_id.id",
+                        "relationship_type_id": "",
                         "contact_id_a": "action.get_kam_contact_by_email.contact_id",
                         "contact_id_b": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
                         "start_date": "",

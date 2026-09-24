@@ -128,6 +128,13 @@ Column order matches the request template so a new row can be added directly:
 | EIC Innovation Procurement Service Request | Case (eic_sr_innovation_procurement) | Where are you in the process? | where_are_you_in_the_process | Text (255) |  | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
 | EIC Coaching Service Request | Case (eic_sr_coaching) | Support required: | support_required | Text (255) |  | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
 | EIC Coaching Service Request | Case (eic_sr_coaching) | Main challenges | main_challenge | Text (255) |  | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
+| Self-Assessed information (by company) | Activity (EIC_Awardee_Project) | CEO or project leader gender | CEO_or_project_leader_gender | Select (option group `eu_survey_gender`) | eu_survey_gender | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
+| Self-Assessed information (by company) | Activity (EIC_Awardee_Project) | Founder Gender | Founder_Gender | Select (option group `eu_survey_gender`) | eu_survey_gender | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
+| Self-Assessed information (by company) | Activity (EIC_Awardee_Project) | Sector | Sector | Select (option group `eu_survey_sector`) | eu_survey_sector | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
+| Self-Assessed information (by company) | Activity (EIC_Awardee_Project) | TRL | TRL | Select (option group `eu_survey_trl`) | eu_survey_trl | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
+| Self-Assessed information (by company) | Activity (EIC_Awardee_Project) | CRL | CRL | Select (option group `eu_survey_crl`) | eu_survey_crl | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
+| Self-Assessed information (by company) | Activity (EIC_Awardee_Project) | BRL | BRL | Select (option group `eu_survey_brl`) | eu_survey_brl | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
+| Self-Assessed information (by company) | Activity (EIC_Awardee_Project) | FRL | FRL | Select (option group `eu_survey_frl`) | eu_survey_frl | Form processor | No |  |  |  |  | Yes (view) | Has help_post |
 
 ---
 

@@ -1083,19 +1083,19 @@
                 "custom_General_Company_Info_Financial_Partner": "",
                 "custom_EU_Survey_Company_Data_CEO_or_project_leader_gender": "input.org_ceo_project_leader_gender",
                 "custom_EU_Survey_Company_Data_Founder_Gender": "input.org_founder_gender",
-                "custom_EU_Survey_Company_Data_Sector": "input.org_sector",
-                "custom_EU_Survey_Company_Data_TRL": [
+                "custom_EU_Survey_Company_Data_Sector": "input.org_sector"                ,
+                "custom_EU_Survey_Company_Data_TRL": 
                     "action.trl_code.value"
-                ],
-                "custom_EU_Survey_Company_Data_CRL": [
+                ,
+                "custom_EU_Survey_Company_Data_CRL": 
                     "action.crl_code.value"
-                ],
-                "custom_EU_Survey_Company_Data_BRL": [
+                ,
+                "custom_EU_Survey_Company_Data_BRL": 
                     "action.brl_code.value"
-                ],
-                "custom_EU_Survey_Company_Data_FRL": [
+                ,
+                "custom_EU_Survey_Company_Data_FRL": 
                     "action.frl_code.value"
-                ],
+                ,
                 "contact_type": "",
                 "id": "action.get_company_using_the_pic.contact_id",
                 "source": "",
@@ -1608,6 +1608,48 @@
             },
             "delay_configuration": ""
         },
+        "100": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Update EIC Project activity with self-assessed data",
+            "name": "update_eic_project_self_assessed_data",
+            "type": "CreateActivity",
+            "configuration": {
+                "activity_type": "EIC_Awardee_Project",
+                "activity_status": "",
+                "subject": "",
+                "priority": ""
+            },
+            "mapping": {
+                "source_contact_id": "",
+                "target_contact_id": "",
+                "assignee_contact_id": "",
+                "activity_type_id": "",
+                "location": "",
+                "activity_date": "",
+                "duration": "",
+                "id": "action.find_eic_project_activity_by_project_number.activity_id",
+                "campaign_id": "",
+                "subject": "",
+                "details": "",
+                "case_id": "",
+                "custom_eic_project_self_assessed_CEO_or_project_leader_gender": "input.org_ceo_project_leader_gender",
+                "custom_eic_project_self_assessed_Founder_Gender": "input.org_founder_gender",
+                "custom_eic_project_self_assessed_Sector": "input.org_sector",
+                "custom_eic_project_self_assessed_TRL": "action.trl_code.value",
+                "custom_eic_project_self_assessed_CRL": "action.crl_code.value",
+                "custom_eic_project_self_assessed_BRL": "action.brl_code.value",
+                "custom_eic_project_self_assessed_FRL": "action.frl_code.value"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_eic_project_activity_by_project_number.activity_id"
+                }
+            },
+            "delay_configuration": ""
+        },
         "46": {
             "pid": "0",
             "conditional_processing_group": "0",
@@ -1666,7 +1708,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC VentureMatch",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
@@ -1756,7 +1798,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC Coaching",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
@@ -1844,7 +1886,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC Ecosystem Partnership",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
@@ -1933,7 +1975,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC Global Business Expansion",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
@@ -2023,7 +2065,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC Innovation Procurement",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
@@ -2113,7 +2155,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC Women Leadership Programme",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
@@ -2202,7 +2244,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC InnoNext",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
@@ -2290,7 +2332,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC Corporate Partnership",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
@@ -2379,7 +2421,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC International Trade Fairs",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
