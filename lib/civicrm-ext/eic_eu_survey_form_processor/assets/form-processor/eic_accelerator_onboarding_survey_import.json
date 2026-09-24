@@ -1710,7 +1710,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC VentureMatch",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
@@ -1800,7 +1800,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC Coaching",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
@@ -1888,7 +1888,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC Ecosystem Partnership",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
@@ -1977,7 +1977,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC Global Business Expansion",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
@@ -2067,7 +2067,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC Innovation Procurement",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
@@ -2157,7 +2157,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC Women Leadership Programme",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
@@ -2246,7 +2246,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC InnoNext",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
@@ -2334,7 +2334,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC Corporate Partnership",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
@@ -2423,7 +2423,7 @@
                         "case_type_id": "",
                         "subject": "Service Request - EIC International Trade Fairs",
                         "creator_id": "",
-                        "case_status": "1"
+                        "case_status": "7"
                     },
                     "mapping": {
                         "contact_id": "action.get_beneficiary_company_by_pic_number_or_website.contact_id",
