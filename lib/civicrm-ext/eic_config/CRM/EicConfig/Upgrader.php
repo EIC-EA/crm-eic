@@ -177,5 +177,3 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
   }
 
 }
-
-}
