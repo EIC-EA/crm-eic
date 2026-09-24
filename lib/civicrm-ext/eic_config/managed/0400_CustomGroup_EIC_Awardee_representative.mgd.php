@@ -33,6 +33,7 @@ return [
         'name' => 'eulogin',
         'label' => E::ts('EU Login'),
         'html_type' => 'Text',
+        'is_view' => TRUE,
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
