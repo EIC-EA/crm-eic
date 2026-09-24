@@ -1,0 +1,225 @@
+<?php
+use CRM_EicEuSurveyFormProcessor_ExtensionUtil as E;
+
+// Reusable "company data" snapshot stored ON the EU-Survey activity, so the
+// activity is a complete record of the survey response. The company data itself
+// is common to all onboarding surveys, so this group is deliberately generic
+// (not per-survey): future survey activity types should be added to
+// 'extends_entity_column_value:name' rather than duplicating the fields.
+// Collapsed on initial display.
+return [
+  [
+    'name' => 'CustomGroup_srm_survey_company_snapshot',
+    'entity' => 'CustomGroup',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'name' => 'srm_survey_company_snapshot',
+        'title' => E::ts('Survey - Company Data'),
+        'extends' => 'Activity',
+        'extends_entity_column_value:name' => ['eic_accelerator_onboarding_survey'],
+        'collapse_display' => TRUE,
+        'weight' => 20,
+        'table_name' => 'civicrm_value_srm_survey_company_snap',
+      ],
+      'match' => ['name'],
+    ],
+  ],
+  [
+    'name' => 'CustomGroup_srm_survey_company_snapshot_CustomField_Organisation_Name',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'srm_survey_company_snapshot',
+        'name' => 'Organisation_Name',
+        'label' => E::ts('Organisation Name'),
+        'html_type' => 'Text',
+        'text_length' => 255,
+        'column_name' => 'organisation_name',
+      ],
+      'match' => ['name', 'custom_group_id'],
+    ],
+  ],
+  [
+    'name' => 'CustomGroup_srm_survey_company_snapshot_CustomField_PIC_Number',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'srm_survey_company_snapshot',
+        'name' => 'PIC_Number',
+        'label' => E::ts('PIC Number'),
+        'html_type' => 'Text',
+        'text_length' => 255,
+        'column_name' => 'pic_number',
+      ],
+      'match' => ['name', 'custom_group_id'],
+    ],
+  ],
+  [
+    'name' => 'CustomGroup_srm_survey_company_snapshot_CustomField_Website',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'srm_survey_company_snapshot',
+        'name' => 'Website',
+        'label' => E::ts('Company/Project Website'),
+        'html_type' => 'Text',
+        'text_length' => 255,
+        'column_name' => 'website',
+      ],
+      'match' => ['name', 'custom_group_id'],
+    ],
+  ],
+  [
+    'name' => 'CustomGroup_srm_survey_company_snapshot_CustomField_CEO_or_project_leader_gender',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'srm_survey_company_snapshot',
+        'name' => 'CEO_or_project_leader_gender',
+        'label' => E::ts('CEO or project leader gender'),
+        'data_type' => 'String',
+        'html_type' => 'Select',
+        'option_group_id.name' => 'eu_survey_gender',
+        'text_length' => 255,
+        'column_name' => 'ceo_project_leader_gender',
+      ],
+      'match' => ['name', 'custom_group_id'],
+    ],
+  ],
+  [
+    'name' => 'CustomGroup_srm_survey_company_snapshot_CustomField_Founder_Gender',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'srm_survey_company_snapshot',
+        'name' => 'Founder_Gender',
+        'label' => E::ts('Founder Gender'),
+        'data_type' => 'String',
+        'html_type' => 'Select',
+        'option_group_id.name' => 'eu_survey_gender',
+        'text_length' => 255,
+        'column_name' => 'founder_gender',
+      ],
+      'match' => ['name', 'custom_group_id'],
+    ],
+  ],
+  [
+    'name' => 'CustomGroup_srm_survey_company_snapshot_CustomField_Sector',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'srm_survey_company_snapshot',
+        'name' => 'Sector',
+        'label' => E::ts('Sector'),
+        'data_type' => 'String',
+        'html_type' => 'Select',
+        'option_group_id.name' => 'eu_survey_sector',
+        'text_length' => 255,
+        'column_name' => 'sector',
+      ],
+      'match' => ['name', 'custom_group_id'],
+    ],
+  ],
+  [
+    'name' => 'CustomGroup_srm_survey_company_snapshot_CustomField_TRL',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'srm_survey_company_snapshot',
+        'name' => 'TRL',
+        'label' => E::ts('TRL Self-Assessed'),
+        'data_type' => 'String',
+        'html_type' => 'Select',
+        'option_group_id.name' => 'eu_survey_trl',
+        'serialize' => 1,
+        'text_length' => 255,
+        'column_name' => 'trl',
+      ],
+      'match' => ['name', 'custom_group_id'],
+    ],
+  ],
+  [
+    'name' => 'CustomGroup_srm_survey_company_snapshot_CustomField_CRL',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'srm_survey_company_snapshot',
+        'name' => 'CRL',
+        'label' => E::ts('CRL Self-Assessed'),
+        'data_type' => 'String',
+        'html_type' => 'Select',
+        'option_group_id.name' => 'eu_survey_crl',
+        'text_length' => 255,
+        'column_name' => 'crl',
+      ],
+      'match' => ['name', 'custom_group_id'],
+    ],
+  ],
+  [
+    'name' => 'CustomGroup_srm_survey_company_snapshot_CustomField_BRL',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'srm_survey_company_snapshot',
+        'name' => 'BRL',
+        'label' => E::ts('BRL Self-Assessed'),
+        'data_type' => 'String',
+        'html_type' => 'Select',
+        'option_group_id.name' => 'eu_survey_brl',
+        'text_length' => 255,
+        'column_name' => 'brl',
+      ],
+      'match' => ['name', 'custom_group_id'],
+    ],
+  ],
+  [
+    'name' => 'CustomGroup_srm_survey_company_snapshot_CustomField_FRL',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'srm_survey_company_snapshot',
+        'name' => 'FRL',
+        'label' => E::ts('FRL Self-Assessed'),
+        'data_type' => 'String',
+        'html_type' => 'Select',
+        'option_group_id.name' => 'eu_survey_frl',
+        'text_length' => 255,
+        'column_name' => 'frl',
+      ],
+      'match' => ['name', 'custom_group_id'],
+    ],
+  ],
+];

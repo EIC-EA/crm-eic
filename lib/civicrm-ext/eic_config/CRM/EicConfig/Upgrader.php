@@ -91,4 +91,89 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     return $this->enable_extension(['de.systopia.signatures']);
   }
 
+  /**
+   * Enable the EIC Anonymiser extension.
+   */
+  public function upgrade_1009(): bool {
+    return $this->enable_extension(['eic_anonymiser']);
+  }
+
+  /**
+   * Enable the Chart Kit extension.
+   */
+  public function upgrade_1010(): bool {
+    return $this->enable_extension(['chart_kit']);
+  }
+  
+  /**
+   * Rename the physical DB column of the EIC Awardee representative "eulogin"
+   * custom field from the copy-paste leftover `funds_vintage_year` to `eulogin`,
+   * preserving any existing data.
+   *
+   * The custom field's machine name has always been `eulogin`; only the
+   * underlying `column_name` was wrong. The managed definition
+   * (0400_CustomGroup_EIC_Awardee_representative.mgd.php) now declares
+   * `column_name => 'eulogin'`, but a managed reconcile does not rename an
+   * existing populated column, so this upgrader performs the ALTER TABLE.
+   *
+   * Idempotent and defensive:
+   *  - resolves the table name from CiviCRM metadata (no hardcoded assumption);
+   *  - only renames when the old column exists and the new one does not;
+   *  - if both exist (e.g. a prior reconcile created an empty `eulogin`),
+   *    copies any data across and drops the leftover column;
+   *  - does nothing when already migrated.
+   *
+   * Note: the identically named `funds_vintage_year` column in
+   * civicrm_value_srm_financial_information belongs to a different field
+   * (Investor "Funds Vintage Year") and is intentionally left untouched.
+   */
+  public function upgrade_1011(): bool {
+    $this->ctx->log->info('Renaming eulogin column from funds_vintage_year to eulogin');
+
+    // Resolve the actual table name for the EIC_Awardee_representative group.
+    $table = CRM_Core_DAO::singleValueQuery("
+      SELECT cg.table_name
+      FROM civicrm_custom_group cg
+      WHERE cg.name = 'EIC_Awardee_representative'
+    ");
+
+    if (empty($table)) {
+      $this->ctx->log->warning('EIC_Awardee_representative custom group not found; skipping eulogin column rename.');
+      return TRUE;
+    }
+
+    $hasOld = (bool) CRM_Core_DAO::singleValueQuery(
+      'SHOW COLUMNS FROM `' . $table . '` LIKE %1',
+      [1 => ['funds_vintage_year', 'String']]
+    );
+    $hasNew = (bool) CRM_Core_DAO::singleValueQuery(
+      'SHOW COLUMNS FROM `' . $table . '` LIKE %1',
+      [1 => ['eulogin', 'String']]
+    );
+
+    if ($hasOld && !$hasNew) {
+      // Clean rename, preserving data and column definition (Text 255).
+      CRM_Core_DAO::executeQuery(
+        'ALTER TABLE `' . $table . '` CHANGE COLUMN `funds_vintage_year` `eulogin` VARCHAR(255) NULL DEFAULT NULL'
+      );
+      $this->ctx->log->info("Renamed {$table}.funds_vintage_year to eulogin.");
+    }
+    elseif ($hasOld && $hasNew) {
+      // A prior reconcile already created an empty `eulogin`. Preserve any data
+      // then drop the leftover column.
+      CRM_Core_DAO::executeQuery(
+        'UPDATE `' . $table . '` SET `eulogin` = `funds_vintage_year` WHERE `eulogin` IS NULL OR `eulogin` = %1',
+        [1 => ['', 'String']]
+      );
+      CRM_Core_DAO::executeQuery('ALTER TABLE `' . $table . '` DROP COLUMN `funds_vintage_year`');
+      $this->ctx->log->info("Merged {$table}.funds_vintage_year into eulogin and dropped the leftover column.");
+    }
+    else {
+      // Already migrated (only `eulogin` exists) or neither column present.
+      $this->ctx->log->info("No rename needed for {$table} (eulogin column already correct).");
+    }
+
+    return TRUE;
+  }
+
 }

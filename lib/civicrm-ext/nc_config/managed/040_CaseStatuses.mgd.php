@@ -27,6 +27,52 @@ return [
     ],
   ],
   [
+    'name' => 'OptionValue_Requested',
+    'entity' => 'OptionValue',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'case_status',
+        'label' => E::ts('Requested'),
+        'value' => '7',
+        'name' => 'Requested',
+        'grouping' => 'Opened',
+        'weight' => 6,
+        'description' => E::ts('<p>Service request has been submitted and is awaiting handling.</p>'),
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionValue_Planning',
+    'entity' => 'OptionValue',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'case_status',
+        'label' => E::ts('Planning'),
+        'value' => '8',
+        'name' => 'Planning',
+        'grouping' => 'Opened',
+        'weight' => 7,
+        'description' => E::ts('<p>Service request is being planned.</p>'),
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
     'name' => 'OptionValue_Declined',
     'entity' => 'OptionValue',
     'cleanup' => 'unused',

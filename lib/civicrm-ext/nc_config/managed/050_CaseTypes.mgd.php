@@ -13,7 +13,7 @@ return [
       'values' => [
         'name' => 'eic_investor_onboarding',
         'title' => E::ts('Investor Onboarding'),
-        'description' => E::ts('Investor Onboarding'),
+        'description' => E::ts('Onboarding an investor organisation. Runs an Outreach timeline (Outreach Response follow-up) followed by an Onboarding timeline (Onboarding Call and Onboarding Survey). Case Coordinator is the case manager.'),
         'definition' => [
           'restrictActivityAsgmtToCmsUser' => 1,
           'activityAsgmtGrps' => [],
@@ -138,7 +138,7 @@ return [
       'values' => [
         'name' => 'eic_engagement',
         'title' => E::ts('Engagement'),
-        'description' => E::ts('Engagement'),
+        'description' => E::ts('General engagement and outreach timeline for a contact: an Expression of Interest Response follow-up, then an Introduction Response follow-up about three weeks later. Case Coordinator is the case manager.'),
         'definition' => [
           'restrictActivityAsgmtToCmsUser' => 0,
           'activityAsgmtGrps' => [],
@@ -236,7 +236,7 @@ return [
       'values' => [
         'name' => 'eic_vm_beneficiary_onboarding',
         'title' => E::ts('VentureMatch Beneficiary Onboarding'),
-        'description' => E::ts('VentureMatch Beneficiary Onboarding'),
+        'description' => E::ts('Onboarding a beneficiary into VentureMatch. Runs an Outreach timeline (Outreach Response follow-up) followed by an Onboarding timeline (Beneficiary Onboarding Survey task and Onboarding Call). Case Coordinator is the case manager.'),
         'definition' => [
           'restrictActivityAsgmtToCmsUser' => 0,
           'activityAsgmtGrps' => [],
@@ -361,7 +361,7 @@ return [
       'values' => [
         'name' => 'eic_vm_beneficiary_support',
         'title' => E::ts('VentureMatch Beneficiary Support'),
-        'description' => E::ts('VentureMatch Beneficiary Support'),
+        'description' => E::ts('Ongoing VentureMatch support for a beneficiary after onboarding, run as a Support timeline of two tasks: Planning then Execution. Case Coordinator is the case manager.'),
         'definition' => [
           'restrictActivityAsgmtToCmsUser' => 0,
           'activityAsgmtGrps' => [],

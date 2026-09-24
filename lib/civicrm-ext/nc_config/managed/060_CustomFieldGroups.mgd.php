@@ -2463,26 +2463,6 @@ return [
     ],
   ],
   [
-    'name' => 'OptionGroup_eic_software_focus_OptionValue_Both',
-    'entity' => 'OptionValue',
-    'cleanup' => 'unused',
-    'update' => 'unmodified',
-    'params' => [
-      'version' => 4,
-      'values' => [
-        'option_group_id.name' => 'eic_software_focus',
-        'label' => E::ts('Both'),
-        'value' => 'both',
-        'name' => 'Both',
-      ],
-      'match' => [
-        'option_group_id',
-        'name',
-        'value',
-      ],
-    ],
-  ],
-  [
     'name' => 'CustomGroup_General_Company_Info_CustomField_Software_Focus',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
@@ -2500,6 +2480,7 @@ return [
         'note_rows' => 4,
         'option_group_id.name' => 'eic_software_focus',
         "column_name" => "software_focus",
+        'serialize' => 1,
       ],
       'match' => [
         'name',

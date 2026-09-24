@@ -1,0 +1,10 @@
+--- a/CRM/Civirules/BAO/CiviRulesRuleCondition.php
++++ b/CRM/Civirules/BAO/CiviRulesRuleCondition.php
+@@ -79,7 +79,7 @@
+     }
+     if ($ruleID && !isset(\Civi::$statics[__CLASS__]['validateconditionlinks'])) {
+-      self::checkAndValidateConditionLinks($ruleID);
++      self::checkAndValidateConditionLinks((int) $ruleID);
+     }
+     unset(\Civi::$statics[__CLASS__]['validateconditionlinks']);
+   }

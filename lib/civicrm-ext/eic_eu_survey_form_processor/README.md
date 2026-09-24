@@ -1,0 +1,680 @@
+EIC EU-SURVEY FORM PROCESSORS
+=============================
+
+Notes
+=====
+
+**This Extension can now be used as all mandatory functionality is available.**
+
+Open
+----
+
+- Update this README in order to reflect all current fields of ḾanagedEntities and Form-Processors.
+
+Description
+===========
+
+This extension does the following:
+
+- load `Managed Entities` stored in `managed` folder upon extension installation or after (re)enabling the extension
+- load `FormProcessors` stored in `assets/form-processor` folder upon extension installation or after (re)enabling the extension
+- load `XCM` profiles stored in `assets/settings/xcm_config_profiles.json` upon extension installation or after (re)enabling 
+
+**Note**
+
+A cache clear won't (re)trigger the loading of `FormProcessor` configuration. Only installation ot (ee)enabling the extension does.
+
+Beneficiary Onboarding Context
+==============================
+
+The EU-Survey onboarding form is sent to a company once it becomes an EIC beneficiary
+(awardee). The company completes the survey and provides its contact person(s).
+
+**Multiple onboarding forms per scheme**
+
+There is currently more than one EU-Survey onboarding form, depending on the scheme of the
+beneficiary, and more may be added in the future. The Form-Processors in this extension are
+designed to be **reused across all of these forms** as much as possible: each form maps its
+fields onto the same Form-Processor input field names, so a single set of Form-Processors can
+process any of the scheme-specific surveys.
+
+Known onboarding forms (EU-Survey runners):
+
+- https://ec.europa.eu/eusurvey/runner/194e8c91-ccd7-df92-f76c-32fb6fddaf8a
+- https://ec.europa.eu/eusurvey/runner/05bb435d-fbe4-f5c7-54d1-1dde703a79c6
+- https://ec.europa.eu/eusurvey/runner/e39f8f88-c1f4-cb92-05aa-3de3054ddc1d
+- https://ec.europa.eu/eusurvey/runner/bf853027-0f52-beab-94b4-e1291bed50c2
+
+**Contacts and their relationship to the beneficiary**
+
+Each onboarding form collects a **main contact person** and allows the beneficiary to provide
+**up to three additional contacts** (contacts 2 to 4). Each contact also declares their role in
+the organisation (stored on the Individual's `job_title`). Contacts are linked to the beneficiary
+Organisation via two relationship types shipped as `ManagedEntities`:
+
+- machine names `Main contact for` / `Main contact is` (labels **Main EIC BAS Contact for** / **Main EIC BAS Contact is**) — links the main contact person to the beneficiary organisation.
+- machine names `Contact for` / `Contact is` (labels **EIC BAS Contact for** / **EIC BAS Contact is**) — links each additional contact (2 to 4) to the beneficiary organisation.
+
+The display labels were renamed to make the EIC Business Acceleration Services (BAS) context explicit; the **machine names are unchanged** (`Main contact for` / `Contact for`), because the form processors and case roles reference them by machine name. When these relationships are created by a form processor, pass the **machine name** directly to `CreateOrUpdateRelationship` (`relationship_type_id`) — do not resolve a numeric id first.
+
+**KAM (Key Account Manager)**
+
+Each beneficiary is also assigned a **KAM**, the EIC staff member responsible for the account. The KAM is
+linked to the beneficiary Organisation via the KAM relationship type (labels `KAM for` / `KAM is`, machine
+names `EIC_KAM_For` / `EIC_KAM_Is`; Individual to Organisation), shipped by the `eic_config` extension. In
+the _EIC Awardee Onboarding_ case type the KAM is the **manager** case role (referenced by its machine name
+`EIC_KAM_Is`); the previous roles (`Case Coordinator`, `Main contact for`, `Contact for`) are no longer
+used as case roles for this case type. The KAM is provided to the onboarding case import as an **email**
+(`kam_email`) and matched to the individual contact by that email; the case import passes the relationship
+type **machine name** `EIC_KAM_For` directly to the `CreateOrUpdateRelationship` action — no numeric id
+lookup is required (see _Import Cases_ below).
+
+Settings
+========
+
+The extension has a simple configuration settings page, to be accessed under:
+
+- civicrm menu -> Administer -> System Settings -> Settings for EIC EU-Survey Form-Processor Automation
+- `civicrm/admin/setting/eic_eu_survey_form_processor`
+
+The following settings are available:
+
+**Import Form-Processors if already existing?**
+
+If this option is enabled, then the Form-Processor configuration that is shipped with this extension
+will be imported if a form-processor with the same name **exists already**. This will overwrite all
+changes made to that form-processor.
+
+If this option is turned off, then the avaiable form-processor configuration will only be imported if
+no form-processor with the same name does already exists.
+
+**Import CiviCRM Settings if already existing?**
+
+If this option is enabled, then the CiviCRM Settings configuration that is shipped with this extension
+will be imported if a setting with the same name **exists already**. This will overwrite all
+changes made to that setting.
+
+If this option is turned off, then the avaiable CiviCRM Settings configuration will only be imported if
+no setting with the same name does already exists.
+
+Dependencies
+============
+
+The following CiviCRM Extensions must have been installed before installing this extension:
+
+| Repo                           | Extension                                                                           | Notes                                                                               |
+|--------------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| Extended Contact Matcher       | [de.systopia.xcm](https://github.com/systopia/de.systopia.xcm)                      | Provides means to find and create contacts and provides `form_processors` actions   |
+| Action Provider                | [action_provider](https://lab.civicrm.org/extensions/action-provider)               | provides all common actions for `form_processor` extension                          |
+| Form Processor                 | [form_processor](https://lab.civicrm.org/extensions/form-processor)                 | provides means to receive and process arbitrary form data                           |
+
+The following CiviCRM Extension can be additionally installed
+
+| Extension                      | Repo                                                                                |  Notes                                                                              |
+|--------------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| Advanced Importer              | [advimport](https://lab.civicrm.org/extensions/advimport)                           | Allows csv-file import                                                              |
+| Advanced Import Form Processor | [advimportformprocessor](https://lab.civicrm.org/extensions/advimportformprocessor) | Allows to send csv-file data to a form-processor                                    |
+
+Installation
+============
+
+- Install mandatory Extensions first.
+- Use the standard way of installing CiviCRM Extensions from a repository.
+
+Check after Installation or after (Re)Enabling
+===============================================
+
+Once the extension has been installed or (re)enabled, please check if all entities that has been loaded
+as `ManagedEntities` are available in CiviCRM and are enabled:
+
+- the `ActivityType` _EIC Accelerator Onboarding Survey Data_ (machine name `eic_accelerator_onboarding_survey`) will sometimes be disabled for yet unknown reasons. Re-enable that acticity type under `/civicrm/admin/options/activity_type`
+- check if all CustomGroups are enabled and also if their fields are enabled under `/civicrm/admin/custom/group`
+- check if `CaseType` _EIC Awardee Onboarding_ is available and enabled under `/civicrm/a/#/caseType`
+- check if `RelationshipType` _Main contact for_ and _Contact for_ are available and enabled under `/civicrm/admin/reltype`
+- check if `RelationshipType` _KAM for_ / _KAM is_ (Individual to Organisation) is available and enabled under `/civicrm/admin/reltype`. This one is shipped by the `eic_config` extension (`managed/0350_RelationshipType_KAM.mgd.php`) and is used as the manager case role of the _EIC Awardee Onboarding_ case type.
+
+Folder Structure
+================
+
+managed
+-------
+
+Contains all ManagedEntities that will be loaded upon installation or (re)enabling of extension.
+
+| ManagedEntity         | Value                                                           |
+|-----------------------|-----------------------------------------------------------------|
+| CaseType              | `EIC Awardee Onboarding`                                        |
+| OptionGroup           | contains Activity `EIC Accelerator Onboarding Survey Data` (machine name `eic_accelerator_onboarding_survey`) |
+| RelationshipType      | `Main contact for` (Individual to Organisation)                 |
+| RelationshipType      | `Contact for` (Individual to Organisation)                      |
+| CustomGroup           | `EIC Awardee information` for `Case` of case type `EIC Awardee Onboarding` |
+| CustomGroup           | `EIC Accelerator Onboarding Survey Data` (machine name `eic_accelerator_onboarding_survey_data`) for `Activity` of activity type `eic_accelerator_onboarding_survey` |
+| CustomGroup           | `Self-Assessed information` (machine name `EU_Survey_Company_Data`) for `Contact` of type `Organisation`. All fields are view-only. TRL/CRL/BRL/FRL are multi-selects that cumulate the Awardee's self-assessed values across all linked projects. |
+| CustomGroup           | `Survey - Company Data` (machine name `srm_survey_company_snapshot`) on the survey `Activity` — a collapsed snapshot of the company fields (name, PIC, website, genders, TRL/CRL/BRL/FRL) so the activity holds the full survey response. Reusable across surveys (add future survey activity types to its `extends_entity_column_value`). |
+| CustomGroup           | `Survey - Main Contact Data` (machine name `srm_survey_contact_snapshot`) on the survey `Activity` — a collapsed snapshot of the main contact fields (name, email, phone, role). Reusable across surveys. |
+| CaseType (x10)        | Service Request cases, one per BAS programme (machine names `eic_sr_*`): `Service Request - EIC VentureMatch`, `- EIC Coaching`, `- EIC Ecosystem Partnership`, `- EIC Global Business Expansion`, `- EIC Innovation Procurement`, `- EIC Women Leadership Programme`, `- EIC InnoNext`, `- EIC Corporate Partnership`, `- EIC International Trade Fairs`, `- EIC Community` (bonus, TBD) |
+| CustomGroup (x10)     | One context group per Service Request case type (machine names `eic_sr_*_data`), each with an `EU Survey (activity)` reference back to the originating survey activity, plus per-programme context fields |
+
+**Onboarding case status.** When the EU Survey activity is created and assigned to the matched Onboarding case, the survey import processor sets that case's status to `Onboarded` (via the `UpdateCaseStatus` action, with a logged "Change Case Status" activity). This only runs when a matching EU-Survey case is found. The status value `6` is used directly: unlike case-type ids, the `Onboarded` `case_status` option value is a managed OptionValue with an explicitly forced `value => '6'` (see `nc_config/managed/040_CaseStatuses.mgd.php`), so it is deterministic across environments and safe to reference by value.
+
+**Requirement 7 — Service Request cases.** When the EU Survey activity is created, the survey import processor creates a distinct Service Request case per BAS programme whose trigger answer matches. Each Service Request case is created with status `Requested` (`case_status` value `7`). Case Coordinator is left empty; each case links back to the EU Survey activity.
+
+**Service Request case statuses.** The Service Request case types (`eic_sr_*`) restrict the statuses offered to `Requested`, `Planning`, `Open`, `Resolved`, `Closed`, `Declined` (via the `statuses` key in each case type definition). `Onboarded` is intentionally excluded from Service Request cases — it remains active and is only used in the Onboarding context. `Requested` (value `7`) and `Planning` (value `8`) are managed `case_status` OptionValues (see `nc_config/managed/040_CaseStatuses.mgd.php`) with explicitly forced values, so they are deterministic across environments and safe to reference by value. Triggers: VentureMatch/Coaching/Global Business Expansion/Innovation Procurement/Women Leadership/Corporate Partnership/International Trade Fairs are Yes/No questions (the FP input is a `Boolean` with `return_as: "boolean"`) and fire on `ParameterHasValue` = `True`; Ecosystem Partnership fires on `ParameterIsNotEmpty` for the "other support" answer (empty = not selected); InnoNext on the "main challenge" answer containing "Human Resources". EIC Community is shipped but not triggered (bonus, TBD). Case type ids are resolved by name via `GetCaseTypeIdByName` (no hardcoded ids); trigger conditions use the `action-provider` conditions `ParameterHasValue`, `ParameterIsNotEmpty`, and `CompareParameterRegex` (contains). A Yes/No question must NOT use `YesNoOptionList` for a trigger because it always returns `1`.
+
+assets
+------
+
+Contains all assets that will be loaded upon installation or (re)enabling of extension.
+
+**Form Processor Configuration**
+
+| Form Processors       | Description                                                                                       |
+|-----------------------|---------------------------------------------------------------------------------------------------|
+| EIC Individual Import | Create individual contacts from EU-Survey dataset                                                 |
+| EIC Company Import    | Create/match beneficiary companies from the dataset. Runs _before_ the survey is answered, so it does NOT populate the survey company data (CEO/founder gender, sector, TRL/CRL/BRL/FRL) — those are written later by the Accelerator survey import. |
+| EIC Awardee Onboarding Case Import    | Create cases of type _EIC Awardee Onboarding_ from EU-Survey dataset                    |
+| EIC Awardee Onboarding Default Case   | Create a default _EIC Awardee Onboarding_ case for catching failures during EU-Survey data import |
+| EIC Accelerator Onboarding Survey Import | Scheme-specific (Accelerator): create an _EIC Accelerator Onboarding Survey Data_ activity and assign all survey data to it (incl. a collapsed company + main-contact snapshot); write the company survey data (CEO/founder gender, sector, TRL/CRL/BRL/FRL) onto the Organisation, since this is where that data first arrives; also write the same self-assessed data onto the matched _EIC Project_ activity (`EIC_Awardee_Project`, custom group `Self-Assessed information (by company)`) as single values for that specific project; link the main and additional contacts to the company and case; set the Onboarding case to _Onboarded_; and create the per-programme _Service Request_ cases triggered by the survey answers (Requirement 7). TRL/CRL/BRL/FRL long labels are normalised to their option codes via `RegexReplaceValue` actions. |
+
+**CiviCRM Settings**
+
+Currently, only the setting for the XCM Extension is imported. That setting (`xcm_config_profiles`, in
+`assets/settings/xcm_config_profiles.json`) contains the XCM (Extended Contact Matcher) profiles that
+can be accessed under `/civicrm/admin/setting/xcm`. **This file is the single source of truth for these
+profiles** — they are pushed by the extension, not configured manually. The imported profiles are used by
+the Form-Processors (referenced by name in each `XcmGetOrCreate` action) and must therefore be available.
+
+| XCM profile (name)                        | Used by                                    | Purpose                                                                 |
+|-------------------------------------------|--------------------------------------------|-------------------------------------------------------------------------|
+| `eu_survey_company`                       | Company Import, Awardee Onboarding Case Import | Create/match the beneficiary Organisation early (before the survey). |
+| `EU_Survey_Accelerator_Onboarding_Company`| Accelerator Survey Import                  | Create/match the Organisation at survey time and fill the survey company data. |
+| `eu_survey_individual`                    | Survey Import (main + additional contacts) | Create/match Individual contacts.                                        |
+| `eu_survey_investor`                      | Investor imports                           | Create/match investor Organisations.                                     |
+| `eu_survey_investor_representative`       | Investor onboarding                        | Create/match investor representative Individuals.                        |
+| `investor_representative`                 | Investor import                            | Create/match investor representative Individuals (name/address match).   |
+
+**Company XCM behaviour (important).** Both company profiles (`eu_survey_company` and
+`EU_Survey_Accelerator_Onboarding_Company`) are configured so that:
+
+- **The PIC Number is never overwritten.** The PIC custom field is listed in `fill_fields` (filled only
+  when empty) and `override_fields` is empty, so an existing PIC is preserved. The PIC must never change
+  once set.
+- **The website is additive.** `website` is in `fill_details`, so a new website is added but an existing
+  one is not erased.
+- **Match by contact id is enabled** (`match_contact_id: 1`), so when a company has already been
+  found/created earlier in the chain, it is reused rather than duplicated.
+- Fields are referenced by their numeric custom-field id in `fill_fields` (e.g. `custom_34` = PIC), the
+  same convention already used by the `eu_survey_investor_representative` profile.
+
+**Why a separate `EU_Survey_Accelerator_Onboarding_Company` profile.** The survey company data
+(CEO/founder gender, sector, TRL/CRL/BRL/FRL — fields `custom_102`–`custom_108`) is only available once
+the beneficiary answers the survey, not at company-creation time. So Company Import uses `eu_survey_company`
+(which does not fill those fields), while the Accelerator survey import uses
+`EU_Survey_Accelerator_Onboarding_Company`, which additionally lists those fields in `fill_fields` and
+fills them when the survey is processed.
+
+Mapping EU Survey Fields to CiviCRM Entities
+============================================
+
+Types
+-----
+
+The following types are made available through `ManagedEntities`.
+
+| for Entitiy | Type                    |
+|-------------|-------------------------|
+| Activity    | _EU-Survey Data_        |
+| Case        | _EIC Awardee Onboarding_ |
+
+
+Case - CustomFields
+-------------------
+
+The following custom-groups and fields are made available through `ManagedEntities`.
+
+| **CustomGroup**  | Title                   | Name                    |
+|------------------|-------------------------|-------------------------|
+|                  | EIC Awardee information | EIC_Awardee_information |
+
+| **CustomFields** | Label                   | Name                    | Type                                      |
+|------------------|-------------------------|-------------------------|-------------------------------------------|
+|                  | EIC Title               | EIC_Title               | Text                                      |
+|                  | Organisation PIC number | Organisation_PIC_number | Text                                      |
+|                  | EIC Project ID          | EIC_Project_ID          | Text                                      |
+|                  | EIC Project Acronym     | EIC_Project_Acronym     | Text                                      |
+|                  | EIC Project (activity)  | EIC_Project_Activity    | Entity Reference (FK to `Activity`)       |
+|                  | Funding                 | Project_Funding         | Text (copied from the matched EIC Project activity) |
+|                  | Category                | Project_Category        | Text (copied from the matched EIC Project activity) |
+|                  | Funding Type            | Project_Funding_Type    | Text (copied from the matched EIC Project activity) |
+|                  | Cut-Off-Date            | Project_Cut_Off_Date    | Text (copied from the matched EIC Project activity) |
+
+
+Activity - Custom Fields
+------------------------
+
+| **CustomGroup**  | Title                   | Name                    |
+|------------------|-------------------------|-------------------------|
+|                  | EIC Accelerator Onboarding Survey Data | eic_accelerator_onboarding_survey_data |
+
+| **CustomFields** | Label                                                                                                          | Name                                                              |
+|------------------|----------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
+|                  | Pitch Deck                                                                                                     | survey_latest_pitch_deck                                          |
+|                  | EIC Project ID                                                                                                 | survey_eic_project_id                                             |
+|                  | EIC Project Accronym                                                                                           | survey_eic_project_acronym                                        |
+|                  | Are you fundraising within the next 18 months                                                                  | survey_fundraising_within_the_next_18_months                      |
+|                  | Are you fundraising within:                                                                                    | survey_fundraising_within                                         |
+|                  | What fundraising support do you need most                                                                      | survey_receive_suport_fundraising_items                           |
+|                  | Would you like to receive investment support                                                                   | survey_receive_support_investment                                 |
+|                  | Are you actively seeking corporate or industrial partners                                                      | survey_partenrs_actively_seeking                                  |
+|                  | What type of partner are you targeting                                                                         | survey_partners_types                                             |
+|                  | Are you planning to sell your innovative solution to public or private buyers                                  | survey_selling_to_public_private_buyers                           |
+|                  | Where are you in the process                                                                                   | survey_selling_to_public_private_buyers_where_are_you_in_the_...  |
+|                  | Would you like procurement support or training                                                                 | survey_receive_support_procurement                                |
+|                  | Are you planning to expand internationally in the next 18 months                                               | survey_international_expansion_in_the_next_18_months              |
+|                  | Which markets                                                                                                  | survey_international_expansion_markets                            |
+|                  | Would you like to receive support entering new markets                                                         | survey_receive_support_entering_new_markets                       |
+|                  | What is your main barrier                                                                                      | survey_international_expansion_main_barrier                       |
+|                  | Are you planning to participate in International trade fairs in the next 12 months                             | survey_international_trade_fairs_participate_in_the_next_12_m...  |
+|                  | Which region                                                                                                   | survey_international_trade_fairs_region                           |
+|                  | Type of events                                                                                                 | survey_international_trade_fairs_events                           |
+|                  | Would you benefit from industry experts or coaches support                                                     | survey_receive_support_industry_experts_or_coaches                |
+|                  | What type of support                                                                                           | survey_receive_support_industry_experts_or_coaches_types          |
+|                  | What is your main challenge?                                                                                   | survey_main_challenge                                             |
+|                  | Does your company have a woman founder or executive who would benefit from a dedicated leadership programme    | survey_Does_your_company_have_a_woman_founder_or_executive_wh...  |
+|                  | What type of other support are you interested in                                                               | survey_receive_support_other_types                                |
+|                  | Are there any other support items you would like to benefit from                                               | survey_receive_support_other_items                                |
+|                  | General feedback                                                                                               | survey_feedback                                                   |
+|------------------|----------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
+
+Contact(Organisation) - Custom Fields
+-------------------------------------
+
+| **CustomGroup**  | Title                     | Name                    |
+|------------------|---------------------------|-------------------------|
+|                  | Self-Assessed information | eu_survey_company_data  |
+
+All fields in this group are **View only** (`is_view`); they are populated by the survey import, not edited by hand.
+
+| **CustomFields** | Label                                                                                                          | Name                                                              | Type                                                     |
+|------------------|----------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|----------------------------------------------------------|
+|                  | CEO or project leader gender                                                                                   | CEO_or_project_leader_gender                                      | Select (option group `eu_survey_gender`, value = label); view only |
+|                  | Founder Gender                                                                                                 | Founder_Gender                                                    | Select (option group `eu_survey_gender`, value = label); view only |
+|                  | Sector                                                                                                         | Sector                                                            | Multi-Select (option group `eu_survey_sector`, value = label); view only; cumulates every value the Awardee self-assessed across all linked projects |
+|                  | TRL                                                                                                            | TRL                                                               | Multi-Select (`eu_survey_trl`, value = short code); view only; cumulates every value the Awardee self-assessed across all linked projects |
+|                  | CRL                                                                                                            | CRL                                                               | Multi-Select (`eu_survey_crl`, value = short code); view only; cumulates every value the Awardee self-assessed across all linked projects |
+|                  | BRL                                                                                                            | BRL                                                               | Multi-Select (`eu_survey_brl`, value = short code); view only; cumulates every value the Awardee self-assessed across all linked projects |
+|                  | FRL                                                                                                            | FRL                                                               | Multi-Select (`eu_survey_frl`, value = short code); view only; cumulates every value the Awardee self-assessed across all linked projects |
+
+
+EU Survey Fields mapped to standard fields of Entities
+------------------------------------------------------
+
+| **EU Survey Field**          | Field Name               | Entity                              | Notes                       |
+|------------------------------|--------------------------|-------------------------------------|-----------------------------|
+|                              | First name               | Individual.first_name               |                             |
+|                              | Last name                | Individual.last_name                |                             |
+|                              | Phone number             | Individual.phone                    |                             |
+|                              | Professional email       | Individual.email_primary            |                             |
+|                              | Role in organisation     | Individual.job_title                |                             |
+|                              | Company Website          | Organisation.website                |                             |
+|                              | Organisation name        | Organisation.organization_name      |                             |
+|                              | Organisation PIC number  | Organisation custom field `EIC_Organisation_identifiers.PIC` | not the external_identifier |
+
+
+Available FormProcessors
+========================
+
+Import Company Data
+-------------------
+
+**Notes on identitifying a company**
+
+This FormProcessor creates/matches organisation contacts. The `PIC Number` is stored in the custom field
+`EIC_Organisation_identifiers.PIC` (not the External Identifier) and uniquely identifies a company later on,
+when attaching cases to the company. Via the `eu_survey_company` XCM profile, the PIC is only filled when
+empty and never overwritten, the website is added if new, and an already-found company is reused
+(match by contact id). This import does NOT set the survey company data (CEO/founder gender, sector,
+TRL/CRL/BRL/FRL); that is written by the Accelerator survey import where the data first arrives.
+
+**Form Processor**
+
+- Title: `EIC Company Import`
+- Name: `eic_company_import`
+
+**Fieldmapping**
+
+| EU Survey Field                              | Form Processor Input Field name  | Data Type   | Notes                                        |
+|----------------------------------------------|----------------------------------|-------------|----------------------------------------------|
+| PIC number                                   | org_pic_number                   | short text  | stored in `external_identifier`              |
+| Company Name                                 | org_name                         | short text  |                                              |
+| Website                                      | org_website                      | short text  |                                              |
+| CEO / project leader gender                  | org_ceo_project_leader_gender    | short text  | value must match an `eu_survey_gender` option |
+| Founder Gender                               | org_founder_gender               | short text  | value must match an `eu_survey_gender` option |
+| Sector you operate in                        | org_sector                       | short text  | value must match an `eu_survey_sector` option |
+| TRL - Technology Readiness Level             | org_trl                          | short text  | full survey label accepted (e.g. `TRL 4 - ...`); normalised to the short code `TRL 4` in-processor (see below) |
+| CRL - Commercial Readiness Level             | org_crl                          | short text  | full survey label accepted; normalised to `CRL 1` in-processor |
+| BRL - Business Readiness Level               | org_brl                          | short text  | full survey label accepted; normalised to `BRL 3` in-processor |
+| FRL - Funding Readiness Level                | org_frl                          | short text  | full survey label accepted; normalised to `FRL 7` in-processor |
+
+**Readiness level normalisation**
+
+The survey transmits the full readiness label (e.g. `TRL 4 - Technology validation in laboratory`), but the
+custom fields store the short code (e.g. `TRL 4`) which is the option value. The processor normalises each
+readiness input with a `Modify Value with Regular Expression` action (`RegexReplaceValue`) before the company
+is created:
+
+- Find: `/^\s*(\S+\s+\S+).*$/`
+- Replace: `$1`
+
+This captures the first two tokens (the code and its number) and drops the ` - description` part, tolerating
+inconsistent spacing around the dash. The company create action then reads the normalised value from
+`action.<trl|crl|brl|frl>_code.value`.
+
+Import Cases
+------------
+
+**Notes on Case to Company retaionship**
+
+- This FormProcessor creates a case and sets the case title to `EIC Awardee Onboarding`.
+- It will link a company by its `PIC Number` as client to the newly created case.
+- It will link the KAM (found by the `kam_email` input) to the case via the `KAM for` relationship.
+
+Later on, when EU Survey data is being imported:
+
+- An organisation's `PIC Number` can be used to identitfy the organisation belonging to the case.
+- The case title can be used to identify the proper case as a company may have more than one case it is a client of.
+
+**Form Processor**
+
+- Title: `EIC Awardee Onboarding Case Import`
+- Name: `eic_awardee_onboarding_case_import`
+
+**Fieldmapping**
+
+| EU Survey Field                 | Form Processor Input Field Name | Data Type     | Notes                                        |
+|---------------------------------|---------------------------------|---------------|----------------------------------------------|
+| PIC Number                      | org_pic_number                  | short text    | identifies / creates the beneficiary company |
+| Company Website                 | org_website                     | short text    | used as a secondary company match            |
+| EIC Project ID                  | case_eic_project_id             | short text    | stored on the case; primary project match    |
+| EIC Project Acronym             | case_eic_project_acronym        | short text    | stored on the case; fallback project match   |
+| KAM email                       | kam_email                       | short text    | **required**; identifies the KAM individual by email and links them to the case (see below) |
+
+**Assigning the KAM**
+
+Each onboarding case is assigned a **KAM** (Key Account Manager). The KAM is passed to this Form Processor as
+an **email address** (`kam_email`, a required input) rather than a contact id or name — the email is the
+identifier used to find the KAM contact. When a case is created, this Form Processor:
+
+1. Finds the KAM Individual by email with the `FindContactByEmail` action (`get_kam_contact_by_email`).
+2. Creates the `KAM for` relationship (KAM Individual → beneficiary Organisation), scoped to the newly
+   created case, via `CreateOrUpdateRelationship` (`link_to_the_kam`), passing the relationship type
+   **machine name** `EIC_KAM_For` directly in `relationship_type_id`.
+
+> Note: an earlier configuration resolved the numeric relationship type id first (`SetValue` +
+> `GetRelationshipTypeIdByName`). That is unnecessary — `CreateOrUpdateRelationship` accepts the machine
+> name directly — so those two steps can be removed.
+
+These steps run **inside** the `create_cases_if_pic_number_is_available` conditional group, so the KAM is
+only linked when a new onboarding case is actually created. In the case type, `KAM is` is the manager case
+role, so the linked KAM appears as the case manager. The `KAM for` / `KAM is` relationship type is shipped by
+the `eic_config` extension.
+
+**Relationship type reference — use the machine name, not the id.** The `CreateOrUpdateRelationship` action
+accepts the relationship type **machine name** (e.g. `EIC_KAM_For`, `Main contact for`, `Contact for`)
+directly in its `relationship_type_id` parameter. There is therefore **no need** to resolve a numeric id
+first: the `SetValue` + `GetRelationshipTypeIdByName` pair is not required and should be omitted in new
+configurations. Referencing by machine name also keeps the automation stable when a relationship type's
+**display label** changes (as happened when `Main contact` / `Contact` were relabelled to
+**Main EIC BAS Contact** / **EIC BAS Contact**).
+
+**One onboarding case per project**
+
+A company (identified by its PIC) can have **more than one onboarding case** — one per EIC project. Cases are
+therefore matched/deduplicated on **PIC number + case title + EIC Project ID** (not on PIC alone). The survey
+import (`find_eu_survey_case`) matches on the same three criteria so the survey data attaches to the correct
+project's case.
+
+**Linking the case to the EIC Project activity, and copying project details**
+
+EIC Project activities (`activity_type = EIC_Awardee_Project`) are imported separately by the `eic_import`
+pipeline. On each project activity the Project Number is stored in the custom field
+`EIC_Horizon_Europe_Project_information.Project_Number`, and the acronym is stored in the activity `subject`.
+
+When a case is imported, this Form Processor:
+
+1. Stores the submitted Project ID (the project **number**) and Acronym on the case
+   (`EIC_Project_ID`, `EIC_Project_Acronym`).
+2. Finds the matching `EIC_Awardee_Project` activity by `Project_Number` = submitted Project ID, using the
+   `GetActivityIdByCustomField` action (from `eic_fp_action_provider`). This references the custom field and
+   activity type **by name** (no hardcoded numeric ids) and returns a single activity id.
+3. Reads that activity with `GetActivity` and copies the project context onto the case as free-text fields:
+   `Project_Funding`, `Project_Category`, `Project_Funding_Type`, `Project_Cut_Off_Date`.
+4. Stores the matched activity id in the `EIC_Project_Activity` Entity Reference field, giving the case a
+   clickable link through to the EIC Project activity.
+
+If no project activity matches the submitted Project ID, the project detail fields and the link are left empty.
+
+Import Individual Data
+----------------------
+
+**Notes on creating individual contacts**
+
+Creates Individual contacts from EU Survey data when no matching contact already exists.
+
+Use it to pre-import individuals as contacts before importing EU-Survey data, so the EU-Survey import won't
+create duplicates for contacts that already exist.
+
+**Form Processor**
+
+- Title: `EIC Individual Import`
+- Name: `eic_individual_import`
+
+**Fieldmapping**
+
+| EU Survey Field                 | Form Processor Input Field Name | Data Type     | Notes     |
+|---------------------------------|---------------------------------|---------------|-----------|
+| First Name                      | ind_first_name                  | short text    |           |
+| Last Name                       | ind_last_name                   | short text    |           |
+| Professional Email              | ind_professional_email          | short text    |           |
+| Phone                           | ind_phone_number                | short text    |           |
+| Role                            | ind_role                        | short text    |           |
+
+Import EU-Survey Data (Accelerator)
+-----------------------------------
+
+**Scheme-specific.** This FormProcessor ingests the EU Survey EIC Onboarding survey for the
+**Accelerator** scheme. Other schemes have their own onboarding surveys with different questions, so
+each scheme has its own survey-import FormProcessor. (The Company Import and Individual Import
+FormProcessors are common across all schemes.)
+
+This FormProcessor creates an activity that stores the received EU Survey data.
+The activity will be attached to a case.
+
+The case will be identified by:
+
+- the received  `PIC Number`, that is matched to the corresponding custom field of a case
+- the case title, which is supposed to be set to `EIC Awardee Onboarding`.
+
+This FormProcessor also creates an individual contact from the transmitted contact data
+if no contact yet exists that matches the received contact data (First Name, Last Name, Professional Email).
+
+**Form Processor**
+
+- Title: `EIC Accelerator Onboarding Survey Import`
+- Name: `eic_accelerator_onboarding_survey_import`
+- Scheme: **Accelerator** (scheme-specific; other schemes have their own survey-import FormProcessor)
+
+**Fieldmapping**
+
+| EU Survey Field                                                                                             | Form Processor Input Field Name                                                 | Data Type         | Notes       |
+|-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|-------------------|-------------|
+| PIC number                                                                                                  | org_pic_number                                                                  | short text        |             |
+| EIC Project ID                                                                                              | case_eic_project_id                                                             | short text        |             |
+| First Name                                                                                                  | ind_first_name                                                                  | short text        |             |
+| Last Name                                                                                                   | ind_last_name                                                                   | short text        |             |
+| Professional Email                                                                                          | ind_professional_email                                                          | short text        |             |
+| Fundraising within the next 18 months                                                                       | survey_fundraising_within_next_18_months                                        | bool              | "Yes" "No"  |
+| Are you fundraising within                                                                                  | survey_fundraising_within                                                       | short text        |             |
+| What fundraising support do you need most                                                                   | survey_support_fundraising                                                      | long text         |             |
+| Would you like to receive investment support                                                                | survey_support_investment                                                       | bool              | "Yes" "No"  |
+| Are you actively seeking corporate or industrial partners                                                   | survey_actively_seeking_corporate_industrial_partnerts                          | bool              | "Yes" "No"  |
+| What type of partner are you targeting                                                                      | survey_what_type_of_partner_are_you_targeting                                   | short text        |             |
+| Are you planning to sell your innovative solution to public or private buyers                               | survey_plan_to_sell_solution_to_public_private_buyers                           | bool              | "Yes" "No"  |
+| Where are you in the process                                                                                | survey_where_are_you_in_the_process                                             | long text         |             |
+| Would you like procurement support or training                                                              | survey_support_training_procurement                                             | bool              | "Yes" "No"  |
+| Are you planning to expand internationally in the next 18 months                                            | survey_plan_to_expand_internationally_within_next_18_months                     | bool              | "Yes" "No"  |
+| Which markets                                                                                               | survey_expansion_markets                                                        | short text        |             |
+| What is your main barrier                                                                                   | survey_expansion_main_barrier                                                   | short text        |             |
+| Are you planning to participate in International trade fairs in the next 12 months                          | survey_plan_to_participate_in_international_trade_fairs_within_next_12_months   | bool              | "Yes" "No"  |
+| Which region                                                                                                | survey_internation_trade_fairs_region                                           | short text        |             |
+| Type of events                                                                                              | survey_international_ trade_fairs_type_of_events                                | short text        |             |
+| Would you benefit from industry experts or coaches support                                                  | survey_would_support_industry_experts_coaches                                   | bool              | "Yes" "No"  |
+| What type of support                                                                                        | survey_type_of_industry_export_support                                          | short text        |             |
+| What is your main challenge                                                                                 | survey_main_challenge                                                           | long text         |             |
+| Does your company have a woman founder or executive who would benefit from a dedicated leadership programme | survey_woman_founder_or_executive_benefit_from_a_dedicated_leadership_programme | bool              | "Yes" "No"  |
+| What type of other support are you interested in                                                            | survey_suport_other_types                                                       | long text         |             |
+| Are there any other support items you would like to benefit from                                            | support_support_other_items                                                     | long text         |             |
+| Would you like to receive support entering new markets                                                      | survey_support_entering_new_markets                                             | bool              | "Yes" "No"  |
+| General feedback                                                                                            | survey_general_feedback                                                         | long text         |             |
+
+Import data via Form-Processor
+==============================
+
+Data Source
+-----------
+
+As input source, the CSV with the EU Survey extracts can be used with all Form-Processors listed above.
+
+- https://eceuropaeu.sharepoint.com/:x:/r/teams/GRP-EICSRM/_layouts/15/Doc.aspx?sourcedoc=%7B1020AA29-6441-47BA-A5B8-DF13D0A326EF%7D&file=Export799826.xlsx&action=default&mobileredirect=true
+
+Each Form-Processor just processes a subset of the CSV file columns.
+Therefore, the same CSV file can be used for different import tasks.
+
+See the description of each Form Processor for necessary EU-Survey Data.
+
+Send data to Form Processor via CiviCRM Api3
+============================================
+
+The Form-Processor can be accessed via the CiviCRM **Api Version 3**.
+
+- entity name: `FormProcessor`
+
+Form Processor access via Api3 Action
+-------------------------------------
+
+Each available Form-Processor is registered by its `name` as `action` for entity `FormProcessor`
+
+- in order to pass data to a particular Form-Processor via **Api3**, just pass its `name` as action
+
+The names of the action can be retrieved via a Api3 call
+
+- entity: `FormProcessor`
+- action: `getactions`
+
+Alternatively, just query the names of the available Form Processors directly via **Api4**
+
+- entity: `FormProcessorInstance`
+- action: `get`
+- select: `name`
+
+**Note:**
+
+If a particular naming scheme is being used, on could also just select particular Form Processors
+by matching to that scheme.
+
+Data Structure for Form Processor input
+---------------------------------------
+
+Data is being passed to a Form-Processor as json formated string.
+
+The names of the selected Form-Processor input fields are being used as json field keys.
+
+The json is a simple structure with only `'key':'value'` pairs.
+
+Retrieving Form Processor Imput Field Name
+------------------------------------------
+
+The names of the input fields of a Form Processor  can be retrieved via a **Api4** call
+
+- entity: `FormProcessorInput`
+- action: `get`
+- select: `name`
+- where: `form_processor_id = <id>`
+
+The result is a json array that contains the names of all input field names:
+
+```json
+[
+  {
+    "id": 2,
+    "name": "org_name"
+  },
+  {
+    "id": 3,
+    "name": "org_pic_number"
+  },
+  {
+    "id": 4,
+    "name": "org_website"
+  }
+]
+```
+
+Example Json structure
+----------------------
+
+FormProcessor Name:
+
+- `eic_company_import`
+
+Form Processor Input Fields: 
+
+- `org_name`
+- `org_pic_number`
+- `org_website`
+
+Json Data:
+
+```bash
+# the json data to be passed to the seleceted FormProcessor
+paramDataJson='json={                       \
+  'org_name':'api3 import company  name',   \
+  'org_pic_number':'api3 import pic',       \
+  'org_website':'api3 import website'       \
+}'
+
+# json needs to be encoded into
+
+paramDataJson='%7B%22org_name%22%3A%22api3+import+company++name%22%2C%22org_pic_number%22%3A%22api3+import+pic%22%2C%22org_website%22%3A%22api3+import+website%22%7D'
+```
+
+Example Api Call
+----------------
+
+Pass data to a FormProcessor via a `curl` request to CiviCRM Api3:
+
+Api3 Entity:
+
+- `FormProcessor`
+
+Entity Action:
+
+- `eic_company_import`
+
+Api Request:
+
+```bash
+# the FormProcess as an entity
+paramEntity='entity=FormProcessor'
+# use name of available form-processor as action
+paramAction='action=eic_company_import'
+# to be replaced with real civicrm api-key that has been create for a particular api user
+paramApiKey='api_key=FIXME_USER_KEY'
+# to be replaced with real civicrm size-key
+paramSiteKey='key=FIXME_SITE_KEY'
+
+# run curl
+curl -X POST -d \
+  "${paramEntity}&${paramAction}&${paramDataJson}&${paramApiKey}&${paramSiteKey}" \
+  'http://localhost/dev_eic/libraries/civicrm/core/extern/rest.php'
+ ```
