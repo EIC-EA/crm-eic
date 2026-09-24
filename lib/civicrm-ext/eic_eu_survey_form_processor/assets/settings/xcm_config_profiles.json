@@ -317,7 +317,7 @@
           "match_contact_id": null
         },
         "rules": {
-          "rule_1": "CRM_Xcm_Matcher_NameAddressMatcher",
+          "rule_1": "CRM_Xcm_Matcher_EmailFullNameMatcher",
           "rule_2": "0",
           "rule_3": "0",
           "rule_4": "0",

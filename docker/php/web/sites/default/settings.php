@@ -88,11 +88,22 @@
  * ];
  * @endcode
  */
+/**
+ * The anonymized database switch.
+ *
+ * When the browser presents the "anonimzed_dev=1" cookie AND the alternate
+ * ANON_DATABASE_* env var(s) are set, then will use the the anonymized
+ * database instead of the primary one. If they are not
+ * set (e.g. prod, accp ), the cookie has no effect - this is a safety guard.
+ */
+$use_anon_db = (isset($_COOKIE['anonimzed_dev']) && $_COOKIE['anonimzed_dev'] === '1'
+  && getenv('ANON_DRUPAL_DATABASE_HOST') !== FALSE);
+
 $databases['default']['default'] = [
   'database' => getenv('DRUPAL_DATABASE_NAME'),
   'username' => getenv('DRUPAL_DATABASE_USERNAME'),
   'password' => getenv('DRUPAL_DATABASE_PASSWORD'),
-  'host' => getenv('DRUPAL_DATABASE_HOST'),
+  'host' => getenv($use_anon_db ? 'ANON_DRUPAL_DATABASE_HOST' : 'DRUPAL_DATABASE_HOST'),
   'port' => getenv('DRUPAL_DATABASE_PORT'),
   'driver' => 'mysql',
   'prefix' => '',

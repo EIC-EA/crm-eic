@@ -92,6 +92,20 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
   }
 
   /**
+   * Enable the EIC Anonymiser extension.
+   */
+  public function upgrade_1009(): bool {
+    return $this->enable_extension(['eic_anonymiser']);
+  }
+
+  /**
+   * Enable the Chart Kit extension.
+   */
+  public function upgrade_1010(): bool {
+    return $this->enable_extension(['chart_kit']);
+  }
+  
+  /**
    * Rename the physical DB column of the EIC Awardee representative "eulogin"
    * custom field from the copy-paste leftover `funds_vintage_year` to `eulogin`,
    * preserving any existing data.
@@ -113,7 +127,7 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
    * civicrm_value_srm_financial_information belongs to a different field
    * (Investor "Funds Vintage Year") and is intentionally left untouched.
    */
-  public function upgrade_1009(): bool {
+  public function upgrade_1011(): bool {
     $this->ctx->log->info('Renaming eulogin column from funds_vintage_year to eulogin');
 
     // Resolve the actual table name for the EIC_Awardee_representative group.
@@ -161,5 +175,7 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
 
     return TRUE;
   }
+
+}
 
 }
