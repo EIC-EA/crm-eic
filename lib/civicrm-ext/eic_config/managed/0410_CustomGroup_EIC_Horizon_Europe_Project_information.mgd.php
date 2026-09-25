@@ -30,6 +30,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Project_Title',
         'label' => E::ts('Project Title'),
         'html_type' => 'Text',
@@ -53,6 +54,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Project_Number',
         'label' => E::ts('Project Number'),
         'html_type' => 'Text',
@@ -77,6 +79,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'EC_tool_status',
         'label' => E::ts('EC tool status'),
         'html_type' => 'Text',
@@ -100,6 +103,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Coordinator',
         'label' => E::ts('Coordinator'),
         'data_type' => 'ContactReference',
@@ -126,6 +130,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Partners',
         'label' => E::ts('Partners'),
         'data_type' => 'ContactReference',
@@ -152,6 +157,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Cut_Off_Date',
         'label' => E::ts('Cut-Off-Date'),
         'data_type' => 'Date',
@@ -256,6 +262,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Category',
         'label' => E::ts('Category'),
         'html_type' => 'Select',
@@ -597,6 +604,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Funding',
         'label' => E::ts('Funding'),
         'html_type' => 'Select',
@@ -719,6 +727,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Funding_Type',
         'label' => E::ts('Funding Type'),
         'html_type' => 'Select',
@@ -743,6 +752,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Grant_Proposed',
         'label' => E::ts('Grant Proposed'),
         'data_type' => 'Money',
@@ -767,6 +777,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Equity_Proposed',
         'label' => E::ts('Equity Proposed'),
         'data_type' => 'Money',
@@ -791,6 +802,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Start_Date',
         'label' => E::ts('Start Date'),
         'data_type' => 'Date',
@@ -816,6 +828,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'End_Date',
         'label' => E::ts('End Date'),
         'data_type' => 'Date',
@@ -841,6 +854,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Duration',
         'label' => E::ts('Duration (Month)'),
         'data_type' => 'Int',
@@ -962,6 +976,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Master',
         'label' => E::ts('Master'),
         'html_type' => 'Select',
@@ -6006,6 +6021,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Primary',
         'label' => E::ts('Primary'),
         'html_type' => 'Select',
@@ -6030,6 +6046,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Subsector_1',
         'label' => E::ts('Subsector 1'),
         'html_type' => 'Select',
@@ -6054,6 +6071,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Subsector_2',
         'label' => E::ts('Subsector 2'),
         'html_type' => 'Select',
@@ -6078,6 +6096,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Tech_cluster_1',
         'label' => E::ts('Tech cluster 1'),
         'html_type' => 'Select',
@@ -6102,6 +6121,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Tech_cluster_2',
         'label' => E::ts('Tech cluster 2'),
         'html_type' => 'Select',
@@ -6126,6 +6146,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Tech_cluster_3',
         'label' => E::ts('Tech cluster 3'),
         'html_type' => 'Select',
@@ -6150,6 +6171,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Tech_cluster_4',
         'label' => E::ts('Tech cluster 4'),
         'html_type' => 'Select',
@@ -6174,6 +6196,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Tech_cluster_5',
         'label' => E::ts('Tech cluster 5'),
         'html_type' => 'Select',
@@ -6198,6 +6221,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Tech_cluster_6',
         'label' => E::ts('Tech cluster 6'),
         'html_type' => 'Select',
@@ -6222,6 +6246,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Field_Of_Science',
         'label' => E::ts('Field Of Science'),
         'html_type' => 'Text',
@@ -6245,6 +6270,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Free_Keywords',
         'label' => E::ts('Free Keywords'),
         'data_type' => 'Memo',
@@ -6346,6 +6372,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Termination',
         'label' => E::ts('Termination'),
         'html_type' => 'Select',
@@ -6370,6 +6397,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Associated_Partners',
         'label' => E::ts('Associated Partners'),
         'data_type' => 'ContactReference',
@@ -6396,6 +6424,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Terminated_Partners',
         'label' => E::ts('Terminated Partners'),
         'data_type' => 'ContactReference',
@@ -6479,6 +6508,7 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EIC_Horizon_Europe_Project_information',
+        'is_view' => TRUE,
         'name' => 'Phase',
         'label' => E::ts('Phase'),
         'html_type' => 'Select',
