@@ -1146,14 +1146,24 @@
                 "custom_Client_Roles_EIC_Awardee": "",
                 "custom_EU_Survey_Investor_Onboarding_Organisation_name": "",
                 "custom_EU_Survey_Investor_Onboarding_Organisation_domain": "",
+                "custom_eic_sr_coaching_data_EU_Survey_Activity": "",
                 "custom_eic_sr_coaching_data_main_challenge": "",
+                "custom_eic_sr_community_data_EU_Survey_Activity": "",
+                "custom_eic_sr_corporate_partnership_data_EU_Survey_Activity": "",
                 "custom_eic_sr_corporate_partnership_data_partner_type": "",
+                "custom_eic_sr_ecosystem_partnership_data_EU_Survey_Activity": "",
                 "custom_eic_sr_ecosystem_partnership_data_support_interested_in": "",
+                "custom_eic_sr_global_business_expansion_data_EU_Survey_Activity": "",
                 "custom_eic_sr_global_business_expansion_data_markets": "",
                 "custom_eic_sr_global_business_expansion_data_main_barrier": "",
+                "custom_eic_sr_innonext_data_EU_Survey_Activity": "",
+                "custom_eic_sr_innovation_procurement_data_EU_Survey_Activity": "",
+                "custom_eic_sr_international_trade_fairs_data_EU_Survey_Activity": "",
                 "custom_eic_sr_international_trade_fairs_data_region": "",
                 "custom_eic_sr_international_trade_fairs_data_type_of_events": "",
-                "custom_eic_sr_venturematch_data_fundraising_support_needed": ""
+                "custom_eic_sr_venturematch_data_EU_Survey_Activity": "",
+                "custom_eic_sr_venturematch_data_fundraising_support_needed": "",
+                "custom_eic_sr_women_leadership_data_EU_Survey_Activity": ""
             },
             "condition_configuration": "",
             "delay_configuration": ""
@@ -1705,6 +1715,7 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_venturematch_group.create_sr_venturematch_case.case_id",
+                        "custom_eic_sr_venturematch_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
                         "custom_EIC_Awardee_information_EIC_Title": "",
                         "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
                         "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
@@ -1803,6 +1814,7 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_coaching_group.create_sr_coaching_case.case_id",
+                        "custom_eic_sr_coaching_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
                         "custom_EIC_Awardee_information_EIC_Title": "",
                         "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
                         "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
@@ -1899,6 +1911,7 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_ecosystem_group.create_sr_ecosystem_case.case_id",
+                        "custom_eic_sr_ecosystem_partnership_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
                         "custom_EIC_Awardee_information_EIC_Title": "",
                         "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
                         "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
@@ -1996,6 +2009,7 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_gbe_group.create_sr_gbe_case.case_id",
+                        "custom_eic_sr_global_business_expansion_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
                         "custom_EIC_Awardee_information_EIC_Title": "",
                         "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
                         "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
@@ -2094,6 +2108,7 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_innov_procurement_group.create_sr_innov_procurement_case.case_id",
+                        "custom_eic_sr_innovation_procurement_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
                         "custom_EIC_Awardee_information_EIC_Title": "",
                         "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
                         "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
@@ -2192,6 +2207,7 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_women_leadership_group.create_sr_women_leadership_case.case_id",
+                        "custom_eic_sr_women_leadership_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
                         "custom_EIC_Awardee_information_EIC_Title": "",
                         "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
                         "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
@@ -2289,6 +2305,7 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_innonext_group.create_sr_innonext_case.case_id",
+                        "custom_eic_sr_innonext_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
                         "custom_EIC_Awardee_information_EIC_Title": "",
                         "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
                         "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
@@ -2385,6 +2402,7 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_corp_partnership_group.create_sr_corp_partnership_case.case_id",
+                        "custom_eic_sr_corporate_partnership_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
                         "custom_EIC_Awardee_information_EIC_Title": "",
                         "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
                         "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
@@ -2482,6 +2500,7 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_trade_fairs_group.create_sr_trade_fairs_case.case_id",
+                        "custom_eic_sr_international_trade_fairs_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
                         "custom_EIC_Awardee_information_EIC_Title": "",
                         "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
                         "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
