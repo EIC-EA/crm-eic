@@ -17,7 +17,7 @@ $entities = [
     'name' => 'OptionGroup_eu_survey_gender',
     'entity' => 'OptionGroup',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -38,7 +38,7 @@ foreach ($genders as $gender) {
     'name' => 'OptionValue_eu_survey_gender_' . $weight,
     'entity' => 'OptionValue',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [

@@ -12,7 +12,7 @@ return [
     'name' => 'CustomGroup_srm_survey_contact_snapshot',
     'entity' => 'CustomGroup',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -31,7 +31,7 @@ return [
     'name' => 'CustomGroup_srm_survey_contact_snapshot_CustomField_First_Name',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -49,7 +49,7 @@ return [
     'name' => 'CustomGroup_srm_survey_contact_snapshot_CustomField_Last_Name',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -67,7 +67,7 @@ return [
     'name' => 'CustomGroup_srm_survey_contact_snapshot_CustomField_Professional_Email',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -85,7 +85,7 @@ return [
     'name' => 'CustomGroup_srm_survey_contact_snapshot_CustomField_Phone_Number',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -103,7 +103,7 @@ return [
     'name' => 'CustomGroup_srm_survey_contact_snapshot_CustomField_Role_In_Organisation',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [

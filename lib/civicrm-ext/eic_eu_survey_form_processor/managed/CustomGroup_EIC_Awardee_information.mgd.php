@@ -6,7 +6,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information',
     'entity' => 'CustomGroup',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -25,7 +25,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_EIC_Title',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -50,7 +50,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_Organisation_PIC_number',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -76,7 +76,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_EIC_Project_ID',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -100,7 +100,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_EIC_Project_Acronym',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -125,7 +125,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_EIC_Project_Activity',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -151,7 +151,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_Project_Funding',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -174,7 +174,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_Project_Category',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -197,7 +197,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_Project_Funding_Type',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -220,7 +220,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_Project_Cut_Off_Date',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [

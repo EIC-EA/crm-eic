@@ -13,7 +13,7 @@ return [
     'name' => 'CustomGroup_eic_project_self_assessed',
     'entity' => 'CustomGroup',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -32,7 +32,7 @@ return [
     'name' => 'CustomGroup_eic_project_self_assessed_CustomField_CEO_or_project_leader_gender',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -57,7 +57,7 @@ return [
     'name' => 'CustomGroup_eic_project_self_assessed_CustomField_Founder_Gender',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -82,7 +82,7 @@ return [
     'name' => 'CustomGroup_eic_project_self_assessed_CustomField_Sector',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -107,7 +107,7 @@ return [
     'name' => 'CustomGroup_eic_project_self_assessed_CustomField_TRL',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -132,7 +132,7 @@ return [
     'name' => 'CustomGroup_eic_project_self_assessed_CustomField_CRL',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -157,7 +157,7 @@ return [
     'name' => 'CustomGroup_eic_project_self_assessed_CustomField_BRL',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -182,7 +182,7 @@ return [
     'name' => 'CustomGroup_eic_project_self_assessed_CustomField_FRL',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
