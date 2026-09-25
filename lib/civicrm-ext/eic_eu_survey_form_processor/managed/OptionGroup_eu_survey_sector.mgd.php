@@ -24,7 +24,7 @@ $entities = [
     'name' => 'OptionGroup_eu_survey_sector',
     'entity' => 'OptionGroup',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -45,7 +45,7 @@ foreach ($sectors as $sector) {
     'name' => 'OptionValue_eu_survey_sector_' . $weight,
     'entity' => 'OptionValue',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [

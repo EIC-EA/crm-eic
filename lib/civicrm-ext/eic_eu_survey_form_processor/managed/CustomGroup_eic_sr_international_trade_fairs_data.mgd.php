@@ -6,7 +6,7 @@ return [
     'name' => 'CustomGroup_eic_sr_international_trade_fairs_data',
     'entity' => 'CustomGroup',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -24,7 +24,7 @@ return [
     'name' => 'CustomGroup_eic_sr_international_trade_fairs_data_CustomField_EU_Survey_Activity',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -47,7 +47,7 @@ return [
     'name' => 'CustomGroup_eic_sr_international_trade_fairs_data_CustomField_region',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -69,7 +69,7 @@ return [
     'name' => 'CustomGroup_eic_sr_international_trade_fairs_data_CustomField_type_of_events',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [

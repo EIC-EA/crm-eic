@@ -6,7 +6,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data',
     'entity' => 'CustomGroup',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -24,7 +24,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_EIC_Project_Acronym',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -46,7 +46,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_EIC_Project_ID',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -68,7 +68,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_case_latest_pitch_deck',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -87,7 +87,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_fundraising_within_the_next_18_months',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -107,7 +107,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_fundraising_within',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -126,7 +126,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_receive_suport_fundraising_items',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -145,7 +145,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_receive_support_investment',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -165,7 +165,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_partenrs_actively_seeking',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -185,7 +185,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_partners_types',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -204,7 +204,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_selling_to_public_private_buyers',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -224,7 +224,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_buyers_where_in_process',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -244,7 +244,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_receive_support_procurement',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -264,7 +264,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_international_expansion_in_the_next_18_months',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -284,7 +284,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_international_expansion_markets',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -303,7 +303,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_international_expansion_main_barrier',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -322,7 +322,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_trade_fairs_next_12_months',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -343,7 +343,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_international_trade_fairs_region',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -362,7 +362,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_international_trade_fairs_events',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -381,7 +381,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_receive_support_industry_experts_or_coaches',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -401,7 +401,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_receive_support_industry_experts_or_coaches_types',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -420,7 +420,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_main_challenge',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -439,7 +439,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_woman_founder_or_executive_who',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -459,7 +459,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_receive_support_other_types',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -478,7 +478,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_receive_support_other_items',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -497,7 +497,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_feedback',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -517,7 +517,7 @@ return [
     'name' => 'CustomGroup_eic_accelerator_onboarding_survey_data_CustomField_survey_receive_support_entering_new_markets',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [

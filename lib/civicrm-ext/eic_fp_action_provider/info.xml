@@ -2,7 +2,7 @@
 <extension key="eic_fp_action_provider" type="module">
   <file>eic_fp_action_provider</file>
   <name>eic_fp_action_provider</name>
-  <description>Provides reusable CiviCRM Form-Processor action-provider conditions (e.g. CompareParameters) and actions (e.g. GetCaseTypeIdByName, GetActivityIdByCustomField) that other EIC extensions can use.</description>
+  <description>Provides reusable CiviCRM Form-Processor action-provider conditions (e.g. CompareParameters) and actions (e.g. GetCaseTypeIdByName, GetActivityIdByCustomField, ActivityUpdateCustomData) that other EIC extensions can use.</description>
   <license>AGPL-3.0</license>
   <authors>
     <author>
@@ -36,7 +36,7 @@
     <comments>Listed versions. For example, specify both "4" and "5".</comments>
     <ver>5</ver>
   </smarty_compatibility>
-  <comments>Provides the CompareParameters form-processor condition and the GetCaseTypeIdByName and GetActivityIdByCustomField actions, registered via hook_civicrm_container. Must be enabled before the container rebuild that precedes the eic_eu_survey_form_processor import.</comments>
+  <comments>Provides the CompareParameters form-processor condition and the GetCaseTypeIdByName, GetActivityIdByCustomField and ActivityUpdateCustomData actions, registered via hook_civicrm_container. Must be enabled before the container rebuild that precedes the eic_eu_survey_form_processor import.</comments>
   <classloader>
     <psr0 prefix="CRM_" path="."/>
     <psr4 prefix="Civi\" path="Civi"/>

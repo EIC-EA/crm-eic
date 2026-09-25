@@ -9,7 +9,7 @@ return [
     'name' => 'CustomGroup_eic_sr_community_data',
     'entity' => 'CustomGroup',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -27,7 +27,7 @@ return [
     'name' => 'CustomGroup_eic_sr_community_data_CustomField_EU_Survey_Activity',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [

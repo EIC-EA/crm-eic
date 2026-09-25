@@ -6,7 +6,7 @@ return [
     'name' => 'CustomGroup_eic_sr_innovation_procurement_data',
     'entity' => 'CustomGroup',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -24,7 +24,7 @@ return [
     'name' => 'CustomGroup_eic_sr_innovation_procurement_data_CustomField_EU_Survey_Activity',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -47,7 +47,7 @@ return [
     'name' => 'CustomGroup_eic_sr_innovation_procurement_data_CustomField_selling_to_buyers',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -70,7 +70,7 @@ return [
     'name' => 'CustomGroup_eic_sr_innovation_procurement_data_CustomField_where_in_process',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [

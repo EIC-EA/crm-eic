@@ -6,7 +6,7 @@ return [
     'name' => 'OptionValue_eic_accelerator_onboarding_survey',
     'entity' => 'OptionValue',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [

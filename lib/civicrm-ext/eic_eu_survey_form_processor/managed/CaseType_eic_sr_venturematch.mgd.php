@@ -6,7 +6,7 @@ return [
     'name' => 'CaseType_eic_sr_venturematch',
     'entity' => 'CaseType',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [

@@ -6,7 +6,12 @@ return [
     'name' => 'CaseType_eic_awardee_onboarding',
     'entity' => 'CaseType',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    // Use 'always' so the case type definition (roles, activity types, timeline)
+    // is re-enforced on every managed-entity reconcile. With 'unmodified',
+    // CiviCRM stops updating a case type once it exists or has been touched,
+    // which caused environments to drift (e.g. showing a stale 'KAM for' role
+    // instead of the single 'KAM is' manager role defined here).
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [

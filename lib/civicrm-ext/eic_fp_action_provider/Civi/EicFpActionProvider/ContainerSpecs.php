@@ -50,6 +50,18 @@ class ContainerSpecs implements CompilerPassInterface {
         'Get Activity Id By Custom Field'
       ]
     );
+
+    // Register the ActivityUpdateCustomData action (updates only the custom
+    // field values of an existing activity by id, like CaseUpdateCustomData does
+    // for cases - avoids CreateActivity clobbering source/target/status).
+    $actionProviderDefinition->addMethodCall(
+      'addAction',
+      [
+        'ActivityUpdateCustomData',
+        '\Civi\EicFpActionProvider\ActionProvider\Action\ActivityUpdateCustomData',
+        'Update Activity Custom Data'
+      ]
+    );
   }
 
 }
