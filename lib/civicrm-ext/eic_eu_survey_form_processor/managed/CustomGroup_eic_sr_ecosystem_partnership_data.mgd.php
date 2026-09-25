@@ -59,7 +59,6 @@ return [
         'name' => 'support_interested_in',
         'label' => E::ts('What type of other support are you interested in?'),
         'html_type' => 'Text',
-        'is_view' => TRUE,
         'text_length' => 255,
         'column_name' => 'support_interested_in',
       ],
