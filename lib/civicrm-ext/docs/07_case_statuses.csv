@@ -1,3 +1,8 @@
-Machine name,Label,Value,Grouping,Defined in,Description,Security/ACL,Owner,Status,Last reviewed
-Onboarded,Onboarded,6,Closed,nc_config,"Successful end state of an onboarding case. Set automatically when the beneficiary's EU-Survey is imported and matched to the case.",,,Active,
-Declined,Declined,5,Closed,nc_config,"Closed/rejected end state of an onboarding case.",,,Active,
+Machine name,Label,Value,Grouping,Weight (display order),Defined in,Description,Security/ACL,Owner,Status,Last reviewed
+Requested,Requested,7,Opened,1,eic_eu_survey_form_processor / nc_config,"Service request has been submitted and is awaiting handling. Initial status of a Service Request case.",,,Active,
+Planning,Planning,8,Opened,2,nc_config,"Service request is being planned.",,,Active,
+Open,Ongoing,1,Opened,3,nc_config (reorders CiviCRM core status),"CiviCRM core 'Open' status, labelled 'Ongoing'. Managed here only to enforce its display order and grouping.",,,Active,
+Urgent,Urgent,3,Opened,4,nc_config (reorders CiviCRM core status),"CiviCRM core 'Urgent' status. Managed here only to enforce its display order and grouping.",,,Active,
+Resolved,Resolved,2,Closed,5,nc_config (reorders CiviCRM core status),"CiviCRM core 'Resolved' status. Managed here only to enforce its display order and grouping.",,,Active,
+Onboarded,Onboarded,6,Closed,6,nc_config,"Successful end state of an onboarding case. Set automatically when the beneficiary's EU-Survey is imported and matched to the case.",,,Active,
+Declined,Declined,5,Closed,7,nc_config,"Closed/rejected end state of an onboarding case.",,,Active,
