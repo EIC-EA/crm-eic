@@ -21,29 +21,6 @@ return [
     ],
   ],
   [
-    'name' => 'CustomGroup_eic_sr_corporate_partnership_data_CustomField_EU_Survey_Activity',
-    'entity' => 'CustomField',
-    'cleanup' => 'unused',
-    'update' => 'always',
-    'params' => [
-      'version' => 4,
-      'values' => [
-        'custom_group_id.name' => 'eic_sr_corporate_partnership_data',
-        'name' => 'EU_Survey_Activity',
-        'label' => E::ts('EU Survey (activity)'),
-        'data_type' => 'EntityReference',
-        'html_type' => 'Autocomplete-Select',
-        'fk_entity' => 'Activity',
-        'is_view' => TRUE,
-        'column_name' => 'eu_survey_activity',
-      ],
-      'match' => [
-        'name',
-        'custom_group_id',
-      ],
-    ],
-  ],
-  [
     'name' => 'CustomGroup_eic_sr_corporate_partnership_data_CustomField_partner_type',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
@@ -55,7 +32,6 @@ return [
         'name' => 'partner_type',
         'label' => E::ts('What type of partner are you targeting?'),
         'html_type' => 'Text',
-        'is_view' => TRUE,
         'text_length' => 255,
         'column_name' => 'partner_type',
       ],
