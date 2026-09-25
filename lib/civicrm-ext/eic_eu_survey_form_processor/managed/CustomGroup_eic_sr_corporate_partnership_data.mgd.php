@@ -55,7 +55,6 @@ return [
         'name' => 'partner_type',
         'label' => E::ts('What type of partner are you targeting?'),
         'html_type' => 'Text',
-        'is_view' => TRUE,
         'text_length' => 255,
         'column_name' => 'partner_type',
       ],

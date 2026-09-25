@@ -52,8 +52,19 @@ return [
           ],
           'caseRoles' => [
             [
-              'name' => 'Case Coordinator',
+              // The VentureMatch investment adviser is the case manager. Uses the
+              // "Investment Adviser" relationship type (client-facing direction:
+              // name_b_a = "Investment Adviser is"). Replaces the generic Case
+              // Coordinator role on this case type. Advisers are members of the
+              // EIC VentureMatch access-control group.
+              'name' => 'Investment Adviser is',
               'manager' => '1',
+            ],
+            [
+              // Founder's Primary Contact from the EIC VM Fundraising Assessment
+              // EU-Survey. Uses the "Founder" relationship type (client-facing
+              // direction: name_b_a = "Founder is").
+              'name' => 'Founder is',
             ],
           ],
           'statuses' => [
