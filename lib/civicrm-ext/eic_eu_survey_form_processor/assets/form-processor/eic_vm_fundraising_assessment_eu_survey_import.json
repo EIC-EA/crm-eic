@@ -1,0 +1,674 @@
+{
+    "title": "EIC VM Fundraising Assessment EU Survey Import",
+    "name": "eic_vm_fundraising_assessment_eu_survey_import",
+    "is_active": "1",
+    "description": "This FormProcessor ingests the EIC Awardee Fundraising Assessment EU-Survey and creates or updates a VentureMatch Service Request case (eic_sr_venturematch).\r\n\r\nThere is no PIC number in this form. The company is resolved through the XCM profile 'EU_Survey_VM_Fundraising_Company' (matching on Company LinkedIn URL, Company Name and Company Website URL); if no company matches an EIC Organisation is created. The company-level survey answers are stored on the Organisation in the 'EIC Fundraising Assessment' custom group, and the Company LinkedIn URL on the 'Organisation identifiers' group.\r\n\r\nThe EIC Project is matched by EIC project number (fallback: acronym). A VentureMatch SR case is found for the company (project uniqueness is NOT enforced for now); if none exists it is created with status Requested and the shared 'EIC Awardee information' group is populated with what is available from the matched project. The Founder's Primary Contact is found or created (matched on email; email set as main email, phone as main phone) and linked to the case in the 'Founder' role. A Task activity 'EU Survey received' (status Completed) is added to the case.",
+    "output_handler": "OutputAllActionOutput",
+    "output_handler_configuration": [],
+    "enable_default_data": "0",
+    "default_data_output_configuration": [],
+    "calculation_output_configuration": [],
+    "permission": "",
+    "inputs": [
+        {
+            "weight": "1",
+            "include_formatted_params": "0",
+            "title": "Company Name",
+            "name": "org_name",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "2",
+            "include_formatted_params": "0",
+            "title": "Founder's Primary Contact Email",
+            "name": "founder_email",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "3",
+            "include_formatted_params": "0",
+            "title": "Founder's primary contact phone number",
+            "name": "founder_phone",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "4",
+            "include_formatted_params": "0",
+            "title": "Company Website URL",
+            "name": "company_website",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "5",
+            "include_formatted_params": "0",
+            "title": "Company LinkedIn Profile URL",
+            "name": "company_linkedin",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "6",
+            "include_formatted_params": "0",
+            "title": "Primary Sector/Industry Cluster",
+            "name": "primary_sector_cluster",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "7",
+            "include_formatted_params": "0",
+            "title": "Current Fundraising Round",
+            "name": "current_fundraising_round",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "8",
+            "include_formatted_params": "0",
+            "title": "Amount Currently Raising",
+            "name": "amount_currently_raising",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "9",
+            "include_formatted_params": "0",
+            "title": "Current Runway (months)",
+            "name": "current_runway_months",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "10",
+            "include_formatted_params": "0",
+            "title": "Have you raised capital before?",
+            "name": "raised_capital_before",
+            "type": "Boolean",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"return_as": "boolean"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "11",
+            "include_formatted_params": "0",
+            "title": "List Current Key Investors",
+            "name": "key_investors",
+            "type": "Text",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "12",
+            "include_formatted_params": "0",
+            "title": "Total Amount Raised to Date",
+            "name": "total_amount_raised",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "13",
+            "include_formatted_params": "0",
+            "title": "Target Close Date for Current Round",
+            "name": "target_close_date",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "14",
+            "include_formatted_params": "0",
+            "title": "Intended Use of Funds for the Current Round",
+            "name": "intended_use_of_funds",
+            "type": "Text",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": [],
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "15",
+            "include_formatted_params": "0",
+            "title": "Link to Pitchdeck",
+            "name": "link_pitchdeck",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "16",
+            "include_formatted_params": "0",
+            "title": "Existing Metrics / Financial Model Link",
+            "name": "link_financial_model",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "17",
+            "include_formatted_params": "0",
+            "title": "Existing Metrics / Data Room Link",
+            "name": "link_data_room",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "18",
+            "include_formatted_params": "0",
+            "title": "Priorities",
+            "name": "priorities",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "19",
+            "include_formatted_params": "0",
+            "title": "Dealroom Profile Link or Dealroom Company ID",
+            "name": "dealroom_profile",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "20",
+            "include_formatted_params": "0",
+            "title": "Country of Incorporation / Primary Operation",
+            "name": "country_incorporation",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "21",
+            "include_formatted_params": "0",
+            "title": "EIC project acronym",
+            "name": "eic_project_acronym",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        },
+        {
+            "weight": "22",
+            "include_formatted_params": "0",
+            "title": "EIC project number",
+            "name": "eic_project_number",
+            "type": "String",
+            "is_required": "0",
+            "default_value": "",
+            "configuration": {"trim": "1"},
+            "parameter_mapping": [],
+            "default_data_parameter_mapping": [],
+            "validators": []
+        }
+    ],
+    "actions": {
+        "0": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find EIC Project activity by Project Number",
+            "name": "find_eic_project_activity_by_project_number",
+            "type": "GetActivityIdByCustomField",
+            "configuration": {
+                "custom_field": "EIC_Horizon_Europe_Project_information.Project_Number",
+                "activity_type": "EIC_Awardee_Project"
+            },
+            "mapping": {
+                "value": "input.eic_project_number"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "1": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get EIC Project activity data",
+            "name": "get_eic_project_activity_data",
+            "type": "GetActivity",
+            "configuration": [],
+            "mapping": {
+                "id": "action.find_eic_project_activity_by_project_number.activity_id"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "2": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find or Create Beneficiary Company (LinkedIn / name / website)",
+            "name": "get_or_create_company",
+            "type": "XcmGetOrCreate",
+            "configuration": {
+                "xcm_profile": "EU_Survey_VM_Fundraising_Company",
+                "contact_type": "EIC_Organisation",
+                "variable_target_1": "",
+                "variable_target_2": ""
+            },
+            "mapping": {
+                "organization_name": "input.org_name",
+                "website": "input.company_website",
+                "custom_EIC_Organisation_identifiers_LinkedIn_URL": "input.company_linkedin",
+                "custom_EIC_Fundraising_Assessment_Primary_Sector_Cluster": "input.primary_sector_cluster",
+                "custom_EIC_Fundraising_Assessment_Current_Fundraising_Round": "input.current_fundraising_round",
+                "custom_EIC_Fundraising_Assessment_Amount_Currently_Raising": "input.amount_currently_raising",
+                "custom_EIC_Fundraising_Assessment_Current_Runway_Months": "input.current_runway_months",
+                "custom_EIC_Fundraising_Assessment_Raised_Capital_Before": "input.raised_capital_before",
+                "custom_EIC_Fundraising_Assessment_Current_Key_Investors": "input.key_investors",
+                "custom_EIC_Fundraising_Assessment_Total_Amount_Raised": "input.total_amount_raised",
+                "custom_EIC_Fundraising_Assessment_Target_Close_Date": "input.target_close_date",
+                "custom_EIC_Fundraising_Assessment_Intended_Use_Of_Funds": "input.intended_use_of_funds",
+                "custom_EIC_Fundraising_Assessment_Link_Pitchdeck": "input.link_pitchdeck",
+                "custom_EIC_Fundraising_Assessment_Link_Financial_Model": "input.link_financial_model",
+                "custom_EIC_Fundraising_Assessment_Link_Data_Room": "input.link_data_room",
+                "custom_EIC_Fundraising_Assessment_Priorities": "input.priorities",
+                "custom_EIC_Fundraising_Assessment_Dealroom_Profile": "input.dealroom_profile",
+                "custom_EIC_Fundraising_Assessment_Country_Of_Incorporation": "input.country_incorporation"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "3": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "SR VentureMatch: case type name",
+            "name": "sr_venturematch_case_type_name",
+            "type": "SetValue",
+            "configuration": {
+                "value": "eic_sr_venturematch"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "4": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "SR VentureMatch: resolve case type id",
+            "name": "sr_venturematch_case_type_id",
+            "type": "GetCaseTypeIdByName",
+            "configuration": [],
+            "mapping": {
+                "name": "action.sr_venturematch_case_type_name.value"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "5": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find existing VentureMatch case for the company",
+            "name": "find_venturematch_case",
+            "type": "GetCaseDataByCustomField",
+            "configuration": [],
+            "mapping": {
+                "contact_id": "action.get_or_create_company.contact_id",
+                "case_type_id": "action.sr_venturematch_case_type_id.id"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.get_or_create_company.contact_id"
+                }
+            },
+            "delay_configuration": ""
+        },
+        "6": {
+            "pid": "0",
+            "conditional_processing_group": "1",
+            "title": "Create VentureMatch case if none exists",
+            "name": "create_vm_case_group",
+            "type": "__conditional_processing_group__",
+            "configuration": [],
+            "mapping": [],
+            "condition_configuration": [
+                {
+                    "name": "ParameterIsEmpty",
+                    "configuration": [],
+                    "parameter_mapping": {
+                        "parameter": "action.find_venturematch_case.id"
+                    },
+                    "description": "No existing VentureMatch case found for the company",
+                    "link": "and"
+                }
+            ],
+            "delay_configuration": "",
+            "actions": [
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Create VentureMatch Service Request case",
+                    "name": "create_vm_case",
+                    "type": "CreateCase",
+                    "configuration": {
+                        "case_type_id": "",
+                        "subject": "Service Request - EIC VentureMatch",
+                        "creator_id": "",
+                        "case_status": "7"
+                    },
+                    "mapping": {
+                        "contact_id": "action.get_or_create_company.contact_id",
+                        "creator_id": "",
+                        "case_status": "",
+                        "subject": "",
+                        "created_date": "",
+                        "start_date": "",
+                        "end_date": "",
+                        "case_type_id": "action.sr_venturematch_case_type_id.id"
+                    },
+                    "condition_configuration": "",
+                    "delay_configuration": ""
+                },
+                {
+                    "conditional_processing_group": "0",
+                    "title": "Populate EIC Awardee information from matched project",
+                    "name": "populate_awardee_information",
+                    "type": "CaseUpdateCustomData",
+                    "configuration": [],
+                    "mapping": {
+                        "case_id": "action.create_vm_case_group.create_vm_case.case_id",
+                        "custom_EIC_Awardee_information_EIC_Title": "",
+                        "custom_EIC_Awardee_information_Organisation_PIC_number": "",
+                        "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
+                        "custom_EIC_Awardee_information_EIC_Project_Acronym": "action.get_eic_project_activity_data.subject",
+                        "custom_EIC_Awardee_information_EIC_Project_Activity": "action.find_eic_project_activity_by_project_number.activity_id",
+                        "custom_EIC_Awardee_information_Project_Funding": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding",
+                        "custom_EIC_Awardee_information_Project_Category": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Category",
+                        "custom_EIC_Awardee_information_Project_Funding_Type": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding_Type",
+                        "custom_EIC_Awardee_information_Project_Cut_Off_Date": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Cut_Off_Date"
+                    },
+                    "condition_configuration": "",
+                    "delay_configuration": ""
+                }
+            ]
+        },
+        "7": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Effective case id: the found case (if any)",
+            "name": "case_id_found",
+            "type": "SetValue",
+            "configuration": {
+                "value": ""
+            },
+            "mapping": {
+                "value": "action.find_venturematch_case.id"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_venturematch_case.id"
+                }
+            },
+            "delay_configuration": ""
+        },
+        "8": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Effective case id: the newly-created case (if no case was found)",
+            "name": "case_id_created",
+            "type": "SetValue",
+            "configuration": {
+                "value": ""
+            },
+            "mapping": {
+                "value": "action.create_vm_case_group.create_vm_case.case_id"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_venturematch_case.id"
+                }
+            },
+            "delay_configuration": ""
+        },
+        "9": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Effective case id (found or created)",
+            "name": "effective_case_id",
+            "type": "Concatenate",
+            "configuration": {
+                "text0": "",
+                "text1": "",
+                "text2": "",
+                "text3": "",
+                "text4": "",
+                "separator": ""
+            },
+            "mapping": {
+                "text0": "action.case_id_found.value",
+                "text1": "action.case_id_created.value",
+                "text2": "",
+                "text3": "",
+                "text4": "",
+                "separator": ""
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "10": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Find or Create Founder contact (match on email)",
+            "name": "find_create_founder",
+            "type": "XcmGetOrCreate",
+            "configuration": {
+                "xcm_profile": "eu_survey_individual",
+                "contact_type": "Individual",
+                "variable_target_1": "",
+                "variable_target_2": ""
+            },
+            "mapping": {
+                "email": "input.founder_email",
+                "phone": "input.founder_phone"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "input.founder_email"
+                }
+            },
+            "delay_configuration": ""
+        },
+        "11": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Get 'Founder of' relationship type name",
+            "name": "get_founder_relationship_type_name",
+            "type": "SetValue",
+            "configuration": {
+                "value": "Founder of"
+            },
+            "mapping": [],
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "12": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Resolve 'Founder of' relationship type id",
+            "name": "get_founder_relationship_type_id",
+            "type": "GetRelationshipTypeIdByName",
+            "configuration": [],
+            "mapping": {
+                "name": "action.get_founder_relationship_type_name.value"
+            },
+            "condition_configuration": "",
+            "delay_configuration": ""
+        },
+        "13": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Link Founder to company (Founder of) on the case",
+            "name": "create_founder_relationship",
+            "type": "CreateOrUpdateRelationship",
+            "configuration": {
+                "relationship_type_id": "Founder of",
+                "set_start_date": "0",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "also_update_inactive": "0"
+            },
+            "mapping": {
+                "relationship_type_id": "action.get_founder_relationship_type_id.id",
+                "contact_id_a": "action.find_create_founder.contact_id",
+                "contact_id_b": "action.get_or_create_company.contact_id",
+                "start_date": "",
+                "end_date": "",
+                "description": "",
+                "is_permission_a_b": "",
+                "is_permission_b_a": "",
+                "case_id": "action.effective_case_id.concatenation"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.find_create_founder.contact_id"
+                }
+            },
+            "delay_configuration": ""
+        },
+        "14": {
+            "pid": "0",
+            "conditional_processing_group": "0",
+            "title": "Create 'EU Survey received' Task activity on the case",
+            "name": "create_task_activity",
+            "type": "CreateActivity",
+            "configuration": {
+                "activity_type": "Task",
+                "activity_status": "Completed",
+                "subject": "EU Survey received",
+                "priority": "Normal"
+            },
+            "mapping": {
+                "source_contact_id": "action.find_create_founder.contact_id",
+                "target_contact_id": [
+                    "action.get_or_create_company.contact_id"
+                ],
+                "assignee_contact_id": "",
+                "activity_type_id": "",
+                "location": "",
+                "activity_date": "",
+                "duration": "",
+                "id": "",
+                "campaign_id": "",
+                "subject": "",
+                "details": "",
+                "case_id": "action.effective_case_id.concatenation"
+            },
+            "condition_configuration": {
+                "name": "ParameterIsNotEmpty",
+                "configuration": [],
+                "parameter_mapping": {
+                    "parameter": "action.effective_case_id.concatenation"
+                }
+            },
+            "delay_configuration": ""
+        }
+    },
+    "default_data_inputs": [],
+    "default_data_actions": [],
+    "validate_actions": [],
+    "validate_validators": [],
+    "calculate_actions": [],
+    "calculations_configuration_url": ""
+}
