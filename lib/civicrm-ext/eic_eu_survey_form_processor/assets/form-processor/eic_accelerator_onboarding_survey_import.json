@@ -1146,24 +1146,14 @@
                 "custom_Client_Roles_EIC_Awardee": "",
                 "custom_EU_Survey_Investor_Onboarding_Organisation_name": "",
                 "custom_EU_Survey_Investor_Onboarding_Organisation_domain": "",
-                "custom_eic_sr_coaching_data_EU_Survey_Activity": "",
                 "custom_eic_sr_coaching_data_main_challenge": "",
-                "custom_eic_sr_community_data_EU_Survey_Activity": "",
-                "custom_eic_sr_corporate_partnership_data_EU_Survey_Activity": "",
                 "custom_eic_sr_corporate_partnership_data_partner_type": "",
-                "custom_eic_sr_ecosystem_partnership_data_EU_Survey_Activity": "",
                 "custom_eic_sr_ecosystem_partnership_data_support_interested_in": "",
-                "custom_eic_sr_global_business_expansion_data_EU_Survey_Activity": "",
                 "custom_eic_sr_global_business_expansion_data_markets": "",
                 "custom_eic_sr_global_business_expansion_data_main_barrier": "",
-                "custom_eic_sr_innonext_data_EU_Survey_Activity": "",
-                "custom_eic_sr_innovation_procurement_data_EU_Survey_Activity": "",
-                "custom_eic_sr_international_trade_fairs_data_EU_Survey_Activity": "",
                 "custom_eic_sr_international_trade_fairs_data_region": "",
                 "custom_eic_sr_international_trade_fairs_data_type_of_events": "",
-                "custom_eic_sr_venturematch_data_EU_Survey_Activity": "",
-                "custom_eic_sr_venturematch_data_fundraising_support_needed": "",
-                "custom_eic_sr_women_leadership_data_EU_Survey_Activity": ""
+                "custom_eic_sr_venturematch_data_fundraising_support_needed": ""
             },
             "condition_configuration": "",
             "delay_configuration": ""
@@ -1715,7 +1705,15 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_venturematch_group.create_sr_venturematch_case.case_id",
-                        "custom_eic_sr_venturematch_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
+                        "custom_EIC_Awardee_information_EIC_Title": "",
+                        "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
+                        "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
+                        "custom_EIC_Awardee_information_EIC_Project_Acronym": "action.get_eic_project_activity_data.subject",
+                        "custom_EIC_Awardee_information_EIC_Project_Activity": "action.find_eic_project_activity_by_project_number.activity_id",
+                        "custom_EIC_Awardee_information_Project_Funding": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding",
+                        "custom_EIC_Awardee_information_Project_Category": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Category",
+                        "custom_EIC_Awardee_information_Project_Funding_Type": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding_Type",
+                        "custom_EIC_Awardee_information_Project_Cut_Off_Date": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Cut_Off_Date",
                         "custom_eic_sr_venturematch_data_fundraising_support_needed": "input.survey_support_fundraising",
                         "custom_eic_sr_venturematch_data_fundraising_within": "input.survey_fundraising_within"
                     },
@@ -1805,7 +1803,15 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_coaching_group.create_sr_coaching_case.case_id",
-                        "custom_eic_sr_coaching_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
+                        "custom_EIC_Awardee_information_EIC_Title": "",
+                        "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
+                        "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
+                        "custom_EIC_Awardee_information_EIC_Project_Acronym": "action.get_eic_project_activity_data.subject",
+                        "custom_EIC_Awardee_information_EIC_Project_Activity": "action.find_eic_project_activity_by_project_number.activity_id",
+                        "custom_EIC_Awardee_information_Project_Funding": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding",
+                        "custom_EIC_Awardee_information_Project_Category": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Category",
+                        "custom_EIC_Awardee_information_Project_Funding_Type": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding_Type",
+                        "custom_EIC_Awardee_information_Project_Cut_Off_Date": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Cut_Off_Date",
                         "custom_eic_sr_coaching_data_support_required": "input.survey_type_of_industry_export_support",
                         "custom_eic_sr_coaching_data_main_challenge": "input.survey_main_challenge"
                     },
@@ -1893,7 +1899,15 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_ecosystem_group.create_sr_ecosystem_case.case_id",
-                        "custom_eic_sr_ecosystem_partnership_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
+                        "custom_EIC_Awardee_information_EIC_Title": "",
+                        "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
+                        "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
+                        "custom_EIC_Awardee_information_EIC_Project_Acronym": "action.get_eic_project_activity_data.subject",
+                        "custom_EIC_Awardee_information_EIC_Project_Activity": "action.find_eic_project_activity_by_project_number.activity_id",
+                        "custom_EIC_Awardee_information_Project_Funding": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding",
+                        "custom_EIC_Awardee_information_Project_Category": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Category",
+                        "custom_EIC_Awardee_information_Project_Funding_Type": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding_Type",
+                        "custom_EIC_Awardee_information_Project_Cut_Off_Date": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Cut_Off_Date",
                         "custom_eic_sr_ecosystem_partnership_data_support_interested_in": "input.survey_support_other_types"
                     },
                     "condition_configuration": "",
@@ -1982,7 +1996,15 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_gbe_group.create_sr_gbe_case.case_id",
-                        "custom_eic_sr_global_business_expansion_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
+                        "custom_EIC_Awardee_information_EIC_Title": "",
+                        "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
+                        "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
+                        "custom_EIC_Awardee_information_EIC_Project_Acronym": "action.get_eic_project_activity_data.subject",
+                        "custom_EIC_Awardee_information_EIC_Project_Activity": "action.find_eic_project_activity_by_project_number.activity_id",
+                        "custom_EIC_Awardee_information_Project_Funding": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding",
+                        "custom_EIC_Awardee_information_Project_Category": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Category",
+                        "custom_EIC_Awardee_information_Project_Funding_Type": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding_Type",
+                        "custom_EIC_Awardee_information_Project_Cut_Off_Date": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Cut_Off_Date",
                         "custom_eic_sr_global_business_expansion_data_markets": "input.survey_expansion_markets",
                         "custom_eic_sr_global_business_expansion_data_main_barrier": "input.survey_expansion_main_barrier"
                     },
@@ -2072,7 +2094,15 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_innov_procurement_group.create_sr_innov_procurement_case.case_id",
-                        "custom_eic_sr_innovation_procurement_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
+                        "custom_EIC_Awardee_information_EIC_Title": "",
+                        "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
+                        "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
+                        "custom_EIC_Awardee_information_EIC_Project_Acronym": "action.get_eic_project_activity_data.subject",
+                        "custom_EIC_Awardee_information_EIC_Project_Activity": "action.find_eic_project_activity_by_project_number.activity_id",
+                        "custom_EIC_Awardee_information_Project_Funding": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding",
+                        "custom_EIC_Awardee_information_Project_Category": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Category",
+                        "custom_EIC_Awardee_information_Project_Funding_Type": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding_Type",
+                        "custom_EIC_Awardee_information_Project_Cut_Off_Date": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Cut_Off_Date",
                         "custom_eic_sr_innovation_procurement_data_selling_to_public_private_buyers": "input.survey_plan_to_sell_solution_to_public_private_buyers",
                         "custom_eic_sr_innovation_procurement_data_where_are_you_in_the_process": "input.survey_where_are_you_in_the_process"
                     },
@@ -2162,7 +2192,15 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_women_leadership_group.create_sr_women_leadership_case.case_id",
-                        "custom_eic_sr_women_leadership_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id"
+                        "custom_EIC_Awardee_information_EIC_Title": "",
+                        "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
+                        "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
+                        "custom_EIC_Awardee_information_EIC_Project_Acronym": "action.get_eic_project_activity_data.subject",
+                        "custom_EIC_Awardee_information_EIC_Project_Activity": "action.find_eic_project_activity_by_project_number.activity_id",
+                        "custom_EIC_Awardee_information_Project_Funding": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding",
+                        "custom_EIC_Awardee_information_Project_Category": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Category",
+                        "custom_EIC_Awardee_information_Project_Funding_Type": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding_Type",
+                        "custom_EIC_Awardee_information_Project_Cut_Off_Date": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Cut_Off_Date"
                     },
                     "condition_configuration": "",
                     "delay_configuration": ""
@@ -2251,7 +2289,15 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_innonext_group.create_sr_innonext_case.case_id",
-                        "custom_eic_sr_innonext_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id"
+                        "custom_EIC_Awardee_information_EIC_Title": "",
+                        "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
+                        "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
+                        "custom_EIC_Awardee_information_EIC_Project_Acronym": "action.get_eic_project_activity_data.subject",
+                        "custom_EIC_Awardee_information_EIC_Project_Activity": "action.find_eic_project_activity_by_project_number.activity_id",
+                        "custom_EIC_Awardee_information_Project_Funding": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding",
+                        "custom_EIC_Awardee_information_Project_Category": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Category",
+                        "custom_EIC_Awardee_information_Project_Funding_Type": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding_Type",
+                        "custom_EIC_Awardee_information_Project_Cut_Off_Date": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Cut_Off_Date"
                     },
                     "condition_configuration": "",
                     "delay_configuration": ""
@@ -2339,7 +2385,15 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_corp_partnership_group.create_sr_corp_partnership_case.case_id",
-                        "custom_eic_sr_corporate_partnership_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
+                        "custom_EIC_Awardee_information_EIC_Title": "",
+                        "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
+                        "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
+                        "custom_EIC_Awardee_information_EIC_Project_Acronym": "action.get_eic_project_activity_data.subject",
+                        "custom_EIC_Awardee_information_EIC_Project_Activity": "action.find_eic_project_activity_by_project_number.activity_id",
+                        "custom_EIC_Awardee_information_Project_Funding": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding",
+                        "custom_EIC_Awardee_information_Project_Category": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Category",
+                        "custom_EIC_Awardee_information_Project_Funding_Type": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding_Type",
+                        "custom_EIC_Awardee_information_Project_Cut_Off_Date": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Cut_Off_Date",
                         "custom_eic_sr_corporate_partnership_data_partner_type": "input.survey_what_type_of_partner_are_you_targeting"
                     },
                     "condition_configuration": "",
@@ -2428,7 +2482,15 @@
                     "configuration": [],
                     "mapping": {
                         "case_id": "action.sr_trade_fairs_group.create_sr_trade_fairs_case.case_id",
-                        "custom_eic_sr_international_trade_fairs_data_EU_Survey_Activity": "action.create_activity_and_assign_to_case.id",
+                        "custom_EIC_Awardee_information_EIC_Title": "",
+                        "custom_EIC_Awardee_information_Organisation_PIC_number": "input.org_pic_number",
+                        "custom_EIC_Awardee_information_EIC_Project_ID": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Project_Number",
+                        "custom_EIC_Awardee_information_EIC_Project_Acronym": "action.get_eic_project_activity_data.subject",
+                        "custom_EIC_Awardee_information_EIC_Project_Activity": "action.find_eic_project_activity_by_project_number.activity_id",
+                        "custom_EIC_Awardee_information_Project_Funding": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding",
+                        "custom_EIC_Awardee_information_Project_Category": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Category",
+                        "custom_EIC_Awardee_information_Project_Funding_Type": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Funding_Type",
+                        "custom_EIC_Awardee_information_Project_Cut_Off_Date": "action.get_eic_project_activity_data.custom_EIC_Horizon_Europe_Project_information_Cut_Off_Date",
                         "custom_eic_sr_international_trade_fairs_data_region": "input.survey_international_trade_fairs_region",
                         "custom_eic_sr_international_trade_fairs_data_type_of_events": "input.survey_international_trade_fairs_type_of_events"
                     },

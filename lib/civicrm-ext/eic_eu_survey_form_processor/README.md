@@ -147,17 +147,17 @@ Contains all ManagedEntities that will be loaded upon installation or (re)enabli
 | OptionGroup           | contains Activity `EIC Accelerator Onboarding Survey Data` (machine name `eic_accelerator_onboarding_survey`) |
 | RelationshipType      | `Main contact for` (Individual to Organisation)                 |
 | RelationshipType      | `Contact for` (Individual to Organisation)                      |
-| CustomGroup           | `EIC Awardee information` for `Case` of case type `EIC Awardee Onboarding` |
+| CustomGroup           | `EIC Awardee information` for `Case` — shown on the `EIC Awardee Onboarding` case type **and on all 10 Service Request case types** (`eic_sr_*`). Holds the EIC project context (PIC, Project ID, Acronym, project activity link, Funding, Category, Funding Type, Cut-Off-Date). All fields are **editable** (the case can also be created manually). |
 | CustomGroup           | `EIC Accelerator Onboarding Survey Data` (machine name `eic_accelerator_onboarding_survey_data`) for `Activity` of activity type `eic_accelerator_onboarding_survey` |
 | CustomGroup           | `Self-Assessed information` (machine name `EU_Survey_Company_Data`) for `Contact` of type `Organisation`. All fields are view-only. TRL/CRL/BRL/FRL are multi-selects that cumulate the Awardee's self-assessed values across all linked projects. |
 | CustomGroup           | `Survey - Company Data` (machine name `srm_survey_company_snapshot`) on the survey `Activity` — a collapsed snapshot of the company fields (name, PIC, website, genders, TRL/CRL/BRL/FRL) so the activity holds the full survey response. Reusable across surveys (add future survey activity types to its `extends_entity_column_value`). |
 | CustomGroup           | `Survey - Main Contact Data` (machine name `srm_survey_contact_snapshot`) on the survey `Activity` — a collapsed snapshot of the main contact fields (name, email, phone, role). Reusable across surveys. |
 | CaseType (x10)        | Service Request cases, one per BAS programme (machine names `eic_sr_*`): `Service Request - EIC VentureMatch`, `- EIC Coaching`, `- EIC Ecosystem Partnership`, `- EIC Global Business Expansion`, `- EIC Innovation Procurement`, `- EIC Women Leadership Programme`, `- EIC InnoNext`, `- EIC Corporate Partnership`, `- EIC International Trade Fairs`, `- EIC Community` (bonus, TBD) |
-| CustomGroup (x10)     | One context group per Service Request case type (machine names `eic_sr_*_data`), each with an `EU Survey (activity)` reference back to the originating survey activity, plus per-programme context fields |
+| CustomGroup (x10)     | One context group per Service Request case type (machine names `eic_sr_*_data`) holding the per-programme context fields. These are now **editable** (the SR case can be created manually). The former `EU Survey (activity)` reference field has been **removed** from every SR group — the survey link is redundant (the survey activity already lives on the Onboarding case, and each SR now carries the EIC project context via the shared `EIC Awardee information` group). `eic_sr_innonext_data` and `eic_sr_community_data` currently hold only the group definition (no context fields). |
 
 **Onboarding case status.** When the EU Survey activity is created and assigned to the matched Onboarding case, the survey import processor sets that case's status to `Onboarded` (via the `UpdateCaseStatus` action, with a logged "Change Case Status" activity). This only runs when a matching EU-Survey case is found. The status value `6` is used directly: unlike case-type ids, the `Onboarded` `case_status` option value is a managed OptionValue with an explicitly forced `value => '6'` (see `nc_config/managed/040_CaseStatuses.mgd.php`), so it is deterministic across environments and safe to reference by value.
 
-**Requirement 7 — Service Request cases.** When the EU Survey activity is created, the survey import processor creates a distinct Service Request case per BAS programme whose trigger answer matches. Each Service Request case is created with status `Requested` (`case_status` value `7`). Case Coordinator is left empty; each case links back to the EU Survey activity.
+**Requirement 7 — Service Request cases.** When the EU Survey activity is created, the survey import processor creates a distinct Service Request case per BAS programme whose trigger answer matches. Each Service Request case is created with status `Requested` (`case_status` value `7`). Case Coordinator is left empty. Each Service Request case is populated with the shared `EIC Awardee information` group (the EIC project context of the beneficiary — PIC, Project ID, Acronym, project activity link, Funding, Category, Funding Type, Cut-Off-Date), copied from the matched EIC Project activity (left empty if no project matched). The former per-SR `EU Survey (activity)` link field has been removed as redundant — the survey activity is already held on the Onboarding case.
 
 **Service Request case statuses.** The Service Request case types (`eic_sr_*`) restrict the statuses offered to `Requested`, `Planning`, `Open`, `Resolved`, `Closed`, `Declined` (via the `statuses` key in each case type definition). `Onboarded` is intentionally excluded from Service Request cases — it remains active and is only used in the Onboarding context. `Requested` (value `7`) and `Planning` (value `8`) are managed `case_status` OptionValues (see `nc_config/managed/040_CaseStatuses.mgd.php`) with explicitly forced values, so they are deterministic across environments and safe to reference by value. Triggers: VentureMatch/Coaching/Global Business Expansion/Innovation Procurement/Women Leadership/Corporate Partnership/International Trade Fairs are Yes/No questions (the FP input is a `Boolean` with `return_as: "boolean"`) and fire on `ParameterHasValue` = `True`; Ecosystem Partnership fires on `ParameterIsNotEmpty` for the "other support" answer (empty = not selected); InnoNext on the "main challenge" answer containing "Human Resources". EIC Community is shipped but not triggered (bonus, TBD). Case type ids are resolved by name via `GetCaseTypeIdByName` (no hardcoded ids); trigger conditions use the `action-provider` conditions `ParameterHasValue`, `ParameterIsNotEmpty`, and `CompareParameterRegex` (contains). A Yes/No question must NOT use `YesNoOptionList` for a trigger because it always returns `1`.
 
@@ -232,21 +232,35 @@ Case - CustomFields
 
 The following custom-groups and fields are made available through `ManagedEntities`.
 
+**`EIC Awardee information` is a shared, case-level project-context group.** It `extends` `Case`
+and is scoped (`extends_entity_column_value`) to **all 11 case types**: the `EIC Awardee Onboarding`
+case plus every Service Request case type (`eic_sr_venturematch`, `eic_sr_coaching`,
+`eic_sr_ecosystem_partnership`, `eic_sr_global_business_expansion`, `eic_sr_innovation_procurement`,
+`eic_sr_women_leadership`, `eic_sr_innonext`, `eic_sr_corporate_partnership`,
+`eic_sr_international_trade_fairs`, `eic_sr_community`). This lets each SR case carry the EIC project
+context of the beneficiary. **All fields are editable** (`is_view` is not set) so a case created
+manually can be filled in by hand; the survey/case imports still populate them automatically.
+
+On the Onboarding case the fields are populated by the case import; on each Service Request case they
+are populated by the Accelerator survey import from the matched EIC Project activity (they may be left
+empty when no project matches — a case can exist without a matched project). The `EIC Title` is left
+empty on Service Request cases (it is an Onboarding-specific title marker).
+
 | **CustomGroup**  | Title                   | Name                    |
 |------------------|-------------------------|-------------------------|
 |                  | EIC Awardee information | EIC_Awardee_information |
 
 | **CustomFields** | Label                   | Name                    | Type                                      |
 |------------------|-------------------------|-------------------------|-------------------------------------------|
-|                  | EIC Title               | EIC_Title               | Text                                      |
-|                  | Organisation PIC number | Organisation_PIC_number | Text                                      |
-|                  | EIC Project ID          | EIC_Project_ID          | Text                                      |
-|                  | EIC Project Acronym     | EIC_Project_Acronym     | Text                                      |
-|                  | EIC Project (activity)  | EIC_Project_Activity    | Entity Reference (FK to `Activity`)       |
-|                  | Funding                 | Project_Funding         | Text (copied from the matched EIC Project activity) |
-|                  | Category                | Project_Category        | Text (copied from the matched EIC Project activity) |
-|                  | Funding Type            | Project_Funding_Type    | Text (copied from the matched EIC Project activity) |
-|                  | Cut-Off-Date            | Project_Cut_Off_Date    | Text (copied from the matched EIC Project activity) |
+|                  | EIC Title               | EIC_Title               | Text (editable)                           |
+|                  | Organisation PIC number | Organisation_PIC_number | Text (editable)                           |
+|                  | EIC Project ID          | EIC_Project_ID          | Text (editable)                           |
+|                  | EIC Project Acronym     | EIC_Project_Acronym     | Text (editable)                           |
+|                  | EIC Project (activity)  | EIC_Project_Activity    | Entity Reference (FK to `Activity`) (editable) |
+|                  | Funding                 | Project_Funding         | Select (copied from the matched EIC Project activity; editable) |
+|                  | Category                | Project_Category        | Select (copied from the matched EIC Project activity; editable) |
+|                  | Funding Type            | Project_Funding_Type    | Select (copied from the matched EIC Project activity; editable) |
+|                  | Cut-Off-Date            | Project_Cut_Off_Date    | Date (copied from the matched EIC Project activity; editable) |
 
 
 Activity - Custom Fields
