@@ -187,18 +187,33 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
   public function upgrade_1012(): bool {
     $this->ctx->log->info('Syncing eulogin custom field column_name metadata to match renamed column');
 
-    CRM_Core_DAO::executeQuery(
-      'UPDATE civicrm_custom_field cf
+    // Some environments may no longer have this group/field. Only proceed when
+    // the eulogin custom field still exists with the stale column_name.
+    $fieldId = CRM_Core_DAO::singleValueQuery(
+      'SELECT cf.id
+       FROM civicrm_custom_field cf
        JOIN civicrm_custom_group cg ON cg.id = cf.custom_group_id
-       SET cf.column_name = %1
-       WHERE cg.name = %2 AND cf.name = %3 AND cf.column_name = %4',
+       WHERE cg.name = %1 AND cf.name = %2 AND cf.column_name = %3',
       [
-        1 => ['eulogin', 'String'],
-        2 => ['EIC_Awardee_representative', 'String'],
-        3 => ['eulogin', 'String'],
-        4 => ['funds_vintage_year', 'String'],
+        1 => ['EIC_Awardee_representative', 'String'],
+        2 => ['eulogin', 'String'],
+        3 => ['funds_vintage_year', 'String'],
       ]
     );
+
+    if (empty($fieldId)) {
+      $this->ctx->log->info('EIC_Awardee_representative.eulogin field with stale column_name not found; nothing to sync.');
+      return TRUE;
+    }
+
+    CRM_Core_DAO::executeQuery(
+      'UPDATE civicrm_custom_field SET column_name = %1 WHERE id = %2',
+      [
+        1 => ['eulogin', 'String'],
+        2 => [$fieldId, 'Integer'],
+      ]
+    );
+    $this->ctx->log->info("Updated custom field {$fieldId} column_name to eulogin.");
 
     return TRUE;
   }
