@@ -1,5 +1,4 @@
 {
-
     "title": "EIC Awardee Onboarding Default Case",
     "name": "eic_awardee_onboarding_default_case",
     "is_active": "1",
@@ -7,6 +6,8 @@
     "output_handler": "OutputAllActionOutput",
     "output_handler_configuration": [],
     "enable_default_data": "0",
+    "default_data_output_configuration": [],
+    "calculation_output_configuration": [],
     "permission": "",
     "inputs": [],
     "actions": [
@@ -207,7 +208,6 @@
     "validate_actions": [],
     "validate_validators": [],
     "calculate_actions": [],
-    "default_data_output_configuration": [],
-    "calculation_output_configuration": [],
-    "calculations_configuration_url": "http://localhost/dev_eic/civicrm/admin/automation/formprocessor/calculationconfiguration?action=update&reset=1&id=22"
+    "uploaded_source_file": "",
+    "calculations_configuration_url": "https:\/\/srm.tst.eic.ec.europa.eu\/civicrm\/admin\/automation\/formprocessor\/calculationconfiguration?action=update&reset=1&id=3"
 }
