@@ -29,6 +29,10 @@ class CRM_EicEuSurveyFormProcessor_Importer_CiviSettingsJsonImporter {
   public function import(string $jsonFilePath): bool {
     $jsonData = $this->getJsonFromConfigFile($jsonFilePath);
 
+    // Settings are stored with APIv4 field naming conventions. We need to change them back to APIv3.
+    CRM_EicEuSurveyFormProcessor_Importer_XcmProfileRemapper::create(CRM_EicEuSurveyFormProcessor_Importer_XcmProfileRemapper::MAP_API4_TO_API3)
+      ->processXcmSettings($jsonData);
+
     $name = $this->getSettingsName($jsonData);
     $value = $this->getSettingsValue($jsonData);
 
@@ -91,7 +95,7 @@ class CRM_EicEuSurveyFormProcessor_Importer_CiviSettingsJsonImporter {
    * @throws \RuntimeException
    * @return TJsonData
    */
-  protected function getJsonFromConfigFile(string $jsonFilePath) {
+  public function getJsonFromConfigFile(string $jsonFilePath) {
     if (!is_readable($jsonFilePath)) {
       throw new \RuntimeException(
         'Config file has no read permissions or does not exist: ' . $jsonFilePath

@@ -70,8 +70,8 @@
             "mapping": {
                 "custom_EIC_Organisation_identifiers_PIC": "input.org_pic_number"
             },
-            "delay_configuration": "",
-            "condition_configuration": ""
+            "condition_configuration": "",
+            "delay_configuration": ""
         },
         {
             "pid": "0",
@@ -178,8 +178,8 @@
                 "variable_value_1": "",
                 "variable_value_2": ""
             },
-            "delay_configuration": "",
-            "condition_configuration": ""
+            "condition_configuration": "",
+            "delay_configuration": ""
         }
     ],
     "default_data_inputs": [],
@@ -188,5 +188,5 @@
     "validate_validators": [],
     "calculate_actions": [],
     "uploaded_source_file": "",
-    "calculations_configuration_url": "https:\/\/srm.dev.eic.ec.europa.eu\/civicrm\/admin\/automation\/formprocessor\/calculationconfiguration?action=update&reset=1&id=10"
+    "calculations_configuration_url": "https:\/\/srm.tst.eic.ec.europa.eu\/civicrm\/admin\/automation\/formprocessor\/calculationconfiguration?action=update&reset=1&id=4"
 }

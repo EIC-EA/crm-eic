@@ -131,7 +131,6 @@ function eic_eu_survey_form_processor_civicrm_enable(): void {
 function eic_eu_survey_form_processor_civicrm_managed($params): void {
   \Civi::log()->debug('Load Managed Entities');
   _eic_eu_survey_form_processor_civix_civicrm_install();
-  eic_eu_survey_form_processor_civicrm_postInstall();
 }
 
 /**
@@ -144,6 +143,7 @@ function eic_eu_survey_form_processor_civicrm_managed($params): void {
  * @throws Exception
  */
 function eic_eu_survey_form_processor_civicrm_postInstall(): void {
+  CRM_EicEuSurveyFormProcessor_Upgrader::postInstallSetup();
   load_civicrm_settings_callback();
   load_form_processor_callback();
 }

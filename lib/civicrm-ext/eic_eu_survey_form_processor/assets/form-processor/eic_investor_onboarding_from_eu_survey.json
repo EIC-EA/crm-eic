@@ -1387,5 +1387,5 @@
     "validate_validators": [],
     "calculate_actions": [],
     "uploaded_source_file": "",
-    "calculations_configuration_url": "http:\/\/localhost:8080\/civicrm\/admin\/automation\/formprocessor\/calculationconfiguration?action=update&reset=1&id=6"
+    "calculations_configuration_url": "https:\/\/srm.tst.eic.ec.europa.eu\/civicrm\/admin\/automation\/formprocessor\/calculationconfiguration?action=update&reset=1&id=7"
 }

@@ -18,7 +18,9 @@
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -31,7 +33,9 @@
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -44,7 +48,9 @@
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -57,7 +63,9 @@
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -70,7 +78,9 @@
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -78,12 +88,14 @@
         {
             "weight": "6",
             "include_formatted_params": "0",
-            "title": "Primary Sector/Industry Cluster",
+            "title": "Primary Sector\/Industry Cluster",
             "name": "primary_sector_cluster",
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -96,7 +108,9 @@
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -109,7 +123,9 @@
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -122,7 +138,9 @@
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -135,7 +153,9 @@
             "type": "Boolean",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"return_as": "boolean"},
+            "configuration": {
+                "return_as": "boolean"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -161,7 +181,9 @@
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -174,7 +196,9 @@
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -200,7 +224,9 @@
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -208,12 +234,14 @@
         {
             "weight": "16",
             "include_formatted_params": "0",
-            "title": "Existing Metrics / Financial Model Link",
+            "title": "Existing Metrics \/ Financial Model Link",
             "name": "link_financial_model",
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -221,12 +249,14 @@
         {
             "weight": "17",
             "include_formatted_params": "0",
-            "title": "Existing Metrics / Data Room Link",
+            "title": "Existing Metrics \/ Data Room Link",
             "name": "link_data_room",
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -239,7 +269,9 @@
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -252,7 +284,9 @@
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -260,12 +294,14 @@
         {
             "weight": "20",
             "include_formatted_params": "0",
-            "title": "Country of Incorporation / Primary Operation",
+            "title": "Country of Incorporation \/ Primary Operation",
             "name": "country_incorporation",
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -278,7 +314,9 @@
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -291,7 +329,9 @@
             "type": "String",
             "is_required": "0",
             "default_value": "",
-            "configuration": {"trim": "1"},
+            "configuration": {
+                "trim": "1"
+            },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
             "validators": []
@@ -314,7 +354,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "1": {
+        "2": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get EIC Project activity data",
@@ -327,10 +367,10 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "2": {
+        "4": {
             "pid": "0",
             "conditional_processing_group": "0",
-            "title": "Find or Create Beneficiary Company (LinkedIn / name / website)",
+            "title": "Find or Create Beneficiary Company (LinkedIn \/ name \/ website)",
             "name": "get_or_create_company",
             "type": "XcmGetOrCreate",
             "configuration": {
@@ -362,7 +402,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "3": {
+        "5": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR VentureMatch: case type name",
@@ -375,7 +415,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "4": {
+        "6": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "SR VentureMatch: resolve case type id",
@@ -388,17 +428,14 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "5": {
+        "7": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Find existing VentureMatch case for the company",
             "name": "find_venturematch_case",
             "type": "GetCaseDataByCustomField",
             "configuration": [],
-            "mapping": {
-                "contact_id": "action.get_or_create_company.contact_id",
-                "case_type_id": "action.sr_venturematch_case_type_id.id"
-            },
+            "mapping": [],
             "condition_configuration": {
                 "name": "ParameterIsNotEmpty",
                 "configuration": [],
@@ -408,7 +445,7 @@
             },
             "delay_configuration": ""
         },
-        "6": {
+        "8": {
             "pid": "0",
             "conditional_processing_group": "1",
             "title": "Create VentureMatch case if none exists",
@@ -476,7 +513,7 @@
                 }
             ]
         },
-        "7": {
+        "9": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Effective case id: the found case (if any)",
@@ -485,9 +522,7 @@
             "configuration": {
                 "value": ""
             },
-            "mapping": {
-                "value": "action.find_venturematch_case.id"
-            },
+            "mapping": [],
             "condition_configuration": {
                 "name": "ParameterIsNotEmpty",
                 "configuration": [],
@@ -497,7 +532,7 @@
             },
             "delay_configuration": ""
         },
-        "8": {
+        "10": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Effective case id: the newly-created case (if no case was found)",
@@ -506,9 +541,7 @@
             "configuration": {
                 "value": ""
             },
-            "mapping": {
-                "value": "action.create_vm_case_group.create_vm_case.case_id"
-            },
+            "mapping": [],
             "condition_configuration": {
                 "name": "ParameterIsEmpty",
                 "configuration": [],
@@ -518,7 +551,7 @@
             },
             "delay_configuration": ""
         },
-        "9": {
+        "11": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Effective case id (found or created)",
@@ -543,7 +576,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "10": {
+        "12": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Find or Create Founder contact (match on email)",
@@ -568,7 +601,7 @@
             },
             "delay_configuration": ""
         },
-        "11": {
+        "13": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get 'Founder of' relationship type name",
@@ -581,7 +614,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "12": {
+        "14": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Resolve 'Founder of' relationship type id",
@@ -594,7 +627,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "13": {
+        "15": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Link Founder to company (Founder of) on the case",
@@ -627,7 +660,7 @@
             },
             "delay_configuration": ""
         },
-        "14": {
+        "16": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Create 'EU Survey received' Task activity on the case",
@@ -670,5 +703,6 @@
     "validate_actions": [],
     "validate_validators": [],
     "calculate_actions": [],
-    "calculations_configuration_url": ""
+    "uploaded_source_file": "",
+    "calculations_configuration_url": "https:\/\/srm.tst.eic.ec.europa.eu\/civicrm\/admin\/automation\/formprocessor\/calculationconfiguration?action=update&reset=1&id=8"
 }
