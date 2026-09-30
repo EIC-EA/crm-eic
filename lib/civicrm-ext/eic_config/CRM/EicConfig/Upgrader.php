@@ -176,4 +176,31 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     return TRUE;
   }
 
+  /**
+   * Sync the EIC Awardee representative "eulogin" custom field metadata so its
+   * `column_name` matches the physical column renamed in upgrade_1011.
+   *
+   * upgrade_1011 renamed the DB column from `funds_vintage_year` back to `eulogin` but did
+   * not update `civicrm_custom_field.column_name`, which CiviCRM uses to build
+   * its SELECTs. a no-op once corrected.
+   */
+  public function upgrade_1012(): bool {
+    $this->ctx->log->info('Syncing eulogin custom field column_name metadata to match renamed column');
+
+    CRM_Core_DAO::executeQuery(
+      'UPDATE civicrm_custom_field cf
+       JOIN civicrm_custom_group cg ON cg.id = cf.custom_group_id
+       SET cf.column_name = %1
+       WHERE cg.name = %2 AND cf.name = %3 AND cf.column_name = %4',
+      [
+        1 => ['eulogin', 'String'],
+        2 => ['EIC_Awardee_representative', 'String'],
+        3 => ['eulogin', 'String'],
+        4 => ['funds_vintage_year', 'String'],
+      ]
+    );
+
+    return TRUE;
+  }
+
 }
