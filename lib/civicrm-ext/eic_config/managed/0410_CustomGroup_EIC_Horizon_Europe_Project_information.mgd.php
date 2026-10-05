@@ -719,6 +719,26 @@ return [
     ],
   ],
   [
+    'name' => 'OptionGroup_Horizon_Europe_Project_Funding_Type_2_OptionValue_N_a',
+    'entity' => 'OptionValue',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'EIC_Horizon_Europe_Project_Funding_Type_2',
+        'label' => E::ts('n/a'),
+        'value' => 'n/a',
+        'name' => 'n_a',
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
     'name' => 'CustomGroup_EIC_Horizon_Europe_Project_information_CustomField_Funding_Type',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
