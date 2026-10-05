@@ -24,6 +24,28 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     }
     return $all_enabled;
   }
+
+  /**
+   * Disable one or more extensions by key.
+   *
+   * @param array $extensions List of extension keys to enable.
+   * @return bool TRUE if all extensions were enabled, FALSE if any were unavailable.
+   */
+  private function disable_extension(array $extensions): bool {
+    $statuses = \CRM_Extension_System::singleton()->getManager()->getStatuses();
+    $all_disabled = TRUE;
+    foreach ($extensions as $extension_name) {
+      $this->ctx->log->info("Disabling {$extension_name} extension");
+      if (isset($statuses[$extension_name])) {
+        civicrm_api3('Extension', 'disable', ['keys' => $extension_name]);
+      } else {
+        $this->ctx->log->warning("{$extension_name} extension not available, skipping");
+        $all_enabled = FALSE;
+      }
+    }
+    return $all_disabled;
+  }
+
   /**
    * Enable the SES extension.
    */
@@ -216,6 +238,13 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     $this->ctx->log->info("Updated custom field {$fieldId} column_name to eulogin.");
 
     return TRUE;
+  }
+
+  /**
+   * Disable unused extensions
+   */
+  public function upgrade_1013(): bool {
+    return $this->disable_extension(['chart_kit', 'civicalendar']);
   }
 
 }
