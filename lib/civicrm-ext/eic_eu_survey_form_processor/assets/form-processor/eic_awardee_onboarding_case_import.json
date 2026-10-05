@@ -124,7 +124,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "5": {
+        "6": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Find EIC Project activity by Project Number",
@@ -146,7 +146,7 @@
             },
             "delay_configuration": ""
         },
-        "6": {
+        "7": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get EIC Project activity data",
@@ -165,7 +165,7 @@
             },
             "delay_configuration": ""
         },
-        "7": {
+        "8": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get company using the PIC",
@@ -187,7 +187,7 @@
             },
             "delay_configuration": ""
         },
-        "8": {
+        "9": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "EIC Onboarding title Full",
@@ -212,7 +212,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "9": {
+        "10": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Get Beneficiary Company by PIC number or website",
@@ -320,7 +320,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "10": {
+        "11": {
             "pid": "0",
             "conditional_processing_group": "0",
             "title": "Find EU-Survey Case by title and PIC number",
@@ -339,8 +339,6 @@
                 "custom_EIC_Awardee_information_Project_Cut_Off_Date": "",
                 "custom_Client_Roles_Investor": "",
                 "custom_Client_Roles_EIC_Awardee": "",
-                "custom_EU_Survey_Investor_Onboarding_Organisation_name": "",
-                "custom_EU_Survey_Investor_Onboarding_Organisation_domain": "",
                 "custom_eic_sr_coaching_data_EU_Survey_Activity": "",
                 "custom_eic_sr_coaching_data_main_challenge": "",
                 "custom_eic_sr_community_data_EU_Survey_Activity": "",
@@ -401,7 +399,7 @@
             "condition_configuration": "",
             "delay_configuration": ""
         },
-        "11": {
+        "13": {
             "pid": "0",
             "conditional_processing_group": "1",
             "title": "Create Case if not exists already",
@@ -474,8 +472,6 @@
                         "custom_EIC_Awardee_information_Project_Cut_Off_Date": "action.get_eic_project_activity.custom_EIC_Horizon_Europe_Project_information_Cut_Off_Date",
                         "custom_Client_Roles_Investor": "",
                         "custom_Client_Roles_EIC_Awardee": "",
-                        "custom_EU_Survey_Investor_Onboarding_Organisation_name": "",
-                        "custom_EU_Survey_Investor_Onboarding_Organisation_domain": "",
                         "custom_eic_sr_coaching_data_EU_Survey_Activity": "",
                         "custom_eic_sr_coaching_data_main_challenge": "",
                         "custom_eic_sr_community_data_EU_Survey_Activity": "",
@@ -534,5 +530,5 @@
     "validate_validators": [],
     "calculate_actions": [],
     "uploaded_source_file": "",
-    "calculations_configuration_url": "https:\/\/srm.dev.eic.ec.europa.eu\/civicrm\/admin\/automation\/formprocessor\/calculationconfiguration?action=update&reset=1&id=23"
+    "calculations_configuration_url": "https:\/\/srm.tst.eic.ec.europa.eu\/civicrm\/admin\/automation\/formprocessor\/calculationconfiguration?action=update&reset=1&id=2"
 }

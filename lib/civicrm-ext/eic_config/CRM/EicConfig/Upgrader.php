@@ -24,6 +24,28 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     }
     return $all_enabled;
   }
+
+  /**
+   * Disable one or more extensions by key.
+   *
+   * @param array $extensions List of extension keys to enable.
+   * @return bool TRUE if all extensions were enabled, FALSE if any were unavailable.
+   */
+  private function disable_extension(array $extensions): bool {
+    $statuses = \CRM_Extension_System::singleton()->getManager()->getStatuses();
+    $all_disabled = TRUE;
+    foreach ($extensions as $extension_name) {
+      $this->ctx->log->info("Disabling {$extension_name} extension");
+      if (isset($statuses[$extension_name])) {
+        civicrm_api3('Extension', 'disable', ['keys' => $extension_name]);
+      } else {
+        $this->ctx->log->warning("{$extension_name} extension not available, skipping");
+        $all_enabled = FALSE;
+      }
+    }
+    return $all_disabled;
+  }
+
   /**
    * Enable the SES extension.
    */
@@ -174,6 +196,55 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     }
 
     return TRUE;
+  }
+
+  /**
+   * Sync the EIC Awardee representative "eulogin" custom field metadata so its
+   * `column_name` matches the physical column renamed in upgrade_1011.
+   *
+   * upgrade_1011 renamed the DB column from `funds_vintage_year` back to `eulogin` but did
+   * not update `civicrm_custom_field.column_name`, which CiviCRM uses to build
+   * its SELECTs. a no-op once corrected.
+   */
+  public function upgrade_1012(): bool {
+    $this->ctx->log->info('Syncing eulogin custom field column_name metadata to match renamed column');
+
+    // Some environments may no longer have this group/field. Only proceed when
+    // the eulogin custom field still exists with the stale column_name.
+    $fieldId = CRM_Core_DAO::singleValueQuery(
+      'SELECT cf.id
+       FROM civicrm_custom_field cf
+       JOIN civicrm_custom_group cg ON cg.id = cf.custom_group_id
+       WHERE cg.name = %1 AND cf.name = %2 AND cf.column_name = %3',
+      [
+        1 => ['EIC_Awardee_representative', 'String'],
+        2 => ['eulogin', 'String'],
+        3 => ['funds_vintage_year', 'String'],
+      ]
+    );
+
+    if (empty($fieldId)) {
+      $this->ctx->log->info('EIC_Awardee_representative.eulogin field with stale column_name not found; nothing to sync.');
+      return TRUE;
+    }
+
+    CRM_Core_DAO::executeQuery(
+      'UPDATE civicrm_custom_field SET column_name = %1 WHERE id = %2',
+      [
+        1 => ['eulogin', 'String'],
+        2 => [$fieldId, 'Integer'],
+      ]
+    );
+    $this->ctx->log->info("Updated custom field {$fieldId} column_name to eulogin.");
+
+    return TRUE;
+  }
+
+  /**
+   * Disable unused extensions
+   */
+  public function upgrade_1013(): bool {
+    return $this->disable_extension(['chart_kit', 'civicalendar']);
   }
 
 }
