@@ -1,0 +1,11 @@
+--- a/CRM/Advimport/BAO/Advimport.php.orig	2026-10-05 14:02:29.195894572 +0000
++++ b/CRM/Advimport/BAO/Advimport.php	2026-10-05 14:03:16.204783129 +0000
+@@ -127,7 +127,7 @@
+       1 => [$advimport_id, 'Positive'],
+     ]);
+ 
+-    $batch_max = 50;
++    $batch_max = Civi::settings()->get('advimport_batch_max') ?? 10;
+     $batch = [];
+ 
+     // Shown in the queue status
