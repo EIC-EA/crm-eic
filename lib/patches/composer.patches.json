@@ -9,6 +9,9 @@
     },
     "civicrm-ext/civirules": {
       "CiviRules - CRM_Civirules_BAO_CiviRulesRuleContidion argument #1 type error fix": "./patches/civicrm/civirules-type-cast-fix.patch"
+    },
+    "civicrm-ext/advimport": {
+      "Advanced Import - Set batches size": "./patches/civicrm/advimport_max_batch.patch"
     }
   }
 }

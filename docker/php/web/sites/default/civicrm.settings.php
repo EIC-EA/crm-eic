@@ -700,3 +700,5 @@ $civicrm_setting['domain']['ses_sdk_auth'] = '1';
 // Set eic_eu_survey_form_processor to update settings when it exists
 $civicrm_setting['domain']['eic_eu_survey_settings_import_mode'] = true;
 $civicrm_setting['domain']['eic_eu_survey_form_processor_import_mode'] = true;
+
+$civicrm_setting['domain']['advimport_batch_max'] = 10;
