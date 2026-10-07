@@ -1,10 +1,10 @@
 ARG PHP_VERSION=8.4
-ARG DRUPAL_VERSION=11.3
+ARG DRUPAL_VERSION=11.4.8
 ARG ENV
 
 FROM drupal:${DRUPAL_VERSION}-php${PHP_VERSION}-fpm
 
-ARG CIVICRM_VERSION=6.17.2
+ARG CIVICRM_VERSION=6.18
 
 # install the PHP extensions we need
 RUN set -eux; \
@@ -91,7 +91,9 @@ RUN set -eux; \
 	# Redirect after login
 	composer require drupal/user_redirect:^2.0 && \
 	# Masquerade
-	composer require drupal/masquerade
+	composer require drupal/masquerade && \
+	# Log stdout
+	composer require drupal/log_stdout
 
 # Install CiviCRM extensions
 RUN composer config --no-plugins allow-plugins.wikimedia/composer-merge-plugin true && \
