@@ -5,7 +5,7 @@
      ]);
  
 -    $batch_max = 50;
-+    $batch_max = Civi::settings()->get('advimport_batch_max') ?? 10;
++    $batch_max = Civi::settings()->get('import_batch_size') ?? 50;
      $batch = [];
  
      // Shown in the queue status

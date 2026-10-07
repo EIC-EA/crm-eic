@@ -1,0 +1,5 @@
+_core:
+  default_config_hash: 3r0WrQSI2vBZxdCVyiN8ZHRLZZE-9YeL4NvP54978uc
+format: '[@severity] [@type] [@date] @message | uid: @uid | request-uri: @request_uri | refer: @referer | ip:  @ip | link: @link'
+use_stderr: '1'
+severity_level: 3
