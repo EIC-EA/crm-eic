@@ -208,9 +208,9 @@ if (!defined('CIVICRM_TEMPLATE_COMPILEDIR')) {
  * https://lab.civicrm.org/dev/core/issues/1073
  *
  */
-//if (!defined('CIVICRM_TEMPLATE_COMPILE_CHECK')) {
-//  define('CIVICRM_TEMPLATE_COMPILE_CHECK', FALSE);
-//}
+if (!defined('CIVICRM_TEMPLATE_COMPILE_CHECK')) {
+  define('CIVICRM_TEMPLATE_COMPILE_CHECK', FALSE);
+}
 
 /**
  * Smarty escape on output.
@@ -701,4 +701,8 @@ $civicrm_setting['domain']['ses_sdk_auth'] = '1';
 $civicrm_setting['domain']['eic_eu_survey_settings_import_mode'] = true;
 $civicrm_setting['domain']['eic_eu_survey_form_processor_import_mode'] = true;
 
-$civicrm_setting['domain']['advimport_batch_max'] = 10;
+// Lower import batch size in order to be below 30 seconds
+$civicrm_setting['domain']['import_batch_size'] = 10;
+
+// Send CiviCRM logs to the CMS (Drupal) log
+$civicrm_setting['domain']['userFrameworkLogging'] = 1;
