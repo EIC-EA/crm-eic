@@ -2660,27 +2660,4 @@ return [
       ],
     ],
   ],
-  [
-    'name' => 'CustomGroup_EIC_Organisation_identifiers_CustomField_Company_Domain_Name',
-    'entity' => 'CustomField',
-    'cleanup' => 'unused',
-    'update' => 'unmodified',
-    'params' => [
-      'version' => 4,
-      'values' => [
-        'custom_group_id.name' => 'EIC_Organisation_identifiers',
-        'name' => 'Company_Domain_Name',
-        'label' => E::ts('Company Domain Name'),
-        'html_type' => 'Text',
-        'text_length' => 512,
-        'note_columns' => 60,
-        'note_rows' => 4,
-        "column_name" => "company_domain_name",
-      ],
-      'match' => [
-        'name',
-        'custom_group_id',
-      ],
-    ],
-  ],
 ];

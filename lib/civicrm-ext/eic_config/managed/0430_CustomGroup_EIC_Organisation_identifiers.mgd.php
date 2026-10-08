@@ -13,9 +13,13 @@ return [
         'name' => 'EIC_Organisation_identifiers',
         'title' => E::ts('Organisation identifiers'),
         'extends' => 'Organization',
-        'extends_entity_column_value' => ['EIC_Awardee', 'Investor', 'EIC_Organisation'],
+        'extends_entity_column_value' => [
+          'EIC_Awardee',
+          'Investor',
+          'EIC_Organisation',
+        ],
         'help_pre' => E::ts('<p>Unique identifiers used to identified the organisation</p>'),
-        'weight' => 4,
+        'weight' => 10,
         'collapse_adv_display' => TRUE,
         'is_public' => FALSE,
         'table_name' => 'civicrm_value_srm_org_ids'
@@ -64,6 +68,52 @@ return [
         'note_rows' => 4,
         'in_selector' => TRUE,
         'column_name' => 'pic'
+      ],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
+    ],
+  ],
+  [
+    'name' => 'CustomGroup_EIC_Organisation_identifiers_CustomField_Company_Domain_Name',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'EIC_Organisation_identifiers',
+        'name' => 'Company_Domain_Name',
+        'label' => E::ts('Company Domain Name'),
+        'html_type' => 'Text',
+        'text_length' => 512,
+        'note_columns' => 60,
+        'note_rows' => 4,
+        "column_name" => "company_domain_name",
+      ],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
+    ],
+  ],
+  [
+    'name' => 'CustomGroup_EIC_Organisation_identifiers_CustomField_LinkedIn_URL',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'EIC_Organisation_identifiers',
+        'name' => 'LinkedIn_URL',
+        'label' => E::ts('Company LinkedIn Profile URL'),
+        'data_type' => 'Link',
+        'html_type' => 'Link',
+        'help_pre' => E::ts('The company\'s LinkedIn profile URL. Received through the EIC VM Fundraising Assessment EU-Survey.'),
+        'text_length' => 512,
+        'column_name' => 'linkedin_url'
       ],
       'match' => [
         'name',

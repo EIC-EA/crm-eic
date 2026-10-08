@@ -355,7 +355,7 @@ return [
       'values' => [
         'option_group_id.name' => 'EIC_Awardee_Additionnal_Information_SME_vs_mid_cap_status',
         'label' => E::ts('SME'),
-        'value' => 'SME',
+        'value' => '3',
         'name' => 'SME',
       ],
       'match' => [
@@ -538,7 +538,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_Additionnal_Information_CustomField_Legal_personality',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [

@@ -25,7 +25,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_representative_CustomField_eulogin',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
