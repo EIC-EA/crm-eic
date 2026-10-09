@@ -35,8 +35,25 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+      valkey:
+        condition: service_healthy
     env_file:
       - .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+
+  valkey:
+    image: valkey/valkey:8-alpine
+    container_name: ${APP_NAME}_valkey
+    command: valkey-server --save "" --appendonly no
+    ports:
+      - ${REDIS_PORT}:6379
+    healthcheck:
+      test: [ "CMD", "valkey-cli", "ping" ]
+      interval: 2s
+      timeout: 10s
+      retries: 5
 
   mysql:
     image: mariadb:10.6
