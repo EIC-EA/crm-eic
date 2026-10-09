@@ -6,7 +6,7 @@ return [
     'name' => 'CaseType_eic_sr_venturematch',
     'entity' => 'CaseType',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -28,6 +28,14 @@ return [
             [
               'name' => 'Task',
             ],
+          ],
+          'statuses' => [
+            'Requested',
+            'Planning',
+            'Open',
+            'Resolved',
+            'Closed',
+            'Declined',
           ],
           'activitySets' => [
             [
@@ -66,14 +74,6 @@ return [
               // direction: name_b_a = "Founder is").
               'name' => 'Founder is',
             ],
-          ],
-          'statuses' => [
-            'Requested',
-            'Planning',
-            'Open',
-            'Resolved',
-            'Closed',
-            'Declined',
           ],
         ],
       ],

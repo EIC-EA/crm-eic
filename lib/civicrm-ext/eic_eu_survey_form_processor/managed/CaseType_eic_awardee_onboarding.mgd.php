@@ -11,7 +11,7 @@ return [
     // CiviCRM stops updating a case type once it exists or has been touched,
     // which caused environments to drift (e.g. showing a stale 'KAM for' role
     // instead of the single 'KAM is' manager role defined here).
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
