@@ -899,3 +899,36 @@ $config['civicrmtheme.settings']['admin_theme'] = 'claro';
 $config['civicrmtheme.settings']['public_theme'] = 'claro';
 
 $settings['uuid'] = '29152bc4-9bfc-459f-bd17-d7c3ad64b4ec';
+
+/**
+ * Redis caching — only wire it up when the module is present.
+ */
+if (extension_loaded('redis') && file_exists($app_root . '/modules/contrib/redis/src/Cache/CacheBackendFactory.php')) {
+  $class_loader->addPsr4('Drupal\\redis\\', 'modules/contrib/redis/src');
+
+  $settings['redis.connection']['host'] = getenv('REDIS_HOST');
+  $settings['redis.connection']['port'] = getenv('REDIS_PORT');
+  $settings['cache']['default'] = 'cache.backend.redis';
+  $settings['cache_prefix'] = 'srm_';
+
+  $settings['bootstrap_container_definition'] = [
+    'parameters' => [],
+    'services' => [
+      'redis.factory' => ['class' => 'Drupal\redis\ClientFactory'],
+      'cache.backend.redis' => [
+        'class' => 'Drupal\redis\Cache\CacheBackendFactory',
+        'arguments' => ['@redis.factory', '@cache_tags_provider.container', '@serialization.phpserialize'],
+      ],
+      'cache.container' => [
+        'class' => '\Drupal\redis\Cache\PhpRedis',
+        'factory' => ['@cache.backend.redis', 'get'],
+        'arguments' => ['container'],
+      ],
+      'cache_tags_provider.container' => [
+        'class' => 'Drupal\redis\Cache\RedisCacheTagsChecksum',
+        'arguments' => ['@redis.factory'],
+      ],
+      'serialization.phpserialize' => ['class' => 'Drupal\Component\Serialization\PhpSerialize'],
+    ],
+  ];
+}

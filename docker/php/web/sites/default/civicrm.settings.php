@@ -451,6 +451,15 @@ if (!defined('CIVICRM_DOMAIN_ID')) {
  * To not use any caching (not recommended), use a value of 'NoCache'
  *
  */
+
+if (getenv('REDIS_HOST'))
+{
+  define('CIVICRM_DB_CACHE_CLASS', 'Redis');
+  define('CIVICRM_DB_CACHE_HOST', getenv('REDIS_HOST'));
+  define('CIVICRM_DB_CACHE_PORT', getenv('REDIS_PORT') ?: 6379);
+  define('CIVICRM_DB_CACHE_PREFIX', 'civicrm');
+}
+
 if (!defined('CIVICRM_DB_CACHE_CLASS')) {
   define('CIVICRM_DB_CACHE_CLASS', 'ArrayCache');
 }
