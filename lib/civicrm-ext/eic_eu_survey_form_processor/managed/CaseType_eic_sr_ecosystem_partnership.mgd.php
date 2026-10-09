@@ -10,7 +10,7 @@ return [
     'name' => 'CaseType_eic_sr_ecosystem_partnership',
     'entity' => 'CaseType',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -32,6 +32,14 @@ return [
             [
               'name' => 'Task',
             ],
+          ],
+          'statuses' => [
+            'Requested',
+            'Planning',
+            'Open',
+            'Resolved',
+            'Closed',
+            'Declined',
           ],
           'activitySets' => [
             [
@@ -59,14 +67,6 @@ return [
               'name' => 'Case Coordinator',
               'manager' => '1',
             ],
-          ],
-          'statuses' => [
-            'Requested',
-            'Planning',
-            'Open',
-            'Resolved',
-            'Closed',
-            'Declined',
           ],
         ],
       ],
