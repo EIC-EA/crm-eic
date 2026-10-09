@@ -36,7 +36,27 @@ RUN set -eux; \
 # imagick is required for eg. Mosaico
     pecl install imagick && \
     docker-php-ext-enable imagick && \
-    pecl clear-cache \
+# excimer (sampling profiler) + redis are the arc-lamp client prerequisites.
+# arc-lamp's ArcLamp::collect() captures traces via excimer and publishes them
+# to a Redis pubsub channel consumed by the (separate) arc-lamp processor.
+    pecl install excimer && \
+    docker-php-ext-enable excimer && \
+    pecl install redis && \
+    docker-php-ext-enable redis && \
+# xdebug is a PECL extension (not bundled in php-src), so it must be installed
+# via pecl, not docker-php-ext-install. docker-php-ext-enable generates the
+# correct zend_extension loader ini, which the block below appends settings to.
+    pecl install xdebug && \
+    docker-php-ext-enable xdebug && \
+    pecl clear-cache&& \
+    { \
+      echo "xdebug.mode=\${XDEBUG_MODE:-debug,develop}"; \
+      echo "xdebug.start_with_request=\${XDEBUG_START_WITH_REQUEST:-yes}"; \
+      echo "xdebug.client_host=\${XDEBUG_CLIENT_HOST:-host.docker.internal}"; \
+      echo "xdebug.client_port=\${XDEBUG_CLIENT_PORT:-9003}"; \
+    } >> "$PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini" && \
+    mv "$PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini" \
+       "$PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini.disabled" \
 	; \
 	\
 # reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
@@ -93,7 +113,9 @@ RUN set -eux; \
 	# Masquerade
 	composer require drupal/masquerade && \
 	# Log stdout
-	composer require drupal/log_stdout
+	composer require drupal/log_stdout && \
+	# Redis for caching
+	composer require drupal/redis
 
 # Install CiviCRM extensions
 RUN composer config --no-plugins allow-plugins.wikimedia/composer-merge-plugin true && \
@@ -134,6 +156,9 @@ COPY docker/php/web/sites/default/settings.php /opt/drupal/web/sites/default/set
 COPY docker/php/web/sites/default/civicrm.settings.php /opt/drupal/web/sites/default/civicrm.settings.php
 COPY docker/php/docker.ini /usr/local/etc/php/conf.d/zzz_docker.ini
 COPY docker/php/deploy.sh /opt/drupal/deploy.sh
+COPY docker/php/arclamp-prepend.php /opt/arclamp/arclamp-prepend.php
+COPY docker/php/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 COPY lib/civicrm-ext /opt/drupal/civicrm-ext/
 # COPY lib/drupal-modules /opt/drupal/web/modules/custom/
@@ -148,3 +173,24 @@ RUN cd /opt/drupal/web/libraries/civicrm && \
 
 # Download AWS CA certificate for RDS
 RUN mkdir /opt/drupal/ssl/ && curl --output /opt/drupal/ssl/mysql-ca.pem https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
+
+# Arc Lamp client (profiling): download the Apache-2.0 licensed ArcLamp.php client
+# and register the auto_prepend bootstrap. The prepend ini is staged as .disabled
+# so profiling is OFF by default; the entrypoint activates it only when
+# ARCLAMP_ENABLE is truthy (same pattern as xdebug).
+RUN set -eux; \
+    curl -LsS \
+      https://raw.githubusercontent.com/wikimedia/performance-arc-lamp/master/ArcLamp.php \
+      -o /opt/arclamp/ArcLamp.php; \
+    echo "auto_prepend_file=/opt/arclamp/arclamp-prepend.php" \
+      > "$PHP_INI_DIR/conf.d/zzz_arclamp.ini.disabled"
+
+# Custom entrypoint: conditionally enables Xdebug (XDEBUG_ENABLE) and Arc Lamp
+# profiling (ARCLAMP_ENABLE) at container start, then chains to the base image's
+# docker-php-entrypoint via `exec docker-php-entrypoint "$@"`.
+#
+# Declaring a new ENTRYPOINT resets the inherited CMD to null, so the base
+# image's CMD ["php-fpm"] must be re-declared here, otherwise "$@" is empty and
+# the container exits 0 immediately after setup instead of starting FPM.
+ENTRYPOINT ["entrypoint.sh"]
+CMD ["php-fpm"]
