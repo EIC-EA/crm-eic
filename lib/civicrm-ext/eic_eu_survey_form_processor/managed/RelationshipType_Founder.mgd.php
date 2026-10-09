@@ -14,7 +14,7 @@ return [
     'name' => 'RelationshipType_Founder',
     'entity' => 'RelationshipType',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
