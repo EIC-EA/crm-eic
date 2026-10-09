@@ -6,7 +6,7 @@ return [
     'name' => 'CustomGroup_eic_sr_innovation_procurement_data',
     'entity' => 'CustomGroup',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -14,6 +14,7 @@ return [
         'title' => E::ts('EIC Innovation Procurement Service Request'),
         'extends' => 'Case',
         'extends_entity_column_value:name' => ['eic_sr_innovation_procurement'],
+        'weight' => 26,
         'collapse_adv_display' => TRUE,
         'table_name' => 'civicrm_value_srm_sr_innov_procurement',
       ],
@@ -24,7 +25,7 @@ return [
     'name' => 'CustomGroup_eic_sr_innovation_procurement_data_CustomField_EU_Survey_Activity',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -33,8 +34,8 @@ return [
         'label' => E::ts('EU Survey (activity)'),
         'data_type' => 'EntityReference',
         'html_type' => 'Autocomplete-Select',
-        'fk_entity' => 'Activity',
         'is_view' => TRUE,
+        'fk_entity' => 'Activity',
         'column_name' => 'eu_survey_activity',
       ],
       'match' => [
@@ -44,10 +45,10 @@ return [
     ],
   ],
   [
-    'name' => 'CustomGroup_eic_sr_innovation_procurement_data_CustomField_selling_to_buyers',
+    'name' => 'CustomGroup_eic_sr_innovation_procurement_data_CustomField_selling_to_public_private_buyers',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -55,8 +56,9 @@ return [
         'name' => 'selling_to_public_private_buyers',
         'label' => E::ts('Are you planning to sell your innovative solution to public or private buyers, e.g. through tender opportunities?'),
         'html_type' => 'Text',
-        'text_length' => 255,
         'help_post' => E::ts('Definition: whether the beneficiary plans to sell their innovative solution to public or private buyers (e.g. through tenders). Source: Form processor (EU-Survey answer). Format: Yes/No. Used for: EIC Innovation Procurement service request context.'),
+        'is_view' => TRUE,
+        'text_length' => 255,
         'column_name' => 'selling_to_buyers',
       ],
       'match' => [
@@ -66,10 +68,10 @@ return [
     ],
   ],
   [
-    'name' => 'CustomGroup_eic_sr_innovation_procurement_data_CustomField_where_in_process',
+    'name' => 'CustomGroup_eic_sr_innovation_procurement_data_CustomField_where_are_you_in_the_process',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -77,8 +79,9 @@ return [
         'name' => 'where_are_you_in_the_process',
         'label' => E::ts('Where are you in the process?'),
         'html_type' => 'Text',
-        'text_length' => 255,
         'help_post' => E::ts('Definition: the stage the beneficiary has reached in the procurement/selling process. Source: Form processor (EU-Survey answer). Format: free text as provided by the survey. Used for: EIC Innovation Procurement service request context.'),
+        'is_view' => TRUE,
+        'text_length' => 255,
         'column_name' => 'where_in_process',
       ],
       'match' => [

@@ -12,7 +12,7 @@ return [
     'name' => 'CustomGroup_srm_survey_contact_snapshot',
     'entity' => 'CustomGroup',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -21,7 +21,7 @@ return [
         'extends' => 'Activity',
         'extends_entity_column_value:name' => ['eic_accelerator_onboarding_survey'],
         'collapse_display' => TRUE,
-        'weight' => 21,
+        'weight' => 22,
         'table_name' => 'civicrm_value_srm_survey_contact_snap',
       ],
       'match' => ['name'],
@@ -31,7 +31,7 @@ return [
     'name' => 'CustomGroup_srm_survey_contact_snapshot_CustomField_First_Name',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -42,14 +42,17 @@ return [
         'text_length' => 255,
         'column_name' => 'first_name',
       ],
-      'match' => ['name', 'custom_group_id'],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
     ],
   ],
   [
     'name' => 'CustomGroup_srm_survey_contact_snapshot_CustomField_Last_Name',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -60,14 +63,17 @@ return [
         'text_length' => 255,
         'column_name' => 'last_name',
       ],
-      'match' => ['name', 'custom_group_id'],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
     ],
   ],
   [
     'name' => 'CustomGroup_srm_survey_contact_snapshot_CustomField_Professional_Email',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -78,14 +84,17 @@ return [
         'text_length' => 255,
         'column_name' => 'professional_email',
       ],
-      'match' => ['name', 'custom_group_id'],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
     ],
   ],
   [
     'name' => 'CustomGroup_srm_survey_contact_snapshot_CustomField_Phone_Number',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -96,14 +105,17 @@ return [
         'text_length' => 255,
         'column_name' => 'phone_number',
       ],
-      'match' => ['name', 'custom_group_id'],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
     ],
   ],
   [
     'name' => 'CustomGroup_srm_survey_contact_snapshot_CustomField_Role_In_Organisation',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -114,7 +126,10 @@ return [
         'text_length' => 255,
         'column_name' => 'role_in_organisation',
       ],
-      'match' => ['name', 'custom_group_id'],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
     ],
   ],
 ];

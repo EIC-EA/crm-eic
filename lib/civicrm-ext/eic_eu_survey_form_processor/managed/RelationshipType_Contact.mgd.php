@@ -6,7 +6,7 @@ return [
     'name' => 'RelationshipType_Contact',
     'entity' => 'RelationshipType',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [

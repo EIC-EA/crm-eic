@@ -18,10 +18,10 @@ return [
       'version' => 4,
       'values' => [
         'name' => 'EIC_Horizon_europe_Relationship',
-        'title' => E::ts('Horizon europe Relationship'),
+        'title' => E::ts('EIC Project Relationship'),
         'extends' => 'Relationship',
         'extends_entity_column_value' => $subtypeIds,
-        'weight' => 8,
+        'weight' => 11,
         'collapse_adv_display' => TRUE,
         'is_public' => FALSE,
         'table_name' => 'civicrm_value_srm_he_project_rel'
