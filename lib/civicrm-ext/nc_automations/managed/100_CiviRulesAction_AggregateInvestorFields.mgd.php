@@ -1,13 +1,12 @@
 <?php
-
 use CRM_NcAutomations_ExtensionUtil as E;
 
 return [
   [
     'name' => 'CiviRulesAction_sync_investor_on_representative_change',
     'entity' => 'CiviRulesAction',
-    'cleanup' => 'always',
-    'update' => 'always',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -21,12 +20,12 @@ return [
   [
     'name' => 'CiviRulesAction_sync_investor_on_representative_change_CiviRulesRuleAction_1',
     'entity' => 'CiviRulesRuleAction',
-    'cleanup' => 'always',
-    'update' => 'always',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
-        'rule_id.name' => 'syncrepresenativerule',
+        'rule_id.name' => 'sync_represenative_added',
         'action_id.name' => 'sync_investor_on_representative_change',
       ],
     ],
@@ -34,12 +33,12 @@ return [
   [
     'name' => 'CiviRulesAction_sync_investor_on_representative_change_CiviRulesRuleAction_2',
     'entity' => 'CiviRulesRuleAction',
-    'cleanup' => 'always',
-    'update' => 'always',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
-        'rule_id.name' => 'syncrepresenativeremoved',
+        'rule_id.name' => 'sync_represenative_fields_change',
         'action_id.name' => 'sync_investor_on_representative_change',
       ],
     ],
@@ -47,12 +46,12 @@ return [
   [
     'name' => 'CiviRulesAction_sync_investor_on_representative_change_CiviRulesRuleAction_3',
     'entity' => 'CiviRulesRuleAction',
-    'cleanup' => 'always',
-    'update' => 'always',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
-        'rule_id.name' => 'syncrepresenativeadded',
+        'rule_id.name' => 'sync_represenative_removed',
         'action_id.name' => 'sync_investor_on_representative_change',
       ],
     ],

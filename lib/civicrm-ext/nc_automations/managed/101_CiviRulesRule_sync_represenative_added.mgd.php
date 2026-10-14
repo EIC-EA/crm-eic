@@ -6,13 +6,14 @@ return [
     'name' => 'CiviRulesRule_sync_represenative_added',
     'entity' => 'CiviRulesRule',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
         'name' => 'sync_represenative_added',
         'label' => E::ts('Sync  Representative Added'),
         'trigger_id.name' => 'new_relationship',
+        'is_active' => TRUE,
         'description' => E::ts('On Representative added sync Investor Org'),
       ],
     ],

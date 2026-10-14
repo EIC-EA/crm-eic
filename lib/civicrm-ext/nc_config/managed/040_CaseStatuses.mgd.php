@@ -26,7 +26,7 @@ return [
     'name' => 'OptionValue_Requested',
     'entity' => 'OptionValue',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -49,7 +49,7 @@ return [
     'name' => 'OptionValue_Planning',
     'entity' => 'OptionValue',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -74,7 +74,7 @@ return [
     'name' => 'OptionValue_Ongoing',
     'entity' => 'OptionValue',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -97,7 +97,7 @@ return [
     'name' => 'OptionValue_Urgent',
     'entity' => 'OptionValue',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -116,33 +116,10 @@ return [
     ],
   ],
   [
-    // CiviCRM core status (name `Resolved`). Matched by name+value.
-    'name' => 'OptionValue_Resolved',
-    'entity' => 'OptionValue',
-    'cleanup' => 'unused',
-    'update' => 'always',
-    'params' => [
-      'version' => 4,
-      'values' => [
-        'option_group_id.name' => 'case_status',
-        'label' => E::ts('Resolved'),
-        'value' => '2',
-        'name' => 'Resolved',
-        'grouping' => 'Closed',
-        'weight' => 5,
-      ],
-      'match' => [
-        'option_group_id',
-        'name',
-        'value',
-      ],
-    ],
-  ],
-  [
     'name' => 'OptionValue_Onboarded',
     'entity' => 'OptionValue',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -165,7 +142,7 @@ return [
     'name' => 'OptionValue_Declined',
     'entity' => 'OptionValue',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
