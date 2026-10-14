@@ -192,3 +192,10 @@ function __nc_automations_case_roles_automate($id)
     Civi::log('EngagementCaseAutocomplete')->error($e->getMessage());
   }
 }
+
+/**
+ * Implements hook_civicrm_uninstall
+ */
+function nc_automations_civicrm_uninstall(): void {
+  CRM_NcAutomations_Upgrader::callOnUninstall();
+}
