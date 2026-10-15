@@ -102,7 +102,7 @@ return [
         'saved_search_id.name' => 'EIC_Laureate_Full_search_Organisation_',
         'type' => 'table',
         'settings' => [
-          'description' => E::ts(NULL),
+          'description' => '',
           'sort' => [
             ['sort_name', 'ASC'],
           ],
