@@ -10,7 +10,7 @@ return [
     'name' => 'CustomGroup_eic_sr_ecosystem_partnership_data',
     'entity' => 'CustomGroup',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -18,6 +18,7 @@ return [
         'title' => E::ts('EIC Ecosystem Partnership Service Request'),
         'extends' => 'Case',
         'extends_entity_column_value:name' => ['eic_sr_ecosystem_partnership'],
+        'weight' => 23,
         'collapse_adv_display' => TRUE,
         'table_name' => 'civicrm_value_srm_sr_ecosystem_partnership',
       ],
@@ -28,7 +29,7 @@ return [
     'name' => 'CustomGroup_eic_sr_ecosystem_partnership_data_CustomField_EU_Survey_Activity',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -37,8 +38,8 @@ return [
         'label' => E::ts('EU Survey (activity)'),
         'data_type' => 'EntityReference',
         'html_type' => 'Autocomplete-Select',
-        'fk_entity' => 'Activity',
         'is_view' => TRUE,
+        'fk_entity' => 'Activity',
         'column_name' => 'eu_survey_activity',
       ],
       'match' => [
@@ -51,7 +52,7 @@ return [
     'name' => 'CustomGroup_eic_sr_ecosystem_partnership_data_CustomField_support_interested_in',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -59,6 +60,7 @@ return [
         'name' => 'support_interested_in',
         'label' => E::ts('What type of other support are you interested in?'),
         'html_type' => 'Text',
+        'is_view' => TRUE,
         'text_length' => 255,
         'column_name' => 'support_interested_in',
       ],

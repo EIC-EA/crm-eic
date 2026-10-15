@@ -6,7 +6,7 @@ return [
     'name' => 'CustomGroup_EU_Survey_Company_Data',
     'entity' => 'CustomGroup',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -24,7 +24,7 @@ return [
     'name' => 'CustomGroup_EU_Survey_Company_Data_CustomField_CEO_or_project_leader_gender',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -33,9 +33,10 @@ return [
         'label' => E::ts('CEO or project leader gender'),
         'data_type' => 'String',
         'html_type' => 'Select',
-        'option_group_id.name' => 'eu_survey_gender',
         'is_view' => TRUE,
         'text_length' => 255,
+        'option_group_id.name' => 'eu_survey_gender',
+        'column_name' => 'ceo_or_project_leader_gender',
       ],
       'match' => [
         'name',
@@ -47,7 +48,7 @@ return [
     'name' => 'CustomGroup_EU_Survey_Company_Data_CustomField_Founder_Gender',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -56,9 +57,10 @@ return [
         'label' => E::ts('Founder Gender'),
         'data_type' => 'String',
         'html_type' => 'Select',
-        'option_group_id.name' => 'eu_survey_gender',
         'is_view' => TRUE,
         'text_length' => 255,
+        'option_group_id.name' => 'eu_survey_gender',
+        'column_name' => 'founder_gender',
       ],
       'match' => [
         'name',
@@ -70,7 +72,7 @@ return [
     'name' => 'CustomGroup_EU_Survey_Company_Data_CustomField_Sector',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -79,10 +81,11 @@ return [
         'label' => E::ts('Sector'),
         'data_type' => 'String',
         'html_type' => 'Select',
-        'option_group_id.name' => 'eu_survey_sector',
-        'serialize' => 1,
         'is_view' => TRUE,
         'text_length' => 255,
+        'option_group_id.name' => 'eu_survey_sector',
+        'serialize' => 1,
+        'column_name' => 'sector',
       ],
       'match' => [
         'name',
@@ -97,7 +100,7 @@ return [
     'name' => 'CustomGroup_EU_Survey_Company_Data_CustomField_TRL',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -106,11 +109,12 @@ return [
         'label' => E::ts('TRL'),
         'data_type' => 'String',
         'html_type' => 'Select',
+        'help_post' => E::ts('Technology Readiness Level (TRL). Self-assessed by the Awardee. This field cumulates all the values reported by the Awardee across every project linked to them.'),
+        'is_view' => TRUE,
+        'text_length' => 255,
         'option_group_id.name' => 'eu_survey_trl',
         'serialize' => 1,
-        'is_view' => TRUE,
-        'help_post' => E::ts('Technology Readiness Level (TRL). Self-assessed by the Awardee. This field cumulates all the values reported by the Awardee across every project linked to them.'),
-        'text_length' => 255,
+        'column_name' => 'trl',
       ],
       'match' => [
         'name',
@@ -122,7 +126,7 @@ return [
     'name' => 'CustomGroup_EU_Survey_Company_Data_CustomField_CRL',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -131,11 +135,12 @@ return [
         'label' => E::ts('CRL'),
         'data_type' => 'String',
         'html_type' => 'Select',
+        'help_post' => E::ts('Commercial Readiness Level (CRL). Self-assessed by the Awardee. This field cumulates all the values reported by the Awardee across every project linked to them.'),
+        'is_view' => TRUE,
+        'text_length' => 255,
         'option_group_id.name' => 'eu_survey_crl',
         'serialize' => 1,
-        'is_view' => TRUE,
-        'help_post' => E::ts('Commercial Readiness Level (CRL). Self-assessed by the Awardee. This field cumulates all the values reported by the Awardee across every project linked to them.'),
-        'text_length' => 255,
+        'column_name' => 'crl',
       ],
       'match' => [
         'name',
@@ -147,7 +152,7 @@ return [
     'name' => 'CustomGroup_EU_Survey_Company_Data_CustomField_BRL',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -156,11 +161,12 @@ return [
         'label' => E::ts('BRL'),
         'data_type' => 'String',
         'html_type' => 'Select',
+        'help_post' => E::ts('Business Readiness Level (BRL). Self-assessed by the Awardee. This field cumulates all the values reported by the Awardee across every project linked to them.'),
+        'is_view' => TRUE,
+        'text_length' => 255,
         'option_group_id.name' => 'eu_survey_brl',
         'serialize' => 1,
-        'is_view' => TRUE,
-        'help_post' => E::ts('Business Readiness Level (BRL). Self-assessed by the Awardee. This field cumulates all the values reported by the Awardee across every project linked to them.'),
-        'text_length' => 255,
+        'column_name' => 'brl',
       ],
       'match' => [
         'name',
@@ -172,7 +178,7 @@ return [
     'name' => 'CustomGroup_EU_Survey_Company_Data_CustomField_FRL',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -181,11 +187,12 @@ return [
         'label' => E::ts('FRL'),
         'data_type' => 'String',
         'html_type' => 'Select',
+        'help_post' => E::ts('Funding Readiness Level (FRL). Self-assessed by the Awardee. This field cumulates all the values reported by the Awardee across every project linked to them.'),
+        'is_view' => TRUE,
+        'text_length' => 255,
         'option_group_id.name' => 'eu_survey_frl',
         'serialize' => 1,
-        'is_view' => TRUE,
-        'help_post' => E::ts('Funding Readiness Level (FRL). Self-assessed by the Awardee. This field cumulates all the values reported by the Awardee across every project linked to them.'),
-        'text_length' => 255,
+        'column_name' => 'frl',
       ],
       'match' => [
         'name',

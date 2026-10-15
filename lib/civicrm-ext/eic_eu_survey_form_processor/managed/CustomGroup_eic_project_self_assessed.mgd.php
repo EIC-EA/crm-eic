@@ -13,7 +13,7 @@ return [
     'name' => 'CustomGroup_eic_project_self_assessed',
     'entity' => 'CustomGroup',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -21,6 +21,7 @@ return [
         'title' => E::ts('Self-Assessed information (by company)'),
         'extends' => 'Activity',
         'extends_entity_column_value:name' => ['EIC_Awardee_Project'],
+        'weight' => 17,
         'collapse_adv_display' => TRUE,
         'is_public' => FALSE,
         'table_name' => 'civicrm_value_srm_eic_project_self_assessed',
@@ -32,7 +33,7 @@ return [
     'name' => 'CustomGroup_eic_project_self_assessed_CustomField_CEO_or_project_leader_gender',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -41,10 +42,10 @@ return [
         'label' => E::ts('CEO or project leader gender'),
         'data_type' => 'String',
         'html_type' => 'Select',
-        'option_group_id.name' => 'eu_survey_gender',
+        'help_post' => E::ts('CEO or project leader gender. Self-assessed by a representative of the EIC Awardee via the onboarding survey. This value applies to this specific project.'),
         'is_view' => TRUE,
         'text_length' => 255,
-        'help_post' => E::ts('CEO or project leader gender. Self-assessed by a representative of the EIC Awardee via the onboarding survey. This value applies to this specific project.'),
+        'option_group_id.name' => 'eu_survey_gender',
         'column_name' => 'ceo_or_project_leader_gender',
       ],
       'match' => [
@@ -57,7 +58,7 @@ return [
     'name' => 'CustomGroup_eic_project_self_assessed_CustomField_Founder_Gender',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -66,10 +67,10 @@ return [
         'label' => E::ts('Founder Gender'),
         'data_type' => 'String',
         'html_type' => 'Select',
-        'option_group_id.name' => 'eu_survey_gender',
+        'help_post' => E::ts('Founder gender. Self-assessed by a representative of the EIC Awardee via the onboarding survey. This value applies to this specific project.'),
         'is_view' => TRUE,
         'text_length' => 255,
-        'help_post' => E::ts('Founder gender. Self-assessed by a representative of the EIC Awardee via the onboarding survey. This value applies to this specific project.'),
+        'option_group_id.name' => 'eu_survey_gender',
         'column_name' => 'founder_gender',
       ],
       'match' => [
@@ -82,7 +83,7 @@ return [
     'name' => 'CustomGroup_eic_project_self_assessed_CustomField_Sector',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -91,10 +92,10 @@ return [
         'label' => E::ts('Sector'),
         'data_type' => 'String',
         'html_type' => 'Select',
-        'option_group_id.name' => 'eu_survey_sector',
+        'help_post' => E::ts('Sector. Self-assessed by a representative of the EIC Awardee via the onboarding survey. This value applies to this specific project.'),
         'is_view' => TRUE,
         'text_length' => 255,
-        'help_post' => E::ts('Sector. Self-assessed by a representative of the EIC Awardee via the onboarding survey. This value applies to this specific project.'),
+        'option_group_id.name' => 'eu_survey_sector',
         'column_name' => 'sector',
       ],
       'match' => [
@@ -107,7 +108,7 @@ return [
     'name' => 'CustomGroup_eic_project_self_assessed_CustomField_TRL',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -116,10 +117,10 @@ return [
         'label' => E::ts('TRL'),
         'data_type' => 'String',
         'html_type' => 'Select',
-        'option_group_id.name' => 'eu_survey_trl',
+        'help_post' => E::ts('Technology Readiness Level (TRL). Self-assessed by a representative of the EIC Awardee via the onboarding survey. This value applies to this specific project.'),
         'is_view' => TRUE,
         'text_length' => 255,
-        'help_post' => E::ts('Technology Readiness Level (TRL). Self-assessed by a representative of the EIC Awardee via the onboarding survey. This value applies to this specific project.'),
+        'option_group_id.name' => 'eu_survey_trl',
         'column_name' => 'trl',
       ],
       'match' => [
@@ -132,7 +133,7 @@ return [
     'name' => 'CustomGroup_eic_project_self_assessed_CustomField_CRL',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -141,10 +142,10 @@ return [
         'label' => E::ts('CRL'),
         'data_type' => 'String',
         'html_type' => 'Select',
-        'option_group_id.name' => 'eu_survey_crl',
+        'help_post' => E::ts('Commercial Readiness Level (CRL). Self-assessed by a representative of the EIC Awardee via the onboarding survey. This value applies to this specific project.'),
         'is_view' => TRUE,
         'text_length' => 255,
-        'help_post' => E::ts('Commercial Readiness Level (CRL). Self-assessed by a representative of the EIC Awardee via the onboarding survey. This value applies to this specific project.'),
+        'option_group_id.name' => 'eu_survey_crl',
         'column_name' => 'crl',
       ],
       'match' => [
@@ -157,7 +158,7 @@ return [
     'name' => 'CustomGroup_eic_project_self_assessed_CustomField_BRL',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -166,10 +167,10 @@ return [
         'label' => E::ts('BRL'),
         'data_type' => 'String',
         'html_type' => 'Select',
-        'option_group_id.name' => 'eu_survey_brl',
+        'help_post' => E::ts('Business Readiness Level (BRL). Self-assessed by a representative of the EIC Awardee via the onboarding survey. This value applies to this specific project.'),
         'is_view' => TRUE,
         'text_length' => 255,
-        'help_post' => E::ts('Business Readiness Level (BRL). Self-assessed by a representative of the EIC Awardee via the onboarding survey. This value applies to this specific project.'),
+        'option_group_id.name' => 'eu_survey_brl',
         'column_name' => 'brl',
       ],
       'match' => [
@@ -182,7 +183,7 @@ return [
     'name' => 'CustomGroup_eic_project_self_assessed_CustomField_FRL',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -191,10 +192,10 @@ return [
         'label' => E::ts('FRL'),
         'data_type' => 'String',
         'html_type' => 'Select',
-        'option_group_id.name' => 'eu_survey_frl',
+        'help_post' => E::ts('Funding Readiness Level (FRL). Self-assessed by a representative of the EIC Awardee via the onboarding survey. This value applies to this specific project.'),
         'is_view' => TRUE,
         'text_length' => 255,
-        'help_post' => E::ts('Funding Readiness Level (FRL). Self-assessed by a representative of the EIC Awardee via the onboarding survey. This value applies to this specific project.'),
+        'option_group_id.name' => 'eu_survey_frl',
         'column_name' => 'frl',
       ],
       'match' => [

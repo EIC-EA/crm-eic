@@ -6,7 +6,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information',
     'entity' => 'CustomGroup',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -39,7 +39,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_EIC_Title',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -48,6 +48,7 @@ return [
         'label' => E::ts('EIC Title'),
         'html_type' => 'Text',
         'default_value' => 'EIC Awardee Onboarding',
+        'is_view' => TRUE,
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
@@ -63,7 +64,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_Organisation_PIC_number',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -71,6 +72,7 @@ return [
         'name' => 'Organisation_PIC_number',
         'label' => E::ts('Organisation PIC number'),
         'html_type' => 'Text',
+        'is_view' => TRUE,
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
@@ -88,7 +90,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_EIC_Project_ID',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -96,6 +98,7 @@ return [
         'name' => 'EIC_Project_ID',
         'label' => E::ts('EIC Project ID'),
         'html_type' => 'Text',
+        'is_view' => TRUE,
         'text_length' => 255,
         'column_name' => 'eic_project_id',
       ],
@@ -111,7 +114,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_EIC_Project_Acronym',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -119,6 +122,7 @@ return [
         'name' => 'EIC_Project_Acronym',
         'label' => E::ts('EIC Project Acronym'),
         'html_type' => 'Text',
+        'is_view' => TRUE,
         'text_length' => 255,
         'column_name' => 'eic_project_acronym',
       ],
@@ -135,7 +139,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_EIC_Project_Activity',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -144,6 +148,7 @@ return [
         'label' => E::ts('EIC Project (activity)'),
         'data_type' => 'EntityReference',
         'html_type' => 'Autocomplete-Select',
+        'is_view' => TRUE,
         'fk_entity' => 'Activity',
         'column_name' => 'eic_project_activity',
       ],
@@ -160,7 +165,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_Project_Funding',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -168,8 +173,9 @@ return [
         'name' => 'Project_Funding',
         'label' => E::ts('Funding'),
         'html_type' => 'Select',
-        'option_group_id.name' => 'eic_he_project_funding',
+        'is_view' => TRUE,
         'text_length' => 255,
+        'option_group_id.name' => 'eic_he_project_funding',
         'column_name' => 'project_funding',
       ],
       'match' => [
@@ -182,7 +188,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_Project_Category',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -190,8 +196,9 @@ return [
         'name' => 'Project_Category',
         'label' => E::ts('Category'),
         'html_type' => 'Select',
-        'option_group_id.name' => 'EIC_Horizon_Europe_Project_Activity_Category',
+        'is_view' => TRUE,
         'text_length' => 255,
+        'option_group_id.name' => 'EIC_Horizon_Europe_Project_Activity_Category',
         'column_name' => 'project_category',
       ],
       'match' => [
@@ -204,7 +211,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_Project_Funding_Type',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -212,8 +219,9 @@ return [
         'name' => 'Project_Funding_Type',
         'label' => E::ts('Funding Type'),
         'html_type' => 'Select',
-        'option_group_id.name' => 'EIC_Horizon_Europe_Project_Funding_Type_2',
+        'is_view' => TRUE,
         'text_length' => 255,
+        'option_group_id.name' => 'EIC_Horizon_Europe_Project_Funding_Type_2',
         'column_name' => 'project_funding_type',
       ],
       'match' => [
@@ -226,7 +234,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_information_CustomField_Project_Cut_Off_Date',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -235,6 +243,7 @@ return [
         'label' => E::ts('Cut-Off-Date'),
         'data_type' => 'Date',
         'html_type' => 'Select Date',
+        'is_view' => TRUE,
         'date_format' => 'dd/mm/yy',
         'column_name' => 'project_cut_off_date',
       ],
