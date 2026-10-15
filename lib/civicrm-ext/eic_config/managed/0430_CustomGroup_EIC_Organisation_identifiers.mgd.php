@@ -15,7 +15,7 @@ return [
         'extends' => 'Organization',
         'extends_entity_column_value' => ['EIC_Awardee', 'Investor', 'EIC_Organisation'],
         'help_pre' => E::ts('<p>Unique identifiers used to identified the organisation</p>'),
-        'weight' => 4,
+        'weight' => 10,
         'collapse_adv_display' => TRUE,
         'is_public' => FALSE,
         'table_name' => 'civicrm_value_srm_org_ids'
