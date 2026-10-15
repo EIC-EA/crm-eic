@@ -6,7 +6,7 @@ return [
     'name' => 'CustomGroup_eic_sr_global_business_expansion_data',
     'entity' => 'CustomGroup',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -14,6 +14,7 @@ return [
         'title' => E::ts('EIC Global Business Expansion Service Request'),
         'extends' => 'Case',
         'extends_entity_column_value:name' => ['eic_sr_global_business_expansion'],
+        'weight' => 24,
         'collapse_adv_display' => TRUE,
         'table_name' => 'civicrm_value_srm_sr_gbe',
       ],
@@ -24,7 +25,7 @@ return [
     'name' => 'CustomGroup_eic_sr_global_business_expansion_data_CustomField_EU_Survey_Activity',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -33,8 +34,8 @@ return [
         'label' => E::ts('EU Survey (activity)'),
         'data_type' => 'EntityReference',
         'html_type' => 'Autocomplete-Select',
-        'fk_entity' => 'Activity',
         'is_view' => TRUE,
+        'fk_entity' => 'Activity',
         'column_name' => 'eu_survey_activity',
       ],
       'match' => [
@@ -47,7 +48,7 @@ return [
     'name' => 'CustomGroup_eic_sr_global_business_expansion_data_CustomField_markets',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -55,6 +56,7 @@ return [
         'name' => 'markets',
         'label' => E::ts('Which markets?'),
         'html_type' => 'Text',
+        'is_view' => TRUE,
         'text_length' => 255,
         'column_name' => 'markets',
       ],
@@ -68,7 +70,7 @@ return [
     'name' => 'CustomGroup_eic_sr_global_business_expansion_data_CustomField_main_barrier',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -76,6 +78,7 @@ return [
         'name' => 'main_barrier',
         'label' => E::ts('What is your main barrier?'),
         'html_type' => 'Text',
+        'is_view' => TRUE,
         'text_length' => 255,
         'column_name' => 'main_barrier',
       ],

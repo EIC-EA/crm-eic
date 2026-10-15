@@ -6,7 +6,7 @@ return [
     'name' => 'CustomGroup_eic_sr_corporate_partnership_data',
     'entity' => 'CustomGroup',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -14,6 +14,7 @@ return [
         'title' => E::ts('EIC Corporate Partnership Service Request'),
         'extends' => 'Case',
         'extends_entity_column_value:name' => ['eic_sr_corporate_partnership'],
+        'weight' => 20,
         'collapse_adv_display' => TRUE,
         'table_name' => 'civicrm_value_srm_sr_corp_partnership',
       ],
@@ -24,7 +25,7 @@ return [
     'name' => 'CustomGroup_eic_sr_corporate_partnership_data_CustomField_EU_Survey_Activity',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -33,8 +34,8 @@ return [
         'label' => E::ts('EU Survey (activity)'),
         'data_type' => 'EntityReference',
         'html_type' => 'Autocomplete-Select',
-        'fk_entity' => 'Activity',
         'is_view' => TRUE,
+        'fk_entity' => 'Activity',
         'column_name' => 'eu_survey_activity',
       ],
       'match' => [
@@ -47,7 +48,7 @@ return [
     'name' => 'CustomGroup_eic_sr_corporate_partnership_data_CustomField_partner_type',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
@@ -55,6 +56,7 @@ return [
         'name' => 'partner_type',
         'label' => E::ts('What type of partner are you targeting?'),
         'html_type' => 'Text',
+        'is_view' => TRUE,
         'text_length' => 255,
         'column_name' => 'partner_type',
       ],
