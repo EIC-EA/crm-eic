@@ -15,7 +15,7 @@ return [
         'extends' => 'Organization',
         'extends_entity_column_value' => ['EIC_Awardee'],
         'help_pre' => E::ts('<p>This information come from the EC corporate tools.</p>'),
-        'weight' => 14,
+        'weight' => 12,
         'collapse_adv_display' => TRUE,
         'table_name' => 'civicrm_value_srm_eic_awardee_info',
       ],
@@ -355,7 +355,7 @@ return [
       'values' => [
         'option_group_id.name' => 'EIC_Awardee_Additionnal_Information_SME_vs_mid_cap_status',
         'label' => E::ts('SME'),
-        'value' => 'SME',
+        'value' => '3',
         'name' => 'SME',
       ],
       'match' => [
@@ -377,26 +377,6 @@ return [
         'label' => E::ts('Mid-cap'),
         'value' => 'Mid-cap',
         'name' => 'Mid_cap',
-      ],
-      'match' => [
-        'option_group_id',
-        'name',
-        'value',
-      ],
-    ],
-  ],
-  [
-    'name' => 'OptionGroup_EIC_Awardee_Additionnal_Information_SME_vs_mid_cap_status_OptionValue_SME',
-    'entity' => 'OptionValue',
-    'cleanup' => 'unused',
-    'update' => 'unmodified',
-    'params' => [
-      'version' => 4,
-      'values' => [
-        'option_group_id.name' => 'EIC_Awardee_Additionnal_Information_SME_vs_mid_cap_status',
-        'label' => E::ts('SME'),
-        'value' => '3',
-        'name' => 'SME',
       ],
       'match' => [
         'option_group_id',
@@ -558,7 +538,7 @@ return [
     'name' => 'CustomGroup_EIC_Awardee_Additionnal_Information_CustomField_Legal_personality',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
