@@ -271,8 +271,6 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
       'crl_155' => 'crl',
       'brl_156' => 'brl',
       'frl_157' => 'frl',
-      'sector_169' => 'sector',
-      'trl_170' => 'trl',
     ];
 
     foreach ($columnMapping as $oldColName => $newColName) {
