@@ -6,13 +6,14 @@ return [
     'name' => 'CiviRulesRule_syncdomainonwebsitechange',
     'entity' => 'CiviRulesRule',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
         'name' => 'syncdomainonwebsitechange',
         'label' => E::ts('SyncDomainOnWebsiteChange'),
         'trigger_id.name' => 'changed_website',
+        'is_active' => TRUE,
         'description' => E::ts('Updates the Domain field of an Investor (Organization) if the Website is changed'),
         'help_text' => '<p>Updates the Domain field of an Investor or EIC Awardee (Organization) if the Website is changed</p>
 ',

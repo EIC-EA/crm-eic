@@ -1,0 +1,287 @@
+<?php
+use CRM_EicEuSurveyFormProcessor_ExtensionUtil as E;
+
+return [
+  [
+    'name' => 'OptionGroup_eu_survey_sector',
+    'entity' => 'OptionGroup',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'name' => 'eu_survey_sector',
+        'title' => E::ts('EU-Survey Sector'),
+        'description' => E::ts('Sectors offered by the EU-Survey beneficiary onboarding form.'),
+        'option_value_fields' => ['name', 'label', 'description'],
+        'is_reserved' => TRUE,
+        'is_active' => TRUE,
+      ],
+      'match' => ['name'],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_eu_survey_sector_OptionValue_Agriculture_Food',
+    'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_1', 'entity' => 'OptionValue'],
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'eu_survey_sector',
+        'label' => E::ts('Agriculture & Food'),
+        'value' => 'Agriculture & Food',
+        'name' => 'Agriculture_Food',
+        'is_active' => TRUE,
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_eu_survey_sector_OptionValue_Energy',
+    'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_2', 'entity' => 'OptionValue'],
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'eu_survey_sector',
+        'label' => E::ts('Energy'),
+        'value' => 'Energy',
+        'name' => 'Energy',
+        'is_active' => TRUE,
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_eu_survey_sector_OptionValue_Climate_Environmental_Tech',
+    'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_3', 'entity' => 'OptionValue'],
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'eu_survey_sector',
+        'label' => E::ts('Climate & Environmental Tech'),
+        'value' => 'Climate & Environmental Tech',
+        'name' => 'Climate_Environmental_Tech',
+        'is_active' => TRUE,
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_eu_survey_sector_OptionValue_Built_Environment',
+    'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_4', 'entity' => 'OptionValue'],
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'eu_survey_sector',
+        'label' => E::ts('Built Environment'),
+        'value' => 'Built Environment',
+        'name' => 'Built_Environment',
+        'is_active' => TRUE,
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_eu_survey_sector_OptionValue_Mobility',
+    'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_5', 'entity' => 'OptionValue'],
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'eu_survey_sector',
+        'label' => E::ts('Mobility'),
+        'value' => 'Mobility',
+        'name' => 'Mobility',
+        'is_active' => TRUE,
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_eu_survey_sector_OptionValue_Health_Biotechnology',
+    'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_6', 'entity' => 'OptionValue'],
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'eu_survey_sector',
+        'label' => E::ts('Health Biotechnology'),
+        'value' => 'Health Biotechnology',
+        'name' => 'Health_Biotechnology',
+        'is_active' => TRUE,
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_eu_survey_sector_OptionValue_Medical_Technologies',
+    'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_7', 'entity' => 'OptionValue'],
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'eu_survey_sector',
+        'label' => E::ts('Medical Technologies'),
+        'value' => 'Medical Technologies',
+        'name' => 'Medical_Technologies',
+        'is_active' => TRUE,
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_eu_survey_sector_OptionValue_Space',
+    'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_8', 'entity' => 'OptionValue'],
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'eu_survey_sector',
+        'label' => E::ts('Space'),
+        'value' => 'Space',
+        'name' => 'Space',
+        'is_active' => TRUE,
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_eu_survey_sector_OptionValue_Advanced_Manufacturing_Advanced',
+    'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_9', 'entity' => 'OptionValue'],
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'eu_survey_sector',
+        'label' => E::ts('Advanced Manufacturing & Advanced Materials'),
+        'value' => 'Advanced Manufacturing & Advanced Materials',
+        'name' => 'Advanced_Manufacturing_Advanced',
+        'is_active' => TRUE,
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_eu_survey_sector_OptionValue_AI_Data_ICT',
+    'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_10', 'entity' => 'OptionValue'],
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'eu_survey_sector',
+        'label' => E::ts('AI, Data & ICT'),
+        'value' => 'AI, Data & ICT',
+        'name' => 'AI_Data_ICT',
+        'is_active' => TRUE,
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_eu_survey_sector_OptionValue_Quantum_Advanced_Computing_Semi',
+    'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_11', 'entity' => 'OptionValue'],
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'eu_survey_sector',
+        'label' => E::ts('Quantum, Advanced Computing & Semiconductors'),
+        'value' => 'Quantum, Advanced Computing & Semiconductors',
+        'name' => 'Quantum_Advanced_Computing_Semi',
+        'is_active' => TRUE,
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_eu_survey_sector_OptionValue_Social_Innovation_Culture_Creat',
+    'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_12', 'entity' => 'OptionValue'],
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'eu_survey_sector',
+        'label' => E::ts('Social Innovation, Culture & Creative Industries'),
+        'value' => 'Social Innovation, Culture & Creative Industries',
+        'name' => 'Social_Innovation_Culture_Creat',
+        'is_active' => TRUE,
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+];

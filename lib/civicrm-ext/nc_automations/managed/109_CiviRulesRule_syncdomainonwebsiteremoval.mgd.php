@@ -6,13 +6,14 @@ return [
     'name' => 'CiviRulesRule_syncdomainonwebsiteremoval',
     'entity' => 'CiviRulesRule',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
         'name' => 'syncdomainonwebsiteremoval',
         'label' => E::ts('SyncDomainOnWebsiteRemoval'),
         'trigger_id.name' => 'deleted_website',
+        'is_active' => TRUE,
         'description' => E::ts('Updates the Domain field of an Investor (Organization) if the Website is deleted'),
       ],
     ],
