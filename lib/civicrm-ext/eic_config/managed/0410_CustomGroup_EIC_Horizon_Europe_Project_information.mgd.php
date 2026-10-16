@@ -729,7 +729,7 @@ return [
         'option_group_id.name' => 'EIC_Horizon_Europe_Project_Funding_Type_2',
         'label' => E::ts('n/a'),
         'value' => 'n/a',
-        'name' => 'n/a',
+        'name' => 'n_a',
       ],
       'match' => [
         'option_group_id',
