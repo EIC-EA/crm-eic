@@ -23,6 +23,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_gender_OptionValue_Female',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_gender_1', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -44,6 +45,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_gender_OptionValue_Male',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_gender_2', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -65,6 +67,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_gender_OptionValue_Other',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_gender_3', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -86,6 +89,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_gender_OptionValue_I_prefer_not_to_say',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_gender_4', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [

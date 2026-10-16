@@ -23,6 +23,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_crl_OptionValue_CRL_1_Hypothesis_of_possible_ne',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_crl_1', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -44,6 +45,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_crl_OptionValue_CRL_2_Identified_specific_needs',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_crl_2', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -65,6 +67,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_crl_OptionValue_CRL_3_First_market_feedback_est',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_crl_3', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -86,6 +89,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_crl_OptionValue_CRL_4_Confirmed_problem_needs_f',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_crl_4', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -107,6 +111,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_crl_OptionValue_CRL_5_Established_interest_and_',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_crl_5', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -128,6 +133,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_crl_OptionValue_CRL_6_Benefits_confirmed_by_fir',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_crl_6', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -149,6 +155,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_crl_OptionValue_CRL_7_Customers_in_extended_tes',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_crl_7', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -170,6 +177,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_crl_OptionValue_CRL_8_First_commercial_sales_an',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_crl_8', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -191,6 +199,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_crl_OptionValue_CRL_9_Widespread_sales_that_sca',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_crl_9', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [

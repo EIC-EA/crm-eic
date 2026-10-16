@@ -1,4 +1,5 @@
 <?php
+
 use CRM_EicEuSurveyFormProcessor_ExtensionUtil as E;
 
 return [
@@ -23,6 +24,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_brl_OptionValue_BRL_1_No_or_unclear_description',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_brl_1', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -44,6 +46,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_brl_OptionValue_BRL_2_Description_of_possible_b',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_brl_2', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -65,6 +68,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_brl_OptionValue_BRL_3_Description_of_business_m',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_brl_3', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -86,6 +90,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_brl_OptionValue_BRL_4_First_calculations_indica',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_brl_4', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -107,6 +112,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_brl_OptionValue_BRL_5_Market_feedback_on_key_as',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_brl_5', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -128,6 +134,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_brl_OptionValue_BRL_6_Business_model_validated_',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_brl_6', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -149,6 +156,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_brl_OptionValue_BRL_7_Business_model_validated_',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_brl_7', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -170,6 +178,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_brl_OptionValue_BRL_8_Sales_and_metrics_show_th',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_brl_8', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -191,6 +200,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_brl_OptionValue_BRL_9_Business_model_proven_to_',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_brl_9', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [

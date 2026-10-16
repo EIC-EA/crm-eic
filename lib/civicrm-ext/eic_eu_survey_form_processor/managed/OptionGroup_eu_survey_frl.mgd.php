@@ -23,6 +23,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_frl_OptionValue_FRL_1_Little_insight_into_fundi',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_frl_1', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -44,6 +45,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_frl_OptionValue_FRL_2_Identified_funding_needs_',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_frl_2', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -65,6 +67,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_frl_OptionValue_FRL_3_Insight_into_overall_fund',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_frl_3', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -86,6 +89,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_frl_OptionValue_FRL_4_Pitch_presentation_in_pla',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_frl_4', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -107,6 +111,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_frl_OptionValue_FRL_5_Pitch_for_funding_tested_',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_frl_5', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -128,6 +133,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_frl_OptionValue_FRL_6_Improved_Pitch_for_fundin',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_frl_6', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -149,6 +155,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_frl_OptionValue_FRL_7_Term_sheet_level_discussi',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_frl_7', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -170,6 +177,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_frl_OptionValue_FRL_8_Secured_funding_for_at_le',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_frl_8', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -191,6 +199,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_frl_OptionValue_FRL_9_Long_term_funding_strateg',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_frl_9', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [

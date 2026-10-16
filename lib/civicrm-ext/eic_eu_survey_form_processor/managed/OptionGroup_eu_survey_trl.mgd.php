@@ -23,6 +23,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_trl_OptionValue_TRL_1_Interesting_research_resu',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_trl_1', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -44,6 +45,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_trl_OptionValue_TRL_2_Technology_concept_and_or',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_trl_2', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -65,6 +67,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_trl_OptionValue_TRL_3_Proof_of_concept_of_criti',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_trl_3', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -86,6 +89,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_trl_OptionValue_TRL_4_Technology_validation_in_',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_trl_4', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -107,6 +111,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_trl_OptionValue_TRL_5_Technology_validation_in_',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_trl_5', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -128,6 +133,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_trl_OptionValue_TRL_6_Technology_prototype_demo',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_trl_6', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -149,6 +155,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_trl_OptionValue_TRL_7_Technology_prototype_demo',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_trl_7', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -170,6 +177,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_trl_OptionValue_TRL_8_Technology_complete_and_d',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_trl_8', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -191,6 +199,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_trl_OptionValue_TRL_9_Technology_complete_and_p',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_trl_9', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [

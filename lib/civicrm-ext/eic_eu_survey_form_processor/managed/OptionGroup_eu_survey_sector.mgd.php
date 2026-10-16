@@ -23,6 +23,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_sector_OptionValue_Agriculture_Food',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_1', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -44,6 +45,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_sector_OptionValue_Energy',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_2', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -65,6 +67,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_sector_OptionValue_Climate_Environmental_Tech',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_3', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -86,6 +89,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_sector_OptionValue_Built_Environment',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_4', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -107,6 +111,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_sector_OptionValue_Mobility',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_5', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -128,6 +133,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_sector_OptionValue_Health_Biotechnology',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_6', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -149,6 +155,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_sector_OptionValue_Medical_Technologies',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_7', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -170,6 +177,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_sector_OptionValue_Space',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_8', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -191,6 +199,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_sector_OptionValue_Advanced_Manufacturing_Advanced',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_9', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -212,6 +221,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_sector_OptionValue_AI_Data_ICT',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_10', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -233,6 +243,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_sector_OptionValue_Quantum_Advanced_Computing_Semi',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_11', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
@@ -254,6 +265,7 @@ return [
   [
     'name' => 'OptionGroup_eu_survey_sector_OptionValue_Social_Innovation_Culture_Creat',
     'entity' => 'OptionValue',
+    'replaces' => ['module' => 'eic_eu_survey_form_processor', 'name' => 'OptionValue_eu_survey_sector_12', 'entity' => 'OptionValue'],
     'cleanup' => 'unused',
     'update' => 'unmodified',
     'params' => [
