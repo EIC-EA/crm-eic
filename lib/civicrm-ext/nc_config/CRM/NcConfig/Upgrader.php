@@ -205,8 +205,7 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     $results = \Civi\Api4\OptionValue::update(FALSE)
       ->addValue('name', 'n_a')
       ->addWhere('option_group_id:name', '=', 'EIC_Horizon_Europe_Project_Funding_Type_2')
-      ->addWhere('name', '=', 'n/a')
-      ->addWhere('id', '=', 1394)
+      ->addWhere('value', '=', 'n/a')
       ->execute();
     $log->info('Finished nc_config/upgrade_1008 - Update OptionValue with name: n/a.');
     return TRUE;
