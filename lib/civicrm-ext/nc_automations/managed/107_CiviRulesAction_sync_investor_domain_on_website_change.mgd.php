@@ -16,43 +16,4 @@ return [
       ],
     ],
   ],
-  [
-    'name' => 'CiviRulesAction_sync_investor_domain_on_website_change_CiviRulesRuleAction_1',
-    'entity' => 'CiviRulesRuleAction',
-    'cleanup' => 'unused',
-    'update' => 'unmodified',
-    'params' => [
-      'version' => 4,
-      'values' => [
-        'rule_id.name' => 'syncdomainonwebsitecreation',
-        'action_id.name' => 'sync_investor_domain_on_website_change',
-      ],
-    ],
-  ],
-  [
-    'name' => 'CiviRulesAction_sync_investor_domain_on_website_change_CiviRulesRuleAction_2',
-    'entity' => 'CiviRulesRuleAction',
-    'cleanup' => 'unused',
-    'update' => 'unmodified',
-    'params' => [
-      'version' => 4,
-      'values' => [
-        'rule_id.name' => 'syncdomainonwebsiteremoval',
-        'action_id.name' => 'sync_investor_domain_on_website_change',
-      ],
-    ],
-  ],
-  [
-    'name' => 'CiviRulesAction_sync_investor_domain_on_website_change_CiviRulesRuleAction_3',
-    'entity' => 'CiviRulesRuleAction',
-    'cleanup' => 'unused',
-    'update' => 'unmodified',
-    'params' => [
-      'version' => 4,
-      'values' => [
-        'rule_id.name' => 'syncdomainonwebsitechange',
-        'action_id.name' => 'sync_investor_domain_on_website_change',
-      ],
-    ],
-  ],
 ];

@@ -17,43 +17,4 @@ return [
       ],
     ],
   ],
-  [
-    'name' => 'CiviRulesAction_sync_investor_on_representative_change_CiviRulesRuleAction_1',
-    'entity' => 'CiviRulesRuleAction',
-    'cleanup' => 'unused',
-    'update' => 'unmodified',
-    'params' => [
-      'version' => 4,
-      'values' => [
-        'rule_id.name' => 'sync_represenative_added',
-        'action_id.name' => 'sync_investor_on_representative_change',
-      ],
-    ],
-  ],
-  [
-    'name' => 'CiviRulesAction_sync_investor_on_representative_change_CiviRulesRuleAction_2',
-    'entity' => 'CiviRulesRuleAction',
-    'cleanup' => 'unused',
-    'update' => 'unmodified',
-    'params' => [
-      'version' => 4,
-      'values' => [
-        'rule_id.name' => 'sync_represenative_fields_change',
-        'action_id.name' => 'sync_investor_on_representative_change',
-      ],
-    ],
-  ],
-  [
-    'name' => 'CiviRulesAction_sync_investor_on_representative_change_CiviRulesRuleAction_3',
-    'entity' => 'CiviRulesRuleAction',
-    'cleanup' => 'unused',
-    'update' => 'unmodified',
-    'params' => [
-      'version' => 4,
-      'values' => [
-        'rule_id.name' => 'sync_represenative_removed',
-        'action_id.name' => 'sync_investor_on_representative_change',
-      ],
-    ],
-  ],
 ];

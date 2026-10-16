@@ -24,6 +24,10 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     $upgrader->upgrade_1004();
     $upgrader->upgrade_1005();
     $upgrader->upgrade_1006();
+    $upgrader->upgrade_1007();
+    $upgrader->upgrade_1008();
+    $upgrader->upgrade_1009();
+    $upgrader->upgrade_1010();
 
     // Return success.
     return TRUE;
@@ -139,26 +143,20 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
         continue;
       }
 
-      // Get api4 delete commands.
-      $delete = match ($dao->entity_type) {
-        'CustomGroup' => \Civi\Api4\CustomGroup::delete(FALSE),
-        'CustomField' => \Civi\Api4\CustomField::delete(FALSE),
-        default => NULL,
-      };
-
-      if ($exists) {
-        $log->warning("Entity still exists ({$dao->entity_type}.id={$dao->entity_id}), skipping: {$name}");
-        continue;
-      }
-
-      // Execute delete.
-      $delete->addWhere('id', '=', $dao->entity_id)->execute();
-
       // Delete entries from civicrm_managed table.
       CRM_Core_DAO::executeQuery(
         "DELETE FROM civicrm_managed WHERE module = 'nc_config' AND name = %1",
         [1 => [$name, 'String']]
       );
+
+      $log->info("Deleted managed entity: {$name}");
+
+      // Get api4 delete commands.
+      match ($dao->entity_type) {
+        'CustomGroup' => \Civi\Api4\CustomGroup::delete(FALSE)->addWhere('id', '=', $dao->entity_id)->execute(),
+        'CustomField' => \Civi\Api4\CustomField::delete(FALSE)->addWhere('id', '=', $dao->entity_id)->execute(),
+        default => NULL,
+      };
     }
     $log->info('Finished nc_config/upgrade_1005 - Clean stale managed entities (groups/fields) for custom group "CustomGroup_EU_Survey_Investor_Onboarding".');
     return TRUE;
@@ -170,7 +168,7 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
   public function upgrade_1006(): bool {
     $log = $this->ctx->log ?? \Civi::log();
     $log->info('Start nc_config/upgrade_1006 - Update OptionValue with name: Closed.');
-    \Civi\Api4\OptionValue::update(TRUE)
+    \Civi\Api4\OptionValue::update(FALSE)
       ->addValue('label', 'Resolved')
       ->addWhere('option_group_id:name', '=', 'activity_status')
       ->addWhere('name', '=', 'Closed')
@@ -185,7 +183,7 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
   public function upgrade_1007(): bool {
     $log = $this->ctx->log ?? \Civi::log();
     $log->info('Start nc_config/upgrade_1007 - Update RelationshipType with name_a_b: Founder of.');
-    \Civi\Api4\RelationshipType::update(TRUE)
+    \Civi\Api4\RelationshipType::update(FALSE)
       ->addValue('name_a_b', 'Founder of')
       ->addValue('label_a_b', 'Founder of')
       ->addValue('description', "The founder of the organisation. Communicated by the beneficiary in the EIC VM Fundraising Assessment EU-Survey (Founder's Primary Contact), and used as a role on the VentureMatch Service Request case.")
@@ -195,6 +193,95 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
       ->addWhere('label_b_a', '=', 'Founder is')
       ->execute();
     $log->info('Finished nc_config/upgrade_1007 - Update RelationshipType with name_a_b: Founder of.');
+    return TRUE;
+  }
+
+  /**
+   * Update OptionValue with name: n/a.
+   */
+  public function upgrade_1008(): bool {
+    $log = $this->ctx->log ?? \Civi::log();
+    $log->info('Start nc_config/upgrade_1008 - Update OptionValue with name: n/a.');
+    $results = \Civi\Api4\OptionValue::update(FALSE)
+      ->addValue('name', 'n_a')
+      ->addWhere('option_group_id:name', '=', 'EIC_Horizon_Europe_Project_Funding_Type_2')
+      ->addWhere('name', '=', 'n/a')
+      ->addWhere('id', '=', 1394)
+      ->execute();
+    $log->info('Finished nc_config/upgrade_1008 - Update OptionValue with name: n/a.');
+    return TRUE;
+  }
+
+  /**
+   * Update civicrm_value_srm_eic_accelerator_onboarding_survey_data column names.
+   */
+  public function upgrade_1009(): bool {
+    $log = $this->ctx->log ?? \Civi::log();
+    $log->info('Start nc_config/upgrade_1009 - Update civicrm_value_srm_eic_accelerator_onboarding_survey_data column names..');
+
+    // PROD COL NAMES.
+    $columnMapping = [
+      'eic_project_acronym_94' => 'eic_project_acronym',
+      'eic_project_id_95' => 'eic_project_id',
+      'pitch_deck_96' => 'case_latest_pitch_deck',
+      'are_you_fundraising_within_the_n_97' => 'survey_fundraising_within_the_next_18_months',
+      'are_you_fundraising_within__98' => 'survey_fundraising_within',
+      'what_fundraising_support_do_you__99' => 'survey_receive_suport_fundraising_items',
+      'would_you_like_to_receive_invest_100' => 'survey_receive_support_investment',
+      'are_you_actively_seeking_corpora_101' => 'survey_partenrs_actively_seeking',
+      'what_type_of_partner_are_you_tar_102' => 'survey_partners_types',
+      'are_you_planning_to_sell_your_in_103' => 'survey_selling_to_public_private_buyers',
+      'survey_buyers_where_in_process' => 'survey_buyers_where_in_process',
+      'would_you_like_procurement_suppo_105' => 'survey_receive_support_procurement',
+      'are_you_planning_to_expand_inter_106' => 'survey_international_expansion_in_the_next_18_months',
+      'which_markets_107' => 'survey_international_expansion_markets',
+      'what_is_your_main_barrier_108' => 'survey_international_expansion_main_barrier',
+      'survey_trade_fairs_next_12_months' => 'survey_trade_fairs_next_12_months',
+      'which_region_110' => 'survey_international_trade_fairs_region',
+      'type_of_events_111' => 'survey_international_trade_fairs_events',
+      'would_you_benefit_from_industry__112' => 'survey_receive_support_industry_experts_or_coaches',
+      'what_type_of_support_113' => 'survey_receive_support_industry_experts_or_coaches_types',
+      'what_is_your_main_challenge__114' => 'survey_main_challenge',
+      'does_your_company_have_a_woman_f_115' => 'survey_Does_your_company_have_a_woman_founder_or_executive_who',
+      'what_type_of_other_support_are_y_116' => 'survey_receive_support_other_types',
+      'are_there_any_other_support_item_117' => 'survey_receive_support_other_items',
+      'general_feedback_118' => 'survey_feedback',
+      'would_you_like_to_receive_suppor_119' => 'survey_receive_support_entering_new_markets',
+    ];
+
+    foreach ($columnMapping as $oldColName => $newColName) {
+      $table = 'civicrm_value_srm_eic_accelerator_onboarding_survey_data';
+      CRM_Core_DAO::executeQuery("ALTER TABLE `$table` RENAME COLUMN `$oldColName` TO `$newColName`");
+    }
+
+    $log->info('Finished nc_config/upgrade_1009 - Update civicrm_value_srm_eic_accelerator_onboarding_survey_data column names.');
+    return TRUE;
+  }
+
+  /**
+   * Update civicrm_value_srm_eu_survey_company_data column names.
+   */
+  public function upgrade_1010(): bool {
+    $log = $this->ctx->log ?? \Civi::log();
+    $log->info('Start nc_config/upgrade_1010 - Update civicrm_value_srm_eu_survey_company_data column names.');
+
+    // PROD COL NAMES.
+    $columnMapping = [
+      'ceo_or_project_leader_gender_153' => 'ceo_or_project_leader_gender',
+      'founder_gender_154' => 'founder_gender',
+      'crl_155' => 'crl',
+      'brl_156' => 'brl',
+      'frl_157' => 'frl',
+      'sector_169' => 'sector',
+      'trl_170' => 'trl',
+    ];
+
+    foreach ($columnMapping as $oldColName => $newColName) {
+      $table = 'civicrm_value_srm_eu_survey_company_data';
+      CRM_Core_DAO::executeQuery("ALTER TABLE `$table` RENAME COLUMN `$oldColName` TO `$newColName`");
+    }
+
+    $log->info('Finished nc_config/upgrade_1010 - Update civicrm_value_srm_eu_survey_company_data column names.');
     return TRUE;
   }
 
