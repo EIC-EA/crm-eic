@@ -253,6 +253,27 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
       CRM_Core_DAO::executeQuery("ALTER TABLE `$table` RENAME COLUMN `$oldColName` TO `$newColName`");
     }
 
+    // Update the CustomField entity.
+    foreach (\Civi\Api4\CustomField::get(FALSE)
+       ->addSelect('id', 'name', 'column_name')
+       ->addWhere('custom_group_id:name', '=', 'eic_accelerator_onboarding_survey_data')
+       ->setLimit()
+       ->execute() as $row) {
+      if (!isset($columnMapping[$row['column_name']])) {
+        continue;
+      }
+
+      $log->info("Updating CustomField with id: {$row['id']} - Old column name: {$row['column_name']} to {$columnMapping[$row['column_name']]}\n");
+      CRM_Core_DAO::executeQuery(
+        'UPDATE civicrm_custom_field SET column_name = %1 WHERE id = %2 AND column_name = %3',
+        [
+          1 => [$columnMapping[$row['column_name']], 'String'],
+          2 => [$row['id'], 'Integer'],
+          3 => [$row['column_name'], 'String'],
+        ]
+      );
+      $log->info("Finished Updating CustomField with id: {$row['id']} - Old column name: {$row['column_name']} to {$columnMapping[$row['column_name']]}\n");
+    }
     $log->info('Finished nc_config/upgrade_1009 - Update civicrm_value_srm_eic_accelerator_onboarding_survey_data column names.');
     return TRUE;
   }
@@ -276,6 +297,28 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     foreach ($columnMapping as $oldColName => $newColName) {
       $table = 'civicrm_value_srm_eu_survey_company_data';
       CRM_Core_DAO::executeQuery("ALTER TABLE `$table` RENAME COLUMN `$oldColName` TO `$newColName`");
+    }
+
+    // Update the CustomField entity.
+    foreach (\Civi\Api4\CustomField::get(FALSE)
+       ->addSelect('id', 'name', 'column_name')
+       ->addWhere('custom_group_id:name', '=', 'EU_Survey_Company_Data')
+       ->setLimit()
+       ->execute() as $row) {
+      if (!isset($columnMapping[$row['column_name']])) {
+        continue;
+      }
+
+      $log->info("Updating CustomField with id: {$row['id']} - Old column name: {$row['column_name']} to {$columnMapping[$row['column_name']]}\n");
+      CRM_Core_DAO::executeQuery(
+        'UPDATE civicrm_custom_field SET column_name = %1 WHERE id = %2 AND column_name = %3',
+        [
+          1 => [$columnMapping[$row['column_name']], 'String'],
+          2 => [$row['id'], 'Integer'],
+          3 => [$row['column_name'], 'String'],
+        ]
+      );
+      $log->info("Finished Updating CustomField with id: {$row['id']} - Old column name: {$row['column_name']} to {$columnMapping[$row['column_name']]}\n");
     }
 
     $log->info('Finished nc_config/upgrade_1010 - Update civicrm_value_srm_eu_survey_company_data column names.');
