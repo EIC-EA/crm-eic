@@ -1,4 +1,5 @@
 ARG PHP_VERSION=8.4
+# Comment to force rebuild
 ARG DRUPAL_VERSION=11.3
 ARG ENV
 
