@@ -59,6 +59,7 @@
     <ext>advimport</ext>
     <ext>advimportformprocessor</ext>
     <ext>de.systopia.signatures</ext>
+    <ext>eic_calculated_fields</ext>
   </requires>
   <mixins>
     <mixin>mgd-php@2.0.0</mixin>

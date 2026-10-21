@@ -247,4 +247,10 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     return $this->disable_extension(['chart_kit', 'civicalendar']);
   }
 
+  /**
+   * Enable eic_calculated_fields
+   */
+  public function upgrade_1014(): bool {
+    return $this->enable_extension(['eic_calculated_fields']);
+  }  
 }
