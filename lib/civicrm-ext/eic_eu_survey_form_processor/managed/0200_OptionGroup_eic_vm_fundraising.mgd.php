@@ -175,3 +175,9 @@
 //}
 //
 //return $entities;
+
+// The declarations above are intentionally disabled. A .mgd.php file must still
+// return an array; returning nothing makes include() yield int(1), which breaks
+// CiviCRM's managed-entity mixin (foreach over the return value) and aborts the
+// whole reconcile. Return an empty set so reconcile continues cleanly.
+return [];

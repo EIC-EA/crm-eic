@@ -108,7 +108,7 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
    *
    * @return bool
    */
-  public function upgrade_1005(): bool {
+  public function ___upgrade_1005(): bool {
     $log = $this->ctx->log ?? \Civi::log();
     $log->info('Start nc_config/upgrade_1005 - Clean stale managed entities (groups/fields) for custom group "CustomGroup_EU_Survey_Investor_Onboarding".');
     $orphan = 'civicrm_value_srm_eu_survey_investor_onboarding_case';
