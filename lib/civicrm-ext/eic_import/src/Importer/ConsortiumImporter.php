@@ -96,7 +96,7 @@ class ConsortiumImporter extends BaseImporter
         // proposalNumber	 relation	 status	 SMEDashboardId	 PIC	 Name	 Country
 
         if ($this->isDryRun()) {
-            return null;
+            return false;
         }
 
         $ids = [];

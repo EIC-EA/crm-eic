@@ -86,7 +86,7 @@ class SectorImporter extends BaseImporter
         $pkValue = $row[$pkName];
 
         if ($this->isDryRun() || $pkValue === '') {
-            return null;
+            return false;
         }
 
         $pkField = $this->fieldMap[$pkName]['field'];

@@ -320,8 +320,9 @@ abstract class BaseImporter
     {
         $pkValue = $row[$pkName];
 
+
         if ($this->isDryRun() || $pkValue === '') {
-            return null;
+            return false;
         }
 
         // Find the custom field that holds PIC — using dot-notation from the field map

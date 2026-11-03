@@ -104,7 +104,7 @@ class ContactImporter extends BaseImporter
         // eu-login; role; PIC; proposalNo
 
         if ($this->isDryRun()) {
-            return null;
+            return false;
         }
 
         $result = \Civi\Api4\Relationship::get()

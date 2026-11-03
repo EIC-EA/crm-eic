@@ -92,9 +92,9 @@ class ProjectImporter extends BaseImporter
     protected function findByPK(string $pkName, array $row): array | bool
     {
         $pkValue = $row[$pkName];
-        
+
         if ($this->isDryRun() || $pkValue === '') {
-            return null;
+            return false;
         }
 
         $pkField = $this->fieldMap[$pkName]['field'];
