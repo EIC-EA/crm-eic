@@ -43,7 +43,7 @@
   </classloader>
   <civix>
     <namespace>CRM/EicConfig</namespace>
-    <format>26.10.2</format>
+    <format>26.10.3</format>
     <angularModule>crmEicConfig</angularModule>
   </civix>
   <upgrader>CRM_EicConfig_Upgrader</upgrader>
@@ -66,6 +66,5 @@
     <mixin>scan-classes@1.0.0</mixin>
     <mixin>setting-php@1.0.0</mixin>
     <mixin>smarty@1.0.3</mixin>
-    <mixin>include-path@1.0.0</mixin>
   </mixins>
 </extension>
