@@ -252,5 +252,26 @@ class CRM_EicConfig_Upgrader extends CRM_Extension_Upgrader_Base {
    */
   public function upgrade_1014(): bool {
     return $this->enable_extension(['eic_calculated_fields']);
-  }  
+  }
+
+  /**
+   * Register the Contact Summary profiles as "Profile" usages (UFJoin).
+   *
+   * The profiles (UFGroup/UFField) and the contact layouts (ContactLayout) are
+   * shipped as managed entities, but the UFJoin row that marks a profile as
+   * "used for → Profile" cannot be expressed as a managed entity. Without it
+   * the `profile.*` blocks referenced by the ContactLayout definitions have no
+   * usage record to bind to, so those panels render empty.
+   *
+   * This covers environments that upgrade in place. Fresh installs are handled
+   * by _eic_config_ensure_profile_ufjoins() from hook_civicrm_postInstall(),
+   * because civix sets schema_version to the latest on install and so skips the
+   * historical upgrade_NNNN() steps. Both paths share the same idempotent
+   * helper, so re-running is a no-op.
+   */
+  public function upgrade_1015(): bool {
+    $this->ctx->log->info('Registering Contact Summary profile usages (UFJoin)');
+    _eic_config_ensure_profile_ufjoins();
+    return TRUE;
+  }
 }

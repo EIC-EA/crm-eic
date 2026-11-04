@@ -82,6 +82,64 @@ function _eic_config_ensure_components(): void {
  */
 function eic_config_civicrm_postInstall(): void {
   _eic_config_set_group_hierarchy();
+  _eic_config_ensure_profile_ufjoins();
+}
+
+/**
+ * Registers the profiles as "Contact Summary" usages (UFJoin).
+ *
+ * The profiles (UFGroup/UFField) and the contact layouts (ContactLayout) are
+ * shipped as managed entities, but the UFJoin row that marks a profile as
+ * "used for → Contact Summary" cannot be expressed as a managed entity (UFJoin
+ * is not an API4/managed-capable entity). The Contact Layout editor builds its
+ * list of available profile blocks by querying UFJoin rows with
+ * module = 'Contact Summary' (see contactlayout BAO getAllBlocks()). Without
+ * such a row the `profile.*` blocks referenced by the ContactLayout definitions
+ * are never offered/resolved, so those panels render empty.
+ *
+ * This runs at postInstall because civix sets the extension's schema_version to
+ * the latest on a fresh install, so the historical upgrade_1015() step does not
+ * run for new installs. upgrade_1015() still covers already-installed
+ * environments that upgrade in place. Both are idempotent.
+ */
+function _eic_config_ensure_profile_ufjoins(): void {
+  // UFGroup.name values referenced as profile.* blocks in the ContactLayout
+  // managed entities (3000/3020).
+  $profiles = [
+    'VentureMatch_EIC_Awardee_information',
+    'Custom_EIC_Awardee_Organisation_information_right',
+    'EIC_VentureMatch_Main_information_Left',
+    'EIC_VentureMatch_Fundraising_Snapshot',
+    'EIC_VentureMatch_Fundraising_Documents',
+  ];
+
+  foreach ($profiles as $name) {
+    $ufGroupId = CRM_Core_DAO::singleValueQuery(
+      'SELECT id FROM civicrm_uf_group WHERE name = %1',
+      [1 => [$name, 'String']]
+    );
+
+    if (empty($ufGroupId)) {
+      \Civi::log()->warning("eic_config: UFGroup '{$name}' not found; skipping Contact Summary UFJoin.");
+      continue;
+    }
+
+    $exists = (bool) CRM_Core_DAO::singleValueQuery(
+      "SELECT id FROM civicrm_uf_join WHERE uf_group_id = %1 AND module = 'Contact Summary'",
+      [1 => [$ufGroupId, 'Integer']]
+    );
+
+    if ($exists) {
+      continue;
+    }
+
+    civicrm_api3('UFJoin', 'create', [
+      'module' => 'Contact Summary',
+      'uf_group_id' => $ufGroupId,
+      'is_active' => 1,
+      'weight' => 1,
+    ]);
+  }
 }
 
 /**

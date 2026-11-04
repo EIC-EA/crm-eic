@@ -1,0 +1,18 @@
+<af-form ctrl="afform">
+  <af-entity data="{case_type_id: 4, contact_id: ['Organization1', 'Organization2'], 'Client_Roles.Investor': 'Organization2', 'Client_Roles.EIC_Awardee': 'Organization1'}" actions="{create: true, update: false}" type="Case" name="Case1" label="Case 1" security="RBAC" />
+  <af-entity data="{}" type="Organization" name="Organization1" label="Organization 1" actions="{create: false, update: true}" security="RBAC" autofill="entity_id" />
+  <af-entity data="{}" type="Organization" name="Organization2" label="Organization 2" actions="{create: true, update: true}" security="RBAC" url-autofill="1" />
+  <fieldset af-fieldset="Case1" class="af-container af-layout-cols" af-title="New Engagement">
+    <af-field name="subject" defn="{afform_default: 'Engagement', input_attrs: {}}" />
+    <af-field name="Case_Note.Note" defn="{label: 'Note'}" />
+  </fieldset>
+  <div class="af-container af-layout-cols">
+    <fieldset af-fieldset="Organization2" class="af-container" af-title="Investor">
+      <af-field name="id" defn="{required: true, input_attrs: {quickAdd: ['civicrm/quick-add/Organization']}, label: 'Please Select the Investor company'}" />
+    </fieldset>
+    <fieldset af-fieldset="Organization1" class="af-container" af-title="EIC Awardee">
+      <af-field name="id" defn="{required: true, input_attrs: {}, label: 'Please select the EIC Awardee company'}" />
+    </fieldset>
+  </div>
+  <button class="af-button btn btn-primary" crm-icon="fa-check" ng-click="afform.submit()" ng-if="afform.showSubmitButton">Submit</button>
+</af-form>

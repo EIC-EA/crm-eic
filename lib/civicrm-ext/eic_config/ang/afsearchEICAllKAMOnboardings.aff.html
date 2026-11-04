@@ -1,0 +1,8 @@
+<div af-fieldset="">
+  <div class="af-container af-layout-cols">
+    <af-field name="status_id:name" defn="{input_attrs: {multiple: true}, label: 'Onboarding Status', afform_default: {0: null}, options: [{id: 'Open', label: 'Ongoing', name: 'Open', description: '', color: ''}, {id: 'Onboarded', label: 'Onboarded', name: 'Onboarded', description: '&lt;p&gt;Onboarded&lt;/p&gt;', color: ''}]}" />
+    <af-field name="Case_CaseContact_Contact_01_Contact_RelationshipCache_Case_01.near_contact_id" defn="{search_operator: 'IN', input_attrs: {multiple: true}, required: false, label: 'KAM', afform_default: ['user_contact_id'], saved_search: 'EIC_BAS_users'}" />
+    <af-field name="EIC_Awardee_information.Project_Funding:name" defn="{input_attrs: {multiple: true}}" />
+  </div>
+  <crm-search-display-table search-name="EIC_Awardee_Onboarding" display-name="My_EIC_Awardee_Onboarding_All"></crm-search-display-table>
+</div>

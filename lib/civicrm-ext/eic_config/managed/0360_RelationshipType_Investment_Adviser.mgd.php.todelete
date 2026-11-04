@@ -1,0 +1,32 @@
+<?php
+
+use CRM_EicConfig_ExtensionUtil as E;
+
+return [];
+
+return [
+  [
+    'name' => 'RelationshipType_1',
+    'entity' => 'RelationshipType',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'name_a_b' => 'Investment Adviser is is',
+        'label_a_b' => 'Investment Associate for',
+        'name_b_a' => 'Investment Adviser is',
+        'label_b_a' => 'Investment Associate is',
+        'description' => 'Investment Adviser is',
+        'contact_type_a'=> 'Individual',
+        'contact_type_b'=> 'Organization',
+        'description' => 'EIC service provider who supports the sourcing, preparation, and matching of EIC-backed companies with relevant investors under the EIC Business Acceleration Services VentureMatch Programme',
+        'weight' => 23,
+      ],
+      'match' => [
+        'name_a_b',
+        'name_b_a',
+      ],
+    ],
+  ],
+];

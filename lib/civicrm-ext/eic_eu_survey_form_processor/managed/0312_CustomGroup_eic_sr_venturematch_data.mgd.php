@@ -89,4 +89,28 @@ return [
       ],
     ],
   ],
+  [
+    'name' => 'CustomGroup_eic_sr_venturematch_data_CustomField_How_did_you_learn_about_Venture_Match_',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'eic_sr_venturematch_data',
+        'name' => 'How_did_you_learn_about_Venture_Match_',
+        'label' => 'Recommended by',
+        'data_type:name' => 'Alphanumeric',
+        'html_type:name' => 'Single-line input field (text or numeric)',
+        'text_length' => 255,
+        'note_columns' => 60,
+        'note_rows' => 4,
+        'column_name' => 'vm_source',
+      ],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
+    ],
+  ],  
 ];

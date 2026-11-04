@@ -1,0 +1,38 @@
+{
+    "type": "search",
+    "title": "Onboarding",
+    "placement": [],
+    "placement_filters": {
+        "contact_type": [
+            "EIC_Awardee"
+        ]
+    },
+    "icon": "fa-user-doctor",
+    "server_route": "",
+    "is_public": false,
+    "permission": [
+        "access CiviCRM"
+    ],
+    "permission_operator": "AND",
+    "submit_enabled": true,
+    "create_submission": false,
+    "manual_processing": false,
+    "allow_verification_by_email": false,
+    "autosave_draft": false,
+    "confirmation_type": "redirect_to_url",
+    "created_id": 43598,
+    "modified_date": "2026-09-25 18:30:43",
+    "requires": null,
+    "entity_type": null,
+    "join_entity": null,
+    "description": null,
+    "placement_weight": null,
+    "tags": null,
+    "redirect": null,
+    "submit_limit": null,
+    "submit_limit_per_user": null,
+    "email_confirmation_template_id": null,
+    "navigation": null,
+    "confirmation_message": null,
+    "locale": null
+}

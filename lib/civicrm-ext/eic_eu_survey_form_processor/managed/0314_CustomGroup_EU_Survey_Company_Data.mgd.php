@@ -21,7 +21,7 @@ return [
     ],
   ],
   [
-    'name' => 'CustomGroup_EU_Survey_Company_Data_CustomField_CEO_or_project_leader_gender',
+    'name' => 'CustomGroup_EU_Survey_Company_Data_CustomField_Sector',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
     'update' => 'unmodified',
@@ -29,14 +29,15 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EU_Survey_Company_Data',
-        'name' => 'CEO_or_project_leader_gender',
-        'label' => E::ts('CEO or project leader gender'),
+        'name' => 'Sector',
+        'label' => E::ts('Sector'),
         'data_type' => 'String',
         'html_type' => 'Select',
         'is_view' => TRUE,
         'text_length' => 255,
-        'option_group_id.name' => 'eu_survey_gender',
-        'column_name' => 'ceo_or_project_leader_gender',
+        'option_group_id.name' => 'eu_survey_sector',
+        'serialize' => 1,
+        'column_name' => 'sector',
       ],
       'match' => [
         'name',
@@ -69,7 +70,7 @@ return [
     ],
   ],
   [
-    'name' => 'CustomGroup_EU_Survey_Company_Data_CustomField_Sector',
+    'name' => 'CustomGroup_EU_Survey_Company_Data_CustomField_CEO_or_project_leader_gender',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
     'update' => 'unmodified',
@@ -77,22 +78,21 @@ return [
       'version' => 4,
       'values' => [
         'custom_group_id.name' => 'EU_Survey_Company_Data',
-        'name' => 'Sector',
-        'label' => E::ts('Sector'),
+        'name' => 'CEO_or_project_leader_gender',
+        'label' => E::ts('CEO or project leader gender'),
         'data_type' => 'String',
         'html_type' => 'Select',
         'is_view' => TRUE,
         'text_length' => 255,
-        'option_group_id.name' => 'eu_survey_sector',
-        'serialize' => 1,
-        'column_name' => 'sector',
+        'option_group_id.name' => 'eu_survey_gender',
+        'column_name' => 'ceo_or_project_leader_gender',
       ],
       'match' => [
         'name',
         'custom_group_id',
       ],
     ],
-  ],
+  ],  
   [
     // TRL/CRL/BRL/FRL are stored as multi-selects: a company may run several
     // projects, each with its own readiness levels, so the company cumulates
