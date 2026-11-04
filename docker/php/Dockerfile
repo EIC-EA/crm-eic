@@ -103,7 +103,9 @@ RUN set -eux; \
 	composer config --no-plugins allow-plugins.civicrm/civicrm-asset-plugin true && \
 	composer require civicrm/civicrm-packages:^${CIVICRM_VERSION} && \
 	composer require civicrm/civicrm-drupal-8:^${CIVICRM_VERSION} && \
-	composer require civicrm/cli-tools:^v2026.03.20.1774037652 && \
+	# civix/cv/coworker are bundled binaries shipped by civicrm/cli-tools; the
+	# civix version tracks this release. Bump this pin to upgrade civix.
+	composer require civicrm/cli-tools:^v2026.10.16.1792170582 && \
 	# Drush
 	composer require drush/drush && \
 	# EU Login

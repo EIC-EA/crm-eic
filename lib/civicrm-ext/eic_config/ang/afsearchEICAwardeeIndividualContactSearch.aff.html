@@ -1,0 +1,21 @@
+<div af-fieldset="" store-values="1">
+  <div class="af-container af-layout-cols" af-title="Organisation information">
+    <af-field name="Contact_RelationshipCache_Contact_01.organization_name" defn="{label: 'Organisation Name', input_attrs: {}}" />
+    <af-field name="Contact_RelationshipCache_Contact_01.EIC_Organisation_identifiers.PIC" defn="{help_pre: null, input_attrs: {}, label: 'PIC'}" />
+    <af-field name="EIC_Awardee_Additionnal_Information.SME_vs_mid_cap_status" defn="{input_attrs: {multiple: true}, label: 'SME vs mid-cap status'}" />
+    <af-field name="EIC_Awardee_Additionnal_Information.SME_status_type" defn="{input_attrs: {multiple: true}, label: 'SME status type'}" />
+  </div>
+  <div class="af-container af-layout-cols" af-title="EIC Project Information">
+    <af-field name="Contact_RelationshipCache_Contact_01_Contact_ActivityContact_Activity_01.subject" defn="{label: 'Project name', input_attrs: {}}" />
+    <af-field name="Contact_RelationshipCache_Contact_01_Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Funding" defn="{input_attrs: {multiple: true}, label: 'Funding'}" />
+    <af-field name="Contact_RelationshipCache_Contact_01_Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Funding_Type" defn="{input_attrs: {multiple: true}, label: 'Funding Type'}" />
+    <af-field name="Contact_RelationshipCache_Contact_01_Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Category:name" defn="{input_attrs: {multiple: true}}" />
+    <af-field name="Contact_RelationshipCache_Contact_01_Contact_ActivityContact_Activity_01.EIC_Horizon_Europe_Project_information.Cut_Off_Date" defn="{input_type: 'Select', search_range: true, input_attrs: {}}" />
+  </div>
+  <div class="af-container af-layout-cols" af-title="Individual">
+    <af-field name="Contact_RelationshipCache_Contact_01.far_relation" defn="{input_attrs: {multiple: true}, label: 'Role', required: true, options: [{id: 'Employee of', name: 'Employee of', label: 'Employee of'}, {id: 'EIC Project member of', name: 'EIC Project member of', label: 'EIC Other Project member for'}, {id: 'EIC_Coco_For', name: 'EIC_Coco_For', label: 'CoCo - EIC Project Coordinator Contact for'}, {id: 'EIC_LEAR_For', name: 'EIC_LEAR_For', label: 'LEAR - EIC Organisation Legal Entity Appointed Representative...'}, {id: 'EIC_PaCo_For', name: 'EIC_PaCo_For', label: 'PaCo - EIC Project Participant Contact for'}, {id: 'EIC_PCoco_For', name: 'EIC_PCoco_For', label: 'PCoCo - EIC Project Primary Coordinator contact for'}]}" />
+    <af-field name="tags" defn="{input_attrs: {multiple: true}}" />
+  </div>
+  <button class="af-button btn btn-warning" type="reset" crm-icon="fa-undo">Reset</button>
+  <crm-search-display-table search-name="Test_contact_search_for_tagging" display-name="EIC_Awardee_individuals_search"></crm-search-display-table>
+</div>

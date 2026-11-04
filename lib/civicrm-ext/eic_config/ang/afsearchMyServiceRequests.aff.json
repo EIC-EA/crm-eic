@@ -1,0 +1,22 @@
+{
+    "type": "search",
+    "title": "myServiceRequests",
+    "placement": [
+        "dashboard_dashlet"
+    ],
+    "placement_filters": [],
+    "icon": "fa-list-alt",
+    "server_route": "civicrm/myServiceRequests",
+    "is_public": false,
+    "permission": [
+        "access CiviCRM"
+    ],
+    "permission_operator": "AND",
+    "submit_enabled": true,
+    "create_submission": false,
+    "manual_processing": false,
+    "allow_verification_by_email": false,
+    "autosave_draft": false,
+    "confirmation_type": "redirect_to_url",
+    "created_id": 43605
+}

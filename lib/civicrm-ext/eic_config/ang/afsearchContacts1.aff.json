@@ -1,0 +1,16 @@
+{
+    "type": "search",
+    "title": "Contacts",
+    "placement": [
+        "contact_summary_tab"
+    ],
+    "placement_filters": [],
+    "icon": "fa-handshake-angle",
+    "server_route": "",
+    "permission": [
+        "access CiviCRM"
+    ],
+    "permission_operator": "AND",
+    "confirmation_type": "redirect_to_url",
+    "created_id": 43598
+}
