@@ -58,7 +58,7 @@ return [
         'name' => 'PIC',
         'label' => E::ts('PIC'),
         'html_type' => 'Text',
-        'help_pre' => E::ts('The Participant Identification Code (PIC) is a unique 9-digit reference number used by the European Commission to identify a legal entity (company, university, research centre, public body, NGO, etc.) across all EU funding programmes, including European Innovation Council (EIC) calls, grants, prizes, and tenders.'),
+        'help_post' => E::ts('The Participant Identification Code (PIC) is a unique 9-digit reference number used by the European Commission to identify a legal entity (company, university, research centre, public body, NGO, etc.) across all EU funding programmes, including European Innovation Council (EIC) calls, grants, prizes, and tenders.'),
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
@@ -71,4 +71,51 @@ return [
       ],
     ],
   ],
+  [
+    'name' => 'CustomGroup_EIC_Organisation_identifiers_CustomField_Company_Domain_Name',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'EIC_Organisation_identifiers',
+        'name' => 'Company_Domain_Name',
+        'label' => 'Organisation Domain Name',
+        'data_type:name' => 'Alphanumeric',
+        'html_type:name' => 'Single-line input field (text or numeric)',
+        'text_length' => 512,
+        'note_columns' => 60,
+        'note_rows' => 4,
+        'column_name' => 'domain'
+      ],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
+    ],
+  ],
+  [
+    'name' => 'CustomGroup_EIC_Organisation_identifiers_CustomField_LinkedIn_URL',
+    'entity' => 'CustomField',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'custom_group_id.name' => 'EIC_Organisation_identifiers',
+        'name' => 'LinkedIn_URL',
+        'label' => 'LinkedIn Page',
+        'data_type' => 'Link',
+        'html_type' => 'Link',
+        'help_pre' => "The company's LinkedIn profile URL.",
+        'text_length' => 2047,
+        'column_name' => 'linkedin'
+      ],
+      'match' => [
+        'name',
+        'custom_group_id',
+      ],
+    ],
+  ],  
 ];

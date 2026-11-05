@@ -20,6 +20,7 @@ permissions:
   - 'access contextual links'
   - 'access deleted contacts'
   - 'access files overview'
+  - 'access print menu'
   - 'access uploaded files'
   - 'add cases'
   - 'add contact notes'

@@ -161,4 +161,151 @@ return [
       ],
     ],
   ],
+  [
+    'name' => 'OptionGroup_case_status_OptionValue_Waiting_EU_Survey_answer',
+    'entity' => 'OptionValue',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'case_status',
+        'label' => 'Waiting EU Survey answer',
+        'value' => '10',
+        'name' => 'Waiting EU Survey answer',
+        'grouping' => 'Opened',
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_case_status_OptionValue_Planning',
+    'entity' => 'OptionValue',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'case_status',
+        'label' => 'Planning',
+        'value' => '8',
+        'name' => 'Planning',
+        'grouping' => 'Opened',
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_case_status_OptionValue_Calibration',
+    'entity' => 'OptionValue',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'case_status',
+        'label' => 'Calibration',
+        'value' => '11',
+        'name' => 'Calibration',
+        'grouping' => 'Opened',
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_case_status_OptionValue_Material_refinement',
+    'entity' => 'OptionValue',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'case_status',
+        'label' => 'Material refinement',
+        'value' => '15',
+        'name' => 'Material refinement',
+        'grouping' => 'Opened',
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_case_status_OptionValue_Investors_Outreach',
+    'entity' => 'OptionValue',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'case_status',
+        'label' => 'Investors Outreach',
+        'value' => '12',
+        'name' => 'Investors Outreach',
+        'grouping' => 'Opened',
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_case_status_OptionValue_Done',
+    'entity' => 'OptionValue',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'case_status',
+        'label' => 'Done',
+        'value' => '13',
+        'name' => 'Done',
+        'grouping' => 'Closed',
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ],
+  [
+    'name' => 'OptionGroup_case_status_OptionValue_Lost',
+    'entity' => 'OptionValue',
+    'cleanup' => 'unused',
+    'update' => 'unmodified',
+    'params' => [
+      'version' => 4,
+      'values' => [
+        'option_group_id.name' => 'case_status',
+        'label' => 'Lost',
+        'value' => '14',
+        'name' => 'Lost',
+        'grouping' => 'Closed',
+      ],
+      'match' => [
+        'option_group_id',
+        'name',
+        'value',
+      ],
+    ],
+  ]
 ];

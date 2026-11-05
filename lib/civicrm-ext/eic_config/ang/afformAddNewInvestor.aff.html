@@ -1,0 +1,11 @@
+<af-form ctrl="afform">
+  <af-entity data="{source: 'Add new investor', contact_sub_type: ['Investor']}" type="Organization" name="Organization1" label="Organization 1" actions="{create: true, update: false}" security="RBAC" />
+  <fieldset af-fieldset="Organization1" class="af-container" af-title="Organization 1">
+    <div actions="{update: true, delete: true}" class="af-container">
+      <div class="af-container af-layout-inline">
+        <af-field name="organization_name" />
+      </div>
+    </div>
+  </fieldset>
+  <button class="af-button btn btn-primary" crm-icon="fa-check" ng-click="afform.submit()" ng-if="afform.showSubmitButton">Submit</button>
+</af-form>

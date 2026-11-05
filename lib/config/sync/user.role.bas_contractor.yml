@@ -25,6 +25,7 @@ permissions:
   - 'access contact reference fields'
   - 'access contextual links'
   - 'access files overview'
+  - 'access print menu'
   - 'access toolbar'
   - 'access uploaded files'
   - 'add cases'

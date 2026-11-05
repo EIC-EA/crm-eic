@@ -9,6 +9,9 @@ $domainField = \Civi\Api4\CustomField::get(FALSE)
   ->execute()
   ->first();
 
+if (!$domainField)
+  return [];
+
 // Domain group fieldset.
 $table = $domainField['custom_group_id.table_name'];
 
