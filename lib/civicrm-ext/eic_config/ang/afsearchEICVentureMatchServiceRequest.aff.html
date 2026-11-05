@@ -1,0 +1,11 @@
+<div af-fieldset="" af-title="EIC VentureMatch Service Request Follow-up">
+  <div class="af-container af-layout-cols">
+    <af-field name="Case_CaseContact_Contact_01.display_name" defn="{label: 'Company', input_attrs: {}}" />
+    <af-field name="status_id:name" defn="{input_attrs: {multiple: true}, label: 'Status', required: false, options: [{id: 'Requested', label: 'Requested', name: 'Requested', description: '', color: ''}, {id: 'Waiting EU Survey answer', label: 'Waiting EU Survey answer', name: 'Waiting EU Survey answer', description: '', color: ''}, {id: 'Calibration', label: 'Calibration', name: 'Calibration', description: '', color: ''}, {id: 'Material refinement', label: 'Material refinement', name: 'Material refinement', description: '', color: ''}, {id: 'Investors Outreach', label: 'Investors Outreach', name: 'Investors Outreach', description: '', color: ''}, {id: 'Done', label: 'Done', name: 'Done', description: '', color: ''}, {id: 'Lost', label: 'Lost', name: 'Lost', description: '', color: ''}]}" />
+  </div>
+  <div class="af-container af-layout-cols">
+    <af-field name="Case_CaseContact_Contact_01.EU_Survey_Company_Data.Sector:name" defn="{input_attrs: {multiple: true}, label: 'Sector'}" />
+    <af-field name="Case_CaseContact_Contact_01.EIC_Fundraising_Assessment.Current_Fundraising_Round:name" defn="{input_attrs: {multiple: true}, label: 'Round', help_post: null}" />
+  </div>
+  <crm-search-display-table search-name="Contact_Summary_Cases_copy_" display-name="VentureMatch_Service_request_Follow_up" filters="{case_manager_id: 'user_contact_id'}"></crm-search-display-table>
+</div>

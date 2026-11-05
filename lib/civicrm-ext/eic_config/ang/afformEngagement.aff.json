@@ -1,0 +1,41 @@
+{
+    "type": "form",
+    "requires": null,
+    "entity_type": null,
+    "join_entity": null,
+    "title": "New Engagement",
+    "description": null,
+    "placement": [
+        "contact_summary_actions"
+    ],
+    "placement_filters": {
+        "contact_type": [
+            "EIC_Awardee",
+            "EIC_Organisation"
+        ]
+    },
+    "placement_weight": null,
+    "tags": null,
+    "icon": "fa-handshake-angle",
+    "server_route": "civicrm/quick-engagement",
+    "is_public": false,
+    "permission": [
+        "access CiviCRM"
+    ],
+    "permission_operator": "AND",
+    "redirect": null,
+    "submit_enabled": true,
+    "submit_limit": null,
+    "submit_limit_per_user": null,
+    "create_submission": false,
+    "manual_processing": false,
+    "allow_verification_by_email": false,
+    "email_confirmation_template_id": null,
+    "autosave_draft": false,
+    "navigation": null,
+    "modified_date": "2026-10-30 16:06:00",
+    "confirmation_type": "show_confirmation_message",
+    "confirmation_message": "<p>Engagement created. The case ID is <strong>[Case1.0.id]</strong>. Please add this ID to the email exchanges to automatically link them to this engagement flow.</p>\n",
+    "created_id": 2,
+    "locale": null
+}

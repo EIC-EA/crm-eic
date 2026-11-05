@@ -169,12 +169,13 @@ class CRM_NcAutomations_EngagementCaseAutocompleteHelper
     {
         $roles = [];
         foreach ($clients as $client) {
-            if (array_key_exists('contact_sub_type', $client)) {
-                $roleKey = implode("_", sort($client['contact_sub_type']));
-                //this will create keys like "Investor", "EIC_Awardee", "EIC_Awardee_Investor", if more roles are added
-                //this must be updated.
-                $roles[$roleKey][] = $client['id'];
-            }
+          if (array_key_exists('contact_sub_type', $client) && !empty($client['contact_sub_type'])) {
+            sort($client['contact_sub_type']);
+            $roleKey = implode("_", $client['contact_sub_type']);
+            //this will create keys like "Investor", "EIC_Awardee", "EIC_Awardee_Investor", if more roles are added
+            //this must be updated.
+            $roles[$roleKey][] = $client['id'];
+          }
         }
         return $roles;
     }

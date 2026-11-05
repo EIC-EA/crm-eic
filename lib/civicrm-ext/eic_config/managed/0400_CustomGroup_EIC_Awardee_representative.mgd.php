@@ -14,18 +14,18 @@ return [
         'title' => E::ts('EIC Awardee representative'),
         'extends' => 'Individual',
         'extends_entity_column_value' => ['EIC_Registered'],
-        'weight' => 11,
+        'weight' => 8,
         'collapse_adv_display' => TRUE,
         'table_name' => 'civicrm_value_srm_eic_awardee_representative',
       ],
-      'match' => ['name'],    
+      'match' => ['name'],
     ],
   ],
   [
     'name' => 'CustomGroup_EIC_Awardee_representative_CustomField_eulogin',
     'entity' => 'CustomField',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [

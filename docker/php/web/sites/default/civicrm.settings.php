@@ -208,9 +208,9 @@ if (!defined('CIVICRM_TEMPLATE_COMPILEDIR')) {
  * https://lab.civicrm.org/dev/core/issues/1073
  *
  */
-//if (!defined('CIVICRM_TEMPLATE_COMPILE_CHECK')) {
-//  define('CIVICRM_TEMPLATE_COMPILE_CHECK', FALSE);
-//}
+if (!defined('CIVICRM_TEMPLATE_COMPILE_CHECK')) {
+  define('CIVICRM_TEMPLATE_COMPILE_CHECK', FALSE);
+}
 
 /**
  * Smarty escape on output.
@@ -451,6 +451,15 @@ if (!defined('CIVICRM_DOMAIN_ID')) {
  * To not use any caching (not recommended), use a value of 'NoCache'
  *
  */
+
+if (getenv('REDIS_HOST'))
+{
+  define('CIVICRM_DB_CACHE_CLASS', 'Redis');
+  define('CIVICRM_DB_CACHE_HOST', getenv('REDIS_HOST'));
+  define('CIVICRM_DB_CACHE_PORT', getenv('REDIS_PORT') ?: 6379);
+  define('CIVICRM_DB_CACHE_PREFIX', 'civicrm');
+}
+
 if (!defined('CIVICRM_DB_CACHE_CLASS')) {
   define('CIVICRM_DB_CACHE_CLASS', 'ArrayCache');
 }
@@ -701,4 +710,8 @@ $civicrm_setting['domain']['ses_sdk_auth'] = '1';
 $civicrm_setting['domain']['eic_eu_survey_settings_import_mode'] = true;
 $civicrm_setting['domain']['eic_eu_survey_form_processor_import_mode'] = true;
 
-$civicrm_setting['domain']['advimport_batch_max'] = 10;
+// Lower import batch size in order to be below 30 seconds
+$civicrm_setting['domain']['import_batch_size'] = 10;
+
+// Send CiviCRM logs to the CMS (Drupal) log
+$civicrm_setting['domain']['userFrameworkLogging'] = 1;

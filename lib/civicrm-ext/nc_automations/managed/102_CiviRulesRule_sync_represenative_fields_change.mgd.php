@@ -6,13 +6,14 @@ return [
     'name' => 'CiviRulesRule_sync_represenative_fields_change',
     'entity' => 'CiviRulesRule',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
         'name' => 'sync_represenative_fields_change',
         'label' => E::ts('Sync  Representative Fields Change'),
         'trigger_id.name' => 'changed_contact_custom_data',
+        'is_active' => TRUE,
         'description' => E::ts('On Representative update sync Investor Org'),
       ],
     ],

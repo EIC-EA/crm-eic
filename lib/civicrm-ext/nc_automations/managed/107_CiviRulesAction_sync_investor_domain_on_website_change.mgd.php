@@ -1,5 +1,4 @@
 <?php
-
 use CRM_NcAutomations_ExtensionUtil as E;
 
 return [
@@ -7,7 +6,7 @@ return [
     'name' => 'CiviRulesAction_sync_investor_domain_on_website_change',
     'entity' => 'CiviRulesAction',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [

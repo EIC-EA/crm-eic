@@ -17,7 +17,7 @@ return [
         'permission' => ['access CiviCRM'],
         'permission_operator' => 'AND',
         'parent_id.name' => 'Search',
-        'weight' => 2,
+        'weight' => 6,
       ],
       'match' => ['name', 'domain_id'],
     ],

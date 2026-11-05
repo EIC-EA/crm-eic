@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<extension key="eic_calculated_fields" type="module">
+  <file>eic_calculated_fields</file>
+  <name>EIC Calculated Fields</name>
+  <description>Keeps derived (calculated) custom fields in sync whenever an entity is saved. Currently: when an organisation is saved, the VentureMatch Readiness Score is set to the sum of Pitch Deck + C-Level/Team + Data Room + Financial Model (unset components count as 0).</description>
+  <license>AGPL-3.0</license>
+  <authors>
+    <author>
+      <name>EIC Dev Team</name>
+      <email>dev@eic.eu</email>
+      <role>Maintainer</role>
+    </author>
+  </authors>
+  <urls>
+    <url desc="Main Extension Page">https://eic.eu</url>
+  </urls>
+  <releaseDate>2026-10-16</releaseDate>
+  <version>1.0.0</version>
+  <develStage>alpha</develStage>
+  <compatibility mode="semver">
+    <ver>6.14</ver>
+  </compatibility>
+  <php_compatibility mode="list">
+    <ver>8.0</ver>
+    <ver>8.1</ver>
+    <ver>8.2</ver>
+    <ver>8.3</ver>
+    <ver>8.4</ver>
+  </php_compatibility>
+  <smarty_compatibility mode="list">
+    <ver>5</ver>
+  </smarty_compatibility>
+  <comments>Depends on the VentureMatch_Fields custom group provided by eic_config.</comments>
+  <classloader>
+    <psr0 prefix="CRM_" path="."/>
+    <psr4 prefix="Civi\" path="Civi"/>
+  </classloader>
+  <civix>
+    <namespace>CRM/EicCalculatedFields</namespace>
+    <format>25.10.2</format>
+  </civix>
+</extension>

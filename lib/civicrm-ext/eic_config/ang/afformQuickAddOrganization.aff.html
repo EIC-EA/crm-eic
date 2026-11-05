@@ -1,0 +1,15 @@
+<af-form ctrl="afform">
+  <af-entity type="Organization" name="Organization1" actions="{create: true, update: false}" security="RBAC" />
+  <fieldset af-fieldset="Organization1" class="af-container">
+    <div class="af-container">
+      <div class="af-container af-layout-inline">
+        <af-field name="organization_name" defn="{required: true, input_attrs: {}}" />
+      </div>
+      <af-field name="contact_sub_type:name" defn="{options: [{id: 'EIC_Organisation', label: 'EIC Organisation', name: 'EIC_Organisation', icon: ''}, {id: 'Investor', label: 'Investor', name: 'Investor', icon: ''}], input_attrs: {}, required: true}" />
+      <div af-join="Website" af-repeat="Add" af-copy="Copy" min="1" actions="{update: true, delete: true}">
+        <afblock-contact-website></afblock-contact-website>
+      </div>
+    </div>
+    <button class="af-button btn btn-primary" crm-icon="fa-check" ng-click="afform.submit()" ng-if="afform.showSubmitButton">Submit</button>
+  </fieldset>
+</af-form>

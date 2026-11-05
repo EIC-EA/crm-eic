@@ -22,7 +22,7 @@
   <develStage>alpha</develStage>
   <compatibility mode="semver">
     <comments>Semantic versioning. For example, compatibility with "6.1" implies compatibility with "6.2".</comments>
-    <ver>6.14</ver>
+    <ver>6.16</ver>
   </compatibility>
   <php_compatibility mode="list">
     <comments>Listed versions. For example, specify both "8.1" and "8.2".</comments>
@@ -43,7 +43,7 @@
   </classloader>
   <civix>
     <namespace>CRM/EicConfig</namespace>
-    <format>25.10.2</format>
+    <format>26.10.3</format>
     <angularModule>crmEicConfig</angularModule>
   </civix>
   <upgrader>CRM_EicConfig_Upgrader</upgrader>
@@ -59,6 +59,7 @@
     <ext>advimport</ext>
     <ext>advimportformprocessor</ext>
     <ext>de.systopia.signatures</ext>
+    <ext>eic_calculated_fields</ext>
   </requires>
   <mixins>
     <mixin>mgd-php@2.0.0</mixin>

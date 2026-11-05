@@ -68,7 +68,7 @@ return [
         'saved_search_id.name' => 'EIC_Projects_Terminated_',
         'type' => 'table',
         'settings' => [
-          'description' => E::ts(NULL),
+          'description' => '',
           'sort' => [
             [
               'EIC_Horizon_Europe_Project_information.Cut_Off_Date',

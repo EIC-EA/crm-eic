@@ -6,13 +6,14 @@ return [
     'name' => 'CiviRulesRule_sync_represenative_removed',
     'entity' => 'CiviRulesRule',
     'cleanup' => 'unused',
-    'update' => 'always',
+    'update' => 'unmodified',
     'params' => [
       'version' => 4,
       'values' => [
         'name' => 'sync_represenative_removed',
         'label' => E::ts('Sync  Representative Removed'),
         'trigger_id.name' => 'deleted_relationship',
+        'is_active' => TRUE,
         'description' => E::ts('On Representative removed sync Investor Org'),
       ],
     ],

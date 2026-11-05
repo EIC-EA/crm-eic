@@ -69,8 +69,9 @@ return [
       'values' => [
         'custom_group_id.name' => 'EIC_Awardee_Additionnal_Information',
         'name' => 'Program',
-        'label' => E::ts('Program'),
-        'html_type' => 'Select',
+        'label' => 'EIC Funding Programme',
+        'data_type:name' => 'Alphanumeric',
+        'html_type:name' => 'Drop-down (select list)',        
         'text_length' => 255,
         'note_columns' => 60,
         'note_rows' => 4,
