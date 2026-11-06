@@ -96,25 +96,35 @@ class ContactImporter extends BaseImporter
     }
 
     /**
-     * Look up an existing Organisation by PK custom field value.
-     * Returns the contact ID or null if not found.
+     * Look up the existing Relationship (and its ActivityContact, when the row
+     * belongs to a project) for this eu-login / PIC / role combination.
      */
-    protected function findByPK(string $pkName, array $row): array | bool
+    protected function findByPK(string $pkName, array $row): MatchResult
     {
         // eu-login; role; PIC; proposalNo
 
         if ($this->isDryRun()) {
-            return false;
+            return MatchResult::unprocessable();
         }
 
-        $result = \Civi\Api4\Relationship::get()
+        $relationshipQuery = \Civi\Api4\Relationship::get()
             ->addSelect('id')
             ->addWhere('relationship_type_id:name', '=', $this->relationship_type_id_name)
             ->addWhere('contact_id_a', '=', $this->contact_id_a)
             ->addWhere('contact_id_b', '=', $this->contact_id_b)
-            ->addWhere(self::$CUSTOM_GROUP_HE_RELATIONSHIP.'.Horizon_Europe_Project', '=', $this->project_activity_id)
-            ->setLimit(1)
-            ->execute();
+            ->setLimit(1);
+
+        // Match the HE project with NULL-safe semantics. For roles without a
+        // project (e.g. LEAR) project_activity_id is null, and APIv4 "= null"
+        // compiles to SQL "= NULL" which never matches — so the existing
+        // relationship was never found and a duplicate create was attempted.
+        if ($this->project_activity_id !== null) {
+            $relationshipQuery->addWhere(self::$CUSTOM_GROUP_HE_RELATIONSHIP.'.Horizon_Europe_Project', '=', $this->project_activity_id);
+        } else {
+            $relationshipQuery->addWhere(self::$CUSTOM_GROUP_HE_RELATIONSHIP.'.Horizon_Europe_Project', 'IS NULL');
+        }
+
+        $result = $relationshipQuery->execute();
 
         $this->relationship_id = $result->count() > 0 ? (int) $result->first()['id'] : null;
 
