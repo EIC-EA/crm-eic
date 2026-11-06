@@ -128,10 +128,26 @@ class ContactImporter extends BaseImporter
 
         $this->activity_contact_id =  $result->count() > 0 ? (int) $result->first()['id'] : null;
 
-        return [
-            'relationship_id' => $this->relationship_id,
-            'activity_contact_id' => $this->activity_contact_id
+        $ids = [
+            'relationship_id'     => $this->relationship_id,
+            'activity_contact_id' => $this->activity_contact_id,
         ];
+
+        // Existence of the row is defined by the Relationship.
+        if ($this->relationship_id === null) {
+            return MatchResult::notFound($ids);
+        }
+
+        // The relationship exists. A project-bearing row also needs an
+        // ActivityContact (Activity Target) record; if that is missing, the row
+        // is only partially present and must be upserted (createEntity fills the
+        // ActivityContact via its own guard). LEAR-style project-less rows have
+        // no ActivityContact by design, so they count as fully found.
+        if ($this->project_activity_id !== null && $this->activity_contact_id === null) {
+            return MatchResult::partial($ids);
+        }
+
+        return MatchResult::found($ids);
     }
     
     protected function getRelationshipTypeNameFromRole(string $role) : string

@@ -82,19 +82,14 @@ class ProjectImporter extends BaseImporter
     }
 
     /**
-     * Look up an existing Entity by PK custom field value.
-     * Returns false or an array.
-     * If it returns false, the row will be skipped
-     * If it returns an array it can contain entity IDs or null
-     * If the array contains only IDs, the entities can be updated or skipped depending on the configuration
-     * If it contains a null, an entity is created 
+     * Look up an existing project Activity by PK custom field value.
      */
-    protected function findByPK(string $pkName, array $row): array | bool
+    protected function findByPK(string $pkName, array $row): MatchResult
     {
         $pkValue = $row[$pkName];
 
         if ($this->isDryRun() || $pkValue === '') {
-            return false;
+            return MatchResult::unprocessable();
         }
 
         $pkField = $this->fieldMap[$pkName]['field'];
@@ -109,7 +104,7 @@ class ProjectImporter extends BaseImporter
             ->execute();
 
         if ($result->count() == 0)
-            return [ 'project_activity_id' => null ];
+            return MatchResult::notFound([ 'project_activity_id' => null ]);
 
         $activity = $result->first();
 
@@ -121,8 +116,8 @@ class ProjectImporter extends BaseImporter
                 ($activity[self::$CUSTOM_GROUP_HE_PROJECT_INFO.'.Category'] == 'H2020')
             )
         )
-            return false;
+            return MatchResult::unprocessable();
 
-        return [ 'project_activity_id' => (int) $activity['id']];
+        return MatchResult::found([ 'project_activity_id' => (int) $activity['id']]);
     }    
 }

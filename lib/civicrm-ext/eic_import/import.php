@@ -45,6 +45,7 @@ require_once $srcDir . '/Logger/ImportLogger.php';
 require_once $srcDir . '/Logger/ImportStats.php';
 require_once $srcDir . '/Parser/CsvParser.php';
 require_once $srcDir . '/Config/FieldMap.php';
+require_once $srcDir . '/Importer/MatchResult.php';
 require_once $srcDir . '/Importer/BaseImporter.php';
 require_once $srcDir . '/Importer/OrganisationImporter.php';
 require_once $srcDir . '/Importer/PersonImporter.php';

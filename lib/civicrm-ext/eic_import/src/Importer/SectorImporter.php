@@ -78,15 +78,14 @@ class SectorImporter extends BaseImporter
     }
 
     /**
-     * Look up an existing Organisation by PK custom field value.
-     * Returns the contact ID or null if not found.
+     * Look up an existing sector OptionValue by PK (code).
      */
-    protected function findByPK(string $pkName, array $row): array | bool
+    protected function findByPK(string $pkName, array $row): MatchResult
     {    
         $pkValue = $row[$pkName];
 
         if ($this->isDryRun() || $pkValue === '') {
-            return false;
+            return MatchResult::unprocessable();
         }
 
         $pkField = $this->fieldMap[$pkName]['field'];
@@ -98,6 +97,8 @@ class SectorImporter extends BaseImporter
             ->setLimit(1)
             ->execute();
 
-        return [ 'id' => $result->count() > 0 ? (int) $result->first()['id'] : null ];
+        return $result->count() > 0
+            ? MatchResult::found([ 'id' => (int) $result->first()['id'] ])
+            : MatchResult::notFound([ 'id' => null ]);
     }      
 }
