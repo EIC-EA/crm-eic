@@ -1,0 +1,45 @@
+CiviRules - PreData: skip CustomValue.get for entities that do not support custom data.
+
+When a CiviRules trigger is registered on an entity that cannot hold custom
+data (e.g. Website), CRM_Civirules_Utils_PreData::pre() still calls
+civicrm_api3('CustomValue', 'get', ['entity_table' => 'Website', ...]).
+Core's CRM_Core_BAO_CustomValueTable::getValues() rejects the unknown entity
+type and calls CRM_Core_Error::createAPIError(), which does
+`throw new Exception($msg, null)`. On PHP 8.1+ passing null to the Exception
+constructor's `int $code` parameter emits an E_DEPRECATED notice
+(CRM/Core/Error.php:934). The exception is caught here, so behaviour is
+unchanged, but it floods the logs with one deprecation per edit of such an
+entity (~8.5k lines per bulk import run, once per Organisation website write).
+
+Guard the lookup: only entities present in
+CRM_Core_SelectValues::customGroupExtends() (the same list getValues() checks)
+can carry custom data. For anything else, skip the API call and leave
+$customData empty — identical result, no unsupported call, no notice.
+
+Reported against civirules 3.44.0. Remove if fixed upstream.
+
+--- a/CRM/Civirules/Utils/PreData.php
++++ b/CRM/Civirules/Utils/PreData.php
+@@ -85,11 +85,17 @@
+     }
+     // add custom data fields
+     try {
+-      $customData = civicrm_api3('CustomValue', 'get', [
+-        'sequential' => 1,
+-        'entity_id' => $id,
+-        'entity_table' => ucfirst($entity),
+-      ]);
++      $customData = [];
++      // Only entities that actually support custom data can be queried via
++      // CustomValue.get; otherwise core throws "Invalid entity type" (caught
++      // below) while emitting a PHP 8.1+ deprecation from Exception::__construct.
++      if (array_key_exists(ucfirst($entity), CRM_Core_SelectValues::customGroupExtends())) {
++        $customData = civicrm_api3('CustomValue', 'get', [
++          'sequential' => 1,
++          'entity_id' => $id,
++          'entity_table' => ucfirst($entity),
++        ]);
++      }
+     }
+     catch (Exception $e) {
+       $customData = [];

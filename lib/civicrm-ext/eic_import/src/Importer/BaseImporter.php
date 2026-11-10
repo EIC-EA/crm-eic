@@ -106,33 +106,48 @@ abstract class BaseImporter
         ));
 
         try {
-            // 4. Deduplicate by PK
-            $existingEntityIds = $this->findByPK($this->PK, $row);
-
-            // The row cannot be processed
-            if ($existingEntityIds === false) {
-                $this->stats->skipped++;
-                $this->logger->info("  → Skipped (should not be processed)");
-                return;
+            // 4. Deduplicate by PK.
+            // findByPK() may return a MatchResult (preferred) or the legacy
+            // array|bool shape; normalise either into a MatchResult.
+            $match = $this->findByPK($this->PK, $row);
+            if (!$match instanceof MatchResult) {
+                $match = MatchResult::fromLegacy($match);
             }
-                
 
-            if (!in_array(null, $existingEntityIds, true)) {
-                if ($this->shouldUpdateExisting()) {
-                    $this->updateEntity($existingEntityIds, $buckets);
-                    $this->stats->updated++;
-                    $this->logger->info("  → Updated (ID {".implode(',', $existingEntityIds)."})");
-                } else {
+            switch ($match->status) {
+                case MatchResult::UNPROCESSABLE:
+                    // Dry-run, blank PK, or a business rule says "ignore".
                     $this->stats->skipped++;
-                    $this->logger->info("  → Skipped (already exists, ID {".implode(',', $existingEntityIds)."})");
-                }
-                return;
-            }
+                    $this->logger->info("  → Skipped (should not be processed)");
+                    return;
 
-            // 5. Create new contact
-            $entityId = $this->createEntity($buckets);
-            $this->stats->created++;
-            $this->logger->info("  → Created (ID {$entityId})");
+                case MatchResult::FOUND:
+                    // Everything already exists.
+                    if ($this->shouldUpdateExisting()) {
+                        $this->updateEntity($match->ids, $buckets);
+                        $this->stats->updated++;
+                        $this->logger->info("  → Updated (ID {" . $this->formatIds($match->ids) . "})");
+                    } else {
+                        $this->stats->skipped++;
+                        $this->logger->info("  → Skipped (already exists, ID {" . $this->formatIds($match->ids) . "})");
+                    }
+                    return;
+
+                case MatchResult::PARTIAL:
+                    // Main entity exists but some sub-entities are missing.
+                    // updateEntity() upserts the gaps via its own guards.
+                    $this->updateEntity($match->ids, $buckets);
+                    $this->stats->updated++;
+                    $this->logger->info("  → Updated (partial, ID {" . $this->formatIds($match->ids) . "})");
+                    return;
+
+                case MatchResult::NOT_FOUND:
+                default:
+                    $entityId = $this->createEntity($buckets);
+                    $this->stats->created++;
+                    $this->logger->info("  → Created (ID {$entityId})");
+                    return;
+            }
 
         } catch (Throwable $e) {
             $this->stats->recordError($lineNumber, $pkVal, $e->getMessage());
@@ -313,15 +328,20 @@ abstract class BaseImporter
     // -------------------------------------------------------------------------
 
     /**
-     * Look up an existing Organisation by PK custom field value.
-     * Returns the contact ID or null if not found.
+     * Look up an existing entity by PK and report what was found.
+     *
+     * Preferred return is a MatchResult (see that class). The legacy
+     * `array | bool` shape is still accepted and auto-translated by
+     * processRow(), so importers can migrate independently.
+     *
+     * @return MatchResult|array<string, ?int>|bool
      */
-    protected function findByPK(string $pkName, array $row): array | bool
+    protected function findByPK(string $pkName, array $row): MatchResult|array|bool
     {
         $pkValue = $row[$pkName];
 
         if ($this->isDryRun() || $pkValue === '') {
-            return null;
+            return MatchResult::unprocessable();
         }
 
         // Find the custom field that holds PIC — using dot-notation from the field map
@@ -335,7 +355,29 @@ abstract class BaseImporter
             ->setLimit(1)
             ->execute();
 
-        return ['id' => $result->count() > 0 ? (int) $result->first()['id'] : null];
+        return $result->count() > 0
+            ? MatchResult::found(['id' => (int) $result->first()['id']])
+            : MatchResult::notFound(['id' => null]);
+    }
+
+    /**
+     * Render an id map for log output, e.g. "id:123" or
+     * "relationship_id:3, activity_contact_id:(none)".
+     *
+     * @param array<string, ?int> $ids
+     */
+    protected function formatIds(array $ids): string
+    {
+        // Single-id maps keep the compact "123" form for log continuity.
+        if (array_keys($ids) === ['id']) {
+            return (string) ($ids['id'] ?? '(none)');
+        }
+
+        $parts = [];
+        foreach ($ids as $key => $value) {
+            $parts[] = $key . ':' . ($value === null ? '(none)' : $value);
+        }
+        return implode(', ', $parts);
     }
 
     // -------------------------------------------------------------------------

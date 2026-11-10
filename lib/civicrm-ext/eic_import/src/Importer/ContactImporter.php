@@ -96,25 +96,35 @@ class ContactImporter extends BaseImporter
     }
 
     /**
-     * Look up an existing Organisation by PK custom field value.
-     * Returns the contact ID or null if not found.
+     * Look up the existing Relationship (and its ActivityContact, when the row
+     * belongs to a project) for this eu-login / PIC / role combination.
      */
-    protected function findByPK(string $pkName, array $row): array | bool
+    protected function findByPK(string $pkName, array $row): MatchResult
     {
         // eu-login; role; PIC; proposalNo
 
         if ($this->isDryRun()) {
-            return null;
+            return MatchResult::unprocessable();
         }
 
-        $result = \Civi\Api4\Relationship::get()
+        $relationshipQuery = \Civi\Api4\Relationship::get()
             ->addSelect('id')
             ->addWhere('relationship_type_id:name', '=', $this->relationship_type_id_name)
             ->addWhere('contact_id_a', '=', $this->contact_id_a)
             ->addWhere('contact_id_b', '=', $this->contact_id_b)
-            ->addWhere(self::$CUSTOM_GROUP_HE_RELATIONSHIP.'.Horizon_Europe_Project', '=', $this->project_activity_id)
-            ->setLimit(1)
-            ->execute();
+            ->setLimit(1);
+
+        // Match the HE project with NULL-safe semantics. For roles without a
+        // project (e.g. LEAR) project_activity_id is null, and APIv4 "= null"
+        // compiles to SQL "= NULL" which never matches — so the existing
+        // relationship was never found and a duplicate create was attempted.
+        if ($this->project_activity_id !== null) {
+            $relationshipQuery->addWhere(self::$CUSTOM_GROUP_HE_RELATIONSHIP.'.Horizon_Europe_Project', '=', $this->project_activity_id);
+        } else {
+            $relationshipQuery->addWhere(self::$CUSTOM_GROUP_HE_RELATIONSHIP.'.Horizon_Europe_Project', 'IS NULL');
+        }
+
+        $result = $relationshipQuery->execute();
 
         $this->relationship_id = $result->count() > 0 ? (int) $result->first()['id'] : null;
 
@@ -128,10 +138,26 @@ class ContactImporter extends BaseImporter
 
         $this->activity_contact_id =  $result->count() > 0 ? (int) $result->first()['id'] : null;
 
-        return [
-            'relationship_id' => $this->relationship_id,
-            'activity_contact_id' => $this->activity_contact_id
+        $ids = [
+            'relationship_id'     => $this->relationship_id,
+            'activity_contact_id' => $this->activity_contact_id,
         ];
+
+        // Existence of the row is defined by the Relationship.
+        if ($this->relationship_id === null) {
+            return MatchResult::notFound($ids);
+        }
+
+        // The relationship exists. A project-bearing row also needs an
+        // ActivityContact (Activity Target) record; if that is missing, the row
+        // is only partially present and must be upserted (createEntity fills the
+        // ActivityContact via its own guard). LEAR-style project-less rows have
+        // no ActivityContact by design, so they count as fully found.
+        if ($this->project_activity_id !== null && $this->activity_contact_id === null) {
+            return MatchResult::partial($ids);
+        }
+
+        return MatchResult::found($ids);
     }
     
     protected function getRelationshipTypeNameFromRole(string $role) : string
