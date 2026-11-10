@@ -42,7 +42,9 @@ return [
       'version' => 4,
       'values' => [
         'rule_id.name' => 'syncdomainonwebsitechange',
-        'condition_id.name' => 'contact_has_subtype',
+        // Null-safe variant: avoids "getFieldValue failed" when the Website
+        // trigger does not resolve a contact id (e.g. during bulk imports).
+        'condition_id.name' => 'contact_has_subtype_safe',
         'condition_params' => [
           'subtype_names' => ['Investor', 'EIC_Awardee'],
           'operator' => 'in one of',
