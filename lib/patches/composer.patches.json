@@ -11,7 +11,8 @@
       "CiviRules - PreData: skip CustomValue.get for entities without custom data (silences PHP 8.1+ Exception $code deprecation on Website triggers)": "./patches/civicrm/civirules_predata_skip_noncustom_entity.patch"
     },
     "civicrm-ext/advimport": {
-      "Advanced Import - Set batches size": "./patches/civicrm/advimport_max_batch.patch"
+      "Advanced Import - Set batches size": "./patches/civicrm/advimport_max_batch.patch",
+      "Advanced Import - Skip group/tag creation on replay when the importer does not track a group/tag (track_entity_type is empty), avoiding 'Unknown type: must be group or tag'": "./patches/civicrm/advimport_skip_grouptag_when_untracked.patch"
     }
   }
 }

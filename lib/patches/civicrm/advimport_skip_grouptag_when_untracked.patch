@@ -1,0 +1,14 @@
+--- a/CRM/Advimport/Upload/Form/MapFields.php.orig
++++ b/CRM/Advimport/Upload/Form/MapFields.php
+@@ -166,7 +166,9 @@
+     $this->controller->set('tableName', $currentImport['table_name']);
+ 
+     // Create a new group/tag if we cleared or deleted the group/tag ID before re-importing
+-    if (empty($currentImport['track_entity_id']) || !CRM_Advimport_BAO_Advimport::checkGroupOrTagExists($currentImport['track_entity_type'], $currentImport['track_entity_id'])) {
++    // Only when this importer actually tracks a group or tag; otherwise
++    // track_entity_type is empty and createGroupOrTag() would throw.
++    if (in_array($currentImport['track_entity_type'], ['group', 'tag'], TRUE)
++      && (empty($currentImport['track_entity_id']) || !CRM_Advimport_BAO_Advimport::checkGroupOrTagExists($currentImport['track_entity_type'], $currentImport['track_entity_id']))) {
+       $helperDefinition = $this->controller->get('helperDefinition');
+       $helper = new $helperDefinition['class']($helperDefinition);
+       $label = $helper->getGroupOrTagLabel([
