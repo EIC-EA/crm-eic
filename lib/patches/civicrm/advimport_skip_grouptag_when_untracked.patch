@@ -1,6 +1,6 @@
---- a/CRM/Advimport/Upload/Form/MapFields.php.orig
+--- a/CRM/Advimport/Upload/Form/MapFields.php
 +++ b/CRM/Advimport/Upload/Form/MapFields.php
-@@ -166,7 +166,9 @@
+@@ -166,7 +166,10 @@
      $this->controller->set('tableName', $currentImport['table_name']);
  
      // Create a new group/tag if we cleared or deleted the group/tag ID before re-importing
