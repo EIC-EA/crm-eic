@@ -193,11 +193,12 @@
             "include_formatted_params": "0",
             "title": "Target Close Date for Current Round",
             "name": "target_close_date",
-            "type": "String",
+            "type": "Date",
             "is_required": "0",
             "default_value": "",
             "configuration": {
-                "trim": "1"
+                "format": "n/j/Y",
+                "include_time": "0"
             },
             "parameter_mapping": [],
             "default_data_parameter_mapping": [],
