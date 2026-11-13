@@ -1,203 +1,149 @@
 <?php
 
-class CRM_NcAutomations_EngagementCaseAutocompleteHelper
-{
-    private static $instances = [];
+use Civi\API\Exception\UnauthorizedException;
+use Civi\Api4\CaseContact;
+use Civi\Api4\CiviCase;
+use Civi\Api4\Contact;
 
+class CRM_NcAutomations_EngagementCaseAutocompleteHelper {
 
-    /**
-     * @return $this
-     */
-    protected function _construct(): static
-    {
-        return $this;
+  private static $instances = [];
+
+  const EIC_AWARDEE = 'EIC_Awardee';
+  const INVESTOR = 'Investor';
+  const ANY = 'Any';
+
+  /**
+   * @return $this
+   */
+  protected function _construct() {
+  }
+
+  public static function getInstance(): CRM_NcAutomations_EngagementCaseAutocompleteHelper {
+    $class = static::class;
+    if (!isset(self::$instances[$class])) {
+      self::$instances[$class] = new CRM_NcAutomations_EngagementCaseAutocompleteHelper();
     }
 
-    public static function getInstance(): CRM_NcAutomations_EngagementCaseAutocompleteHelper
-    {
-        $class = static::class;
-        if (!isset(self::$instances[$class])) {
-            self::$instances[$class] = new static();
-        }
+    return self::$instances[$class];
+  }
 
-        return self::$instances[$class];
+  /**
+   * Returns the case clients.
+   *
+   * @param int|string $caseId
+   *   The case id.
+   *
+   * @return array
+   *   Case clients array.
+   */
+  private function getCaseClients(int|string $caseId): array {
+    // Load the case contacts.
+    $caseContacts = \Civi\Api4\CaseContact::get(FALSE)
+      ->addSelect('*', 'case_id.case_type_id:name', 'contact_id.contact_sub_type')
+      ->addWhere('case_id.id', '=', $caseId)
+      ->addWhere('case_id.case_type_id:name', '=', 'eic_engagement')
+      ->execute();
+
+    if (empty($caseContacts)) {
+      return [];
     }
 
-    /**
-     * @param int|string $caseId
-     * @return array
-     * @throws CRM_Core_Exception
-     * @throws \Civi\API\Exception\UnauthorizedException
-     */
-    public function getCaseClients(int|string $caseId): array
-    {
-        $caseContacts = \Civi\Api4\CaseContact::get(TRUE)
-            ->addSelect('*', 'case.case_type_id:name')
-            ->addJoin('Case AS case', 'LEFT', ['case_id', '=', 'case.id'])
-            ->addWhere('case_id', '=', $caseId)
-            ->addWhere('case.case_type_id:name', '=', 'eic_engagement')
-            ->setLimit(25)
-            ->execute();
+    // Array holding the clients.
+    $clients = [];
+    foreach ($caseContacts as $caseContact) {
+      //get the important data from the db
+      $subtype = $caseContact['contact_id.contact_sub_type'];
+      if (empty($subtype)) {
+        continue;
+      }
 
-        $clients = [];
-        foreach ($caseContacts as $caseContact) {
-            //get the important data from the db
-            $contactId = $caseContact['contact_id'];
-            $clients[$contactId] = \Civi\Api4\Contact::get(TRUE)
-                ->addSelect('id', 'contact_type', 'contact_sub_type', 'organization_name')
-                ->addWhere('id', '=', $contactId)
-                ->execute()
-                ->first();
-        }
-        //have at least 2 clients
-        if (!empty($clients) && sizeof($clients) == 2) {
-            return $clients;
-        }
-
-        return [];
+      $subtype = sizeof($subtype) > 1 ? 'Any' : $subtype[0];
+      if (isset($clients[$subtype])) {
+        continue;
+      }
+      $clients[$subtype] = $caseContact['contact_id'];
     }
 
-    /**
-     * @param int|string $caseId
-     * @return array|null
-     * @throws CRM_Core_Exception
-     * @throws \Civi\API\Exception\UnauthorizedException
-     */
-    public
-    function getCase(int|string $caseId): ?array
-    {
-        return $this->getCaseFromId($caseId);
+    // Apply business rules to produce exactly [EIC_Awardee => id, Investor => id].
+    $result = [];
+
+    if (isset($clients[self::EIC_AWARDEE], $clients[self::INVESTOR])) {
+      // Both present directly.
+      $result[self::EIC_AWARDEE] = $clients[self::EIC_AWARDEE];
+      $result[self::INVESTOR] = $clients[self::INVESTOR];
+    }
+    elseif (isset($clients[self::EIC_AWARDEE], $clients[self::ANY])) {
+      // EIC_Awardee stays, Any becomes Investor.
+      $result[self::EIC_AWARDEE] = $clients[self::EIC_AWARDEE];
+      $result[self::INVESTOR] = $clients[self::ANY];
+    }
+    elseif (isset($clients[self::INVESTOR], $clients[self::ANY])) {
+      // Investor stays, Any becomes EIC_Awardee.
+      $result[self::INVESTOR] = $clients[self::INVESTOR];
+      $result[self::EIC_AWARDEE] = $clients[self::ANY];
     }
 
-    /**
-     * @param int|string $id
-     * @return array|null
-     * @throws CRM_Core_Exception
-     * @throws \Civi\API\Exception\UnauthorizedException
-     */
-    private
-    function getCaseFromId(int|string $id): ?array
-    {
-        return \Civi\Api4\CiviCase::get(TRUE)
-            ->addSelect('*', 'case_type_id:name', 'custom.*')
-            ->addWhere('id', '=', $id)
-            ->execute()
-            ->first();
+    // Must have both roles, otherwise return empty.
+    if (!isset($result[self::EIC_AWARDEE]) || !isset($result[self::INVESTOR])) {
+      return [];
     }
 
-    /**
-     * @param array $case
-     * @param array $clients
-     * @return bool
-     */
-    public
-    function fillEngagementRoles(array $case, array $clients): bool
-    {
+    // Return the result.
+    return $result;
+  }
 
-        $roleCase = $this->assertClientRoles($clients);
+  /**
+   * Returns the case by the case ID.
+   *
+   * @param int|string $caseId
+   *   The case Id.
+   *
+   * @return array|null
+   *   The case or NULL if nothing is found.
+   */
+  public function getCase(int|string $caseId): ?array {
+    return CiviCase::get(TRUE)
+      ->addSelect('*', 'case_type_id:name', 'custom.*')
+      ->addWhere('id', '=', $id)
+      ->execute()
+      ->first();
+  }
 
-        if (!$roleCase) {
-            return false;
-        }
-
-        $clientsByRole = $this->sortClientsInRoles($clients);
-        /**
-         *
-         * This array should have a combination of two keys from those bellow
-         * and two ids in any place
-         * [
-         * 'Investor' => [$investorId1, $investorId2, ...],
-         * 'EIC_Awardee' => [$awardeeId1, $awardeeId2, ...],
-         * 'EIC_Awardee_Investor' => [$awardeeId1, $awardeeId2, ...],
-         * ];
-         *
-         * for example:
-         *
-         * [
-         * 'Investor' => [$investorId1],
-         * 'EIC_Awardee_Investor' => [$awardeeId1],
-         * ];
-         *
-         * In the best case scenario there will be only one id under Investor and one under Awardee.
-         *
-         * More complex cases can exist though as there is no limit to the clients of the case or the
-         * roles the Contacts can have.
-         *
-         * */
-        switch ($roleCase) {
-            case sizeof($clientsByRole['Investor']) == sizeof($clientsByRole['EIC_Awardee']):
-                return $this->fillEngagementInvestorAwardee($clientsByRole['Investor'][0], $clientsByRole['EIC_Awardee'][0], $case);
-            case sizeof($clientsByRole['Investor']) == sizeof($clientsByRole['EIC_Awardee_Investor']):
-                return $this->fillEngagementInvestorAwardee($clientsByRole['Investor'][0], $clientsByRole['EIC_Awardee_Investor'][0], $case);
-            case sizeof($clientsByRole['EIC_Awardee']) == sizeof($clientsByRole['EIC_Awardee_Investor']):
-                return $this->fillEngagementInvestorAwardee($clientsByRole['EIC_Awardee_Investor'][0], $clientsByRole['EIC_Awardee'][0], $case);
-            default:
-                return FALSE;
-        }
-
-        //in any other case
-        return FALSE;
+  /**
+   * Fill Engagement Roles.
+   *
+   * @param int|string $caseId
+   *   The case id
+   *
+   * @return bool
+   *   Return flag.
+   */
+  public function fillEngagementRoles(int|string $caseId): bool {
+    // Get the case clients.
+    $clients = $this->getCaseClients($caseId);
+    if (empty($clients)) {
+      // Update the case.
+      $results = CiviCase::update(TRUE)
+        ->addValue('Client_Roles.EIC_Awardee', NULL)
+        ->addValue('Client_Roles.Investor', NULL)
+        ->addWhere('id', '=', $caseId)
+        ->execute();
+      return FALSE;
     }
 
-    /**
-     * This method except an array of the following structure.
-     *
-     * @param array $clients
-     * @return bool
-     */
-    private
-    function assertClientRoles(array $clients): bool
-    {
-        //if more than 2 clients in case
-        if (empty($clients) || sizeof($clients) != 2) {
-            return FALSE;
-        }
-        $roles = [];
-
-        return TRUE;
+    try {
+      // Update the case.
+      $results = CiviCase::update(TRUE)
+        ->addValue('Client_Roles.EIC_Awardee', $clients[self::EIC_AWARDEE])
+        ->addValue('Client_Roles.Investor', $clients[self::INVESTOR])
+        ->addWhere('id', '=', $caseId)
+        ->execute();
+    } catch (Exception $e) {
+      Civi::log('EngagementCaseAutocompleteHelper')->error($e->getMessage());
+      return FALSE;
     }
-
-    /**
-     * Organizes an array of client roles.
-     * The structure of the array is role_key => [aClientIdWithRoleKey, anotherClientIdWithRoleKey]
-     *
-     * @param array $clients
-     * @return array
-     */
-    private
-    function sortClientsInRoles(array $clients): array
-    {
-        $roles = [];
-        foreach ($clients as $client) {
-          if (array_key_exists('contact_sub_type', $client) && !empty($client['contact_sub_type'])) {
-            sort($client['contact_sub_type']);
-            $roleKey = implode("_", $client['contact_sub_type']);
-            //this will create keys like "Investor", "EIC_Awardee", "EIC_Awardee_Investor", if more roles are added
-            //this must be updated.
-            $roles[$roleKey][] = $client['id'];
-          }
-        }
-        return $roles;
-    }
-
-    private function fillEngagementInvestorAwardee(int|string $investorId, int|string $awardeeId, array $case)
-    {
-        $caseId = $case['id'];
-
-        try {
-            $results = \Civi\Api4\CiviCase::update(TRUE)
-                ->addValue('Client_Roles.EIC_Awardee', $awardeeId)
-                ->addValue('Client_Roles.Investor', $investorId)
-                ->addWhere('id', '=', $caseId)
-                ->execute();
-            if ($results) {
-                return TRUE;
-            }
-        } catch (\Exception $e) {
-            Civi::log('EngagementCaseAutocompleteHelper')->error($e->getMessage());
-            return FALSE;
-        }
-        return FALSE;
-    }
+    return TRUE;
+  }
 
 }

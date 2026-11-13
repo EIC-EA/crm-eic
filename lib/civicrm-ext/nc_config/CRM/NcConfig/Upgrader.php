@@ -28,6 +28,7 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     $upgrader->upgrade_1008();
     $upgrader->upgrade_1009();
     $upgrader->upgrade_1010();
+    $upgrader->upgrade_1011();
 
     // Return success.
     return TRUE;
@@ -322,6 +323,52 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     }
 
     $log->info('Finished nc_config/upgrade_1010 - Update civicrm_value_srm_eu_survey_company_data column names.');
+    return TRUE;
+  }
+
+  /**
+   * Drop the `onboarded` column from civicrm_value_srm_activity_related.
+   */
+  public function ___upgrade_1011(): bool {
+    $log = $this->ctx->log ?? \Civi::log();
+    $log->info('Start nc_config/upgrade_1011 - Drop onboarded column from civicrm_value_srm_activity_related.');
+
+    $table = 'civicrm_value_srm_activity_related';
+
+    // Drop the column from the main table if it exists.
+    $exists = CRM_Core_DAO::singleValueQuery(
+      "SELECT COUNT(*) FROM information_schema.columns
+       WHERE table_schema = DATABASE() AND table_name = %1 AND column_name = 'onboarded'",
+      [1 => [$table, 'String']]
+    );
+    if ($exists) {
+      CRM_Core_DAO::executeQuery("ALTER TABLE `{$table}` DROP COLUMN `onboarded`");
+      $log->info("Dropped column onboarded from {$table}.");
+    }
+
+    // Drop the column from the logging table if it exists.
+    $logTable = "log_{$table}";
+    $logExists = CRM_Core_DAO::singleValueQuery(
+      "SELECT COUNT(*) FROM information_schema.columns
+       WHERE table_schema = DATABASE() AND table_name = %1 AND column_name = 'onboarded'",
+      [1 => [$logTable, 'String']]
+    );
+    if ($logExists) {
+      CRM_Core_DAO::executeQuery("ALTER TABLE `{$logTable}` DROP COLUMN `onboarded`");
+      $log->info("Dropped column onboarded from {$logTable}.");
+    }
+
+    // Delete the CustomField record.
+    CRM_Core_DAO::executeQuery(
+      "DELETE FROM civicrm_custom_field
+       WHERE column_name = 'onboarded' AND custom_group_id IN (
+         SELECT id FROM civicrm_custom_group WHERE table_name = %1
+       )",
+      [1 => [$table, 'String']]
+    );
+    $log->info('Deleted CustomField record for onboarded.');
+
+    $log->info('Finished nc_config/upgrade_1011 - Drop onboarded column.');
     return TRUE;
   }
 
