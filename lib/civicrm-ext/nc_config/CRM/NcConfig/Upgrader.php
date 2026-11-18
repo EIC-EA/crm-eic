@@ -326,6 +326,25 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
   }
 
   /**
+   * Drop the `onboarded` column from civicrm_value_srm_activity_related.
+   */
+  public function ___upgrade_1011(): bool {
+    $log = $this->ctx->log ?? \Civi::log();
+    $log->info('Start nc_config/upgrade_1011 - Drop onboarded column from civicrm_value_srm_activity_related.');
+
+    // Deleting the CustomField through APIv4 also drops its column from the
+    // custom group table. It is a no-op when no matching field exists.
+    $deleted = \Civi\Api4\CustomField::delete(FALSE)
+      ->addWhere('custom_group_id.table_name', '=', 'civicrm_value_srm_activity_related')
+      ->addWhere('column_name', '=', 'onboarded')
+      ->execute();
+    $log->info('Deleted ' . count($deleted) . ' CustomField record(s) for onboarded.');
+
+    $log->info('Finished nc_config/upgrade_1011 - Drop onboarded column.');
+    return TRUE;
+  }
+
+  /**
    * Enable one or more extensions by key.
    *
    * @param array $extensions List of extension keys to enable.
