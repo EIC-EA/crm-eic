@@ -37,6 +37,7 @@ return [
         'grouping' => 'Opened',
         'weight' => 1,
         'description' => E::ts('<p>Service request has been submitted and is awaiting handling.</p>'),
+        'is_default' => TRUE,
       ],
       'match' => [
         'option_group_id',
