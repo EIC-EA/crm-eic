@@ -7,7 +7,10 @@
       </div>
       <af-field name="contact_sub_type:name" defn="{options: [{id: 'EIC_Organisation', label: 'EIC Organisation', name: 'EIC_Organisation', icon: ''}, {id: 'Investor', label: 'Investor', name: 'Investor', icon: ''}], input_attrs: {}, required: true}" />
       <div af-join="Website" af-repeat="Add" af-copy="Copy" min="1" actions="{update: true, delete: true}">
-        <afblock-contact-website></afblock-contact-website>
+        <div class="af-container af-layout-inline">
+          <af-field name="url" />
+          <af-field name="website_type_id" defn="{afform_default: 2, input_attrs: {}}" />
+        </div>
       </div>
     </div>
     <button class="af-button btn btn-primary" crm-icon="fa-check" ng-click="afform.submit()" ng-if="afform.showSubmitButton">Submit</button>
