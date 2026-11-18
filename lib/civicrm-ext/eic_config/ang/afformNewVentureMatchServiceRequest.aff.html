@@ -1,0 +1,12 @@
+<af-form ctrl="afform">
+  <af-entity data="{contact_id: ['Organization1'], case_type_id: 16, status_id: 7}" actions="{create: true, update: false}" type="Case" name="Case1" label="Case 1" security="RBAC" />
+  <af-entity data="{source: 'New VentureMatch Service Request'}" type="Organization" name="Organization1" label="Organization 1" actions="{create: true, update: true}" security="RBAC" autofill="entity_id" />
+  <fieldset af-fieldset="Case1" class="af-container" af-title="Service request">
+    <af-field name="subject" defn="{label: 'Subject', input_attrs: {}, afform_default: 'VentureMatch Service Request'}" />
+    <af-field name="eic_sr_venturematch_data.How_did_you_learn_about_Venture_Match_" defn="{label: 'Recommended by', input_attrs: {}}" />
+  </fieldset>
+  <fieldset af-fieldset="Organization1" class="af-container" af-title="EIC Awardee">
+    <af-field name="id" defn="{label: 'Select the organisation', input_attrs: {}, saved_search: 'EIC_Awardees_organisation'}" />
+  </fieldset>
+  <button class="af-button btn btn-primary" crm-icon="fa-check" ng-click="afform.submit()" ng-if="afform.showSubmitButton">Submit</button>
+</af-form>
