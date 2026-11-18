@@ -27,7 +27,7 @@ return [
               'groups:name',
               'IN',
               [
-                'Investment_Assoc_19',
+                'Group_Investment_Assoc',
               ],
             ],
           ],
