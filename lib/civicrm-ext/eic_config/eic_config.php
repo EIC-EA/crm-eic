@@ -86,16 +86,25 @@ function eic_config_civicrm_postInstall(): void {
 }
 
 /**
- * Registers the profiles as "Contact Summary" usages (UFJoin).
+ * Registers the profiles for Contact Summary use (UFJoin), both modules.
  *
  * The profiles (UFGroup/UFField) and the contact layouts (ContactLayout) are
- * shipped as managed entities, but the UFJoin row that marks a profile as
- * "used for → Contact Summary" cannot be expressed as a managed entity (UFJoin
- * is not an API4/managed-capable entity). The Contact Layout editor builds its
- * list of available profile blocks by querying UFJoin rows with
- * module = 'Contact Summary' (see contactlayout BAO getAllBlocks()). Without
- * such a row the `profile.*` blocks referenced by the ContactLayout definitions
- * are never offered/resolved, so those panels render empty.
+ * shipped as managed entities, but the UFJoin rows that wire a profile into the
+ * Contact Summary cannot be expressed as managed entities (UFJoin is not an
+ * API4/managed-capable entity). Two distinct UFJoin rows are required per
+ * profile, each consumed by a different code path:
+ *
+ *  - module = 'Contact Summary': the Contact Layout editor builds its list of
+ *    available profile blocks from these rows (contactlayout BAO
+ *    getAllBlocks()). Without it the profile.* blocks are never offered.
+ *
+ *  - module = 'Profile': the inline edit/view endpoint
+ *    (CRM_Profile_Form_Edit::preProcess, civicrm/ajax/inline) validates the
+ *    profile is "of type Profile". Without it that endpoint statusBounces and
+ *    the browser gets a 302 to civicrm/contact/view instead of the JSON
+ *    snippet, so the block fails to render inline.
+ *
+ * A profile needs BOTH rows; dropping either breaks one half.
  *
  * This runs at postInstall because civix sets the extension's schema_version to
  * the latest on a fresh install, so the historical upgrade_1015() step does not
@@ -113,6 +122,9 @@ function _eic_config_ensure_profile_ufjoins(): void {
     'EIC_VentureMatch_Fundraising_Documents',
   ];
 
+  // Each profile needs a UFJoin for both modules (see docblock).
+  $modules = ['Contact Summary', 'Profile'];
+
   foreach ($profiles as $name) {
     $ufGroupId = CRM_Core_DAO::singleValueQuery(
       'SELECT id FROM civicrm_uf_group WHERE name = %1',
@@ -120,25 +132,27 @@ function _eic_config_ensure_profile_ufjoins(): void {
     );
 
     if (empty($ufGroupId)) {
-      \Civi::log()->warning("eic_config: UFGroup '{$name}' not found; skipping Contact Summary UFJoin.");
+      \Civi::log()->warning("eic_config: UFGroup '{$name}' not found; skipping Contact Summary UFJoins.");
       continue;
     }
 
-    $exists = (bool) CRM_Core_DAO::singleValueQuery(
-      "SELECT id FROM civicrm_uf_join WHERE uf_group_id = %1 AND module = 'Contact Summary'",
-      [1 => [$ufGroupId, 'Integer']]
-    );
+    foreach ($modules as $module) {
+      $exists = (bool) CRM_Core_DAO::singleValueQuery(
+        'SELECT id FROM civicrm_uf_join WHERE uf_group_id = %1 AND module = %2',
+        [1 => [$ufGroupId, 'Integer'], 2 => [$module, 'String']]
+      );
 
-    if ($exists) {
-      continue;
+      if ($exists) {
+        continue;
+      }
+
+      civicrm_api3('UFJoin', 'create', [
+        'module' => $module,
+        'uf_group_id' => $ufGroupId,
+        'is_active' => 1,
+        'weight' => 1,
+      ]);
     }
-
-    civicrm_api3('UFJoin', 'create', [
-      'module' => 'Contact Summary',
-      'uf_group_id' => $ufGroupId,
-      'is_active' => 1,
-      'weight' => 1,
-    ]);
   }
 }
 
@@ -195,3 +209,4 @@ function _eic_config_set_group_hierarchy(): void {
     }
   }
 }
+

@@ -1,15 +1,14 @@
 {
   "patches": {
     "civicrm/civicrm-core": {
-      "CiviCase - Add default subject field to timeline/sequence activities #35962": "./patches/civicrm/civicase_add_default_subject_field_to_timeline.patch",
-      "CiviCRM Core - ACL admin UI template fix": "./patches/civicrm/core_fix_civicrm_admin_ui_6694_1.patch",
       "CiviCRM Core - ClassScanner index cache fix (backport of upstream PR #37167, not yet released); REMOVE this patch once released.": "./patches/civicrm/classscanner_index_cache_missing_break.patch"
     },
     "civicrm-ext/ses": {
       "SES - use the sdk in the ECS container to retrieve the parameters": "./patches/civicrm/ses_aws_alternative_credentials.patch"
     },
     "civicrm-ext/civirules": {
-      "CiviRules - CRM_Civirules_BAO_CiviRulesRuleContidion argument #1 type error fix": "./patches/civicrm/civirules-type-cast-fix.patch"
+      "CiviRules - CRM_Civirules_BAO_CiviRulesRuleContidion argument #1 type error fix": "./patches/civicrm/civirules-type-cast-fix.patch",
+      "CiviRules - PreData: skip CustomValue.get for entities without custom data (silences PHP 8.1+ Exception $code deprecation on Website triggers)": "./patches/civicrm/civirules_predata_skip_noncustom_entity.patch"
     },
     "civicrm-ext/advimport": {
       "Advanced Import - Set batches size": "./patches/civicrm/advimport_max_batch.patch"

@@ -88,18 +88,21 @@ class ConsortiumImporter extends BaseImporter
     }
 
     /**
-     * Look up an existing Organisation by PK custom field value.
-     * Returns the contact ID or null if not found.
+     * Look up whether the organisation is already recorded on the project
+     * (as a role-field value) and whether its ActivityContact target exists.
+     *
+     * Two sub-entities, so the result is three-state:
+     *   both present -> FOUND; both absent -> NOT_FOUND; one of each -> PARTIAL.
+     * createEntity() guards each sub-entity independently, so PARTIAL upserts
+     * only the missing one.
      */
-    protected function findByPK(string $pkName, array $row): array | bool
+    protected function findByPK(string $pkName, array $row): MatchResult
     {
         // proposalNumber	 relation	 status	 SMEDashboardId	 PIC	 Name	 Country
 
         if ($this->isDryRun()) {
-            return null;
+            return MatchResult::unprocessable();
         }
-
-        $ids = [];
 
         $result = \Civi\Api4\Activity::get()
             ->addSelect('id')
@@ -123,10 +126,21 @@ class ConsortiumImporter extends BaseImporter
 
         $this->activity_contact_id =  $result->count() > 0 ? (int) $result->first()['id'] : null;        
 
-        return [
+        $ids = [
             'filled_project_activity_id' => $this->filled_project_activity_id,
-            'activity_contact_id' => $this->activity_contact_id
+            'activity_contact_id'        => $this->activity_contact_id,
         ];
+
+        $hasRole    = $this->filled_project_activity_id !== null;
+        $hasContact = $this->activity_contact_id !== null;
+
+        if (!$hasRole && !$hasContact) {
+            return MatchResult::notFound($ids);
+        }
+        if ($hasRole && $hasContact) {
+            return MatchResult::found($ids);
+        }
+        return MatchResult::partial($ids);
     }
     
     protected function getFieldNameFromRole(string $role, string $status, string $project_category) : string

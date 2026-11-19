@@ -1,0 +1,19 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Kiro user/machine-specific settings (do not share)
+.kiro/settings/
+.kiro/settings/mcp.json
+
+# Local environment / secrets
+.env
+.env.*
+*.local
+*.gz
+*.tgz
+*.sql
+.__backup
+
+

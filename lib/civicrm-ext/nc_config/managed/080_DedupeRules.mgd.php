@@ -5,7 +5,7 @@ use CRM_NcConfig_ExtensionUtil as E;
 // Get the domain field.
 $domainField = \Civi\Api4\CustomField::get(FALSE)
   ->addSelect('custom_group_id.table_name', 'column_name')
-  ->addWhere('label', '=', 'Company Domain Name')
+  ->addWhere('name', '=', 'Company_Domain_Name')
   ->execute()
   ->first();
 
