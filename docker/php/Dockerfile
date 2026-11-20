@@ -1,11 +1,11 @@
 ARG PHP_VERSION=8.4
 # Comment to force rebuild
-ARG DRUPAL_VERSION=11.3
+ARG DRUPAL_VERSION=11.4
 ARG ENV
 
 FROM drupal:${DRUPAL_VERSION}-php${PHP_VERSION}-fpm
 
-ARG CIVICRM_VERSION=6.18
+ARG CIVICRM_VERSION=6.20.1
 
 # install the PHP extensions we need
 RUN set -eux; \
