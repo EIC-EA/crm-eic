@@ -136,8 +136,7 @@
           "fill_fields_multivalue": "1",
           "fill_details": [
             "email",
-            "phone",
-            "website"
+            "phone"
           ],
           "fill_details_primary": null,
           "override_details": [],
@@ -164,7 +163,8 @@
             "custom_General_Company_Info.Preferred_Stages",
             "custom_General_Company_Info.Relevant_Verticals",
             "custom_General_Company_Info.Geographical_Focus",
-            "custom_General_Company_Info.Software_Focus"
+            "custom_General_Company_Info.Software_Focus",
+            "custom_EIC_Organisation_identifiers.Company_Domain_Name"
           ],
           "override_fields": [
             "organization_name",
@@ -175,7 +175,10 @@
             "custom_General_Company_Info.Investment_Lead_Role",
             "custom_General_Company_Info.Co_investments_with_public_sector",
             "custom_General_Company_Info._of_investments_made_in_vertical_in_the_last_2_years",
-            "custom_General_Company_Info.Financial_Partner"
+            "custom_General_Company_Info.Financial_Partner",
+            "custom_EIC_Organisation_identifiers.Company_Domain_Name",
+            "custom_Activity_related.Onboarded",
+            "custom_Activity_related.Origin"
           ],
           "case_insensitive": "1",
           "match_contact_id": null
