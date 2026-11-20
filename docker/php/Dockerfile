@@ -99,6 +99,10 @@ RUN set -eux; \
 	composer config --no-plugins allow-plugins.composer/installers true && \
 	# Set install path for civicrm-ext type packages
 	composer config extra.installer-paths.civicrm-ext/{\$name} '["type:civicrm-ext"]' --json && \
+	# civicrm-core pins phpoffice/phpspreadsheet to ^5 <5.10, and every version in
+	# that range has security advisories, so Composer blocks it. Ignore advisories
+	# for this one package only until CiviCRM ships a release allowing a fixed version.
+	composer config policy.advisories.ignore '["phpoffice/phpspreadsheet"]' --json && \
 	# Install CiviCRM core
 	composer require civicrm/civicrm-core:^${CIVICRM_VERSION} && \
 	composer config --no-plugins allow-plugins.civicrm/civicrm-asset-plugin true && \
