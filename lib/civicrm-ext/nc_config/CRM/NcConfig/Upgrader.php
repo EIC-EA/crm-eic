@@ -6,6 +6,28 @@
 class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
 
   /**
+   * Method to be used int he deploy.sh to execute updates before:
+   * - Upgrade DB
+   * - Reconcile
+   *
+   * This function is called from the deploy.sh.
+   *
+   * @return bool
+   *
+   * @throws Exception
+   */
+  public function beforeUpgradeAndReconcile(): bool {
+    // Static method - can be called from anywhere
+    $upgrader = new CRM_NcConfig_Upgrader();
+
+    $upgrader->___upgrade_1005();
+    $upgrader->___upgrade_1011();
+
+    // Return success.
+    return TRUE;
+  }
+
+  /**
    * Call upgrade methods in sequence.
    *
    * This function is called from the postInstall hook.
@@ -143,10 +165,11 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
       }
 
       // Delete entries from civicrm_managed table.
-      CRM_Core_DAO::executeQuery(
-        "DELETE FROM civicrm_managed WHERE module = 'nc_config' AND name = %1",
-        [1 => [$name, 'String']]
-      );
+      $deleted =  \Civi\Api4\Managed::delete(FALSE)
+        ->addWhere('module', '=', 'nc_config')
+        ->addWhere('name', '=', $name)
+        ->execute();
+      $log->info('Deleted ' . count($deleted) . " Managed Entity record(s) for $name.");
 
       $log->info("Deleted managed entity: {$name}");
 
@@ -338,6 +361,13 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
       ->addWhere('column_name', '=', 'onboarded')
       ->execute();
     $log->info('Deleted ' . count($deleted) . ' CustomField record(s) for onboarded.');
+
+    $deleted =  \Civi\Api4\Managed::delete(FALSE)
+      ->addWhere('module', '=', 'nc_config')
+      ->addWhere('name', '=', 'CustomGroup_Activity_related_CustomField_Onboarded')
+      ->execute();
+    $log->info('Deleted ' . count($deleted) . ' Managed Entity record(s) for CustomGroup_Activity_related_CustomField_Onboarded.');
+
     $log->info('Finished nc_config/upgrade_1011 - Drop onboarded column.');
     return TRUE;
   }
