@@ -78,6 +78,7 @@ return [
         'custom_group_id.name' => 'eic_accelerator_onboarding_survey_data',
         'name' => 'case_latest_pitch_deck',
         'label' => E::ts('Pitch Deck'),
+        'data_type' => 'File',
         'html_type' => 'File',
         'column_name' => 'case_latest_pitch_deck',
       ],
