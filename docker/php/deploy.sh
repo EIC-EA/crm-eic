@@ -9,7 +9,7 @@ drush --verbose --debug --yes deploy
 # The following command executes functions before DB upgrade and reconcile.
 cv --verbose php:eval 'var_export((new CRM_NcConfig_Upgrader())->beforeUpgradeAndReconcile());'
 
-cv --verbose --no-interaction flush
+cv --verbose --no-interaction flush --exclude entities
 cv --verbose --no-interaction upgrade:db
 cv --verbose --no-interaction flush
 
