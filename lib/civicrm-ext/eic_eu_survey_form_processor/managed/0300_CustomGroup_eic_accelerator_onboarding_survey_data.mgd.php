@@ -527,6 +527,7 @@ return [
         'custom_group_id.name' => 'eic_accelerator_onboarding_survey_data',
         'name' => 'survey_feedback',
         'label' => E::ts('General feedback'),
+        'data_type' => 'Memo',
         'html_type' => 'TextArea',
         'attributes' => 'rows=4, cols=60',
         'column_name' => 'survey_feedback',
