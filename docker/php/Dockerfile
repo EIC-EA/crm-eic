@@ -155,8 +155,8 @@ RUN	composer install && \
 	# Delete composer cache
 	rm -rf "$COMPOSER_HOME"
 
-COPY docker/php/web/sites/default/settings.php /opt/drupal/web/sites/default/settings.php
-COPY docker/php/web/sites/default/civicrm.settings.php /opt/drupal/web/sites/default/civicrm.settings.php
+COPY --chown=www-data:www-data --chmod=440 docker/php/web/sites/default/settings.php /opt/drupal/web/sites/default/settings.php
+COPY --chown=www-data:www-data --chmod=440 docker/php/web/sites/default/civicrm.settings.php /opt/drupal/web/sites/default/civicrm.settings.php
 COPY docker/php/docker.ini /usr/local/etc/php/conf.d/zzz_docker.ini
 COPY docker/php/deploy.sh /opt/drupal/deploy.sh
 COPY docker/php/arclamp-prepend.php /opt/arclamp/arclamp-prepend.php
