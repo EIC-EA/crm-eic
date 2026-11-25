@@ -12,9 +12,10 @@ return [
       'values' => [
         'name' => 'kam_onboarding_assessment_organ',
         'title' => E::ts('KAM Onboarding Assessment Organisation Type'),
-        'data_type' => 'Integer',
-        'is_reserved' => FALSE,
+        'data_type' => 'String',
         'option_value_fields' => ['name', 'label', 'description'],
+        'is_reserved' => FALSE,
+        'is_active' => TRUE,
       ],
       'match' => ['name'],
     ],
@@ -29,7 +30,7 @@ return [
       'values' => [
         'option_group_id.name' => 'kam_onboarding_assessment_organ',
         'label' => E::ts('Research institution (University)'),
-        'value' => '1',
+        'value' => 'Research institution Univerity',
         'name' => 'Research institution (University)',
       ],
       'match' => [
@@ -49,7 +50,7 @@ return [
       'values' => [
         'option_group_id.name' => 'kam_onboarding_assessment_organ',
         'label' => E::ts('Research institution (research centre)'),
-        'value' => '2',
+        'value' => 'Research institution reesearch centre',
         'name' => 'Research institution (research centre)',
       ],
       'match' => [
@@ -69,7 +70,7 @@ return [
       'values' => [
         'option_group_id.name' => 'kam_onboarding_assessment_organ',
         'label' => E::ts('SME'),
-        'value' => '3',
+        'value' => 'SME',
         'name' => 'SME',
       ],
       'match' => [
@@ -89,7 +90,7 @@ return [
       'values' => [
         'option_group_id.name' => 'kam_onboarding_assessment_organ',
         'label' => E::ts('Large enterprise / Corporate'),
-        'value' => '4',
+        'value' => 'Large enterprise Corporate',
         'name' => 'Large enterprise / Corporate',
       ],
       'match' => [
@@ -109,7 +110,7 @@ return [
       'values' => [
         'option_group_id.name' => 'kam_onboarding_assessment_organ',
         'label' => E::ts('Other'),
-        'value' => '5',
+        'value' => 'Other',
         'name' => 'Other',
       ],
       'match' => [

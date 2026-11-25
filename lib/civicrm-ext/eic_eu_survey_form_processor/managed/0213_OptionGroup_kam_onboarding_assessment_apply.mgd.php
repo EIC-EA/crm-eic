@@ -12,9 +12,10 @@ return [
       'values' => [
         'name' => 'kam_onboarding_assessment_apply',
         'title' => E::ts('KAM Onboarding Assessment Apply for Accellerator'),
-        'data_type' => 'Integer',
-        'is_reserved' => FALSE,
+        'data_type' => 'String',
         'option_value_fields' => ['name', 'label', 'description'],
+        'is_reserved' => FALSE,
+        'is_active' => TRUE,
       ],
       'match' => ['name'],
     ],
@@ -29,7 +30,7 @@ return [
       'values' => [
         'option_group_id.name' => 'kam_onboarding_assessment_apply',
         'label' => E::ts('Yes'),
-        'value' => '1',
+        'value' => 'Yes',
         'name' => 'Yes',
       ],
       'match' => [
@@ -49,7 +50,7 @@ return [
       'values' => [
         'option_group_id.name' => 'kam_onboarding_assessment_apply',
         'label' => E::ts('No'),
-        'value' => '2',
+        'value' => 'No',
         'name' => 'No',
       ],
       'match' => [
@@ -69,7 +70,7 @@ return [
       'values' => [
         'option_group_id.name' => 'kam_onboarding_assessment_apply',
         'label' => E::ts('Not sure yet'),
-        'value' => '3',
+        'value' => 'Not sure yet',
         'name' => 'Not sure yet',
       ],
       'match' => [

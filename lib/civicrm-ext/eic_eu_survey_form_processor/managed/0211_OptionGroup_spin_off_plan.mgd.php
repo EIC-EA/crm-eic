@@ -12,9 +12,10 @@ return [
       'values' => [
         'name' => 'spin_off_plan',
         'title' => E::ts('Spin-off Plan'),
-        'data_type' => 'Integer',
-        'is_reserved' => FALSE,
+        'data_type' => 'String',
         'option_value_fields' => ['name', 'label', 'description'],
+        'is_reserved' => FALSE,
+        'is_active' => TRUE,
       ],
       'match' => ['name'],
     ],
@@ -29,7 +30,7 @@ return [
       'values' => [
         'option_group_id.name' => 'spin_off_plan',
         'label' => E::ts('Yes - spin-off already created'),
-        'value' => '1',
+        'value' => 'Yes already created',
         'name' => 'Yes - spin-off already created',
       ],
       'match' => [
@@ -49,7 +50,7 @@ return [
       'values' => [
         'option_group_id.name' => 'spin_off_plan',
         'label' => E::ts('Yes - planning to create one during or after the project'),
-        'value' => '2',
+        'value' => 'Yes planning to create',
         'name' => 'es - planning to create one during or after the project',
       ],
       'match' => [
@@ -69,7 +70,7 @@ return [
       'values' => [
         'option_group_id.name' => 'spin_off_plan',
         'label' => E::ts('A company (from the consortium or external) will commercialise the project’s results'),
-        'value' => '3',
+        'value' => 'A company will commercialise',
         'name' => 'A company (from the consortium or external) will commercialise the project’s results',
       ],
       'match' => [
@@ -89,7 +90,7 @@ return [
       'values' => [
         'option_group_id.name' => 'spin_off_plan',
         'label' => E::ts('No'),
-        'value' => '4',
+        'value' => 'No',
         'name' => 'No',
       ],
       'match' => [
