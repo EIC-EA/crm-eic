@@ -33,7 +33,7 @@
   </classloader>
   <civix>
     <namespace>CRM/EicEuSurveyFormProcessor</namespace>
-    <format>25.10.2</format>
+    <format>26.10.3</format>
     <angularModule>crmEicEuSurveyFormProcessor</angularModule>
     <setting-page-title>Settings for EIC EU-Survey Form-Processor Automation</setting-page-title>
   </civix>

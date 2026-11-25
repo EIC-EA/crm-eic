@@ -75,9 +75,38 @@ class CRM_EicEuSurveyFormProcessor_ExtensionUtil {
     return self::CLASS_PREFIX . '_' . str_replace('\\', '_', $suffix);
   }
 
+  /**
+   * @return \CiviMix\Schema\SchemaHelperInterface
+   */
+  public static function schema() {
+    if (!isset($GLOBALS['CiviMixSchema'])) {
+      pathload()->loadPackage('civimix-schema@5', TRUE);
+    }
+    return $GLOBALS['CiviMixSchema']->getHelper(static::LONG_NAME);
+  }
+
 }
 
 use CRM_EicEuSurveyFormProcessor_ExtensionUtil as E;
+
+pathload()->addSearchDir(__DIR__ . '/mixin/lib');
+spl_autoload_register('_eic_eu_survey_form_processor_civix_class_loader', TRUE, TRUE);
+
+function _eic_eu_survey_form_processor_civix_class_loader($class) {
+  if ($class === 'CRM_EicEuSurveyFormProcessor_DAO_Base') {
+    class_alias('CRM_Core_DAO_Base', 'CRM_EicEuSurveyFormProcessor_DAO_Base');
+    // ^^ Materialize concrete names -- encourage IDE's to pick up on this association.
+    return;
+  }
+
+  // This allows us to tap-in to the installation process (without incurring real file-reads on typical requests).
+  if (strpos($class, 'CiviMix\\Schema\\EicEuSurveyFormProcessor\\') === 0) {
+    // civimix-schema@5 is designed for backported use in download/activation workflows,
+    // where new revisions may become dynamically available.
+    pathload()->loadPackage('civimix-schema@5', TRUE);
+    CiviMix\Schema\loadClass($class);
+  }
+}
 
 /**
  * (Delegated) Implements hook_civicrm_config().
