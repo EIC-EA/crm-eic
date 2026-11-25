@@ -6,6 +6,28 @@
 class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
 
   /**
+   * Method to be used int he deploy.sh to execute updates before:
+   * - Upgrade DB
+   * - Reconcile
+   *
+   * This function is called from the deploy.sh.
+   *
+   * @return bool
+   *
+   * @throws Exception
+   */
+  public function beforeUpgradeAndReconcile(): bool {
+    // Static method - can be called from anywhere
+    $upgrader = new CRM_NcConfig_Upgrader();
+
+    $upgrader->___upgrade_1005();
+    $upgrader->___upgrade_1011();
+
+    // Return success.
+    return TRUE;
+  }
+
+  /**
    * Call upgrade methods in sequence.
    *
    * This function is called from the postInstall hook.
@@ -143,10 +165,11 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
       }
 
       // Delete entries from civicrm_managed table.
-      CRM_Core_DAO::executeQuery(
-        "DELETE FROM civicrm_managed WHERE module = 'nc_config' AND name = %1",
-        [1 => [$name, 'String']]
-      );
+      $deleted =  \Civi\Api4\Managed::delete(FALSE)
+        ->addWhere('module', '=', 'nc_config')
+        ->addWhere('name', '=', $name)
+        ->execute();
+      $log->info('Deleted ' . count($deleted) . " Managed Entity record(s) for $name.");
 
       $log->info("Deleted managed entity: {$name}");
 
@@ -331,40 +354,19 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
     $log = $this->ctx->log ?? \Civi::log();
     $log->info('Start nc_config/upgrade_1011 - Drop onboarded column from civicrm_value_srm_activity_related.');
 
-    $table = 'civicrm_value_srm_activity_related';
+    // Deleting the CustomField through APIv4 also drops its column from the
+    // custom group table. It is a no-op when no matching field exists.
+    $deleted = \Civi\Api4\CustomField::delete(FALSE)
+      ->addWhere('custom_group_id.table_name', '=', 'civicrm_value_srm_activity_related')
+      ->addWhere('column_name', '=', 'onboarded')
+      ->execute();
+    $log->info('Deleted ' . count($deleted) . ' CustomField record(s) for onboarded.');
 
-    // Drop the column from the main table if it exists.
-    $exists = CRM_Core_DAO::singleValueQuery(
-      "SELECT COUNT(*) FROM information_schema.columns
-       WHERE table_schema = DATABASE() AND table_name = %1 AND column_name = 'onboarded'",
-      [1 => [$table, 'String']]
-    );
-    if ($exists) {
-      CRM_Core_DAO::executeQuery("ALTER TABLE `{$table}` DROP COLUMN `onboarded`");
-      $log->info("Dropped column onboarded from {$table}.");
-    }
-
-    // Drop the column from the logging table if it exists.
-    $logTable = "log_{$table}";
-    $logExists = CRM_Core_DAO::singleValueQuery(
-      "SELECT COUNT(*) FROM information_schema.columns
-       WHERE table_schema = DATABASE() AND table_name = %1 AND column_name = 'onboarded'",
-      [1 => [$logTable, 'String']]
-    );
-    if ($logExists) {
-      CRM_Core_DAO::executeQuery("ALTER TABLE `{$logTable}` DROP COLUMN `onboarded`");
-      $log->info("Dropped column onboarded from {$logTable}.");
-    }
-
-    // Delete the CustomField record.
-    CRM_Core_DAO::executeQuery(
-      "DELETE FROM civicrm_custom_field
-       WHERE column_name = 'onboarded' AND custom_group_id IN (
-         SELECT id FROM civicrm_custom_group WHERE table_name = %1
-       )",
-      [1 => [$table, 'String']]
-    );
-    $log->info('Deleted CustomField record for onboarded.');
+    $deleted =  \Civi\Api4\Managed::delete(FALSE)
+      ->addWhere('module', '=', 'nc_config')
+      ->addWhere('name', '=', 'CustomGroup_Activity_related_CustomField_Onboarded')
+      ->execute();
+    $log->info('Deleted ' . count($deleted) . ' Managed Entity record(s) for CustomGroup_Activity_related_CustomField_Onboarded.');
 
     $log->info('Finished nc_config/upgrade_1011 - Drop onboarded column.');
     return TRUE;

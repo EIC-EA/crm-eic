@@ -1,11 +1,11 @@
 ARG PHP_VERSION=8.4
 # Comment to force rebuild
-ARG DRUPAL_VERSION=11.3
+ARG DRUPAL_VERSION=11.4
 ARG ENV
 
 FROM drupal:${DRUPAL_VERSION}-php${PHP_VERSION}-fpm
 
-ARG CIVICRM_VERSION=6.18
+ARG CIVICRM_VERSION=6.20.1
 
 # install the PHP extensions we need
 RUN set -eux; \
@@ -99,6 +99,10 @@ RUN set -eux; \
 	composer config --no-plugins allow-plugins.composer/installers true && \
 	# Set install path for civicrm-ext type packages
 	composer config extra.installer-paths.civicrm-ext/{\$name} '["type:civicrm-ext"]' --json && \
+	# civicrm-core pins phpoffice/phpspreadsheet to ^5 <5.10, and every version in
+	# that range has security advisories, so Composer blocks it. Ignore advisories
+	# for this one package only until CiviCRM ships a release allowing a fixed version.
+	composer config policy.advisories.ignore '["phpoffice/phpspreadsheet"]' --json && \
 	# Install CiviCRM core
 	composer require civicrm/civicrm-core:^${CIVICRM_VERSION} && \
 	composer config --no-plugins allow-plugins.civicrm/civicrm-asset-plugin true && \
@@ -155,8 +159,8 @@ RUN	composer install && \
 	# Delete composer cache
 	rm -rf "$COMPOSER_HOME"
 
-COPY docker/php/web/sites/default/settings.php /opt/drupal/web/sites/default/settings.php
-COPY docker/php/web/sites/default/civicrm.settings.php /opt/drupal/web/sites/default/civicrm.settings.php
+COPY --chown=www-data:www-data --chmod=440 docker/php/web/sites/default/settings.php /opt/drupal/web/sites/default/settings.php
+COPY --chown=www-data:www-data --chmod=440 docker/php/web/sites/default/civicrm.settings.php /opt/drupal/web/sites/default/civicrm.settings.php
 COPY docker/php/docker.ini /usr/local/etc/php/conf.d/zzz_docker.ini
 COPY docker/php/deploy.sh /opt/drupal/deploy.sh
 COPY docker/php/arclamp-prepend.php /opt/arclamp/arclamp-prepend.php
