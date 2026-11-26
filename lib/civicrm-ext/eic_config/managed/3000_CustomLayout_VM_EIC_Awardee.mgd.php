@@ -6,7 +6,7 @@ return [
     'name' => 'CustomLayout_VM_EIC_Awardee',
     'entity' => 'ContactLayout',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -16,7 +16,7 @@ return [
           'EIC_Awardee',
           'EIC_Organisation',
         ],
-        'groups:name' => ['EIC_VentureMatch'],
+        'groups' => ['EIC_VentureMatch'],
         'weight' => 1,
         'blocks' => [
           [
