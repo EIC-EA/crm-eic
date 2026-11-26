@@ -272,7 +272,12 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
 
     foreach ($columnMapping as $oldColName => $newColName) {
       $table = 'civicrm_value_srm_eic_accelerator_onboarding_survey_data';
-      CRM_Core_DAO::executeQuery("ALTER TABLE `$table` RENAME COLUMN `$oldColName` TO `$newColName`");
+
+      // check if the old column still exists
+      $colExists = CRM_Core_DAO::singleValueQuery("SELECT 1 FROM information_schema.columns WHERE table_schema = DATABASE() AND table_name = '$table' and column_name = '$oldColName'");
+      if (!empty($colExists)) {
+        CRM_Core_DAO::executeQuery("ALTER TABLE `$table` RENAME COLUMN `$oldColName` TO `$newColName`");
+      }
     }
 
     // Update the CustomField entity.
@@ -318,7 +323,12 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
 
     foreach ($columnMapping as $oldColName => $newColName) {
       $table = 'civicrm_value_srm_eu_survey_company_data';
-      CRM_Core_DAO::executeQuery("ALTER TABLE `$table` RENAME COLUMN `$oldColName` TO `$newColName`");
+
+      // check if the old column still exists
+      $colExists = CRM_Core_DAO::singleValueQuery("SELECT 1 FROM information_schema.columns WHERE table_schema = DATABASE() AND table_name = '$table' and column_name = '$oldColName'");
+      if (!empty($colExists)) {
+        CRM_Core_DAO::executeQuery("ALTER TABLE `$table` RENAME COLUMN `$oldColName` TO `$newColName`");
+      }
     }
 
     // Update the CustomField entity.
@@ -368,8 +378,56 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
       ->execute();
     $log->info('Deleted ' . count($deleted) . ' Managed Entity record(s) for CustomGroup_Activity_related_CustomField_Onboarded.');
 
+    // Deleting the CustomField also deleted its option group, leaving
+    // orphaned Managed records that would block it from being recreated.
+    $this->deleteOrphanedOnboardedStatusManagedRecords();
+
     $log->info('Finished nc_config/upgrade_1011 - Drop onboarded column.');
     return TRUE;
+  }
+
+  /**
+   * Remove orphaned Managed records for the eic_investor_onboarded_status
+   * option group and its option values.
+   *
+   * Deleting the `Onboarded` CustomField (___upgrade_1011) also deleted its
+   * option group, which nullified entity_id on the matching civicrm_managed
+   * rows. With 'update' => 'unmodified', the reconciler treats them as
+   * intentionally deleted and never recreates them, so recreating the
+   * CustomField fails. Removing those rows lets the next reconcile recreate
+   * the option group, option values and custom field.
+   */
+  public function upgrade_1012(): bool {
+    $log = $this->ctx->log ?? \Civi::log();
+    $log->info('Start nc_config/upgrade_1012 - Remove orphaned Managed records for eic_investor_onboarded_status.');
+
+    $this->deleteOrphanedOnboardedStatusManagedRecords();
+
+    $log->info('Finished nc_config/upgrade_1012 - Remove orphaned Managed records for eic_investor_onboarded_status.');
+    return TRUE;
+  }
+
+  /**
+   * Delete orphaned Managed records for the eic_investor_onboarded_status
+   * option group and its option values.
+   *
+   * Only rows whose entity was deleted (entity_id IS NULL) are removed, so
+   * the next reconcile recreates them instead of skipping them under the
+   * 'update' => 'unmodified' policy.
+   */
+  private function deleteOrphanedOnboardedStatusManagedRecords(): void {
+    $log = $this->ctx->log ?? \Civi::log();
+    $deleted = \Civi\Api4\Managed::delete(FALSE)
+      ->addWhere('module', '=', 'nc_config')
+      ->addWhere('name', 'IN', [
+        'OptionGroup_eic_investor_onboarded_status',
+        'OptionGroup_eic_investor_onboarded_status_OptionValue_Onboarded',
+        'OptionGroup_eic_investor_onboarded_status_OptionValue_Not_yet_contacted',
+        'OptionGroup_eic_investor_onboarded_status_OptionValue_Contacted',
+      ])
+      ->addWhere('entity_id', 'IS NULL')
+      ->execute();
+    $log->info('Deleted ' . count($deleted) . ' orphaned Managed record(s) for eic_investor_onboarded_status.');
   }
 
   /**
@@ -416,3 +474,4 @@ class CRM_NcConfig_Upgrader extends CRM_Extension_Upgrader_Base {
   }
 
 }
+
