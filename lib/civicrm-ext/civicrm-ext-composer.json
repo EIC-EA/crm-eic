@@ -63,10 +63,10 @@
             "type": "package",
             "package": {
                 "name": "civicrm-ext/action-provider",
-                "version": "1.202",
+                "version": "1.203",
                 "type": "civicrm-ext",
                 "dist": {
-                    "url": "https://lab.civicrm.org/extensions/action-provider/-/archive/1.202/action-1.202.zip",
+                    "url": "https://lab.civicrm.org/extensions/action-provider/-/archive/1.202/action-1.203.zip",
                     "type": "zip"
                 }
             }
