@@ -12,6 +12,9 @@
     },
     "civicrm-ext/advimport": {
       "Advanced Import - Set batches size": "./patches/civicrm/advimport_max_batch.patch"
+    },
+    "civicrm-ext/form-processor": {
+      "Form Processor 3.3.2 - fix nullable types": "./patches/civicrm/form_processor_332_nullable.patch"
     }
   }
 }
