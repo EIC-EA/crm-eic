@@ -1,0 +1,248 @@
+diff --git a/CRM/FormProcessor/BAO/FormProcessorAction.php b/CRM/FormProcessor/BAO/FormProcessorAction.php
+index 21e18c7..a7d533a 100644
+--- a/CRM/FormProcessor/BAO/FormProcessorAction.php
++++ b/CRM/FormProcessor/BAO/FormProcessorAction.php
+@@ -269,7 +269,7 @@ class CRM_FormProcessor_BAO_FormProcessorAction extends CRM_FormProcessor_DAO_Fo
+    * @param int $pid
+    * @return array
+    */
+-  public static function getFieldsForMapping($actionProvider, int $form_processor_id, int $id=null, $onlyInputs = false, $skipInputs = false, int $pid = 0): array {
++  public static function getFieldsForMapping($actionProvider, int $form_processor_id, ?int $id=null, $onlyInputs = false, $skipInputs = false, int $pid = 0): array {
+     $return = [];
+     if (!$skipInputs) {
+       $inputs = CRM_FormProcessor_BAO_FormProcessorInput::getValues(['form_processor_id' => $form_processor_id]);
+diff --git a/CRM/FormProcessor/BAO/FormProcessorCalculateAction.php b/CRM/FormProcessor/BAO/FormProcessorCalculateAction.php
+index dac6a60..2a1e980 100644
+--- a/CRM/FormProcessor/BAO/FormProcessorCalculateAction.php
++++ b/CRM/FormProcessor/BAO/FormProcessorCalculateAction.php
+@@ -206,7 +206,7 @@ class CRM_FormProcessor_BAO_FormProcessorCalculateAction extends CRM_FormProcess
+    * @param bool $skipInputs
+    * @return array
+    */
+-  public static function getFieldsForMapping($actionProvider, int $form_processor_id, int $id=null, $onlyInputs = false, $skipInputs = false): array {
++  public static function getFieldsForMapping($actionProvider, int $form_processor_id, ?int $id=null, $onlyInputs = false, $skipInputs = false): array {
+     $return = [];
+     if (!$skipInputs) {
+       $inputs = CRM_FormProcessor_BAO_FormProcessorInput::getValues(['form_processor_id' => $form_processor_id]);
+diff --git a/CRM/FormProcessor/BAO/FormProcessorDefaultDataAction.php b/CRM/FormProcessor/BAO/FormProcessorDefaultDataAction.php
+index 227620a..fe60e7b 100644
+--- a/CRM/FormProcessor/BAO/FormProcessorDefaultDataAction.php
++++ b/CRM/FormProcessor/BAO/FormProcessorDefaultDataAction.php
+@@ -213,7 +213,7 @@ class CRM_FormProcessor_BAO_FormProcessorDefaultDataAction extends CRM_FormProce
+    * @param bool $skipInputs
+    * @return array
+    */
+-  public static function getFieldsForMapping($actionProvider, int $form_processor_id, int $id=null, $onlyInputs = false, $skipInputs = false): array {
++  public static function getFieldsForMapping($actionProvider, int $form_processor_id, ?int $id=null, $onlyInputs = false, $skipInputs = false): array {
+     $return = [];
+     if (!$skipInputs) {
+       $inputs = CRM_FormProcessor_BAO_FormProcessorDefaultDataInput::getValues(['form_processor_id' => $form_processor_id]);
+diff --git a/CRM/FormProcessor/BAO/FormProcessorValidateAction.php b/CRM/FormProcessor/BAO/FormProcessorValidateAction.php
+index 2bb2221..ffa8b2e 100644
+--- a/CRM/FormProcessor/BAO/FormProcessorValidateAction.php
++++ b/CRM/FormProcessor/BAO/FormProcessorValidateAction.php
+@@ -205,7 +205,7 @@ class CRM_FormProcessor_BAO_FormProcessorValidateAction extends CRM_FormProcesso
+    * @param bool $onlyInputs
+    * @return array
+    */
+-  public static function getFieldsForMapping($actionProvider, int $form_processor_id, int $id=null, $onlyInputs = false): array {
++  public static function getFieldsForMapping($actionProvider, int $form_processor_id, ?int $id=null, $onlyInputs = false): array {
+     $inputs = CRM_FormProcessor_BAO_FormProcessorInput::getValues(array('form_processor_id' => $form_processor_id));
+     $return = \Civi\FormProcessor\Runner::getFormProcessorInputMapping('input', $inputs);
+     $return = array_merge($return, \Civi\FormProcessor\Runner::getFormattedMapping());
+diff --git a/CRM/FormProcessor/Form/AbstractConfigurationAction.php b/CRM/FormProcessor/Form/AbstractConfigurationAction.php
+index 1202d68..0189d82 100644
+--- a/CRM/FormProcessor/Form/AbstractConfigurationAction.php
++++ b/CRM/FormProcessor/Form/AbstractConfigurationAction.php
+@@ -66,7 +66,7 @@ abstract class CRM_FormProcessor_Form_AbstractConfigurationAction extends CRM_Co
+    *
+    * @return array
+    */
+-  abstract protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, int $actionObjectId = null): array;
++  abstract protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, ?int $actionObjectId = null): array;
+ 
+   /**
+    * Returns the return url
+diff --git a/CRM/FormProcessor/Form/AbstractConfigurationCondition.php b/CRM/FormProcessor/Form/AbstractConfigurationCondition.php
+index 8630c6c..cdbac7d 100644
+--- a/CRM/FormProcessor/Form/AbstractConfigurationCondition.php
++++ b/CRM/FormProcessor/Form/AbstractConfigurationCondition.php
+@@ -83,7 +83,7 @@ abstract class CRM_FormProcessor_Form_AbstractConfigurationCondition extends CRM
+    *
+    * @return array
+    */
+-  abstract protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, int $actionObjectId = null): array;
++  abstract protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, ?int $actionObjectId = null): array;
+ 
+   /**
+    * Returns the return url
+diff --git a/CRM/FormProcessor/Form/AbstractConfigurationDelay.php b/CRM/FormProcessor/Form/AbstractConfigurationDelay.php
+index 2dedf21..ab07ad1 100644
+--- a/CRM/FormProcessor/Form/AbstractConfigurationDelay.php
++++ b/CRM/FormProcessor/Form/AbstractConfigurationDelay.php
+@@ -216,7 +216,7 @@ abstract class CRM_FormProcessor_Form_AbstractConfigurationDelay extends CRM_Cor
+    *   The input type class
+    * @param $prefix
+    */
+-  public function addConfigToForm(\Civi\FormProcessor\DelayedAction\AbstractDelayedAction $type, string $prefix=null) {
++  public function addConfigToForm(\Civi\FormProcessor\DelayedAction\AbstractDelayedAction $type, ?string $prefix=null) {
+     // Check whether the actionProviderElementNames is already set if so get
+     // the variable and append the configuration for this action to it.
+     // Because we dont want to overwrite the current actionProviderElementNames.
+diff --git a/CRM/FormProcessor/Form/AbstractConfigurationInputValidation.php b/CRM/FormProcessor/Form/AbstractConfigurationInputValidation.php
+index 43d03bb..1f6851a 100644
+--- a/CRM/FormProcessor/Form/AbstractConfigurationInputValidation.php
++++ b/CRM/FormProcessor/Form/AbstractConfigurationInputValidation.php
+@@ -208,7 +208,7 @@ abstract class CRM_FormProcessor_Form_AbstractConfigurationInputValidation exten
+    *   The input validator class
+    * @param $prefix
+    */
+-  public function addConfigToForm(AbstractValidator $validator, string $prefix=null) {
++  public function addConfigToForm(AbstractValidator $validator, ?string $prefix=null) {
+     // Check whether the actionProviderElementNames is already set if so get
+     // the variable and append the configuration for this action to it.
+     // Because we dont want to overwrite the current actionProviderElementNames.
+diff --git a/CRM/FormProcessor/Form/CalculationConfigurationAction.php b/CRM/FormProcessor/Form/CalculationConfigurationAction.php
+index 80b7992..7d66308 100644
+--- a/CRM/FormProcessor/Form/CalculationConfigurationAction.php
++++ b/CRM/FormProcessor/Form/CalculationConfigurationAction.php
+@@ -44,7 +44,7 @@ class CRM_FormProcessor_Form_CalculationConfigurationAction extends CRM_FormProc
+    *
+    * @return array
+    */
+-  protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, int $actionObjectId = NULL): array {
++  protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, ?int $actionObjectId = NULL): array {
+     return CRM_FormProcessor_BAO_FormProcessorCalculateAction::getFieldsForMapping($provider, $formProcessorId, $actionObjectId);
+   }
+ 
+diff --git a/CRM/FormProcessor/Form/CalculationConfigurationCondition.php b/CRM/FormProcessor/Form/CalculationConfigurationCondition.php
+index 0636136..a280ac0 100644
+--- a/CRM/FormProcessor/Form/CalculationConfigurationCondition.php
++++ b/CRM/FormProcessor/Form/CalculationConfigurationCondition.php
+@@ -44,7 +44,7 @@ class CRM_FormProcessor_Form_CalculationConfigurationCondition extends CRM_FormP
+    *
+    * @return array
+    */
+-  protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, int $actionObjectId = NULL): array {
++  protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, ?int $actionObjectId = NULL): array {
+     return CRM_FormProcessor_BAO_FormProcessorCalculateAction::getFieldsForMapping($provider, $formProcessorId, $actionObjectId);
+   }
+ 
+diff --git a/CRM/FormProcessor/Form/ConfigurationAction.php b/CRM/FormProcessor/Form/ConfigurationAction.php
+index fdd71af..170fc9c 100644
+--- a/CRM/FormProcessor/Form/ConfigurationAction.php
++++ b/CRM/FormProcessor/Form/ConfigurationAction.php
+@@ -44,7 +44,7 @@ class CRM_FormProcessor_Form_ConfigurationAction extends CRM_FormProcessor_Form_
+    *
+    * @return array
+    */
+-  protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, int $actionObjectId = NULL): array {
++  protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, ?int $actionObjectId = NULL): array {
+     return CRM_FormProcessor_BAO_FormProcessorAction::getFieldsForMapping($provider, $formProcessorId, $actionObjectId);
+   }
+ 
+diff --git a/CRM/FormProcessor/Form/ConfigurationCondition.php b/CRM/FormProcessor/Form/ConfigurationCondition.php
+index 012668d..614061b 100644
+--- a/CRM/FormProcessor/Form/ConfigurationCondition.php
++++ b/CRM/FormProcessor/Form/ConfigurationCondition.php
+@@ -44,7 +44,7 @@ class CRM_FormProcessor_Form_ConfigurationCondition extends CRM_FormProcessor_Fo
+    *
+    * @return array
+    */
+-  protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, int $actionObjectId = NULL): array {
++  protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, ?int $actionObjectId = NULL): array {
+     return CRM_FormProcessor_BAO_FormProcessorAction::getFieldsForMapping($provider, $formProcessorId, $actionObjectId);
+   }
+ 
+diff --git a/CRM/FormProcessor/Form/DefaultDataConfigurationAction.php b/CRM/FormProcessor/Form/DefaultDataConfigurationAction.php
+index 0b5b93e..b545972 100644
+--- a/CRM/FormProcessor/Form/DefaultDataConfigurationAction.php
++++ b/CRM/FormProcessor/Form/DefaultDataConfigurationAction.php
+@@ -44,7 +44,7 @@ class CRM_FormProcessor_Form_DefaultDataConfigurationAction extends CRM_FormProc
+    *
+    * @return array
+    */
+-  protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, int $actionObjectId = NULL): array {
++  protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, ?int $actionObjectId = NULL): array {
+     return CRM_FormProcessor_BAO_FormProcessorDefaultDataAction::getFieldsForMapping($provider, $formProcessorId, $actionObjectId);
+   }
+ 
+diff --git a/CRM/FormProcessor/Form/DefaultDataConfigurationCondition.php b/CRM/FormProcessor/Form/DefaultDataConfigurationCondition.php
+index cd572f9..694066c 100644
+--- a/CRM/FormProcessor/Form/DefaultDataConfigurationCondition.php
++++ b/CRM/FormProcessor/Form/DefaultDataConfigurationCondition.php
+@@ -44,7 +44,7 @@ class CRM_FormProcessor_Form_DefaultDataConfigurationCondition extends CRM_FormP
+    *
+    * @return array
+    */
+-  protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, int $actionObjectId = NULL): array {
++  protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, ?int $actionObjectId = NULL): array {
+     return CRM_FormProcessor_BAO_FormProcessorDefaultDataAction::getFieldsForMapping($provider, $formProcessorId, $actionObjectId);
+   }
+ 
+diff --git a/CRM/FormProcessor/Form/ValidationConfigurationAction.php b/CRM/FormProcessor/Form/ValidationConfigurationAction.php
+index 386c55c..6102ad2 100644
+--- a/CRM/FormProcessor/Form/ValidationConfigurationAction.php
++++ b/CRM/FormProcessor/Form/ValidationConfigurationAction.php
+@@ -44,7 +44,7 @@ class CRM_FormProcessor_Form_ValidationConfigurationAction extends CRM_FormProce
+    *
+    * @return array
+    */
+-  protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, int $actionObjectId = NULL): array {
++  protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, ?int $actionObjectId = NULL): array {
+     return CRM_FormProcessor_BAO_FormProcessorValidateAction::getFieldsForMapping($provider, $formProcessorId, $actionObjectId);
+   }
+ 
+diff --git a/CRM/FormProcessor/Form/ValidationConfigurationCondition.php b/CRM/FormProcessor/Form/ValidationConfigurationCondition.php
+index 2409dc8..a688bfa 100644
+--- a/CRM/FormProcessor/Form/ValidationConfigurationCondition.php
++++ b/CRM/FormProcessor/Form/ValidationConfigurationCondition.php
+@@ -44,7 +44,7 @@ class CRM_FormProcessor_Form_ValidationConfigurationCondition extends CRM_FormPr
+    *
+    * @return array
+    */
+-  protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, int $actionObjectId = NULL): array {
++  protected function getAvailableFieldsForMapping(Provider $provider, int $formProcessorId, ?int $actionObjectId = NULL): array {
+     return CRM_FormProcessor_BAO_FormProcessorValidateAction::getFieldsForMapping($provider, $formProcessorId, $actionObjectId);
+   }
+ 
+diff --git a/CRM/FormProcessor/Utils/AddConfigToForm.php b/CRM/FormProcessor/Utils/AddConfigToForm.php
+index 59fbfde..548c409 100644
+--- a/CRM/FormProcessor/Utils/AddConfigToForm.php
++++ b/CRM/FormProcessor/Utils/AddConfigToForm.php
+@@ -130,7 +130,7 @@ class CRM_FormProcessor_Utils_AddConfigToForm {
+     $form->assign('configDescriptions', $configDescriptions);
+   }
+ 
+-  protected static function addConfigField(SpecificationInterface $config_field, $prefix, $suffix, CRM_Core_Form $form, array $availableFields = null, bool $isRequired=false, string $singleName=null) {
++  protected static function addConfigField(SpecificationInterface $config_field, $prefix, $suffix, CRM_Core_Form $form, ?array $availableFields = null, bool $isRequired=false, ?string $singleName=null) {
+     $field_name = $prefix.$config_field->getName().$suffix;
+     $description = null;
+     if ($config_field->getDescription()) {
+diff --git a/Civi/FormProcessor/API/Exception.php b/Civi/FormProcessor/API/Exception.php
+index 779ab6b..0229b91 100644
+--- a/Civi/FormProcessor/API/Exception.php
++++ b/Civi/FormProcessor/API/Exception.php
+@@ -10,7 +10,7 @@ use Throwable;
+ 
+ class Exception extends \Exception {
+ 
+-  public function __construct($actionName, Throwable $previous = NULL) {
++  public function __construct($actionName, ?Throwable $previous = NULL) {
+     $message = "Action ".$actionName." failed.";
+     if ($previous) {
+       $message .= " Caused by ".$previous->getMessage();
+diff --git a/Civi/FormProcessor/Runner.php b/Civi/FormProcessor/Runner.php
+index 6033bb8..62e0681 100644
+--- a/Civi/FormProcessor/Runner.php
++++ b/Civi/FormProcessor/Runner.php
+@@ -196,7 +196,7 @@ class Runner {
+    *
+    * @return array
+    */
+-  protected static function processInputs(DataBag $dataBag, $formProcessor, array $params, string $inputSubset, string $inputParameterMapping, array $limitToCertainInputs = null): array {
++  protected static function processInputs(DataBag $dataBag, $formProcessor, array $params, string $inputSubset, string $inputParameterMapping, ?array $limitToCertainInputs = null): array {
+     // Validate the parameters.
+     $inputErrors = [];
+     foreach ($formProcessor[$inputSubset] as $input) {
+

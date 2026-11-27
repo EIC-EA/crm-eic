@@ -10,10 +10,11 @@ desktop.ini
 # Local environment / secrets
 .env
 .env.*
+*/.env
 *.local
 *.gz
 *.tgz
 *.sql
 .__backup
-
+.idea
 
