@@ -6,7 +6,7 @@ return [
     'name' => 'CustomLayout_VM_Investor_Organisation',
     'entity' => 'ContactLayout',
     'cleanup' => 'unused',
-    'update' => 'unmodified',
+    'update' => 'always',
     'params' => [
       'version' => 4,
       'values' => [
@@ -15,7 +15,7 @@ return [
         'contact_sub_type' => [
           'Investor',
         ],
-        'groups:name' => ['EIC_VentureMatch'],
+        'groups' => ['EIC_VentureMatch'],
         'weight' => 2,
         'blocks' => [
           [
