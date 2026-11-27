@@ -38,7 +38,7 @@ class CRM_NcAutomations_EngagementCaseAutocompleteHelper {
    * @return array
    *   Case clients array.
    */
-  private function getCaseClients(int|string $caseId): array {
+  public function getCaseClients(int|string $caseId): array {
     // Load the case contacts.
     $caseContacts = \Civi\Api4\CaseContact::get(FALSE)
       ->addSelect('*', 'case_id.case_type_id:name', 'contact_id.contact_sub_type')
