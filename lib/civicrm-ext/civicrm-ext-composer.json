@@ -66,7 +66,7 @@
                 "version": "1.203",
                 "type": "civicrm-ext",
                 "dist": {
-                    "url": "https://lab.civicrm.org/extensions/action-provider/-/archive/1.202/action-1.203.zip",
+                    "url": "https://lab.civicrm.org/extensions/action-provider/-/archive/1.203/action-1.203.zip",
                     "type": "zip"
                 }
             }
